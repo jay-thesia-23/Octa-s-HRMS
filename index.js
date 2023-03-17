@@ -1,10 +1,10 @@
 
 var mysql2 = require('mysql2');
 var express = require('express');
-var wizad=require("./routes/wizard")
+
 const path = require('path')
 
-const multerUpload=require('./routes/multer')
+
 var bodyParser = require('body-parser');
 const { response } = require('express');
 var app = express();
@@ -13,9 +13,15 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+
+const register = require('../hrms/routes/register')
+app.use(register)
+const login = require('../hrms/routes/login')
+app.use(login)
+
+var wizad=require("../hrms/routes/wizard")
 app.use(wizad)
-app.use(routes)
-app.use(multerUpload)
+
 
 var connection = mysql2.createConnection({
     host: 'localhost',
@@ -36,10 +42,7 @@ var connection = mysql2.createConnection({
   
 
 
-const register = require('../hrms/routes/register')
-app.use(register)
-const login = require('../hrms/routes/login')
-app.use(login)
+
 
 app.listen(5000, () => {
     console.log("app listion on 5000 port");

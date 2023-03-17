@@ -218,14 +218,16 @@ function registerPage1() {
       document.getElementById('fname-error').innerHTML="";
   }
   
-  if(lname == null || lname == "")
-  {
-      document.getElementById('lname-error').innerHTML="Please enter lname";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('lname-error').innerHTML="";
-  }
+  // if(lname == null || lname == "")
+  // {
+  //     document.getElementById('lname-error').innerHTML="Please enter lname";
+  //     isvalidate = false;
+  // }
+  // else{
+  //     document.getElementById('lname-error').innerHTML="";
+  // }
+
+
   if(dob == null || dob == "")
   {
       document.getElementById('dob-error').innerHTML="Please fill date of birth";
@@ -346,7 +348,7 @@ var s="";
 var clk =1;
 function education(){
   var table2= document.getElementById('education');
-  var v2 = document.createElement('edu');
+  var v2 = document.createElement('div');
   if(clk <= 3)
       {
           v2.innerHTML=` 
