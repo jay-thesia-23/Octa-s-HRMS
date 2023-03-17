@@ -3,8 +3,8 @@ var mysql2 = require('mysql2');
 var express = require('express');
 var wizad=require("./routes/wizard")
 const path = require('path')
-const routes = require('../HRMS/routes/registration')
-
+const routes = require('./routes/registration')
+const multerUpload=require('./routes/multer')
 var app = express();
 app.set('view engine', 'ejs')
 var bodyParser = require('body-parser');
@@ -15,7 +15,7 @@ app.use(express.static('public'));
 // app.use("/public", express.static("public"));
 app.use(wizad)
 app.use(routes)
-
+app.use(multerUpload)
 
 var connection = mysql2.createConnection({
   host: 'localhost',
@@ -30,6 +30,7 @@ connection.connect((err) => {
     throw err;
   console.log("connected with database");
 })
+
 
 
 app.listen(5000, () => {
