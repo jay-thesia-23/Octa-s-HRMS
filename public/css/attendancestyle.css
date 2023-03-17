@@ -1,3 +1,7 @@
+*{
+  padding: 0;
+  margin: 0;
+}
 .container{
     /* border: 1px solid red; */
     max-width: 1170px;
@@ -6,11 +10,16 @@
 }
 .row{
     display: flex;
+    flex-wrap: wrap;
     margin: 0 -16px;
 }
 .card{
-    width: 30%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 16.66%;
+    padding: 16px 0;
+    
+}
+.card-in{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 10px;
     margin: 0 16px;
     border-radius: 10px;
@@ -36,7 +45,10 @@
 #card6{
     background-color: rgb(210, 84, 191);
 }
-
+.m_t_b{
+  margin-top: 1rem;
+   margin-bottom: 2rem;
+}
 .part2{
     margin-top: 20px;
     text-align: end;
@@ -59,16 +71,22 @@
     width: 100%;
     border: 1px solid gray;
     border-radius: 10px;
+    border-spacing: 0;
   }
   .tab thead tr{
     background-color: rgb(43, 43, 94);
     color: white;
+
+  }
+  .tab thead tr th{
+    border-radius: 10px;
   }
   tbody tr:hover{
     background-color: rgb(185, 185, 194);
   }
   tbody tr td{
     text-align: center;
+    border-radius: 10px;
   }
   .row-page{
    text-align: center;

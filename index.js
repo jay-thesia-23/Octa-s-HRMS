@@ -10,9 +10,15 @@ const util=require('util');
 const { query } = require('express');
 app.use(express.static("public"));
 
+//routes
+const routes = require('../hrms/routes/profile');
+app.use(routes);
+
+const routes2 = require('../hrms/routes/dashboard');
+app.use(routes2);
+
 
 app.use(express.json());
-// app.use(cookieParser())
 app.set('view engine', 'ejs');
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));

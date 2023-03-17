@@ -2,16 +2,31 @@
     /* border: 1px solid red; */
     max-width: 1170px;
     margin: 0 auto;
-    padding: 0 auto;
+    padding: 0 16px;
 }
+/* .main{
+    display: flex;
+}
+.rightside{
+    width: 70%;
+} */
 .row{
     display: flex;
+    flex-wrap: wrap;
+
     margin: 0 -16px;
 }
 .card{
-    width: 30%;
+    width: 20%;
+
+   
+}
+.in_card{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 10px;
+    /* padding: 10px; */
     margin: 0 16px;
     border-radius: 10px;
     color: white;
@@ -66,20 +81,27 @@
     margin-top: 20px;
   }
 
-  .row-ht{
+.row-ht{
     display: flex;
+    flex-wrap: wrap;
     margin: 0 -16px;
 }
 .col-ht{
-    width: 30%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 10px;
-    margin: 0 16px;
-    border-radius: 10px;
+    width: 25%;
+    padding:16px 0;
+   
      
+}
+.col-ht-in{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 
+    margin: 0 16px;
+    padding: 10px;
+    border-radius: 10px;
 }
 .r1{
     text-align: end;   
+
 }
 .col-ht a{
     text-decoration: none;
@@ -119,8 +141,16 @@
 .r4{
     padding: 10px;
 }
-.l1{
+/* .l1{
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 0px;
+} */
+.l1 i{
+display:inline-block;
+}
+
+.l1 p{
+    padding: 0 10px;
+    display: inline-block;
 }

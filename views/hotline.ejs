@@ -11,43 +11,58 @@
 </head>
 
 <body>
+    <div class="main">
+        <div class="leftsection">
+            <%- include('menubar') %>
+        </div>
+    <div class="rightside">
     <div class="container">
         <div class="part1">
             <div class="row">
-                <div class="card" id="card1">
-                    <div class="logo1">
-                        <img src="/images/online.png" alt="">
+                <div class="card">
+                    <div class="in_card" id="card1">
+                        <div class="logo1">
+                            <img src="/images/online.png" alt="">
+                        </div>
+                        <p>Online</p>
+                        <p>1</p>
                     </div>
-                    <p>Online</p>
-                    <p>1</p>
                 </div>
-                <div class="card" id="card2">
-                    <div class="logo2">
-                        <img src="/images/lunckbreak.png" alt="">
+                <div class="card">
+                    <div class="in_card" id="card2">
+                        <div class="logo2">
+                            <img src="/images/lunckbreak.png" alt="">
+                        </div>
+                        <p>On Break</p>
+                        <p>2</p>
                     </div>
-                    <p>On Break</p>
-                    <p>2</p>
                 </div>
-                <div class="card" id="card3">
-                    <div class="logo2">
-                        <img src="/images/wfh.png" alt="">
+                <div class="card">
+                    <div class="in_card" id="card3">
+                        <div class="logo2">
+                            <img src="/images/wfh.png" alt="">
+                        </div>
+                        <p>Work From Home</p>
+                        <p>22</p>
                     </div>
-                    <p>Work From Home</p>
-                    <p>22</p>
                 </div>
-                <div class="card" id="card4">
-                    <div class="logo2">
-                        <img src="/images/offline.png" alt="">
+                <div class="card">
+                    <div class="in_card" id="card4">
+                        <div class="logo2">
+                            <img src="/images/offline.png" alt="">
+                        </div>
+                        <p>Offline</p>
+                        <p>3</p>
                     </div>
-                    <p>Offline</p>
-                    <p>3</p>
                 </div>
-                <div class="card" id="card5">
-                    <div class="logo2">
-                        <img src="/images/leave.png" alt="">
+                <div class="card">
+                    <div class="in_card" id="card5">
+                        <div class="logo2">
+                            <img src="/images/leave.png" alt="">
+                        </div>
+                        <p>On Leave</p>
+                        <p>4</p>
                     </div>
-                    <p>On Leave</p>
-                    <p>4</p>
                 </div>
             </div>
         </div>
@@ -57,26 +72,28 @@
                 <input type="submit" name="searchbtn" value="Search" class="btnsearch">
             </div>
         </div>
-        <div class="part3">
+        <div class=" part3">
             <div class="row-ht">
                 <div class="col-ht">
-                    <div class="r1">
-                        <a href="">Online</a>
-                    </div>
-                    <div class="r2">
-                        <img src="/images/demo.png" alt="">
-                        <h3>Shreya Patel</h3>
-                        <p>Business Analyst</p>
-                    </div>
-                    <div class="fade-area">
-                        <div class="r3">
-                            <div class="prof1">
-                                <p class="hd">Department</p>
-                                <p>Business Analyst</p>
-                            </div>
-                            <div class="prof1">
-                                <p class="hd">Date Hired</p>
-                                <p>12-04-2023</p>
+                    <div class="col-ht-in">
+                        <div class="r1">
+                            <a href="">Online</a>
+                        </div>
+                        <div class="r2">
+                            <img src="/images/demo.png" alt="">
+                            <h3>Shreya Patel</h3>
+                            <p>Business Analyst</p>
+                        </div>
+                        <div class="fade-area">
+                            <div class="r3">
+                                <div class="prof1">
+                                    <p class="hd">Department</p>
+                                    <p>Business Analyst</p>
+                                </div>
+                                <div class="prof1">
+                                    <p class="hd">Date Hired</p>
+                                    <p>12-04-2023</p>
+                                </div>
                             </div>
                         </div>
                         <div class="r4">
@@ -93,87 +110,114 @@
                 </div>
 
                 <div class="col-ht">
-                    <div class="r1">
-                        <a href="">Online</a>
-                    </div>
-                    <div class="r2">
-                        <img src="/images/demo.png" alt="">
-                        <h3>Shreya Patel</h3>
-                        <p>Business Analyst</p>
-                    </div>
-                    <div class="fade-area">
-                        <div class="r3">
-                            <div class="prof1">
-                                <p class="hd">Department</p>
-                                <p>Business Analyst</p>
-                            </div>
-                            <div class="prof1">
-                                <p class="hd">Date Hired</p>
-                                <p>12-04-2023</p>
+                    <div class="col-ht-in">
+                        <div class="r1">
+                            <a href="">Online</a>
+                        </div>
+                        <div class="r2">
+                            <img src="/images/demo.png" alt="">
+                            <h3>Shreya Patel</h3>
+                            <p>Business Analyst</p>
+                        </div>
+                        <div class="fade-area">
+                            <div class="r3">
+                                <div class="prof1">
+                                    <p class="hd">Department</p>
+                                    <p>Business Analyst</p>
+                                </div>
+                                <div class="prof1">
+                                    <p class="hd">Date Hired</p>
+                                    <p>12-04-2023</p>
+                                </div>
                             </div>
                         </div>
                         <div class="r4">
-                            <p>shreya@gmail.com</p>
-                            <p>8800998877 </p>
+                            <div class="l1">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p>shreya@gmail.com</p>
+                            </div>
+                            <div class="l1">
+                                <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                <p>8800998877 </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-ht">
-                    <div class="r1">
-                        <a href="">Online</a>
-                    </div>
-                    <div class="r2">
-                        <img src="/images/demo.png" alt="">
-                        <h3>Shreya Patel</h3>
-                        <p>Business Analyst</p>
-                    </div>
-                    <div class="fade-area">
-                        <div class="r3">
-                            <div class="prof1">
-                                <p class="hd">Department</p>
-                                <p>Business Analyst</p>
-                            </div>
-                            <div class="prof1">
-                                <p class="hd">Date Hired</p>
-                                <p>12-04-2023</p>
+                    <div class="col-ht-in">
+                        <div class="r1">
+                            <a href="">Online</a>
+                        </div>
+                        <div class="r2">
+                            <img src="/images/demo.png" alt="">
+                            <h3>Shreya Patel</h3>
+                            <p>Business Analyst</p>
+                        </div>
+                        <div class="fade-area">
+                            <div class="r3">
+                                <div class="prof1">
+                                    <p class="hd">Department</p>
+                                    <p>Business Analyst</p>
+                                </div>
+                                <div class="prof1">
+                                    <p class="hd">Date Hired</p>
+                                    <p>12-04-2023</p>
+                                </div>
                             </div>
                         </div>
                         <div class="r4">
-                            <p>shreya@gmail.com</p>
-                            <p>8800998877 </p>
+                            <div class="l1">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p>shreya@gmail.com</p>
+                            </div>
+                            <div class="l1">
+                                <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                <p>8800998877 </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-ht">
-                    <div class="r1">
-                        <a href="">Online</a>
-                    </div>
-                    <div class="r2">
-                        <img src="/images/demo.png" alt="">
-                        <h3>Shreya Patel</h3>
-                        <p>Business Analyst</p>
-                    </div>
-                    <div class="fade-area">
-                        <div class="r3">
-                            <div class="prof1">
-                                <p class="hd">Department</p>
-                                <p>Business Analyst</p>
-                            </div>
-                            <div class="prof1">
-                                <p class="hd">Date Hired</p>
-                                <p>12-04-2023</p>
+                    <div class="col-ht-in">
+                        <div class="r1">
+                            <a href="">Online</a>
+                        </div>
+                        <div class="r2">
+                            <img src="/images/demo.png" alt="">
+                            <h3>Shreya Patel</h3>
+                            <p>Business Analyst</p>
+                        </div>
+                        <div class="fade-area">
+                            <div class="r3">
+                                <div class="prof1">
+                                    <p class="hd">Department</p>
+                                    <p>Business Analyst</p>
+                                </div>
+                                <div class="prof1">
+                                    <p class="hd">Date Hired</p>
+                                    <p>12-04-2023</p>
+                                </div>
                             </div>
                         </div>
                         <div class="r4">
-                            <p>shreya@gmail.com</p>
-                            <p>8800998877 </p>
+                            <div class="l1">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p>shreya@gmail.com</p>
+                            </div>
+                            <div class="l1">
+                                <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                <p>8800998877 </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+              
             </div>
         </div>
     </div>
+</div>
+    </div>
+</div>
 </body>
+
 </html>
