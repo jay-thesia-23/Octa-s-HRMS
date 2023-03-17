@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: rgb(11, 78, 179);
 }
@@ -179,6 +180,7 @@ input {
 .btn:hover {
   box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
 }
+
 .btn-grup-2:hover {
   /* box-shadow: 0 0 0 2px #fff, 0 0 0 3px */
 }
@@ -250,3 +252,4 @@ input[type=radio] {
 .span1{
   color: red;
 }
+
