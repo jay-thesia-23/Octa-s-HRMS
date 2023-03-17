@@ -25,4 +25,6 @@ var conection = mysql2.createConnection({
     res.render("registrstion.ejs")
   })
 
+  
+
   module.exports = app

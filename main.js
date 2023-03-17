@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
-app.use(express.json());
+
 var ejs = require('ejs');
 const bcrypt = require('bcrypt');
 
-
+app.use(express.json());
 app.use(express.static('css'));
 app.use(express.static('images'));
 
