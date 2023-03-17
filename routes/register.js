@@ -12,6 +12,10 @@ var cookieParser = require('cookie-parser');
 // app.use(cookieParser());
 var jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
+
+const fs = require('fs');
+const util = require('util')
+
 app.use(cookieParser());
 
 app.use("/public", express.static("public"));
@@ -67,24 +71,11 @@ app.post('/register', async (req, res) => {
     encrypt_password = await bcrypt.hash(password, 10);
 
     var encrypt_password;
-    var x
 
-   async function validation(params) {
-        var sql = `select * from registration where u_email='${email}';`
-        con.query(sql, async function(err,result){
-            if(err) throw err
-           
-            x=await result
-            res.send(x)
-            console.log(x.length);
-        })
-    }
 
-    var valid_email = await validation()
-  
-
-    console.log(valid_email);
-
+    var query = util.promisify(con.query).bind(con)
+        var data = await query(`select * from registration where u_email='${email}'`)
+            console.log(data.length);
     
     if(user_name == "" || email == "" || password == "" || encrypt_password == ""){
         res.end('blank')
@@ -92,8 +83,8 @@ app.post('/register', async (req, res) => {
     else if(password == encrypt_password || password.length < 3){
         res.end('password not matched')
     }
-    else if(x.length == 0){
-        res.end('Email is Invalid!!!!')
+    else if(data.length > 0){
+        res.end('Invalid E-Mail!!!!')
     }
     else{
        
@@ -197,7 +188,7 @@ app.post('/register', async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:6600/verify?token=${token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?token=${token}&email=${email} "> verify</a>
             </div>
         </section>
        
