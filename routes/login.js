@@ -43,7 +43,7 @@ async function Inemail(email) {
         con.query(`select * from registration where u_email='${email}';`, (err, data) => {
             if (err) throw err;
             res(data);
-            // console.log(data.length);
+            console.log(data.length);
 
         })
     })
