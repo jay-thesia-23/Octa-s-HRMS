@@ -59,47 +59,15 @@ app.post('/clone-email', (req, res) => {
 
 app.post('/register', async (req, res) => {
 
-    console.log("register inside");
     var user_name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
 
-    encrypt_password = await bcrypt.hash(password, 10);
 
     var encrypt_password;
-    var x
+     encrypt_password = await bcrypt.hash(password, 10);
 
-   async function validation(params) {
-        var sql = `select * from registration where u_email='${email}';`
-        con.query(sql, async function(err,result){
-            if(err) throw err
-           
-            x=await result
-            res.send(x)
-            console.log(x.length);
-        })
-    }
-
-    var valid_email = await validation()
-  
-
-    console.log(valid_email);
-
-    
-    if(user_name == "" || email == "" || password == "" || encrypt_password == ""){
-        res.end('blank')
-    }
-    else if(password == encrypt_password || password.length < 3){
-        res.end('password not matched')
-    }
-    else if(x.length == 0){
-        res.end('Email is Invalid!!!!')
-    }
-    else{
-       
-    encrypt_password = await bcrypt.hash(password, 10);
-
-    var sql_insert = `insert into registration (u_name,u_email,u_password,isactive) values('${user_name}','${email}','${encrypt_password}','1');`
+    var sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`
 
     con.query(sql_insert, (err, data) => {
         if (err) {
@@ -197,7 +165,7 @@ app.post('/register', async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:6600/verify?token=${token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?token=${token}&email=${email} "> verify</a>
             </div>
         </section>
        
@@ -214,15 +182,14 @@ app.post('/register', async (req, res) => {
     });
 
     res.send("register Succesfully!!!!")
-
-    }
 })
 
 
 app.get('/verify', (req, res) => {
     const token = req.query.token;
     const email = req.query.email;
-
+console.log(email);
+console.log(token);
     // Verifying the JWT token 
     jwt.verify(token, 'sanjay', function (err, decoded) {
         if (err) {

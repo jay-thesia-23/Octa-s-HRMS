@@ -72,19 +72,29 @@ app.post('/login', async (req, res) => {
         console.log(isMatch);
         if (isMatch == true) {
             console.log(data[0].isactive);
-            // console.log(data);
+          
             const token = jwt.sign({ email }, 'sanjay');
-            // console.log("token!..........." ,token);
+          
             res.cookie("token", token);
-            console.log("active flag ....................................");
-            // console.log(data[0].isactive);
+        
+      
 
             if (data[0].isactive == '1') {
                 res.send('wait for some min')
             }
              else {
+                if (data[0].u_login == 1) {
+                    con.query(`update registration set u_login = '0' where u_email='${email}';`, (err, data) => {
+                        if (err) throw err;
+                        res.render('wizard.ejs');
+                        
+            
+                    })
+                }else{
+                    res.send("home page")
+                }
+               
 
-                res.send("login success")
             }
 
         }
@@ -95,7 +105,8 @@ app.post('/login', async (req, res) => {
         }
     }
     else {
-        // res.json(false)
+
+
         res.redirect('/login')
         console.log('your password is not matched ');
     }
