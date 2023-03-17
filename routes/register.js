@@ -59,6 +59,7 @@ app.post('/clone-email', (req, res) => {
 
 app.post('/register', async (req, res) => {
 
+    console.log("register inside");
     var user_name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
