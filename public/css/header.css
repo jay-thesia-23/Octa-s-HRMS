@@ -1,8 +1,10 @@
 .top-header {
-    background-color:rgb(235, 229, 229);
+    background-color:rgb(215, 212, 212);
     padding: 30px;
     color:black;
     transition: margin-left .5s;
+    /* position: fixed; */
+    width: 100%;
 }
 
 .header-section {
