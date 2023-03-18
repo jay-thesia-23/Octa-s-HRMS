@@ -1,42 +1,40 @@
-var express = require('express');
+var express = require("express");
 var app = express();
 app.use(express.json());
-var ejs = require('ejs');
+var ejs = require("ejs");
 
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
+app.use(express.static("css"));
+app.use(express.static("images"));
 
-app.use(express.static('css'));
-app.use(express.static('images'));
-
-var bodyparser = require('body-parser');
+var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
-var mysql = require('mysql2');
+var mysql = require("mysql2");
 
-var cookieParser = require('cookie-parser');
+var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
-var jwt = require('jsonwebtoken')
+var jwt = require("jsonwebtoken");
 
 app.use(cookieParser());
 
 app.use("/public", express.static("public"));
 
-
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'hrms'
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
 });
-con.connect((err) => {
-    if (err) throw err;
-    console.log(" database connected ")
-});
-app.get('/login', (req, res) => {
 
-    res.render('login.ejs', {})
-})
+con.connect((err) => {
+  if (err) throw err;
+  console.log(" database connected ");
+});
+app.get("/login", (req, res) => {
+  res.render("login.ejs", {});
+});
 
 async function Inemail(email) {
     return await new Promise((res, rej) => {
@@ -50,12 +48,12 @@ async function Inemail(email) {
 }
 var id
 
-app.post('/login', async (req, res) => {
-    var email = req.body.email;
-    var password = req.body.password;
+app.post("/login", async (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
 
-    var data = await Inemail(email);
-    // console.log(data)
+  var data = await Inemail(email);
+  // console.log(data)
 
     var sql=`select id from registration where u_email='${email}';`
     console.log(sql);
@@ -104,12 +102,38 @@ app.post('/login', async (req, res) => {
           
         }
     }
-    else {
-        // res.json(false)
-        res.redirect('/login')
-        console.log('your password is not matched ');
+    var isMatch = await compare_psw(password, data);
+    console.log(isMatch);
+    if (isMatch == true) {
+      console.log(data[0].isactive);
+
+      const token = jwt.sign({ email }, "sanjay");
+
+      res.cookie("token", token);
+
+      if (data[0].isactive == "1") {
+        res.send("wait for some min");
+      } else {
+        if (data[0].u_login == 1) {
+          con.query(
+            `update registration set u_login = '0' where u_email='${email}';`,
+            (err, data) => {
+              if (err) throw err;
+              res.render("wizard.ejs");
+            }
+          );
+        } else {
+          res.send("home page");
+        }
+      }
+    } else if (!isMatch) {
+      return res.send(
+        `Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `
+      );
     }
-
-
+   else {
+    res.redirect("/login");
+    console.log("your password is not matched ");
+  }
 });
-module.exports = app, {Inemail};
+(module.exports = app), { Inemail };
