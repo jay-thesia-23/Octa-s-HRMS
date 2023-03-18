@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyparser=require('body-parser')
 var app = express();
 app.use(express.json());
 
@@ -13,13 +14,10 @@ const register = require('../hrms/routes/register')
 app.use(register)
 const login = require('../hrms/routes/login')
 app.use(login)
-
-
-const routes = require('../hrms/routes/profile');
-app.use(routes);
-
-const routes2 = require('../hrms/routes/dashboard');
-app.use(routes2);
+const profile = require('../hrms/routes/profile');
+app.use(profile);
+const dashboard = require('../hrms/routes/dashboard');
+app.use(dashboard);
 
 
 app.get('/wizard',(req,res)=>{
@@ -35,5 +33,5 @@ app.get('/hotline',(req,res)=>{
 });
 
 app.listen(5000, () => {
-    console.log("app listion on 5000 port");
+    console.log("app listening on 5000 port");
 })
