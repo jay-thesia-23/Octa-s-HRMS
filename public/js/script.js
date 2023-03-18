@@ -4,7 +4,6 @@ const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
 const progressSteps = document.querySelectorAll(".progress-step");
 
-
 let formStepsNum = 0;
 
 nextBtns.forEach((btn) => {
