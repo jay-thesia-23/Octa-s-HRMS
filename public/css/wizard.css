@@ -21,7 +21,9 @@ label {
   display: block;
   margin-bottom: 0.5rem;
 }
-
+.span1{
+  color: red;
+}
 input {
   display: block;
   width: 100%;
