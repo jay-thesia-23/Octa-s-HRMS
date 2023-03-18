@@ -1,0 +1,98 @@
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    background-color:#002f4b;
+    color: #111;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* border-top-right-radius: 20px; */
+
+}
+
+.sidebar .strong-hover-shake:hover {
+    animation: tilt-shaking 0.15s infinite;
+}
+
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0eg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* .sidebar .closebtn {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    top: 0;
+    right: 20px;
+    font-size: 36px;
+    margin-left: 10px;
+} */
+
+.logo {
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+nav a {
+    width: 100%;
+    color: white;
+    font-size: 20x;
+    display: table;
+    padding: 10px;
+}
+
+.logoName {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav li a:hover {
+    background: #eee;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    user-select: none;
+}
+
+nav li a:hover {
+    /* width: 283px; */
+    transition: all 0.5s ease;
+    border-radius: 15px;
+}

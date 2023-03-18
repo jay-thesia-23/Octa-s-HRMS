@@ -28,6 +28,7 @@
     "nodemon": "^2.0.21",
     "sweetalert": "^2.1.2",
     "util": "^0.12.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "express-ejs-layouts": "^2.5.1"
   }
 }
