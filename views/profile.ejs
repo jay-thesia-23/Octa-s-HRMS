@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/profilecss.css">
+    <link rel="stylesheet" href="css/profilecss.css">
 </head>
 
 <body>
@@ -34,65 +34,93 @@
                         <h2>Basic Information</h2>
                         <div class="basic-row">
                             <div class="basic-col">
-                                <div class="heading">
-                                    <tr>First_name</tr>
-                                    <tr>Last_name</tr>
-                                    <tr>email</tr>
-                                    <tr>phone</tr>
-                                    <tr>City</tr>
-                                    <tr>state</tr>
-                                    <tr>gender</tr>
-                                    <tr>zipcode</tr>
-                                    <tr>birth_date</tr>
-                                    <tr>address</tr>
-                                    <tr>relationshiP_status</tr>
-                                    <tr>designation</tr>
-                                
-                                </div>
-                            </div>
-                            <div class="basic-col">
-                                <tbody>
-                                    <% for(let i=0;i<basicdata.length;i++) { %>
-                                        <tr>
-                                            <td>
-                                                <%= basicdata[i].firstname %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].lastname %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].email %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].phone_number%>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].city %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].state %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].gender %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].zip_code %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].birth_date %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].address %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].relationship %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].designation %>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
+                                <table>
+                                    <tr>
+                                        <td>First_name</td>
+                                        <td>
+                                            <%= basicdata[0].firstname %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last_name</td>
+                                        <td>
+                                            <%= basicdata[0].lastname %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>
+                                            <%= basicdata[0].email %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>
+                                            <%= basicdata[0].phone_number%>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>city</td>
+                                        <td>
+                                            <%= basicdata[0].city %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>state</td>
+                                        <td>
+                                            <%= basicdata[0].state %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>
+                                            <%= basicdata[0].gender %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>zipcode</td>
+                                        <td>
+                                            <%= basicdata[0].zip_code %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>birthdate</td>
+                                        <td>
+                                            <%= basicdata[0].birth_date %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>address</td>
+                                        <td>
+                                            <%= basicdata[0].address %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Relationship</td>
+                                        <td>
+                                            <%= basicdata[0].relationship %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>designation</td>
+                                        <td>
+                                            <%= basicdata[0].designation %>
+                                        </td>
+                                    </tr>
+
+    
+
+                                </table>
+
                             </div>
                         </div>
                     </div>
@@ -124,18 +152,18 @@
         <tbody>
             <% for(let i=0;i<basicdata.length;i++) { %>
                   <tr>
-                    <td><%= basicdata[i].firstname %></td>
-                    <td><%= basicdata[i].lastname %></td>
-                    <td><%= basicdata[i].email %></td>
-                    <td><%= basicdata[i].phone_number%></td>
-                    <td><%= basicdata[i].city %></td>
-                    <td><%= basicdata[i].state %></td>
-                    <td><%= basicdata[i].gender %></td>
-                    <td><%= basicdata[i].zip_code %></td>
-                    <td><%= basicdata[i].birth_date %></td>
-                    <td><%= basicdata[i].address %></td>
-                    <td><%= basicdata[i].relationship %></td>
-                    <td><%= basicdata[i].designation %></td>
+                    <td><%= basicdata[0].firstname %></td>
+                    <td><%= basicdata[0].lastname %></td>
+                    <td><%= basicdata[0].email %></td>
+                    <td><%= basicdata[0].phone_number%></td>
+                    <td><%= basicdata[0].city %></td>
+                    <td><%= basicdata[0].state %></td>
+                    <td><%= basicdata[0].gender %></td>
+                    <td><%= basicdata[0].zip_code %></td>
+                    <td><%= basicdata[0].birth_date %></td>
+                    <td><%= basicdata[0].address %></td>
+                    <td><%= basicdata[0].relationship %></td>
+                    <td><%= basicdata[0].designation %></td>
                   </tr>                           
            <% } %>
         </tbody>
@@ -153,10 +181,10 @@
         <tbody>
             <% for(let i=0;i<educationdata.length;i++) { %>
             <tr>
-                <td><%= educationdata[i].course_name %></td>
-                <td><%= educationdata[i].percentage %></td>
-                <td><%= educationdata[i].board_university_name %></td>
-                <td><%= educationdata[i].passout_year%></td>
+                <td><%= educationdata[0].course_name %></td>
+                <td><%= educationdata[0].percentage %></td>
+                <td><%= educationdata[0].board_university_name %></td>
+                <td><%= educationdata[0].passout_year%></td>
             </tr>
             <% } %>
         </tbody>
@@ -174,10 +202,10 @@
         <tbody>
             <% for(let i=0;i<experiencedata.length;i++) { %>
             <tr>
-                <td><%= experiencedata[i].company_name %></td>
-                <td><%= experiencedata[i].designation_company %></td>
-                <td><%= experiencedata[i].start_date %></td>
-                <td><%= experiencedata[i].end_date%></td>
+                <td><%= experiencedata[0].company_name %></td>
+                <td><%= experiencedata[0].designation_company %></td>
+                <td><%= experiencedata[0].start_date %></td>
+                <td><%= experiencedata[0].end_date%></td>
             </tr>
             <% } %>
         </tbody>
@@ -194,9 +222,9 @@
         <tbody>
             <% for(let i=0;i<referencedata.length;i++) { %>
             <tr>
-                <td><%= referencedata[i].name %></td>
-                <td><%= referencedata[i].number %></td>
-                <td><%= referencedata[i].relationship%></td>
+                <td><%= referencedata[0].name %></td>
+                <td><%= referencedata[0].number %></td>
+                <td><%= referencedata[0].relationship%></td>
             </tr>
             <% } %>
         </tbody>

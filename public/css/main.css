@@ -1,0 +1,11 @@
+.main {
+    padding: 50px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    margin-left: 0;
+}
