@@ -9,3 +9,6 @@
     transition: margin-left 0.5s;
     margin-left: 0;
 } */
+.wrapper{
+    max-width: 1440px;
+}
