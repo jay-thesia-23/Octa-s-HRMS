@@ -1,22 +1,22 @@
-import bodyParser from "body-parser";
-import express from "express";
-import bcrypt, { hash } from "bcrypt";
-import jwt from "jsonwebtoken";
-import mysql2 from "mysql2";
-import cookieParser from "cookie-parser";
-import path from "path";
-import SharpMulter from "sharp-multer"
-import multer from "multer";
+const express = require('express')
+const mysql2 = require('mysql2')
+const body_parser = require('body-parser')
+const path = require('path')
+const app = express()
+const multer=require("multer")
+app.use(body_parser.urlencoded({ extended: true }));
+
+app.use("/public", express.static("public"));
 
 const upload = multer({ dest: "uploads/" });
-var app = express();
+
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(body_parser.urlencoded({ extended: true }));
+app.use(body_parser.json());
 
-app.get("/", (req, res) => {
+
+app.get("/upload", (req, res) => {
   res.render("multer", {});
 });
 
@@ -49,6 +49,9 @@ app.post("/upload", upload.single("profileImage"), async (req, res) => {
       resize: { width: 300, height: 300 },
     },
   });
+
+
+  
   const upload = multer({ storage });
   const upload_compress = multer({ storage_compress });
 
@@ -58,6 +61,6 @@ app.post("/upload", upload.single("profileImage"), async (req, res) => {
   res.redirect("/");
 });
 
-app.listen("3030", () => {
+app.listen("5000", () => {
   console.log("server is running");
 });
