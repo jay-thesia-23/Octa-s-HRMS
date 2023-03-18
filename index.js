@@ -10,6 +10,8 @@ const login = require('../hrms/routes/login')
 app.use(login)
 const demo = require('./routes/checkInOut')
 app.use(demo)
+const abc = require('./routes/deshbord')
+app.use(abc)
 
 
 

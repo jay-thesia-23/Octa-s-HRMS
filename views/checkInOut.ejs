@@ -29,7 +29,7 @@
 <body>
    
 
-    <button class="button" id="check_in" onclick="test()">check_In</button>
+    <button class="button" id="check_in" onclick="test(), checkin()">check_In</button>
     <button class="button" id="check_out" onclick="chk_out()" disabled>check_out</button><br>
     <button class="button" id="breck_in" onclick="breck()" disabled>breck_in</button>
     <button class="button" id="breck_out" onclick="brc_out()" disabled>breck_out</button>
@@ -41,6 +41,21 @@
         var check_out = document.getElementById('check_out')
         var breck_in = document.getElementById('breck_in')
         var breck_out = document.getElementById('breck_out')
+
+        async function checkin(){
+            fetch('/check_in', {
+          method: 'post',
+          headers: {
+            "Content-type": 'application/json'
+          }
+        })
+
+        .then(res => res.json())
+          .then(data => {
+            console.log("data lode sucesfully!!!!")
+          })
+
+        }
 
         function test(){
 

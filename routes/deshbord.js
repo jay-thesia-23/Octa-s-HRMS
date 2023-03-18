@@ -34,24 +34,6 @@ con.connect((err) => {
     console.log(" database connected ")
 });
 
-app.get("/demo", function(req,res){
-    res.render('checkInOut.ejs')
-})
-
-app.post('/check_in', function(err,res){
-
-
-    
-    // var sql=`select id from registration where u_email='${email}';`
-    // console.log(sql);
-    // con.query(sql, function(err,result){
-    //     if(err) throw err
-    //     id=result
-    //     console.log(result)
-    // })
-    console.log("Ok!!!!!!!!!!!!!!!!!!!!!!!!!!");
-})
-
 app.get('/token',function(req,res){
     var test = req.cookies.login_token
     console.log(test);

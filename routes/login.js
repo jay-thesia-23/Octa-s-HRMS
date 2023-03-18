@@ -48,6 +48,7 @@ async function Inemail(email) {
         })
     })
 }
+var id
 
 app.post('/login', async (req, res) => {
     var email = req.body.email;
@@ -55,6 +56,14 @@ app.post('/login', async (req, res) => {
 
     var data = await Inemail(email);
     // console.log(data)
+
+    var sql=`select id from registration where u_email='${email}';`
+    console.log(sql);
+    con.query(sql, function(err,result){
+        if(err) throw err
+        id=result
+        console.log(result)
+    })
 
     if (data.length != 0) {
         async function compare_psw(password, data) {
@@ -73,9 +82,10 @@ app.post('/login', async (req, res) => {
         if (isMatch == true) {
             console.log(data[0].isactive);
             // console.log(data);
-            const token = jwt.sign({ email }, 'sanjay');
+            const login_token = jwt.sign({ email,id }, 'sanjay');
             // console.log("token!..........." ,token);
-            res.cookie("token", token);
+            res.cookie("login_token", login_token);
+            
             console.log("active flag ....................................");
             // console.log(data[0].isactive);
 
@@ -83,8 +93,8 @@ app.post('/login', async (req, res) => {
                 res.send('wait for some min')
             }
              else {
-
-                res.send("login success")
+                res.redirect('/demo')
+                // res.send("login success")
             }
 
         }

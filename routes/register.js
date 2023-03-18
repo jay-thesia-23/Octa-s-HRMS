@@ -109,8 +109,8 @@ app.post('/register', async (req, res) => {
     });
 
 
-    const token = jwt.sign({ email: email }, 'sanjay');
-    res.cookie("token", token);
+    const regiter_token = jwt.sign({ email: email }, 'sanjay');
+    res.cookie("regiter_token", regiter_token);
 
     const mailConfigurations = {
 
@@ -188,7 +188,7 @@ app.post('/register', async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?token=${token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?token=${regiter_token}&email=${email} "> verify</a>
             </div>
         </section>
        
@@ -211,11 +211,11 @@ app.post('/register', async (req, res) => {
 
 
 app.get('/verify', (req, res) => {
-    const token = req.query.token;
+    const reg_token = req.query.token;
     const email = req.query.email;
 
     // Verifying the JWT token 
-    jwt.verify(token, 'sanjay', function (err, decoded) {
+    jwt.verify(reg_token, 'sanjay', function (err, decoded) {
         if (err) {
             console.log(err);
             res.send("Email verification failed possibly the link is invalid or expired");
