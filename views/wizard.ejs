@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/script.js" defer></script>
+  <title>Registraion Form</title>
+</head>
+
+<body>
+  <form action="#" class="form">
+    <div class="container">
+      <h1 class="text-center">Registration Form</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+
+        <div class="progress-step progress-step-active" data-title="Basic info"></div>
+        <div class="progress-step" data-title="Education Detail"></div>
+        <div class="progress-step" data-title="Skills"></div>
+        <div class="progress-step" data-title="References"></div>
+        <div class="progress-step" data-title="Documents upload"></div>
+      </div>
+
+      <!-- Steps -->
+      <!-- 1 -->
+      <div class="form-step form-step-active">
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group-3">
+              <label for="username">First Name</label>
+              <input type="text" name="username" id="username" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group-3">
+              <label for="position">Last Name</label>
+              <input type="text" name="lastname" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="position">Date of Birth</label>
+          <input type="date" name="dob" id="" />
+        </div>
+        <div class="input-group">
+          <label for="position">Address</label>
+          <input type="text" name="address" id="" />
+        </div>
+        <label for="gender">Gender</label>
+        <div class="input-group-2">
+          <div class="div-2">
+            <div> <input type="radio" name="gen" value="male" />Male</div>
+            <div><input type="radio" name="gen" value="female" />Female</div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="position">Contact</label>
+          <input type="text" name="contact" id="" />
+        </div>
+        <div class="input-group">
+          <label for="">Relationship Status</label>
+          <div class="select-dropdown">
+            <select>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorce">Divorce</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group-3">
+              <label for=""> State</label>
+              <div class="select-dropdown">
+                <select>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Maharasthra">Maharasthra</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group-3">
+              <label for=""> City</label>
+              <div class="select-dropdown">
+                <select>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="surat">surat</option>
+                  <option value="Bhavnagar">Bhavnagar</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="form-step">
+      <div class="input-group">
+        <div class="select-dropdown">
+        <label for="phone">Course</label>
+        <select>
+          <option value="SSC">SSC</option>
+          <option value="HSC">HSC</option>
+          <option value="Bachelor">Bachelor</option>
+          <option value="Master">Master</option>
+
+        </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="email">University/college</label>
+        <input type="text" name="uni" id="" />
+      </div>
+      <div class="input-group">
+        <label for="email">Passing Year</label>
+        <input type="text" name="year" id="" />
+      </div>
+      <div class="input-group">
+        <label for="email">Percentage</label>
+        <input type="text" name="percent" id="" />
+      </div>
+      <div class="btn-grup-2">
+        <!-- <a href="" class="btn-2">Add Field</a> -->
+        <div onclick="addedu()" class="btn-2">Add field</div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="form-step">
+      <div class="input-group">
+        <label for="dob">Technologies Known</label>
+        <input type="text" name="tec" id="tec" />
+      </div>
+
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+
+    <div class="form-step">
+      <div class="input-group">
+        <label for="fileupload">Upload File</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="form-step">
+      <div class="input-group">
+        <label for="fileupload">Adhaar Card</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="input-group">
+        <label for="fileupload">Pan Card</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="input-group">
+        <label for="fileupload">Resume</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="input-group">
+        <label for="fileupload">Checks</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="input-group">
+        <label for="fileupload">Other</label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+    </div>
+  </form>
+</body>
+
+</html>
