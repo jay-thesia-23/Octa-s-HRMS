@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="css/bodystyle.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/attendance.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- sidebar -->
+        <div id="mySidebar" class="sidebar">
+            <%- include('../partials/sidebar.ejs') %>
+        </div>
+
+        <!-- Header -->
+        <div class="hero">
+            <div class="container">
+                <div class="top-header">
+                    <section>
+                        <%- include('../partials/header.ejs') %>
+                    </section>
+                </div>
+                <!-- Main body -->
+                <div class="main">
+                    <main><%- body %></main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+</body>
+
+</html>
