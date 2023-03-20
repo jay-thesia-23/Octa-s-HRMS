@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%- title %></title>
+    
     <link rel="stylesheet" href="css/bodystyle.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/attendance.css">
+    <link rel="stylesheet" href="css/attendancestyle.css">
+    <link rel="stylesheet" href="/css/hostlinestyle.css">
+    <link rel="stylesheet" href="/css/homecss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/regular.min.css">
+    <link href="https://css.gg/css?=" rel="stylesheet">
+
 </head>
 
 <body>
 
     <div class="wrapper">
         <!-- sidebar -->
-        <div id="mySidebar" class="sidebar">
+        <div class="sidebar">
             <%- include('../partials/sidebar.ejs') %>
         </div>
 
@@ -35,19 +40,6 @@
             </div>
         </div>
     </div>
-
-
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
 </body>
 
 </html>

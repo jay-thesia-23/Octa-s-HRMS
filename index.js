@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyparser = require("body-parser");
 var mysql2 = require("mysql2");
-var expressLayouts = require("express-layout");
 var app = express();
 app.use(express.json());
 
@@ -11,23 +10,30 @@ app.set("view engine", "ejs");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-app.use(expressLayouts); //Added
-app.set("layout", "./layouts/main"); //added
+
 app.use(express.static("public"));
 
 const register = require("../hrms/routes/register");
 app.use(register);
 const login = require("../hrms/routes/login");
 app.use(login);
-var wizad = require("../hrms/routes/wizard");
-app.use(wizad);
-const routes1 = require("../hrms/routes/routes");
-app.use(routes1);
 
-// const dashboard = require('../hrms/routes/dashboard');
-// app.use(dashboard);
 
 // Routes
+
+
+const routes1 = require('../hrms/routes/home');
+app.use(routes1);
+
+const routes2 = require('../hrms/routes/attendance');
+app.use(routes2);
+
+const routes3 = require('../hrms/routes/hotline');
+app.use(routes3);
+
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
+
 
 var connection = mysql2.createConnection({
   host: "localhost",

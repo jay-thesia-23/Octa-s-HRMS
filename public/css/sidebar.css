@@ -7,15 +7,14 @@ a {
     width: 250px;
     overflow-x: hidden;
     transition: 0.5s;
-    background-color:#002f4b;
+    background-color: #002f4b;
     color: #111;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    /* border-top-right-radius: 20px; */
-
+    border-top-right-radius: 35px;
 }
 
 .sidebar .strong-hover-shake:hover {
@@ -44,16 +43,6 @@ a {
     }
 }
 
-/* .sidebar .closebtn {
-    position: absolute;
-    display: flex;
-    justify-content: end;
-    top: 0;
-    right: 20px;
-    font-size: 36px;
-    margin-left: 10px;
-} */
-
 .logo {
     text-align: center;
     transition: all 0.5s ease;
@@ -77,6 +66,8 @@ nav a {
     font-size: 20x;
     display: table;
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .logoName {
@@ -84,15 +75,51 @@ nav a {
     font-size: 18px;
 }
 
+nav ul {
+    margin-top: 20px;
+}
+
+nav li {
+    margin: 20px 30px;
+    display: block;
+}
+
 nav li a:hover {
     background: #eee;
     color: rgb(0, 0, 0);
     cursor: pointer;
     user-select: none;
-}
-
-nav li a:hover {
-    /* width: 283px; */
     transition: all 0.5s ease;
     border-radius: 15px;
+}
+
+.logout-btn {
+    position: fixed;
+    bottom: 40px;
+    width: 230px;
+    border-radius: 15px;
+    padding: 10px 10px;
+    margin-left: 20px;
+}
+
+.logout-btn a {
+    font-weight: 600;
+}
+
+.logout-btn a:hover {
+    background: #eee;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.5s ease;
+    border-radius: 15px;
+}
+.nav-item{
+    margin-left: 20px;
+}
+#leave-sub{
+    display: none;
+}
+#attend-sub{
+    display: none;
 }

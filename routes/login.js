@@ -88,7 +88,7 @@ app.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.send("home page");
+          res.redirect('/')
         }
       }
     } else if (!isMatch) {
