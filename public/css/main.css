@@ -1,5 +1,5 @@
-.main {
-    padding: 30px 20px;
+.wrapper .main {
+    padding: 50px 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +9,7 @@
     transition: margin-left 0.5s;
     margin-left: 0;
 } */
-.wrapper{
-    max-width: 1440px;
+
+.wrapper .main main {
+    margin-top: 100px;
 }
