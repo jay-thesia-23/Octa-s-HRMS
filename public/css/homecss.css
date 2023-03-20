@@ -40,7 +40,8 @@
 
 .card-container {
   color: black;
-  border-left: 6px solid #002f4b;
+  border: 6px solid #002f4b;
+  border-radius: 20px;
   background-color: #fff;
   list-style-type: none;
 }
