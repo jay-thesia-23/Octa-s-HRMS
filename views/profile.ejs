@@ -1,206 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/profilecss.css">
-</head>
+    <link rel="stylesheet" href="css/profilecss.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+  </head>
 
-<body>
-    <h1>hello</h1>
+  <body>
     <div class="container">
-        <div class="row">
-            <div class="col1">
-                <div class="card1">
-                    <div class="card-in">
-                        <img src="/images/demo.png" alt="">
-                        <p>jshjxdhskk</p>
-                    </div>
-                </div>
+      <div class="row rowCols">
+        <div class="col1">
+          <div class="card1">
+            <div class="card-in">
+              <img src="/images/demo.png" alt="" />
+            </div>
+          </div>
 
-                <div class="card1">
-                    <div class="card-in">
-                        <h2>jhsjdhj</h2>
-                        <p>abcsg</p>
-                    </div>
-                </div>
+          <div class="card1">
+            <div class="card-in">
+              <p id="ProfileEdit">
+                <a href="#" id="ProfileEditAnchor"
+                  ><i class="fas fa-edit"></i> Edit Profile Pic</a
+                >
+              </p>
             </div>
-            <div class="col2">
-                <div class="card2">
-                    <div class="card2-in">
-                        <h2>Basic Information</h2>
-                        <div class="basic-row">
-                            <div class="basic-col">
-                                <div class="heading">
-                                    <tr>First_name</tr>
-                                    <tr>Last_name</tr>
-                                    <tr>email</tr>
-                                    <tr>phone</tr>
-                                    <tr>City</tr>
-                                    <tr>state</tr>
-                                    <tr>gender</tr>
-                                    <tr>zipcode</tr>
-                                    <tr>birth_date</tr>
-                                    <tr>address</tr>
-                                    <tr>relationshiP_status</tr>
-                                    <tr>designation</tr>
-                                
-                                </div>
-                            </div>
-                            <div class="basic-col">
-                                <tbody>
-                                    <% for(let i=0;i<basicdata.length;i++) { %>
-                                        <tr>
-                                            <td>
-                                                <%= basicdata[i].firstname %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].lastname %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].email %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].phone_number%>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].city %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].state %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].gender %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].zip_code %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].birth_date %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].address %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].relationship %>
-                                            </td>
-                                            <td>
-                                                <%= basicdata[i].designation %>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col3">
-                <p>judhjusehdfuj</p>
-            </div>
+          </div>
 
+          <div class="card1">
+            <div class="card-in">
+              <p id="ProfileEdit">
+                <a href="" id="ProfileEditAnchor">
+                  <span> <i class="fas fa-edit"></i> Edit Profile Fields</span>
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-    </div>
-    <!-- <table border="1">
-        <thead>
-            <tr>
-            <td>First_name</td>
-            <td>Last_name</td>
-            <td>email</td>
-            <td>phone</td>
-            <td>City</td>
-            <td>state</td>
-            <td>gender</td>
-            <td>zipcode</td>
-            <td>birth_date</td>
-            <td>address</td>
-            <td>relationshiP_status</td>
-            <td>designation</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0;i<basicdata.length;i++) { %>
-                  <tr>
-                    <td><%= basicdata[i].firstname %></td>
-                    <td><%= basicdata[i].lastname %></td>
-                    <td><%= basicdata[i].email %></td>
-                    <td><%= basicdata[i].phone_number%></td>
-                    <td><%= basicdata[i].city %></td>
-                    <td><%= basicdata[i].state %></td>
-                    <td><%= basicdata[i].gender %></td>
-                    <td><%= basicdata[i].zip_code %></td>
-                    <td><%= basicdata[i].birth_date %></td>
-                    <td><%= basicdata[i].address %></td>
-                    <td><%= basicdata[i].relationship %></td>
-                    <td><%= basicdata[i].designation %></td>
-                  </tr>                           
-           <% } %>
-        </tbody>
-    </table>
-    <br><br><br>
-    <table border="1">
-        <thead>
-            <tr>
-            <td>course_name</td>
-            <td>percent</td>
-            <td>colg</td>
-            <td>pass year</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0;i<educationdata.length;i++) { %>
-            <tr>
-                <td><%= educationdata[i].course_name %></td>
-                <td><%= educationdata[i].percentage %></td>
-                <td><%= educationdata[i].board_university_name %></td>
-                <td><%= educationdata[i].passout_year%></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-    <br><br><br>
-    <table border="1">
-        <thead>
-            <tr>
-            <td>company_name</td>
-            <td>designation_company</td>
-            <td>start_date</td>
-            <td>end_date</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0;i<experiencedata.length;i++) { %>
-            <tr>
-                <td><%= experiencedata[i].company_name %></td>
-                <td><%= experiencedata[i].designation_company %></td>
-                <td><%= experiencedata[i].start_date %></td>
-                <td><%= experiencedata[i].end_date%></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-    <br><br><br>
-    <table border="1">
-        <thead>
-            <tr>
-            <td>name</td>
-            <td>number</td>
-            <td>relationship</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0;i<referencedata.length;i++) { %>
-            <tr>
-                <td><%= referencedata[i].name %></td>
-                <td><%= referencedata[i].number %></td>
-                <td><%= referencedata[i].relationship%></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table> -->
-</body>
 
+        <div class="col2 colBasics">
+          <div class="card2">
+            <div class="cards-in">
+              <h2>Basic Information</h2>
+              <div class="basic-row">
+                <div class="basic-col">
+                  <table>
+                    <tr>
+                      <td>First_name</td>
+                      <td><%= basicdata[0].firstname %></td>
+                    </tr>
+                    <tr>
+                      <td>Last_name</td>
+                      <td><%= basicdata[0].lastname %></td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><%= basicdata[0].email %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Phone</td>
+                      <td><%= basicdata[0].phone_number%></td>
+                    </tr>
+
+                    <tr>
+                      <td>city</td>
+                      <td><%= basicdata[0].city %></td>
+                    </tr>
+
+                    <tr>
+                      <td>state</td>
+                      <td><%= basicdata[0].state %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Gender</td>
+                      <td><%= basicdata[0].gender %></td>
+                    </tr>
+
+                    <tr>
+                      <td>zipcode</td>
+                      <td><%= basicdata[0].zip_code %></td>
+                    </tr>
+
+                    <tr>
+                      <td>birthdate</td>
+                      <td><%= basicdata[0].birth_date %></td>
+                    </tr>
+
+                    <tr>
+                      <td>address</td>
+                      <td><%= basicdata[0].address %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Relationship</td>
+                      <td><%= basicdata[0].relationship %></td>
+                    </tr>
+
+                    <tr>
+                      <td>designation</td>
+                      <td><%= basicdata[0].designation %></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3 colBasics">
+          <div class="cards-in">
+            <h2>Education Info</h2>
+            <div class="basic-row">
+              <div class="basic-col">
+                <table class="tableCourse">
+                  <thead>
+                    <tr>
+                      <td>course_name</td>
+                      <td>percent</td>
+                      <td>colg</td>
+                      <td>pass year</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<dataEdu.length;i++) { %>
+                        <tr>
+                            <td><%= dataEdu[i].course_name %></td>
+                            <td><%= dataEdu[i].percentage %></td>
+                            <td><%= dataEdu[i].board_university_name %></td>
+                            <td><%= dataEdu[i].passout_year%></td>
+                        </tr>
+                        <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col4 colBasics">
+          <div class="cards-in">
+            <h2>Experience Information</h2>
+            <div class="basic-row">
+              <div class="basic-col">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>company_name</td>
+                      <td>designation_company</td>
+                      <td>start_date</td>
+                      <td>end_date</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<dataExp.length;i++) { %>
+                        <tr>
+                            <td><%= dataExp[i].company_name %></td>
+                            <td><%= dataExp[i].designation_company %></td>
+                            <td><%= dataExp[i].start_date %></td>
+                            <td><%= dataExp[i].end_date%></td>
+                        </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rowCols">
+        <div class="col5 colBasics">
+          <div class="cards-in">
+            <h2>Reference Info</h2>
+
+            <div class="basic-row">
+              <div class="basic-col">
+                <table class="tableRef">
+                  <thead>
+                    <tr>
+                      <td>name</td>
+                      <td>number</td>
+                      <td>relationship</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <% for(let i=0;i<dataRef.length;i++) { %>
+            <tr>
+                <td><%= dataRef[i].name %></td>
+                <td><%= dataRef[i].number %></td>
+                <td><%= dataRef[i].relationship%></td>
+            </tr>
+            <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col6 colBasics">
+          <div class="cards-in">
+            <h2>Document</h2>
+
+            <div class="basic-row">
+              <div class="basic-col">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Field Name</td>
+                      <td>Field Value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<4;i++) { %>
+                    <tr>
+                      <td>Aadhar</td>
+                      <td>9991234321.jpg</td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
