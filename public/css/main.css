@@ -1,0 +1,15 @@
+.wrapper .main {
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #main {
+    transition: margin-left 0.5s;
+    margin-left: 0;
+} */
+
+.wrapper .main main {
+    margin-top: 100px;
+}

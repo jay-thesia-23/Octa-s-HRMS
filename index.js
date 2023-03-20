@@ -1,52 +1,52 @@
-
-var mysql2 = require('mysql2');
-var express = require('express');
-var wizad=require("./routes/wizard")
-const path = require('path')
-const routes = require('./routes/registration')
-const multerUpload=require('./routes/multer')
-const dashboard=require('./routes/dashboard')
-const leaves=require('./routes/leaves')
-
+var express = require("express");
+var bodyparser = require("body-parser");
+var mysql2 = require("mysql2");
 var app = express();
-app.set('view engine', 'ejs')
-var bodyParser = require('body-parser');
-const { response } = require('express');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
-// app.use("/public", express.static("public"));
-app.use(wizad)
-app.use(routes)
-app.use(multerUpload)
-app.use(dashboard)
-app.use(leaves)
+app.use(express.json());
+
+const { query } = require("express");
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+
+
+app.use(express.static("public"));
+
+const register = require("../hrms/routes/register");
+app.use(register);
+const login = require("../hrms/routes/login");
+app.use(login);
+
+
+// Routes
+
+
+const routes1 = require('../hrms/routes/home');
+app.use(routes1);
+
+const routes2 = require('../hrms/routes/attendance');
+app.use(routes2);
+
+const routes3 = require('../hrms/routes/hotline');
+app.use(routes3);
+
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
 
 
 var connection = mysql2.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'hrms'
-
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
 });
 
 connection.connect((err) => {
-  if (err)
-    throw err;
+  if (err) throw err;
   console.log("connected with database");
-})
-app.get('/attendance',(req,res)=>{
-  res.render('attendance.ejs');
-});
-
-app.get('/hotline',(req,res)=>{
-  res.render('hotline.ejs');
 });
 
 app.listen(5000, () => {
-    console.log('port running at ' + 5000)
+  console.log("app listening on 5000 port");
 });
-  
-
-
