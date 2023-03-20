@@ -23,6 +23,9 @@ app.use(login);
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
+const profile = require("../hrms/routes/profile");
+app.use(profile);
+
 const routes2 = require('../hrms/routes/attendance');
 app.use(routes2);
 

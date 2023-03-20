@@ -4,7 +4,7 @@ a {
 
 .sidebar {
     height: 100%;
-    width: 250px;
+    width: 20%;
     overflow-x: hidden;
     transition: 0.5s;
     background-color: #002f4b;
