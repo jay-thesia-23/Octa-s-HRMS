@@ -14,9 +14,11 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 
-app.listen(9876,()=>{
+let server1 = app.listen(9876,()=>{
     console.log("Server Started --> http://localhost:9876/")
 });
 app.get('',(req,res)=>{
     res.render('Dashboard.ejs')
 })
+
+module.exports = server1;

@@ -16,12 +16,14 @@ nav{
     scroll-behavior: auto;
     position: relative;
     margin-top: -70px;
+    position: fixed;
     bottom: 0;
+    z-index: 1;
     left: 0;
     background: #fff;
     /* background: #002f4b; */
     width: 21%;
-    min-height: 676px;
+    height: 100%;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
@@ -93,12 +95,16 @@ nav:hover{
     list-style-type: none;
 }
 .header{
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     height: 60px;
+    z-index: 1;
+    width: 100%;
     padding: 20px;
     background: #fff;
+    margin-top: 0%;
 }
 .logo{
     display: flex;
@@ -211,6 +217,10 @@ hr{
     flex-wrap: wrap;
     padding: 10px;
 
+}
+.data-body{
+    margin-top: 4%;
+    margin-left: 20%;
 }
 .h3 {
     font-family: 'Lucida Sans' sans-serif;
