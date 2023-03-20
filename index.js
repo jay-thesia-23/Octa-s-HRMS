@@ -20,10 +20,6 @@ app.use(demo)
 const abc = require('./routes/deshbord')
 app.use(abc)
 
-const register = require("../hrms/routes/register");
-app.use(register);
-const login = require("../hrms/routes/login");
-app.use(login);
 
 
 // Routes
