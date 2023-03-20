@@ -21,8 +21,8 @@ var conection = mysql2.createConnection({
     console.log("Conected Sucesfully!!!!")
   })
 
-  app.get("/registration", (req,res)=>{
-    res.render("registrstion.ejs")
+  app.get("/register", (req,res)=>{
+    res.render("register.ejs")
   })
 
   module.exports = app

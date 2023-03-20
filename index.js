@@ -1,30 +1,27 @@
-const express = require('express')
-// const mysql = require('mysql2');
- //Added
-const bodyparser = require('body-parser');
-const ejs = require('ejs');
-const app = express()
-// const bcryptjs = require("bcryptjs");
-// const jwt=require('jsonwebtoken');
-// const cookieParser = require('cookie-parser');
-const util = require('util');
-const port = 8484
-
-// Static Files
-const { query } = require('express');
-app.use(express.static('public'))
-// Example for other folders - not required
-// app.use('/css', express.static(__dirname + 'public/css'))
-
-// Set Templating Engine
+var express = require("express");
+var bodyparser = require("body-parser");
+var mysql2 = require("mysql2");
+var app = express();
 app.use(express.json());
- //Added
-app.set('view engine', 'ejs')
-//added
+
+const { query } = require("express");
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
+
+app.use(express.static("public"));
+
+const register = require("../hrms/routes/register");
+app.use(register);
+const login = require("../hrms/routes/login");
+app.use(login);
+
+
 // Routes
+
+
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
@@ -34,5 +31,22 @@ app.use(routes2);
 const routes3 = require('../hrms/routes/hotline');
 app.use(routes3);
 
-// Listen on Port
-app.listen(port, () => console.info(`App listening on port ${port}`))
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
+
+
+var connection = mysql2.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
+});
+
+connection.connect((err) => {
+  if (err) throw err;
+  console.log("connected with database");
+});
+
+app.listen(5000, () => {
+  console.log("app listening on 5000 port");
+});
