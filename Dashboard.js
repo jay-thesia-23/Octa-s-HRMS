@@ -2,8 +2,9 @@ let express = require("express");
 let bodyParser = require('body-parser')
 let ejs = require('ejs');
 const dotenv = require('dotenv');
-
+let Cal = require('./Calendar.js')
 let app = express();
+app.use('/Calender', Cal);
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/Imgs'));
@@ -21,4 +22,3 @@ app.get('',(req,res)=>{
     res.render('Dashboard.ejs')
 })
 
-module.exports = server1;
