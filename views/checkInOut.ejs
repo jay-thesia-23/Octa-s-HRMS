@@ -42,20 +42,8 @@
         var breck_in = document.getElementById('breck_in')
         var breck_out = document.getElementById('breck_out')
 
-        async function checkin(){
-            fetch('/check_in', {
-          method: 'post',
-          headers: {
-            "Content-type": 'application/json'
-          }
-        })
+       
 
-        .then(res => res.json())
-          .then(data => {
-            console.log("data lode sucesfully!!!!")
-          })
-
-        }
 
         function test(){
 

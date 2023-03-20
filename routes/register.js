@@ -1,4 +1,5 @@
 var express = require("express");
+const session = require('express-session');
 var app = express();
 app.use(express.json());
 const bcrypt = require("bcrypt");
@@ -10,15 +11,22 @@ app.use(bodyparser.json());
 var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
-var jwt = require('jsonwebtoken')
-const nodemailer = require('nodemailer');
-
-const fs = require('fs');
-const util = require('util')
-
+var jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 app.use(cookieParser());
 
 app.use("/public", express.static("public"));
+
+app.use(
+  session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+  maxAge: 1000 * 60 * 60 * 24,
+  },
+  })
+  );
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -41,48 +49,49 @@ async function Inemail(email) {
       `select * from registration where u_email='${email}';`,
       (err, data) => {
         if (err) throw err;
-        // console.log(data);
-        if (data.length == 0) {
-            res.json(true)
-        } else {
-            res.json(false)
-        }
-    })
-
-})
+        res(data);
+        // console.log(data.length);
+      }
+    );
+  });
 }
 
-
-
-
-app.post('/register', async (req, res) => {
-
-    console.log("register inside");
-    var user_name = req.body.name;
-    var email = req.body.email;
-    var password = req.body.password;
-
-    encrypt_password = await bcrypt.hash(password, 10);
-
-    var encrypt_password;
-
-
-    var query = util.promisify(con.query).bind(con)
-        var data = await query(`select * from registration where u_email='${email}'`)
-            console.log(data.length);
-    
-    if(user_name == "" || email == "" || password == "" || encrypt_password == ""){
-        res.end('blank')
+app.post("/clone-email", (req, res) => {
+  var email = req.body.email;
+  con.query(
+    `select * from registration where u_email='${email}';`,
+    (err, data) => {
+      if (err) throw err;
+      // console.log(data);
+      if (data.length == 0) {
+        res.json(true);
+      } else {
+        res.json(false);
+      }
     }
-    else if(password == encrypt_password || password.length < 3){
-        res.end('password not matched')
+  );
+});
+
+
+app.post("/register", async (req, res) => {
+  var user_name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+
+  req.session.s_email = email
+  console.log(req.session);
+
+  var encrypt_password;
+  encrypt_password = await bcrypt.hash(password, 10);
+
+  var sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`;
+
+  con.query(sql_insert, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.send(err);
     }
-    else if(data.length > 0){
-        res.end('Invalid E-Mail!!!!')
-    }
-    else{
-       
-    encrypt_password = await bcrypt.hash(password, 10);
+  });
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -93,8 +102,8 @@ app.post('/register', async (req, res) => {
     },
   });
 
-  const regiter_token = jwt.sign({ email: email }, 'sanjay');
-  res.cookie("regiter_token", regiter_token);
+  // const login_token = jwt.sign({ email: email }, "sanjay");
+  // res.cookie("login_token", login_token);
 
   const mailConfigurations = {
     from: "hrms1650@gmail.com",
@@ -167,7 +176,7 @@ app.post('/register', async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?token=${regiter_token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -183,58 +192,45 @@ app.post('/register', async (req, res) => {
     // console.log(info);
   });
 
-    res.send("register Succesfully!!!!")
-
-    }
-})
-
-
-app.get('/verify', (req, res) => {
-    const reg_token = req.query.token;
-    const email = req.query.email;
-
-    // Verifying the JWT token 
-    jwt.verify(reg_token, 'sanjay', function (err, decoded) {
-        if (err) {
-            console.log(err);
-            res.send("Email verification failed possibly the link is invalid or expired");
-        }
-        else {
-
-            console.log(decoded);
-            res.send("Email verifified successfully");
-            con.query(`update registration set isactive = '0' where u_email='${email}';`, (err, data) => {
-
-                console.log(data);
-            })
-
-        }
-    });
+  res.send("register Succesfully!!!!");
 });
 
 app.get("/verify", (req, res) => {
-  const token = req.query.token;
+  // const reg_token = req.query.token;
   const email = req.query.email;
-  console.log(email);
-  console.log(token);
-  // Verifying the JWT token
-  jwt.verify(token, "sanjay", function (err, decoded) {
-    if (err) {
-      console.log(err);
-      res.send(
-        "Email verification failed possibly the link is invalid or expired"
-      );
-    } else {
-      console.log(decoded);
-      res.send("Email verifified successfully");
+  
+  if(req.session.s_email == email){
+      res.send("e-mail verification sucesfully!!!!!")
       con.query(
         `update registration set isactive = '0' where u_email='${email}';`,
         (err, data) => {
           console.log(data);
         }
       );
-    }
-  });
+
+  }
+  else{
+    res.send('something went wrong!!!!! e-mail is not verfied')
+  }
+  // Verifying the JWT token
+  // jwt.verify(reg_token, "sanjay", function (err, decoded) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.send(
+  //       "Email verification failed possibly the link is invalid or expired"
+  //     );
+    // } else {
+    //   console.log(decoded);
+    //   res.send("Email verifified successfully");
+    //   con.query(
+    //     `update registration set isactive = '0' where u_email='${email}';`,
+    //     (err, data) => {
+    //       console.log(data);
+    //     }
+    //   );
+    // }
+  // });
+
 });
 
-module.exports = app, { Inemail };
+(module.exports = app), { Inemail };

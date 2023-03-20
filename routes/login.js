@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 
 app.use(express.static("css"));
 app.use(express.static("images"));
+const util = require('util')
+
 
 var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -37,79 +39,50 @@ app.get("/login", (req, res) => {
 });
 
 async function Inemail(email) {
-    return await new Promise((res, rej) => {
-        con.query(`select * from registration where u_email='${email}';`, (err, data) => {
-            if (err) throw err;
-            res(data);
-            console.log(data.length);
-
-        })
-    })
+  return await new Promise((res, rej) => {
+    con.query(
+      `select * from registration where u_email='${email}';`,
+      (err, data) => {
+        if (err) throw err;
+        res(data);
+        // console.log(data.length);
+      }
+    );
+  });
 }
-var id
 
 app.post("/login", async (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
-
   var data = await Inemail(email);
-  // console.log(data)
+  var id
 
-    var sql=`select id from registration where u_email='${email}';`
-    console.log(sql);
-    con.query(sql, function(err,result){
-        if(err) throw err
-        id=result
-        console.log(result)
-    })
+  var query = util.promisify(con.query).bind(con)
+  var id = await query(`select id from registration where u_email='${email}'`)
+      console.log(id);
 
-    if (data.length != 0) {
-        async function compare_psw(password, data) {
-            return await new Promise((res, rej) => {
-                bcrypt.compare(password, data[0].u_password, (err, isMatch) => {
-                    if (err) {
-                        return err;
-                    }
-                    res(isMatch)
-                   
-                })
-            })
-        }
-        var isMatch = await compare_psw(password, data);
-        console.log(isMatch);
-        if (isMatch == true) {
-            console.log(data[0].isactive);
-            // console.log(data);
-            const login_token = jwt.sign({ email,id }, 'sanjay');
-            // console.log("token!..........." ,token);
-            res.cookie("login_token", login_token);
-            
-            console.log("active flag ....................................");
-            // console.log(data[0].isactive);
 
-            if (data[0].isactive == '1') {
-                res.send('wait for some min')
-            }
-             else {
-                res.redirect('/demo')
-                // res.send("login success")
-            }
 
-        }
-        else if (!isMatch) {
-            return res.send(`Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `)
 
-          
-        }
+  if (data.length != 0) {
+    async function compare_psw(password, data) {
+      return await new Promise((res, rej) => {
+        bcrypt.compare(password, data[0].u_password, (err, isMatch) => {
+          if (err) {
+            return err;
+          }
+          res(isMatch);
+        });
+      });
     }
     var isMatch = await compare_psw(password, data);
     console.log(isMatch);
     if (isMatch == true) {
       console.log(data[0].isactive);
 
-      const token = jwt.sign({ email }, "sanjay");
+      const login_token = jwt.sign({ email , id }, "sanjay");
 
-      res.cookie("token", token);
+      res.cookie("login_token", login_token);
 
       if (data[0].isactive == "1") {
         res.send("wait for some min");
@@ -123,7 +96,7 @@ app.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.send("home page");
+          res.redirect('/dashboard')
         }
       }
     } else if (!isMatch) {
@@ -131,7 +104,7 @@ app.post("/login", async (req, res) => {
         `Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `
       );
     }
-   else {
+  } else {
     res.redirect("/login");
     console.log("your password is not matched ");
   }

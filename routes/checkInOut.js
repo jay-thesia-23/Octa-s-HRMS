@@ -22,6 +22,7 @@ app.use(cookieParser());
 
 app.use("/public", express.static("public"));
 
+var login_user__id
 
 var con = mysql.createConnection({
     host: 'localhost',
@@ -34,27 +35,71 @@ con.connect((err) => {
     console.log(" database connected ")
 });
 
-app.get("/demo", function(req,res){
+app.get("/demo", function (req, res) {
     res.render('checkInOut.ejs')
 })
 
-app.post('/check_in', function(err,res){
+app.post('/check_in', function (req, res) {
+    var login_token = req.cookies.login_token
 
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        login_user__id = decoded.id[0].id
+        // console.log(login_user__id)
+    });
 
-    
-    // var sql=`select id from registration where u_email='${email}';`
-    // console.log(sql);
-    // con.query(sql, function(err,result){
-    //     if(err) throw err
-    //     id=result
-    //     console.log(result)
-    // })
-    console.log("Ok!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    var check_in_entry = `insert into check_master (status,reg_id) values('check_in','${login_user__id}');`
+    console.log(check_in_entry);
+
+    con.query(check_in_entry, function (err, result) {
+        if (err) throw err
+        res.json({ result })
+
+    })
+    // console.log("end point called");
 })
 
-app.get('/token',function(req,res){
+app.post('/check_out', function (req, res) {
+    
+        console.log(login_user__id);
+    var check_out_entry = `insert into check_master (status,reg_id) values('check_out','${login_user__id}');`
+    // console.log(check_out_entry)
+
+    con.query(check_out_entry, function (err, result) {
+        if (err) throw err
+        res.json({ result })
+    })
+    // console.log("end point called");
+})
+
+app.post('/breck_out', function (req, res) {
+    
+    console.log(login_user__id);
+var check_out_entry = `insert into check_master (status,reg_id) values('breck_out','${login_user__id}');`
+// console.log(check_out_entry)
+
+con.query(check_out_entry, function (err, result) {
+    if (err) throw err
+    res.json({ result })
+})
+// console.log("end point called");
+})
+
+app.post('/breck_in', function (req, res) {
+    
+    console.log(login_user__id);
+var check_out_entry = `insert into check_master (status,reg_id) values('breck_in','${login_user__id}');`
+
+con.query(check_out_entry, function (err, result) {
+    if (err) throw err
+    res.json({ result })
+})
+})
+
+
+
+app.get('/token', function (req, res) {
     var test = req.cookies.login_token
-    console.log(test);
+    // console.log(test);
 })
 
 module.exports = app
