@@ -22,10 +22,8 @@ nav{
     /* background: #002f4b; */
     width: 21%;
     min-height: 676px;
-    overflow: hidden;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    /* width: 283px; */
 }
 .logo{
     text-align: center;
@@ -49,7 +47,7 @@ nav a{
     color: rgb(85, 83, 83);
     font-size: 14px;
     display: table;
-    width: 285px;
+    width: 269px;
     padding: 10px;
 }
 .fas{
