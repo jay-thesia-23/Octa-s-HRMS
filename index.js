@@ -1,16 +1,15 @@
-var express = require('express');
-var bodyparser=require('body-parser')
-var mysql2 = require('mysql2');
+var express = require("express");
+var bodyparser = require("body-parser");
+var mysql2 = require("mysql2");
 var app = express();
 app.use(express.json());
 
-const { query } = require('express');
+const { query } = require("express");
 app.use(express.static("public"));
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-app.use(express.static('public'));
 
 const register = require('../hrms/routes/register')
 app.use(register)
@@ -21,24 +20,23 @@ app.use(demo)
 const abc = require('./routes/deshbord')
 app.use(abc)
 
-const dashboard = require('../hrms/routes/dashboard');
-app.use(dashboard);
 
 
-app.get('/wizard',(req,res)=>{
-    res.render('wizard.ejs');
-});
+// Routes
+const routes1 = require('../hrms/routes/home');
+app.use(routes1);
 
-app.get('/attendance',(req,res)=>{
-    res.render('attendance.ejs');
-});
+const profile = require("../hrms/routes/profile");
+app.use(profile);
 
-app.get('/hotline',(req,res)=>{
-    res.render('hotline.ejs');
-});
+const routes2 = require('../hrms/routes/attendance');
+app.use(routes2);
 
-var wizad=require("../hrms/routes/wizard")
-app.use(wizad)
+const routes3 = require('../hrms/routes/hotline');
+app.use(routes3);
+
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
 
 
 var connection = mysql2.createConnection({
