@@ -19,16 +19,20 @@ app.use(register);
 const login = require("../hrms/routes/login");
 app.use(login);
 
-// const dashboard = require('../hrms/routes/dashboard');
-
-// app.use(dashboard);
 
 // Routes
-const routes1 = require("./routes/dashScreen");
+const routes1 = require('../hrms/routes/home');
 app.use(routes1);
+
+const routes2 = require('../hrms/routes/attendance');
+app.use(routes2);
+
+const routes3 = require('../hrms/routes/hotline');
+app.use(routes3);
 
 var wizad = require("../hrms/routes/wizard");
 app.use(wizad);
+
 
 var connection = mysql2.createConnection({
   host: "localhost",
@@ -45,3 +49,4 @@ connection.connect((err) => {
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
 });
+

@@ -4,12 +4,15 @@
     box-sizing: border-box;
     font-family: 'Tinos', serif;
 }
-.wrapper{
+
+.wrapper {
     display: flex;
+    /* max-width: 1492px; */
 }
-.hero{
+
+.hero {
     position: relative;
     width: 100%;
-    top:0;
+    top: 0;
     margin-left: 250px;
 }
