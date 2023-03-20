@@ -251,7 +251,7 @@ function registerPage1() {
   }
   else if(isNaN(contact))
   {
-      document.getElementById('lname-error').innerHTML="Please enter valid lastname";
+      document.getElementById('contact-error').innerHTML="Please enter valid lastname";
       isvalidate = false;
   }
   else{

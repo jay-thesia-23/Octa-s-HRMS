@@ -13,6 +13,12 @@ var multer = require('multer')
 app.use(multerUpload)
 const upload = multer({ dest: "uploads/" });
 
+const register = require("./register");
+app.use(register);
+const login = require("./login");
+app.use(login);
+var jwt = require("jsonwebtoken");
+
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -34,6 +40,19 @@ app.get("/wizard", (req, res) => {
 })
 
 
+async function Inemail(email) {
+  return await new Promise((res, rej) => {
+    connection.query(
+      `select * from registration where u_email='${email}';`,
+      (err, data) => {
+        if (err) throw err;
+        res(data);
+        // console.log(data.length);
+      }
+    );
+  });
+}
+
 app.post("/wizard", upload.fields([{
     name: 'adhar', maxCount: 1
   }, {
@@ -46,7 +65,9 @@ app.post("/wizard", upload.fields([{
   , async (req, res) => {
 
     console.log(req.files, "file in uploads");
-
+    // 
+   
+    // 
     const uniqueSuffix = ""
     const storage = multer.diskStorage({
       destination: function (req, files, cb) {
@@ -59,13 +80,65 @@ app.post("/wizard", upload.fields([{
       },
     });
 
-   
+
+
     const upload = multer({ storage });
     // const upload_compress = multer({ storage_compress });
-
+    var token = req.cookies.token
+    console.log(token + "tokennnnnnnnnnnnnnnn");
     console.log(upload);
+
+    jwt.verify(token, 'sanjay', function (err, decoded) {
+      // console.log(JSON.stringify(decoded.id) + "decodeeeee");
+      console.log(decoded.id);
+
+      var id = decoded.id;
+      console.log(id+"iddd");
+     
+      var leave_cl = "CL";
+      var leave_pl = "PL";
+      var leave_hl = "HL";
+      for(var i=0; i<5; i++)
+      {
+        connection.query("insert into leave_balance_23(id, leave_category) values('"+id+"', '"+leave_cl+"')",function(err,data){
+          if(err) throw err;
+          console.log('Data inserted successfully');
+        })
+
+        connection.query("insert into leave_balance_23(id, leave_category) values('"+id+"', '"+leave_pl+"')",function(err,data){
+            if(err) throw err;
+            console.log('Data inserted successfully');
+        
+        })
+
+      }
+      for(var i=0; i<4; i++)
+      {
+      connection.query("insert into leave_balance_23(id, leave_category) values('"+id+"', '"+leave_hl+"')",function(err,data){
+        if(err) throw err;
+        console.log('Data inserted successfully');
+      })
+    }
+
+  });
     // console.log(upload_compress);
 
     res.redirect("/");
+// 
+    // var email = req.body.email;
+    // console.log('email'+email)
+
+    // var data = await Inemail(email);
+    // console.log('data'+data)
+
+    // connection.query(`select * from registration where email = '${email}'`, async (error, result) => {
+    //   console.log(result);
+    //   const data = result[0];
+    //   console.log(data);
+
+    //   // let eid = result[0].id;
+    //   // console.log('eid:'+eid)
+    // });
   });
-module.exports = app
+
+  (module.exports = app), { Inemail };

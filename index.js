@@ -17,6 +17,8 @@ const register = require("../hrms/routes/register");
 app.use(register);
 const login = require("../hrms/routes/login");
 app.use(login);
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
 
 
 // Routes
@@ -25,15 +27,15 @@ app.use(login);
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
-const routes2 = require('../hrms/routes/attendance');
-app.use(routes2);
 
 const routes3 = require('../hrms/routes/hotline');
 app.use(routes3);
 
-var wizad = require("../hrms/routes/wizard");
-app.use(wizad);
+const routes2 = require('../hrms/routes/attendance');
+app.use(routes2);
 
+const leaves = require('../hrms/routes/leaves');
+app.use(leaves);
 
 var connection = mysql2.createConnection({
   host: "localhost",
