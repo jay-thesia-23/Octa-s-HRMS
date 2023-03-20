@@ -20,8 +20,6 @@ app.use(login);
 
 
 // Routes
-
-
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
