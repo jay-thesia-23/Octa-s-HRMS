@@ -1,0 +1,69 @@
+.container{
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.col1{
+    width: 20%;
+    background-color:rgb(172, 172, 240);
+    display: block;
+    
+}
+.col2{
+    width: 40%;
+
+}
+.col3{
+    width: 40%;
+    background-color:rgb(107, 107, 111);
+
+}
+.card1{
+    margin: 20px 0;
+   
+}
+.card-in img{
+    width: 40px;
+}
+.card-in{
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    
+}
+/* .card2{
+    margin: 20px 0;
+   
+} */
+.card2-in{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    /* padding: 0 50px; */
+    
+}
+.basic-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+table tr td{
+    padding: 5px;
+}
+.heading{
+    display: grid;
+}
