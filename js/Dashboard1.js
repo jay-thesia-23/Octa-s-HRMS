@@ -31,12 +31,15 @@ function isComment(thisElement){
     }
 }
 function addComment(){
-    let commentval = document.getElementById('commenter').value;
+    let commentBtn = document.getElementById('commentBtn');
+    let element = document.getElementById('commenter');
+    let commentval = element.value;
     let comment = '<p style="background-color:#e6ecf5;" >'+commentval+'</p>'
-    console.log(comment);
-    
     let commentBody = document.getElementById('commentBody');
     commentBody.innerHTML += comment;
+    element.value = "";
+    commentBtn.style.opacity = 0.6;
+    commentBtn.style.pointerEvents = 'none';
 }
 function checkIn(element){
     var today = new Date();
@@ -47,7 +50,7 @@ function checkIn(element){
     let breakIn = document.getElementById('breakIn');
     let checkOut = document.getElementById('checkOut');
     let attendenceEntry = document.getElementById('attendenceEntry');
-    let entry = '<p style="background-color:green;" > Checked In : '+ time +'</p>';
+    let entry = '<p style=" color:white; background-color:green;" > Checked In : '+ time +'</p>';
     breakIn.style.opacity = 1;
     breakIn.style.pointerEvents = "all"    
     checkOut.style.opacity = 1;
@@ -63,7 +66,7 @@ function breakIn(element){
     let breakOut = document.getElementById('breakOut');
     let checkOut = document.getElementById('checkOut');
     let attendenceEntry = document.getElementById('attendenceEntry');
-    let entry = '<p style="background-color:#ee7f00;" > Breaked In : '+ time +'</p>';
+    let entry = '<p style=" color:white; background-color:#ee7f00;" > Breaked In : '+ time +'</p>';
     breakOut.style.opacity = 1;
     breakOut.style.pointerEvents = "all"    
     checkOut.style.opacity = 0.6;
@@ -81,7 +84,7 @@ function breakOut(element){
     let breakIn = document.getElementById('breakIn');
     let checkOut = document.getElementById('checkOut');
     let attendenceEntry = document.getElementById('attendenceEntry');
-    let entry = '<p style="background-color:#bb6400;" > Breaked Out : '+ time +'</p>';
+    let entry = '<p style=" color:white; background-color:#bb6400;" > Breaked Out : '+ time +'</p>';
     breakIn.style.opacity = 1;
     breakIn.style.pointerEvents = "all"    
     checkOut.style.opacity = 1;
@@ -99,7 +102,7 @@ function checkOut(element){
     let checkOut = document.getElementById('checkOut');
     let attendenceEntry = document.getElementById('attendenceEntry');
     let ThankYou = document.getElementById('ThankYou');
-    let entry = '<p style="background-color:red;" > Checked Out : '+ time +'</p>';
+    let entry = '<p style=" color:white; background-color:red;" > Checked Out : '+ time +'</p>';
     breakIn.style.opacity = 0.6;
     breakIn.style.pointerEvents = "none";
     breakOut.style.opacity = 0.6;
@@ -108,4 +111,10 @@ function checkOut(element){
     checkOut.style.pointerEvents = "none"
     attendenceEntry.innerHTML += entry;
     ThankYou.style.display = 'block';
+}
+function setRealTime(element){	
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    element.innerHTML = time;
+    setTimeout(setRealTime,1000)
 }

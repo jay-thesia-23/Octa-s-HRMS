@@ -219,23 +219,23 @@ hr{
     font-size: 15px;
     font-weight: 600;
   }
-  .buttonbox{
+.buttonbox{
     width: calc(100%/2);
     justify-content: space-between;
     padding: 0;
-  }
-  .p {
+}
+.p {
     font-family: 'Lucida Sans' sans-serif;
     color: #747272;
     font-size: 13px;
-  }
-  .record-data input{
+}
+.record-data input{
     border: 1px solid #747272;
     padding: 4px;
     border-radius: 5px;
     width: 60%;
-  }
-  .abutton{
+}
+.abutton{
     pointer-events: none;
     width: 38%;
     margin-left: 5px;
@@ -245,54 +245,94 @@ hr{
     padding: .5em;
     text-decoration: none;
     opacity: 0.6;
-  }
-  .checkin{
+}
+.checkin{
     opacity: 1;
     pointer-events: all;
     margin: 0;
     padding-left: 22px;
     padding-right: 22px;
-  }
-  .breakin{
+}
+.breakin{
     margin: 0;
     padding-left: 22px;
     padding-right: 22px;
-  }
-  .breakout{
+}
+.breakout{
     margin: 0;
     padding-left: 16px;
     padding-right: 16px;
-  }
-  .breakin, .breakout{
+}
+.breakin, .breakout{
     background-color: #ee7f00;
-  }
-  .checkout {
+}
+.checkout {
     margin: 0;
     padding-left: 16px;
     padding-right: 16px;
     background-color: red;
-  }
-  .button-class{
+}
+.button-class{
     width: 46%;
     margin-left: 10px;
     margin-bottom: 30px;
-  }
-  .abutton:hover{
-    opacity: 0.9;
-  }
-  .comment-body{
+}
+.abutton:hover{
+opacity: 0.9;
+}
+.comment-body{
     padding: 30px;
-  }
-  .comment-body p{
+}
+.comment-body p{
     border-radius: 10px;
+    word-wrap: break-word;
     padding: 0 15px;
     margin-bottom: 10px;
     border: 1px solid #002f4b;
-  }
-  .checkout-msg-class{
+}
+.checkout-msg-class{
     text-align: center;
     background-color: green;
     border-radius: 10px;
     margin: 0 30%;
     padding: 3px;
-  }
+}
+.bday-body{
+    background-color: #e9d0a7;
+    margin: 5px;
+    border-radius: 10px;
+    display: flex;
+    padding: 2%;
+}
+.bday{
+    height: 230px;
+}
+.b-day-img{
+    border: 5px solid #dfe9f5;
+    width: 100px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.bday-detail{
+    margin: 0 20px;
+    width: 80%;
+}
+.abutton2{
+    background-color: #002f4b;  
+    border-radius: 50%;
+    width: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.data-header{
+    display: flex;
+    width: 275px;
+    /* padding: 10px; */
+    justify-content: space-evenly;
+    padding-left: 2px;
+}
+.holiday-body{
+   background-image: url('holiday.png');
+   height: 140px;
+}
