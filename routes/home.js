@@ -5,7 +5,7 @@ app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 
 app.get('/', (req, res) => {
-    res.render('home.ejs', { title: 'Home Page' })
+    res.render('dashboard.ejs', { title: 'Home Page' })
 })
 
 module.exports = app
