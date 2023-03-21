@@ -1,11 +1,29 @@
 const express = require('express');
-const mysql2 = require('mysql2');
 const app = express();
-const expressLayouts = require('express-ejs-layouts')
+const expressLayouts = require('express-ejs-layouts') 
 app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
-// var alldataquery = util.promisify(con.query.bind(con));
+var mysql2 = require("mysql2");
+const util=require('util');
 
+const connection = mysql2.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
+});
+
+connection.connect(function (err, data) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("connected database");
+    }
+
+});
+  
+var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async(req, res) => {
 
@@ -13,4 +31,6 @@ app.get('/attendance', async(req, res) => {
     res.render('attendance', { title: 'Attendance Page' })
 })
 
+
 module.exports = app
+
