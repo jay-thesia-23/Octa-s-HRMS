@@ -27,8 +27,8 @@ var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async(req, res) => {
 
-    // var data=await alldataquery(`select * from check_master`);
-    res.render('attendance', { title: 'Attendance Page' })
+    // var checkdata=await alldataquery(`select * from check_master`);
+    res.render('attendance', { title: 'Attendance Page' });
 })
 
 
