@@ -22,6 +22,9 @@ app.use(login)
 var wizad=require("../hrms/routes/wizard")
 app.use(wizad)
 
+var editprofile=require("../hrms/routes/edit_profile")
+app.use(editprofile)
+
 
 var connection = mysql2.createConnection({
     host: 'localhost',
@@ -36,14 +39,10 @@ var connection = mysql2.createConnection({
       throw err;
     console.log("connected with database");
   })
-  
-  
-  
-  
 
 
 
-
+  
 app.listen(5000, () => {
     console.log("app listion on 5000 port");
 })

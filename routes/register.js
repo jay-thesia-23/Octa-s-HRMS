@@ -74,7 +74,7 @@ app.post('/register', async (req, res) => {
             console.log(err);
             res.send(err);
         }
-    });
+    });231
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -86,8 +86,8 @@ app.post('/register', async (req, res) => {
     });
 
 
-    const token = jwt.sign({ email: email }, 'sanjay');
-    res.cookie("token", token);
+    const register_token = jwt.sign({ email: email }, 'sanjay');
+    res.cookie("register_token", register_token);
 
     const mailConfigurations = {
 
@@ -165,7 +165,7 @@ app.post('/register', async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?token=${token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?token=${register_token}&email=${email} "> verify</a>
             </div>
         </section>
        
@@ -180,18 +180,18 @@ app.post('/register', async (req, res) => {
         console.log('Email Sent Successfully');
         // console.log(info);
     });
-
-    res.send("register Succesfully!!!!")
+    // res.redirect('/login')
+     res.send("register Succesfully!!!!")
 })
 
 
 app.get('/verify', (req, res) => {
-    const token = req.query.token;
+    const reg_token = req.query.token;
     const email = req.query.email;
 console.log(email);
-console.log(token);
+console.log(reg_token);
     // Verifying the JWT token 
-    jwt.verify(token, 'sanjay', function (err, decoded) {
+    jwt.verify(reg_token, 'sanjay', function (err, decoded) {
         if (err) {
             console.log(err);
             res.send("Email verification failed possibly the link is invalid or expired");

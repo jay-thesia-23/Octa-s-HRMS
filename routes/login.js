@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 app.use(express.json());
 var ejs = require('ejs');
+var util = require('util')
 
 const bcrypt = require('bcrypt');
 
@@ -52,8 +53,15 @@ async function Inemail(email) {
 app.post('/login', async (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
-
+    var data2;
+    var data3;
     var data = await Inemail(email);
+
+    var id
+
+var query = util.promisify(con.query).bind(con)
+var id = await query(`select id from registration where u_email='${email}'`)
+console.log(id);
     // console.log(data)
 
     if (data.length != 0) {
@@ -64,7 +72,7 @@ app.post('/login', async (req, res) => {
                         return err;
                     }
                     res(isMatch)
-                   
+
                 })
             })
         }
@@ -72,28 +80,36 @@ app.post('/login', async (req, res) => {
         console.log(isMatch);
         if (isMatch == true) {
             console.log(data[0].isactive);
-          
-            const token = jwt.sign({ email }, 'sanjay');
-          
-            res.cookie("token", token);
-        
-      
+
+            const login_token = jwt.sign({ email,id }, 'sanjay');
+
+            res.cookie("login_token", login_token);
+
+
 
             if (data[0].isactive == '1') {
                 res.send('wait for some min')
             }
-             else {
+            else {
                 if (data[0].u_login == 1) {
-                    con.query(`update registration set u_login = '0' where u_email='${email}';`, (err, data) => {
-                        if (err) throw err;
-                        res.render('wizard.ejs');
-                        
-            
+                    con.query(`select * from state_master; `, function (error, data_3) {
+                        if (error) throw error;
+                        data3 = data_3;
+                        con.query(`select * from cource_master; `, function (error, data_2) {
+                            if (error) throw error;
+                            data2= data_2;
+
+                            con.query(`update registration set u_login = '0' where u_email='${email}';`, (err, data) => {
+                                if (err) throw err;
+                                res.render('wizard.ejs', { data3, data2 });
+
+                            })
+                        })
                     })
-                }else{
+                } else {
                     res.send("home page")
                 }
-               
+
 
             }
 
@@ -101,7 +117,7 @@ app.post('/login', async (req, res) => {
         else if (!isMatch) {
             return res.send(`Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `)
 
-          
+
         }
     }
     else {
@@ -113,4 +129,4 @@ app.post('/login', async (req, res) => {
 
 
 });
-module.exports = app, {Inemail};
+module.exports = app, { Inemail };
