@@ -5,6 +5,9 @@ app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 
 
+const profile=require("../routes/profile")
+app.use(profile)
+
 app.get('/hotline', (req, res) => {
     res.render('hotline.ejs', { title: 'Hoteline Page' })
 })

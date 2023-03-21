@@ -1,50 +1,55 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyparser = require('body-parser');
-const app = express();
-const ejs = require('ejs');
-const util=require('util');
-
-const { query } = require('express');
-app.use(express.static("public"));
-
+var express = require("express");
+var app = express();
 app.use(express.json());
-app.set('view engine', 'ejs');
+var ejs = require("ejs");
+
+const bcrypt = require("bcrypt");
+
+app.use(express.static("css"));
+app.use(express.static("images"));
+
+var bodyparser = require("body-parser");
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
+var mysql = require("mysql2");
 
+var cookieParser = require("cookie-parser");
+// app.use(cookieParser());
+var jwt = require("jsonwebtoken");
 
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'hrms'
+app.use(cookieParser());
+
+app.use("/public", express.static("public"));
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
 });
 
-con.connect(function (err, data) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log("connected database");
-    }
-
+con.connect((err) => {
+  if (err) throw err;
+  console.log(" database connected ");
 });
-var allquery = util.promisify(con.query.bind(con));
-app.get('/profile', async(req, res) => {
-    var employee_id= req.query.id;
-    console.log(employee_id);
 
+app.get("/profile", (req, res) => {
+  let sqlBasicInfo = `select * from employee_basic_infomation;`;
+  let sqlEduInfo = `select * from education_table;`;
+  let sqlExperienceInfo = `select * from experience_table;`;
+  let sqlReferenceInfo = `select * from reference_master`;
 
-    var basicdata = await allquery(`select firstname,lastname,email,phone_number,city,state,gender,zip_code,birth_date,address,relationship,designation from employee_basic_infomation where employee_id=1`);
-    var educationdata = await allquery(`select course_name,percentage,board_university_name,passout_year from education_table where employee_id=1`);
-    var experiencedata=await allquery(`select company_name,designation_company,start_date,end_date from experience_table where employee_id=1`);
-    var referencedata=await allquery(`select name,number,relationship from reference_master where employee_id=1`);
-    
-    
-    res.render('profile.ejs', {basicdata,educationdata,experiencedata,referencedata});
-       //console.log(educationdata);
-
+  con.query(sqlBasicInfo, (err, dataBasic) => {
+    con.query(sqlEduInfo, (err, dataEdu) => {
+      con.query(sqlExperienceInfo, (err, dataExp) => {
+        con.query(sqlReferenceInfo, (err, dataRef) => {
+          console.log(dataBasic);
+          console.log(dataEdu);
+          res.render("profile", { basicdata: dataBasic, dataEdu, dataExp,dataRef });
+        });
+      });
     });
+  });
+});
 
-module.exports = app
+module.exports = app;

@@ -146,12 +146,12 @@ function fnameValidate(){
   if(fname == null || fname == "")
   {
       document.getElementById('fname-error').innerHTML="Please enter first name";
-      return false;
+      isvalidate=false
   }
   else if(!isNaN(fname))
   {
       document.getElementById('fname-error').innerHTML="Please enter valid first name";
-      return false;
+      isvalidate=false
   }
   else{
       document.getElementById('fname-error').innerHTML="";
@@ -164,13 +164,13 @@ function lnameValidate(){
   
   if(lname == null || lname == "")
   {
-      document.getElementById('lname-error').innerHTML="Please enter lastname";
-      isvalidate = false;
+      document.getElementById('lname-error').innerHTML="Please enter last name";
+    isvalidate=false
   }
   else if(!isNaN(lname))
   {
       document.getElementById('lname-error').innerHTML="Please enter valid lastname";
-      isvalidate = false;
+      isvalidate=false
   }
   else{
       document.getElementById('lname-error').innerHTML="";
@@ -218,14 +218,16 @@ function registerPage1() {
       document.getElementById('fname-error').innerHTML="";
   }
   
-  if(lname == null || lname == "")
-  {
-      document.getElementById('lname-error').innerHTML="Please enter lname";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('lname-error').innerHTML="";
-  }
+  // if(lname == null || lname == "")
+  // {
+  //     document.getElementById('lname-error').innerHTML="Please enter lname";
+  //     isvalidate = false;
+  // }
+  // else{
+  //     document.getElementById('lname-error').innerHTML="";
+  // }
+
+
   if(dob == null || dob == "")
   {
       document.getElementById('dob-error').innerHTML="Please fill date of birth";
@@ -251,7 +253,7 @@ function registerPage1() {
   }
   else if(isNaN(contact))
   {
-      document.getElementById('contact-error').innerHTML="Please enter valid lastname";
+      document.getElementById('contact-error').innerHTML="Please enter valid contact number";
       isvalidate = false;
   }
   else{
@@ -345,7 +347,6 @@ function registerPage2(){
 var s="";
 var clk =1;
 function education(){
-
   var table2= document.getElementById('add');
   var v2 = document.createElement('div');
   if(clk <= 3)

@@ -16,8 +16,6 @@ var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
-// const Connection = require("mysql2/typings/mysql/lib/Connection");
-
 
 app.use(cookieParser());
 
@@ -34,7 +32,6 @@ con.connect((err) => {
   if (err) throw err;
   console.log(" database connected ");
 });
-
 app.get("/login", (req, res) => {
   res.render("login.ejs", {});
 });
@@ -112,4 +109,3 @@ app.post("/login", async (req, res) => {
   }
 });
 (module.exports = app), { Inemail };
-

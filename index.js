@@ -17,25 +17,25 @@ const register = require("../hrms/routes/register");
 app.use(register);
 const login = require("../hrms/routes/login");
 app.use(login);
-var wizad = require("../hrms/routes/wizard");
-app.use(wizad);
-
-
-// Routes
-
 
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
-
-const routes3 = require('../hrms/routes/hotline');
-app.use(routes3);
+const profile = require("../hrms/routes/profile");
+app.use(profile);
 
 const routes2 = require('../hrms/routes/attendance');
 app.use(routes2);
 
+const routes3 = require('../hrms/routes/hotline');
+app.use(routes3);
+
+var wizad = require("../hrms/routes/wizard");
+app.use(wizad);
+
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
+
 
 var connection = mysql2.createConnection({
   host: "localhost",

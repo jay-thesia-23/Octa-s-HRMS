@@ -1,17 +1,15 @@
-var mysql = require('mysql2');
-var express = require('express');
+var mysql = require("mysql2");
+var express = require("express");
+var path = require("path");
 var app = express();
-app.set('view engine', 'ejs')
-const multerUpload = require('./multer')
-var bodyParser = require('body-parser');
-const { response } = require('express');
+app.set("view engine", "ejs");
+
+var bodyParser = require("body-parser");
+const { response } = require("express");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
-var multer = require('multer')
-
-app.use(multerUpload)
-const upload = multer({ dest: "uploads/" });
+app.use(express.static("public"));
+var multer = require("multer");
 
 const register = require("./register");
 app.use(register);
@@ -21,23 +19,20 @@ var jwt = require("jsonwebtoken");
 
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'hrms'
-
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
 });
 
 connection.connect((err) => {
-  if (err)
-    throw err;
+  if (err) throw err;
   console.log("connected");
-})
-
+});
 
 app.get("/wizard", (req, res) => {
-  res.render('wizard');
-})
+  res.render("wizard");
+});
 
 
 async function Inemail(email) {
@@ -53,6 +48,22 @@ async function Inemail(email) {
   });
 }
 
+const uniqueSuffix = ""
+const storage = multer.diskStorage({
+  destination: function (req, files, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, files, cb) {
+    uniqueSuffix = `${Date.now()}-${files.originalname}`;
+    console.log(uniqueSuffix, "from the storage");
+    cb(null, uniqueSuffix + ".png");
+  },
+});
+
+
+const upload = multer({ storage });
+
+
 app.post("/wizard", upload.fields([{
     name: 'adhar', maxCount: 1
   }, {
@@ -65,24 +76,7 @@ app.post("/wizard", upload.fields([{
   , async (req, res) => {
 
     console.log(req.files, "file in uploads");
-    // 
-   
-    // 
-    const uniqueSuffix = ""
-    const storage = multer.diskStorage({
-      destination: function (req, files, cb) {
-        cb(null, "./uploads");
-      },
-      filename: function (req, files, cb) {
-        uniqueSuffix = Date.now() + "-" + `${originalname}`;
-        console.log(uniqueSuffix, "from the storage");
-        cb(null, uniqueSuffix);
-      },
-    });
 
-
-
-    const upload = multer({ storage });
     // const upload_compress = multer({ storage_compress });
     var token = req.cookies.token
     console.log(token + "tokennnnnnnnnnnnnnnn");
@@ -124,21 +118,6 @@ app.post("/wizard", upload.fields([{
     // console.log(upload_compress);
 
     res.redirect("/");
-// 
-    // var email = req.body.email;
-    // console.log('email'+email)
-
-    // var data = await Inemail(email);
-    // console.log('data'+data)
-
-    // connection.query(`select * from registration where email = '${email}'`, async (error, result) => {
-    //   console.log(result);
-    //   const data = result[0];
-    //   console.log(data);
-
-    //   // let eid = result[0].id;
-    //   // console.log('eid:'+eid)
-    // });
-  });
-
-  (module.exports = app), { Inemail };
+  }
+);
+(module.exports = app), { Inemail };
