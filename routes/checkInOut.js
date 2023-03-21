@@ -74,7 +74,7 @@ app.post('/check_out', function (req, res) {
 app.post('/breck_out', function (req, res) {
     
     console.log(login_user__id);
-var check_out_entry = `insert into check_master (status,reg_id) values('breck_out','${login_user__id}');`
+var check_out_entry = `insert into breck_master (status,reg_id) values('breck_out','${login_user__id}');`
 // console.log(check_out_entry)
 
 con.query(check_out_entry, function (err, result) {
@@ -87,7 +87,7 @@ con.query(check_out_entry, function (err, result) {
 app.post('/breck_in', function (req, res) {
     
     console.log(login_user__id);
-var check_out_entry = `insert into check_master (status,reg_id) values('breck_in','${login_user__id}');`
+var check_out_entry = `insert into breck_master (status,reg_id) values('breck_in','${login_user__id}');`
 
 con.query(check_out_entry, function (err, result) {
     if (err) throw err

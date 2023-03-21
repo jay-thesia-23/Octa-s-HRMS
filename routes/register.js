@@ -52,15 +52,6 @@ async function Inemail(email) {
         })
     })
 }
-app.post('/clone-email', (req, res) => {
-    var email = req.body.email;
-    con.query(`select * from registration where u_email='${email}';`, (err, data) => {
-        if (err) throw err;
-        res.json(data);
-        // console.log(data.length);
-    }
-    );
-});
 
 
 app.post("/clone-email", (req, res) => {

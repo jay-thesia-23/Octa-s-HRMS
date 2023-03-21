@@ -17,7 +17,7 @@ const login = require('../hrms/routes/login')
 app.use(login)
 const demo = require('./routes/checkInOut')
 app.use(demo)
-const abc = require('./routes/deshbord')
+const abc = require('./routes/dashboard')
 app.use(abc)
 
 

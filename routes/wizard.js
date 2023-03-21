@@ -25,7 +25,7 @@ connection.connect((err) => {
 });
 
 app.get("/wizard", (req, res) => {
-  res.render("wizard");
+  res.render("wizard.ejs");
 });
 
 let uniqueSuffix = "";
@@ -84,7 +84,7 @@ app.post(
     console.log(upload);
     // console.log(upload_compress);
 
-    res.redirect("/");
+    res.redirect("/dashboard");
   }
 );
 module.exports = app;
