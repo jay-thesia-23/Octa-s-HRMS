@@ -234,6 +234,9 @@ input[type=radio] {
   transition: 0.3s;
   margin: 20px;
 }
+.span1{
+  color:red;
+}
 
 /* .btn-grup-2 a{
   text-decoration: none;
@@ -244,4 +247,15 @@ input[type=radio] {
   background-color: rgb(194, 198, 194);
 } */
 
-
+.btn-2{
+  width: 200px;
+  padding: 10px;
+  background-color:#666;
+  color:white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.btn-2:hover{
+  background-color: #ccc;
+  color: #0d0c0c;
+}

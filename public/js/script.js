@@ -345,8 +345,9 @@ function registerPage2(){
 var s="";
 var clk =1;
 function education(){
-  var table2= document.getElementById('education');
-  var v2 = document.createElement('edu');
+
+  var table2= document.getElementById('add');
+  var v2 = document.createElement('div');
   if(clk <= 3)
       {
           v2.innerHTML=` 
@@ -389,14 +390,3 @@ function education(){
           return false;
       }
   }
-
-  // gender
-  // var gender = document.getElementById('gender').value || "";
-  // function genderValidate() {
-  //   if (document.querySelectorAll('[name=gender]:checked').length == 0) {
-  //     document.getElementById('gender-error').innerHTML="Please select gender";
-  //     return false;    
-  //   }
-  // }
-  
-  // document.querySelector('[type=button]').addEventListener('click',validateFn, false);
