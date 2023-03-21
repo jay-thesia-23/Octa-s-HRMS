@@ -17,6 +17,10 @@ var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
 
+const expressLayouts = require('express-ejs-layouts')
+app.use(expressLayouts)   //Added
+app.set('layout', './layouts/main') //added
+
 app.use(cookieParser());
 
 app.use("/public", express.static("public"));
