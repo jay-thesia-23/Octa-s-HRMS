@@ -6,6 +6,6 @@ let route = express.Router()
 
 module.exports = route;
 
-route.get('',(req, res)=>{
-    res.render('Calendar')
+route.get('',(req, res)=>{ 
+    res.render('pages/Calendar');
 });

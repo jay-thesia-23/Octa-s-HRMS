@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/regular.min.css">
     <link href="https://css.gg/css?=" rel="stylesheet">
 </head>
-<body>
+<body onload="start()">
     <header class="header">
         <div class="logo">
             <div class="div searchBox">
@@ -96,7 +96,8 @@
                 </li>
             </ul>
         </nav>
-        <section>
+        <section id="data-placeholder">
+            <%- include('./Calender'); %>
         </section>
     </div>
 </body>

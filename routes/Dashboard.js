@@ -21,4 +21,6 @@ let server1 = app.listen(9876,()=>{
 app.get('',(req,res)=>{
     res.render('Dashboard.ejs')
 })
-
+app.get('/CalenderView',(req, res)=>{
+    res.render('index.ejs' )
+})
