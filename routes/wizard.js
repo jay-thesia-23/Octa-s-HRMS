@@ -48,7 +48,7 @@ async function Inemail(email) {
   });
 }
 
-const uniqueSuffix = ""
+var uniqueSuffix = ""
 const storage = multer.diskStorage({
   destination: function (req, files, cb) {
     cb(null, "./uploads");

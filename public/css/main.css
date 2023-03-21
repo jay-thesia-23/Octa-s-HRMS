@@ -3,6 +3,10 @@
     /* display: flex; */
     justify-content: center;
     align-items: center;
+    
+}
+body{
+    background-color: #e6ecf5;
 }
 
 /* #main {
@@ -11,5 +15,6 @@
 } */
 
 .wrapper .main main {
+   
     margin-top: 100px;
 }

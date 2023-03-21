@@ -6,9 +6,9 @@
     width: 100%;
 }
 
-/* .header-section {
-    display: flex; 
-} */
+.hero{
+    background-color: #e6ecf5;
+}
 .header-section{
     display: flex;
     /* padding-left: 300px; */
