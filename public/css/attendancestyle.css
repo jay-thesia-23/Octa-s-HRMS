@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.card {
+  width: 16.66%;
+  padding: 16px 0;
+
+}
+
+.card-in {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px;
+  margin: 0 16px;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#card1 {
+  background-color: rgb(19, 206, 143);
+}
+
+#card2 {
+  background-color: rgb(140, 127, 255);
+}
+
+#card3 {
+  background-color: rgb(219, 82, 107);
+}
+
+#card4 {
+  background-color: rgb(234, 201, 67);
+}
+
+#card5 {
+  background-color: rgb(224, 48, 17);
+}
+
+#card6 {
+  background-color: rgb(210, 84, 191);
+}
+
+.m_t_b {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.part2 {
+  margin-top: 20px;
+  text-align: end;
+}
+
+.select-dropdown select {
+  padding: 1em;
+  width: 30%;
+  border-radius: .2em;
+  border: 1px solid #acacac;
+  font-size: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-dropdown select::-ms-expand {
+  display: none;
+}
+
+.tab {
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  border-spacing: 0;
+}
+
+.tab thead tr {
+  background-color: rgb(43, 43, 94);
+  color: white;
+
+}
+
+.tab thead tr th {
+  border-radius: 10px;
+}
+
+tbody tr:hover {
+  background-color: rgb(185, 185, 194);
+}
+
+tbody tr td {
+  text-align: center;
+  border-radius: 10px;
+}
+
+.row-page {
+  text-align: center;
+
+}
+
+.row-page a {
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(188, 186, 186);
+  padding: 10px;
+}
+
+#pageno {
+  background-color: rgb(43, 43, 94);
+}

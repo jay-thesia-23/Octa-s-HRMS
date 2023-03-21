@@ -1,0 +1,97 @@
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rowBasics{
+    display: flex;
+
+}
+.col1 {
+  width: 23%;
+  display: block;
+
+
+}
+.col2,.col3 {
+  width: 35%;
+}
+
+.col4{
+    margin-right: 71px;
+}
+
+.col5,.col6{
+    width: 35%;
+}
+
+.tableRef{
+    padding-bottom: 70px;
+}
+
+
+.tableCourse{
+    padding-bottom: 294px;
+}
+.rowCols{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.colBasics{
+    margin-top: 21px;
+}
+.card1 {
+  margin: 20px 0;
+}
+
+#ProfileEdit {
+  color: black;
+}
+
+#ProfileEditAnchor {
+  text-decoration: none;
+  color: black;
+}
+.card-in img {
+  width: 257px;
+  height: 216px;
+}
+.card-in {
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 16px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.cards-in {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 16px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.basic-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+table tr td {
+  padding: 5px;
+}
+.heading {
+  display: grid;
+}
