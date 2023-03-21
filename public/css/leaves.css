@@ -237,7 +237,7 @@ select{
     padding:15px;
    background-color:#002f4b; 
 }
-.tbl table{
+.tbl{
     border: 1px solid rgb(52, 49, 49);
     border-collapse: collapse;
     overflow: hidden;
@@ -246,7 +246,7 @@ select{
     border-style: hidden;
    
 }
-.tbl table,td{
+.tbl td{
     padding: 18px;
 /* border-radius: 30px; */
 }

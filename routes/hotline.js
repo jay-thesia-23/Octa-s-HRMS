@@ -27,15 +27,12 @@ var alldata = util.promisify(connection.query.bind(connection));
 
 app.get('/hotline',async(req, res) => {
 
-    var basicinfo=await alldata(`select * from employee_basic_infomation`);
+    var basicinfo=await alldata(`select firstname,lastname,email,phone_number,city,state,gender,zip_code,birth_date,address,relationship,designation,time_stamp from employee_basic_infomation`);
 
     // console.log(basicinfo);
     
 
     res.render('hotline.ejs',{basicinfo});
 });
-
-
-module.exports = app
 
 module.exports = app
