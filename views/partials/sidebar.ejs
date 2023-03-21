@@ -1,12 +1,12 @@
 <div>
-    <nav>
+    <!-- <nav>
         <a href="/" class="logo strong-hover-shake">
             <img src="images/miniLogo.png" alt="">
             <p class="logoName">eSparkBiz</p>
         </a>
         <ul>
             <li>
-                <a href="/home">
+                <a href="/">
                     <span class="nav-item">Home</span>
                 </a>
             </li>
@@ -25,16 +25,114 @@
                     <span class="nav-item">Attendence</span>
                 </a>
             </li>
-            <li class="navsub-item" id="attend-sub" hidden>
-                <a href="#">
-                    <span class="nav-item nav-subitem">Summary</span>
-                </a>
-            </li>
             <li onclick="myFunction('Leave')">
                 <a>
                     <span class="nav-item">Leaves</span>
                 </a>
             </li>
         </ul>
+        <div class="logout-btn">
+            <a>
+                <span class="nav-item">Logout</span>
+            </a>
+        </div>
+    </nav> -->
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/" class="logo strong-hover-shake">
+                    <img src="images/miniLogo.png" alt="">
+                    <p class="logoName">eSparkBiz</p>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <!-- <img src="./Imgs/home.png" class="fas" alt="" srcset=""> -->
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 9L19 17C19 18.8856 19 19.8284 18.4142 20.4142C17.8284 21 16.8856 21 15 21L14 21L10 21L9 21C7.11438 21 6.17157 21 5.58579 20.4142C5 19.8284 5 18.8856 5 17L5 9" stroke="#7a7a7a" stroke-width="2" stroke-linejoin="round"></path> <path d="M3 11L7.5 7L10.6713 4.18109C11.429 3.50752 12.571 3.50752 13.3287 4.18109L16.5 7L21 11" stroke="#7a7a7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M10 21V17C10 15.8954 10.8954 15 12 15V15C13.1046 15 14 15.8954 14 17V21" stroke="#7a7a7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hotline">
+                    <!-- <img src="./Imgs/home.png" class="fas fa-cog" alt="" srcset=""> -->
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M16.9675 14.4402C18.3375 14.6702 19.8475 14.4302 20.9075 13.7202C22.3175 12.7802 22.3175 11.2402 20.9075 10.3002C19.8375 9.59016 18.3075 9.35016 16.9375 9.59016" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M5.96656 7.16C6.02656 7.15 6.09656 7.15 6.15656 7.16C7.53656 7.11 8.63656 5.98 8.63656 4.58C8.63656 3.15 7.48656 2 6.05656 2C4.62656 2 3.47656 3.16 3.47656 4.58C3.48656 5.98 4.58656 7.11 5.96656 7.16Z" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M6.9975 14.4402C5.6275 14.6702 4.1175 14.4302 3.0575 13.7202C1.6475 12.7802 1.6475 11.2402 3.0575 10.3002C4.1275 9.59016 5.6575 9.35016 7.0275 9.59016" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12.0001 14.6302C11.9401 14.6202 11.8701 14.6202 11.8101 14.6302C10.4301 14.5802 9.33008 13.4502 9.33008 12.0502C9.33008 10.6202 10.4801 9.47021 11.9101 9.47021C13.3401 9.47021 14.4901 10.6302 14.4901 12.0502C14.4801 13.4502 13.3801 14.5902 12.0001 14.6302Z" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.0907 17.7804C7.6807 18.7204 7.6807 20.2603 9.0907 21.2003C10.6907 22.2703 13.3107 22.2703 14.9107 21.2003C16.3207 20.2603 16.3207 18.7204 14.9107 17.7804C13.3207 16.7204 10.6907 16.7204 9.0907 17.7804Z" stroke="#949494" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item">Hotline</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <!-- <img src="./Imgs/home.png" class="fas fa-cog" alt="" srcset=""> -->
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11Z" fill="#8a8a8a"></path> <path d="M7 16C7 15.4477 7.44772 15 8 15C8.55228 15 9 15.4477 9 16C9 16.5523 8.55228 17 8 17C7.44772 17 7 16.5523 7 16Z" fill="#8a8a8a"></path> <path d="M11 11C11 10.4477 11.4477 10 12 10C12.5523 10 13 10.4477 13 11C13 11.5523 12.5523 12 12 12C11.4477 12 11 11.5523 11 11Z" fill="#8a8a8a"></path> <path d="M11 16C11 15.4477 11.4477 15 12 15C12.5523 15 13 15.4477 13 16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16Z" fill="#8a8a8a"></path> <path d="M15 11C15 10.4477 15.4477 10 16 10C16.5523 10 17 10.4477 17 11C17 11.5523 16.5523 12 16 12C15.4477 12 15 11.5523 15 11Z" fill="#8a8a8a"></path> <path d="M15 16C15 15.4477 15.4477 15 16 15C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17C15.4477 17 15 16.5523 15 16Z" fill="#8a8a8a"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V4H15V3C15 2.44772 15.4477 2 16 2C16.5523 2 17 2.44772 17 3V4C19.7614 4 22 6.23858 22 9V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V9C2 6.23858 4.23858 4 7 4V3C7 2.44772 7.44772 2 8 2ZM7 6C5.34315 6 4 7.34315 4 9V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V9C20 7.34315 18.6569 6 17 6C17 6.55229 16.5523 7 16 7C15.4477 7 15 6.55229 15 6H9C9 6.55229 8.55228 7 8 7C7.44772 7 7 6.55229 7 6Z" fill="#8a8a8a"></path> </g></svg>
+                    <span class="nav-item">Calendar</span>
+                </a>
+            </li>
+            <li onclick="myFunction('Attendence')">
+                <a>
+                    <!-- <img src="./Imgs/home.png" class="fas fa-cog" alt="" srcset=""> -->
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8V12L15 15" stroke="#858585" stroke-width="2" stroke-linecap="round"></path> <circle cx="12" cy="12" r="9" stroke="#858585" stroke-width="2"></circle> </g></svg>
+                    <span class="nav-item">Attendence</span>
+                    <svg id="DropDownArrow" viewBox="-2 -2 24 24" width="20" xmlns="http://www.w3.org/2000/svg" fill="#7d7d7d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 17.793l7-7v1.414l-7 7-7-7v-1.414zm7-14l-7 7-7-7v1.414l7 7 7-7z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
+                </a>
+            </li>
+            <li class="navsub-item" id="attend-sub" hidden>
+                <a href="/attendance">
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 6H19M5 10H19M5 14H19M5 18H19" stroke="#878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item nav-subitem">Summary</span>
+                </a>
+            </li>
+            <li onclick="myFunction('Leave')">
+                <a href="#">
+                    <!-- <img src="./Imgs/home.png" class="fas fa-cog" alt="" srcset=""> -->
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_303_1103)"> <path d="M17 12C15.8757 13.1243 11.5 16.5 11.5 16.5M17 12C20 9 20 7 20 4C17 4 15 4 12 7M17 12L17.4752 14.376C17.8031 16.0153 17.29 17.71 16.1078 18.8922L14.9374 20.0626C14.4676 20.5324 13.6788 20.4219 13.3562 19.8411L11.5 16.5M12 7L7.5 12.5M12 7L9.62395 6.52479C7.98465 6.19693 6.28996 6.71004 5.10784 7.89216L3.93743 9.06257C3.46765 9.53235 3.57813 10.3212 4.1589 10.6438L7.5 12.5M7.5 12.5L11.5 16.5M15.5 8.50049L14.5 9.50049M3 21L6.39223 20.3216C7.32708 20.1346 8 19.3138 8 18.3604L8 18C8 16.8954 7.10457 16 6 16L5.63961 16C4.68625 16 3.86542 16.6729 3.67845 17.6078L3 21Z" stroke="#7a7a7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_303_1103"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+                    <span class="nav-item">Leaves</span>
+                    <svg id="DropDownArrow" viewBox="-2 -2 24 24" width="20" xmlns="http://www.w3.org/2000/svg" fill="#7d7d7d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 17.793l7-7v1.414l-7 7-7-7v-1.414zm7-14l-7 7-7-7v1.414l7 7 7-7z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
+                </a>
+            </li>
+            <li class="navsub-item" id="leave-sub" hidden>
+                <a href="/leaves">
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 6H19M5 10H19M5 14H19M5 18H19" stroke="#878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item nav-subitem">Applications</span>
+                </a>
+                <a href="#">
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 6H19M5 10H19M5 14H19M5 18H19" stroke="#878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item nav-subitem">All Taken Leaves</span>
+                </a>
+                <a href="#">
+                    <svg class="fas" viewBox="-2 -2 24 24"  fill="none" width="35" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 6H19M5 10H19M5 14H19M5 18H19" stroke="#878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span class="nav-item nav-subitem">Unpaid Leaves</span>
+                </a>
+            </li>
+        </ul>
     </nav>
+    <!-- <div class="logout-btn">
+        <a>
+            <span class="nav-item">Logout</span>
+        </a>
+    </div> -->
 </div>
+
+<script>
+        
+    let clickLeave = 0;
+    let clickAttend = 0;
+    function myFunction(clickBtn) {
+        if(clickLeave == 0 && clickBtn == 'Leave'){
+            document.getElementById("leave-sub").style.display = "block";
+            clickLeave = 1;
+        }
+        else if(clickLeave == 1 && clickBtn == 'Leave'){
+            document.getElementById("leave-sub").style.display = "none";
+            clickLeave = 0;
+        }
+        if(clickAttend == 0 && clickBtn == 'Attendence'){
+            document.getElementById("attend-sub").style.display = "block";
+            clickAttend = 1;
+        }
+        else if(clickAttend == 1 && clickBtn == 'Attendence'){
+            document.getElementById("attend-sub").style.display = "none";
+            clickAttend = 0;
+        }
+    }
+</script>
+<!--  -->

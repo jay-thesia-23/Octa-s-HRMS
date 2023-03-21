@@ -1,39 +1,72 @@
 .top-header {
-    background-color:rgb(215, 212, 212);
-    padding: 30px;
-    color:black;
-    transition: margin-left .5s;
-    /* position: fixed; */
+    background-color: rgb(215, 212, 212);
+    padding: 10px;
+    color: black;
+    position: fixed;
     width: 100%;
 }
 
-.header-section {
+/* .header-section {
+    display: flex; 
+} */
+.header-section{
     display: flex;
+    /* padding-left: 300px; */
+    /* align-items: center; */
+    justify-content: start;
+    height: 60px;
+    padding: 20px;
+    background: #fff;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo a{
+    padding-left: 35px;
+    color: #002f4b;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 2rem 8rem 2rem 2rem;
+}
+.searchBox{
+    display: flex;
+    align-items: center;
+}
+.searchBox input{
+    padding: 9px;
+    width: 250px;
+    background: rgb(196, 196, 196);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
-#toggle {
-    width: 28px;
-    height: 30px;
+.searchBox i{
+    padding: 0.21rem 10px;
+    cursor: pointer;
+    color: #fff;
+    background: black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.header-icons{
+    display: flex;
+    align-items: center;
+}
+.header-icons a{
+    margin: 2rem;
     cursor: pointer;
 }
-
-#toggle div {
-    width: 100%;
-    height: 5px;
-    background-color: orangered;
-    margin: 4px 0;
-    transition: all 0.3s;
-    backface-visibility: hidden;
+.header-icons .account{
+    width:130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-icons .account img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
-#toggle.on .one {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-#toggle.on .two {
-    opacity: 0;
-}
-
-#toggle.on .three {
-    transform: rotate(-45deg) translate(7px, -8px);
-}

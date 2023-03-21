@@ -1,18 +1,21 @@
-var mysql = require('mysql2');
-var express = require('express');
+var mysql = require("mysql2");
+var express = require("express");
+var path = require("path");
 var app = express();
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
-var bodyParser = require('body-parser');
-const { response } = require('express');
+var bodyParser = require("body-parser");
+const { response } = require("express");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
-var multer=require('multer')
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+var multer = require("multer");
 
-
-const upload = multer({ dest: "uploads/" });
-
+const register = require("./register");
+app.use(register);
+const login = require("./login");
+app.use(login);
+var jwt = require("jsonwebtoken");
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -23,73 +26,134 @@ var connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-  if (err)
-    throw err;
+  if (err) throw err;
   console.log("connected");
-})
+});
 
+app.get("/wizard", (req, res) => {
+  res.render("wizard");
+});
 
-app.get("/wizard",(req,res)=>{
-   res.render('wizard');
-  })
-
-  // upload.fields([{
-  //   name: 'adhar', maxCount: 1
-  // }, {
-  //   name: 'resume', maxCount: 1
-  // },{
-  //   name: 'cheque', maxCount: 1
-  // }, {
-  //   name: 'others', maxCount: 1
-  // }, ])
-
-app.post("/wizard", upload.fields([{
-  name: 'adhar', maxCount: 1
-}, {
-  name: 'resume', maxCount: 1
-},{
-  name: 'cheque', maxCount: 1
-}, {
-  name: 'others', maxCount: 1
-}, ])
-, async (req, res) => {
-    
-    console.log(req.files,"file in uploads");
-  
-    const uniqueSuffix=""
-    const storage = multer.diskStorage({
-      destination: function (req, files, cb) {
-        cb(null, "./uploads");
-      },
-      filename: function (req, files, cb) {
-         uniqueSuffix = Date.now() + "-" + `${originalname}`+".png";
-         console.log(uniqueSuffix,"from the storage");
-        cb(null, uniqueSuffix);
-      },
-    });
-  
-    // const storage_compress =  SharpMulter({
-    //   destination: (req, file, callback) => callback(null, "./uploads_compress"),
-    //   filename:function(req,file,cb){
-    //       uniqueSuffix=uniqueSuffix+"-compress"
-    //       console.log(uniqueSuffix,"from the storege_comperss");
-    //       cb(null,uniqueSuffix)
-    //   },
-    //   imageOptions: {
-    //     fileFormat: "png",
-    //     quality: 80,
-    //     resize: { width: 300, height: 300 },
-    //   },
-    // });
-
-    console.log(typeof storage);
-    const upload = multer({ storage });
-    // const upload_compress = multer({ storage_compress });
-  
-    console.log(upload);
-    // console.log(upload_compress);
-  
-    res.redirect("/");
+async function Inemail(email) {
+  return await new Promise((res, rej) => {
+    connection.query(
+      `select * from registration where u_email='${email}';`,
+      (err, data) => {
+        if (err) throw err;
+        res(data);
+        // console.log(data.length);
+      }
+    );
   });
-module.exports=app
-  
+}
+
+var uniqueSuffix = "";
+const storage = multer.diskStorage({
+  destination: function (req, files, cb) {
+    cb(null, "./public/uploads");
+  },
+  filename: function (req, files, cb) {
+    uniqueSuffix = `${Date.now()}-${files.originalname}`;
+    console.log(uniqueSuffix, "from the storage");
+    cb(null, uniqueSuffix );
+  },
+});
+
+const upload = multer({ storage });
+
+app.post(
+  "/wizard",
+  upload.fields([
+    {
+      name: "profilePic",
+      maxCount: 1,
+    },
+    {
+      name: "adhar",
+      maxCount: 1,
+    },
+    {
+      name: "resume",
+      maxCount: 1,
+    },
+    {
+      name: "cheque",
+      maxCount: 1,
+    },
+    {
+      name: "others",
+      maxCount: 1,
+    },
+  ]),
+  async (req, res) => {
+    console.log(req.files, "file in uploads");
+
+    // const upload_compress = multer({ storage_compress });
+    var token = req.cookies.token;
+    console.log(token + "tokennnnnnnnnnnnnnnn");
+    console.log(upload);
+
+    jwt.verify(token, "sanjay", function (err, decoded) {
+      // console.log(JSON.stringify(decoded.id) + "decodeeeee");
+      console.log(decoded.id);
+
+      console.log(req.files.adhar,"addhar");
+
+      let sqlDoc=`insert into document_master ("employee_id", "registration_id", "adhar", "resume", "check", "other", "profile_pic") values ("1","19","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`
+
+      console.log(sqlDoc);
+      connection.query(sqlDoc,(err,dataDoc0)=>{
+        console.log("data is inserted");
+      })
+
+      // var id = decoded.id;
+      // console.log(id + "iddd");
+
+      // var leave_cl = "CL";
+      // var leave_pl = "PL";
+      // var leave_hl = "HL";
+      // for (var i = 0; i < 5; i++) {
+      //   connection.query(
+      //     "insert into leave_balance_23(id, leave_category) values('" +
+      //       id +
+      //       "', '" +
+      //       leave_cl +
+      //       "')",
+      //     function (err, data) {
+      //       if (err) throw err;
+      //       console.log("Data inserted successfully");
+      //     }
+      //   );
+
+      //   connection.query(
+      //     "insert into leave_balance_23(id, leave_category) values('" +
+      //       id +
+      //       "', '" +
+      //       leave_pl +
+      //       "')",
+      //     function (err, data) {
+      //       if (err) throw err;
+      //       console.log("Data inserted successfully");
+      //     }
+      //   );
+      // }
+      // for (var i = 0; i < 4; i++) {
+      //   connection.query(
+      //     "insert into leave_balance_23(id, leave_category) values('" +
+      //       id +
+      //       "', '" +
+      //       leave_hl +
+      //       "')",
+      //     function (err, data) {
+      //       if (err) throw err;
+      //       console.log("Data inserted successfully");
+      //     }
+      //   );
+      // }
+    });
+    // console.log(upload_compress);
+
+    res.redirect("/");
+  }
+);
+(module.exports = app), { Inemail };
