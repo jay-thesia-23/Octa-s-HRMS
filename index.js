@@ -36,7 +36,7 @@ app.use(routes1);
 var connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Rogerqazwsx@123',
     database: 'hrms'
   
   });

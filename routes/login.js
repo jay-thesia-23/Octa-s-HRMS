@@ -24,9 +24,10 @@ app.use("/public", express.static("public"));
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Rogerqazwsx@123",
   database: "hrms",
 });
+
 
 con.connect((err) => {
   if (err) throw err;
