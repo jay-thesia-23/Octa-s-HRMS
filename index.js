@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyparser = require("body-parser");
 var mysql2 = require("mysql2");
+var path =require('path')
 var app = express();
 app.use(express.json());
 
@@ -12,6 +13,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 
 app.use(express.static("public"));
+app.set('views', path.join(__dirname, 'views'));
 
 const register = require("../hrms/routes/register");
 app.use(register);
@@ -36,6 +38,8 @@ app.use(wizad);
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
 
+const calendar=require("../hrms/routes/calendar");
+app.use(calendar);
 
 var connection = mysql2.createConnection({
   host: "localhost",

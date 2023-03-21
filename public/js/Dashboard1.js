@@ -1,6 +1,8 @@
-
-let clickLeave = 0;
-let clickAttend = 0;
+if(!clickLeave)
+{
+    var clickLeave = 0;
+    var clickAttend = 0;
+}
 function myFunction(clickBtn) {
     if(clickLeave == 0 && clickBtn == 'Leave'){
         document.getElementById("leave-sub").style.display = "block";
@@ -44,7 +46,7 @@ function addComment(){
 function checkIn(element){
     var today = new Date();
     // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let time = today.toLocaleTimeString(); 
+     let time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
     element.style.opacity =0.6;
     element.style.pointerEvents = 'none';
     let breakIn = document.getElementById('breakIn');
@@ -58,26 +60,28 @@ function checkIn(element){
     attendenceEntry.innerHTML = entry;
 }
 function breakIn(element){
-    var today = new Date();
-    // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let time = today.toLocaleTimeString(); 
-    element.style.opacity =0.6;
-    element.style.pointerEvents = 'none';
-    let breakOut = document.getElementById('breakOut');
-    let checkOut = document.getElementById('checkOut');
-    let attendenceEntry = document.getElementById('attendenceEntry');
-    let entry = '<p style=" color:white; background-color:#ee7f00;" > Breaked In : '+ time +'</p>';
-    breakOut.style.opacity = 1;
-    breakOut.style.pointerEvents = "all"    
-    checkOut.style.opacity = 0.6;
-    checkOut.style.pointerEvents = "none"
-    attendenceEntry.innerHTML += entry;
+    let isBreakIn = confirm("Are you sure ?")
+    if(isBreakIn){
+        var today = new Date();
+        // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+         let time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
+        element.style.opacity =0.6;
+        element.style.pointerEvents = 'none';
+        let breakOut = document.getElementById('breakOut');
+        let checkOut = document.getElementById('checkOut');
+        let attendenceEntry = document.getElementById('attendenceEntry');
+        let entry = '<p style=" color:white; background-color:#ee7f00;" > Breaked In : '+ time +'</p>';
+        breakOut.style.opacity = 1;
+        breakOut.style.pointerEvents = "all"    
+        checkOut.style.opacity = 0.6;
+        checkOut.style.pointerEvents = "none"
+        attendenceEntry.innerHTML += entry;
+    }
 }
 function breakOut(element){
-    
     var today = new Date();
     // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let time = today.toLocaleTimeString(); 
+     let time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
     element.style.opacity =0.6;
     element.style.pointerEvents = 'none';
     let breakIn = document.getElementById('breakIn');
@@ -91,35 +95,35 @@ function breakOut(element){
     attendenceEntry.innerHTML += entry;
 }
 function checkOut(element){
-    var today = new Date();
-    // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let time = today.toLocaleTimeString(); 
-    element.style.opacity =0.6;
-    element.style.pointerEvents = 'none';
-    let breakIn = document.getElementById('breakIn');
-    let breakOut = document.getElementById('breakOut');
-    let checkOut = document.getElementById('checkOut');
-    let attendenceEntry = document.getElementById('attendenceEntry');
-    let ThankYou = document.getElementById('ThankYou');
-    let entry = '<p style=" color:white; background-color:red;" > Checked Out : '+ time +'</p>';
-    breakIn.style.opacity = 0.6;
-    breakIn.style.pointerEvents = "none";
-    breakOut.style.opacity = 0.6;
-    breakOut.style.pointerEvents = "none";
-    checkOut.style.opacity = 0.6;
-    checkOut.style.pointerEvents = "none"
-    attendenceEntry.innerHTML += entry;
-    ThankYou.style.display = 'block';
+    let isCheckOut = confirm("Are you sure ?")
+    if(isCheckOut){
+        var today = new Date();
+        let time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        element.style.opacity =0.6;
+        element.style.pointerEvents = 'none';
+        let breakIn = document.getElementById('breakIn');
+        let breakOut = document.getElementById('breakOut');
+        let checkOut = document.getElementById('checkOut');
+        let attendenceEntry = document.getElementById('attendenceEntry');
+        let ThankYou = document.getElementById('ThankYou');
+        let entry = '<p style=" color:white; background-color:red;" > Checked Out : '+ time +'</p>';
+        breakIn.style.opacity = 0.6;
+        breakIn.style.pointerEvents = "none";
+        breakOut.style.opacity = 0.6;
+        breakOut.style.pointerEvents = "none";
+        checkOut.style.opacity = 0.6;
+        checkOut.style.pointerEvents = "none"
+        attendenceEntry.innerHTML += entry;
+        ThankYou.style.display = 'block';
+    }
 }
 function setRealTime(){
     let element = document.getElementById('realTime');
     var today = new Date();
     let realTime  = formatAMPM(today);
     element.innerHTML  = realTime;
-    setTimeout(setRealTime,1000)
+    setTimeout(setRealTime,1000);
 }
-
-
 
 function formatAMPM(date) {
     var hours = date.getHours();

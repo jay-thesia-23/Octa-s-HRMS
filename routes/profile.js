@@ -1,16 +1,20 @@
 var express = require("express");
-var app = express();
-app.use(express.json());
-var ejs = require("ejs");
-
-const bcrypt = require("bcrypt");
-
-app.use(express.static("css"));
-app.use(express.static("images"));
-
+var expressLayouts = require("express-ejs-layouts") 
 var bodyparser = require("body-parser");
+var ejs = require("ejs");
+var bcrypt = require("bcrypt");
+
+var app = express();
+
+app.use(express.json());
+app.use(express.static("css"));
+app.use(express.static("imgs"))
+app.use(expressLayouts)
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
+
+app.set('layout', './layouts/main') //added
+
 var mysql = require("mysql2");
 
 var cookieParser = require("cookie-parser");

@@ -1,19 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  display: flex;
-  align-items: center;
-  padding: 10px 10px;
-  justify-content: center;
-}
+
 .calender-main{
     width: 100%;
-    background: #ffffff;
     border-radius: 10px;
   }
   .calender-main header{
@@ -25,15 +13,26 @@ body{
   header .icons{
     display: flex;
   }
+  .weeks{
+    background-color: rgb(185, 185, 194);
+  }
   header .icons span{
     cursor: pointer;
   }
+  .icons span svg path{
+    fill: rgb(17, 17, 17);
+  }
+  .icons span svg path:active{
+    fill: #919191;
+  }
   .calendar{
     width: 100%;
-    background-color: aquamarine;
+    background-color: #F0E7D8;
     border-radius: 10px;
   }
-  th, td{
+  th{
+    padding: 10px 0;
+  } td{
     min-width: 40px;
     min-height: 100px;
   }
@@ -42,9 +41,8 @@ body{
   }
  tr{
     border-bottom: 1px solid #000000;
-    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style-type: none;
   }
   .mainDiv{
@@ -54,8 +52,4 @@ body{
     align-self: center;
     font-weight: bolder;
     font-size: 2rem;
-  }
-  .material-symbols-rounded:active{
-    width: 55%;
-    height: 55%;
   }

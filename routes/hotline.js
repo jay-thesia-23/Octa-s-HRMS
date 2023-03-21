@@ -9,7 +9,7 @@ const profile=require("../routes/profile")
 app.use(profile)
 
 app.get('/hotline', (req, res) => {
-    res.render('hotline.ejs', { title: 'Hoteline Page' })
+    res.render('hotline.ejs', { title: 'calender Page' })
 })
 
 module.exports = app
