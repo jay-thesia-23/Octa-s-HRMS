@@ -52,9 +52,16 @@ async function Inemail(email) {
 app.post("/login", async (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
-
+  var id
   var data = await Inemail(email);
   // console.log(data)
+  var sql =`select id from hrms.registration where u_email = '${email}';`
+  // console.log(sql);
+  con.query(sql, function(err,result){
+    if (err) throw err;
+    id=result[0].id
+    console.log(id+"idd");
+  })
 
   if (data.length != 0) {
     async function compare_psw(password, data) {
@@ -72,7 +79,7 @@ app.post("/login", async (req, res) => {
     if (isMatch == true) {
       console.log(data[0].isactive);
 
-      const token = jwt.sign({ email }, "sanjay");
+      const token = jwt.sign({ email , id}, "sanjay");
 
       res.cookie("token", token);
 
@@ -81,7 +88,7 @@ app.post("/login", async (req, res) => {
       } else {
         if (data[0].u_login == 1) {
           con.query(
-            `update registration set u_login = '1' where u_email='${email}';`,
+            `update registration set u_login = '0' where u_email='${email}';`,
             (err, data) => {
               if (err) throw err;
               res.render("wizard.ejs");

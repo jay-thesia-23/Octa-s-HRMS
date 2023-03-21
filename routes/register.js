@@ -159,7 +159,7 @@ app.post("/register", async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?token=${token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?token=${register_token}&email=${email} "> verify</a>
             </div>
         </section>
        
