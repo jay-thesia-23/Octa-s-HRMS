@@ -117,7 +117,7 @@ app.post("/wizard", upload.fields([{
   });
     // console.log(upload_compress);
 
-    res.redirect("/dashboard");
+    res.redirect("/home");
   }
 );
 (module.exports = app), { Inemail };

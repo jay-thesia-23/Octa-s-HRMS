@@ -96,7 +96,7 @@ app.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.redirect('/dashboard')
+          res.redirect('/home')
         }
       }
     } else if (!isMatch) {
