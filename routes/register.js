@@ -199,7 +199,7 @@ app.post("/register", async (req, res) => {
 app.get("/verify", (req, res) => {
     // const reg_token = req.query.token;
     const email = req.query.email;
-
+        
     if (req.session.s_email == email) {
         res.send("e-mail verification sucesfully!!!!!")
         con.query(
