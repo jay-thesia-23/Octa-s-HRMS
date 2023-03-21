@@ -1,14 +1,15 @@
 var express = require("express");
+const session = require('express-session');
 var app = express();
 app.use(express.json());
-const bcrypt = require("bcrypt");
-app.use(express.static("css"));
-app.use(express.static("images"));
-var bodyparser = require("body-parser");
+const bcrypt = require('bcrypt');
+app.use(express.static('css'));
+app.use(express.static('images'));
+var bodyparser = require('body-parser');
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
-var mysql = require("mysql2");
-var cookieParser = require("cookie-parser");
+var mysql = require('mysql2');
+var cookieParser = require('cookie-parser');
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
@@ -16,86 +17,103 @@ app.use(cookieParser());
 
 app.use("/public", express.static("public"));
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
-});
+app.use(
+    session({
+        secret: 'your-secret-key',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24,
+        },
+    })
+);
 
+var con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
+});
 con.connect((err) => {
-  if (err) throw err;
-  console.log(" database connected ");
+    if (err) throw err;
+    console.log(" database connected ")
 });
-app.get("/register", (req, res) => {
-  res.render("register.ejs", {});
-});
+app.get('/register', (req, res) => {
+    res.render('register.ejs', {})
+})
 
 async function Inemail(email) {
-  return await new Promise((res, rej) => {
-    con.query(
-      `select * from registration where u_email='${email}';`,
-      (err, data) => {
-        if (err) throw err;
-        res(data);
-        // console.log(data.length);
-      }
-    );
-  });
+    return await new Promise((res, rej) => {
+        con.query(`select * from registration where u_email='${email}';`, (err, data) => {
+            if (err) throw err;
+            res(data);
+            // console.log(data.length);
+
+        })
+    })
 }
+
+
 app.post("/clone-email", (req, res) => {
-  var email = req.body.email;
-  con.query(
-    `select * from registration where u_email='${email}';`,
-    (err, data) => {
-      if (err) throw err;
-      // console.log(data);
-      if (data.length == 0) {
-        res.json(true);
-      } else {
-        res.json(false);
-      }
-    }
-  );
+    var email = req.body.email;
+    con.query(
+        `select * from registration where u_email='${email}';`,
+        (err, data) => {
+            if (err) throw err;
+            // console.log(data);
+            if (data.length == 0) {
+                res.json(true);
+            } else {
+                res.json(false);
+            }
+        }
+    );
 });
 
+
 app.post("/register", async (req, res) => {
-  var user_name = req.body.name;
-  var email = req.body.email;
-  var password = req.body.password;
+    var user_name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
 
-  var encrypt_password;
-  encrypt_password = await bcrypt.hash(password, 10);
+    req.session.s_email = email
+    console.log(req.session);
 
-  var sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`;
+    var encrypt_password;
+    encrypt_password = await bcrypt.hash(password, 10);
 
-  con.query(sql_insert, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.send(err);
-    }
-  });
+    var sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
+    con.query(sql_insert, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+    });
 
-    auth: {
-      user: "hrms1650@gmail.com",
-      pass: "vymm mlia vhln fuze",
-    },
-  });
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
 
-  const token = jwt.sign({ email: email }, "sanjay");
-  res.cookie("token", token);
+        auth: {
+            user: 'hrms1650@gmail.com',
+            pass: 'vymm mlia vhln fuze'
+        }
+    });
 
-  const mailConfigurations = {
-    from: "hrms1650@gmail.com",
+    const mailConfigurations = {
 
-    to: "sanjayparmar1650@gmail.com",
 
-    subject: "Email Verification",
+        // const login_token = jwt.sign({ email: email }, "sanjay");
+        // res.cookie("login_token", login_token);
 
-    html: `<!DOCTYPE html>
+        to: 'sanjayparmar1650@gmail.com',
+
+
+        subject: 'Email Verification',
+
+
+
+        html: `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -159,48 +177,62 @@ app.post("/register", async (req, res) => {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?token=${register_token}&email=${email} "> verify</a>
+                <a href=" http://localhost:5000/verify?email=${email} "> verify</a>
             </div>
         </section>
        
         </div>
     </body>
     
-    </html>`,
-  };
+    </html>`
+    };
 
-  transporter.sendMail(mailConfigurations, function (error, info) {
-    if (error) throw Error(error);
-    console.log("Email Sent Successfully");
-    // console.log(info);
-  });
+    transporter.sendMail(mailConfigurations, function (error, info) {
+        if (error) throw Error(error);
+        console.log('Email Sent Successfully');
+        // console.log(info);
+    });
 
-  res.send("register Succesfully!!!!");
+    res.send("register Succesfully!!!!");
 });
 
 app.get("/verify", (req, res) => {
-  const token = req.query.token;
-  const email = req.query.email;
-  console.log(email);
-  console.log(token);
-  // Verifying the JWT token
-  jwt.verify(token, "sanjay", function (err, decoded) {
-    if (err) {
-      console.log(err);
-      res.send(
-        "Email verification failed possibly the link is invalid or expired"
-      );
-    } else {
-      console.log(decoded);
-      res.send("Email verifified successfully");
-      con.query(
-        `update registration set isactive = '0' where u_email='${email}';`,
-        (err, data) => {
-          console.log(data);
-        }
-      );
+    // const reg_token = req.query.token;
+    const email = req.query.email;
+        
+    console.log(req.session.s_email0);
+    if (req.session.s_email == email) {
+        res.send("e-mail verification sucesfully!!!!!")
+        con.query(
+            `update registration set isactive = '0' where u_email='${email}';`,
+            (err, data) => {
+                console.log(data);
+            }
+        );
+
     }
-  });
+    else {
+        res.send('something went wrong!!!!! e-mail is not verfied')
+    }
+    // Verifying the JWT token
+    // jwt.verify(reg_token, "sanjay", function (err, decoded) {
+    //   if (err) {
+    //     console.log(err);
+    //     res.send(
+    //       "Email verification failed possibly the link is invalid or expired"
+    //     );
+    // } else {
+    //   console.log(decoded);
+    //   res.send("Email verifified successfully");
+    //   con.query(
+    //     `update registration set isactive = '0' where u_email='${email}';`,
+    //     (err, data) => {
+    //       console.log(data);
+    //     }
+    //   );
+    // }
+    // });
+
 });
 
 (module.exports = app), { Inemail };

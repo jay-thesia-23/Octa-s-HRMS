@@ -33,6 +33,9 @@ app.use(routes3);
 var wizad = require("../hrms/routes/wizard");
 app.use(wizad);
 
+const demo = require('./routes/checkInOut')
+app.use(demo)
+
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
 
