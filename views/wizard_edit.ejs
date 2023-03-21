@@ -165,7 +165,10 @@
                     </div>
                 </div>
                 <div class="">
-                    <a href="#" class="btn btn-next width-50 ml-auto" onclick="return registerPage1()">Next</a>
+                    <p class="btn btn-next width-50 ml-auto" onclick="return registerPage1()">
+                        Next
+                    </p>
+                    
                 </div>
             </div>
 
@@ -174,6 +177,8 @@
         <div class="container">
             <div class="form-step">
                 <% console.log("hellow in reslut 2") %>
+                <% console.log(result2.length) %>
+                <% console.log(result2) %>
                     <% for(let j=0;j<result2.length;j++){%>
                         <div id="education" name="edu">
 
@@ -205,7 +210,6 @@
                             </div>
 
 
-                            <% console.log(data2) %>
                                 <div class="input-group">
                                     <label for="University">School/college</label>
                                     <input type="text" name="uni" id="uni"
@@ -233,12 +237,14 @@
 
                         </div>
                             <div class="btn-grup-2">
-                                <a href="#" class="btn-2" onclick="education()">Add Field</a>
+                                <p class="btn-2" onclick="education()">Add Field</p>
+                                
                             </div>
                             <p id="p1"></p>
                             <div class="btns-group">
-                                <a href="#" class="btn btn-prev">Previous</a>
-                                <a href="#" class="btn btn2-next" onclick="return registerPage2()">Next</a>
+                                <p class="btn btn-prev">Previous</p>
+                                <p class="btn btn2-next" onclick="return registerPage2()">Next</p>
+                              
                             </div>
             </div>
         </div>
@@ -256,8 +262,9 @@
             </div>
 
             <div class="btns-group">
-                <a href="#" class="btn btn-prev">Previous</a>
-                <a href="#" class="btn btn-next">Next</a>
+                <p class="btn btn-prev">Previous</p>
+                <p class="btn btn-next">Next</p>
+                
             </div>
         </div>
 
@@ -303,8 +310,9 @@
                 </div>
             </div>
             <div class="btns-group">
-                <a href="#" class="btn btn-prev">Previous</a>
-                <a href="#" class="btn btn-next">Next</a>
+                <p class="btn btn-prev">Previous</p>
+                <p class="btn btn-next">Next</p>
+             
             </div>
 
         </div>
@@ -332,12 +340,14 @@
             </div>
 
             <div class="btns-group">
-                <a href="#" class="btn btn-prev">Previous</a>
+                <p class="btn btn-prev">Previous</p>
+                
                 <input type="submit" value="Submit" class="btn" />
             </div>
         </div>
         </div>
     </form>
+    
 </body>
 
 </html>

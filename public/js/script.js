@@ -363,50 +363,29 @@ function registerPage2(){
   console.log(isvalidate);
   return isvalidate;
 }
-var s="";
+
 var clk =1;
-function education(){
- 
+async function education(){
+  var k
+console.log("sanjay");
+  const ans = await fetch(`http://localhost:5000/cource`);
+  
+  const data2 = await ans.json();
+  console.log(data2[0].cource_name);
   var table2= document.getElementById('add');
   var v2 = document.createElement('div');
+  var s = ""
   if(clk <= 10)
       {
-          v2.innerHTML=`
-      
-          
-          <div id="education" name="edu">
-          <div class="input-group">
-            <div class="select-dropdown">
-            <label for="Course">Course</label>
-       <select name="course" id="course">
-          <option value="" selected disabled> select option</option>
-          <% for(let i=0;i<data2.length ;i++) {%>
-          <option value="<%= data2[i].cource_name%>"><%= data2[i].cource_name%></option>
-          <% }%>
-      </select>
-            <span class="span1" id="city-error"></span>
-            </div>
-          </div>
-          <div class="input-group">
-            <label for="University">University/college</label>
-            <input type="text" name="uni" id="uni" onchange="univalidate()"/>
-            <span class="span1" id="uni-error"></span>
-          </div>
-          <div class="input-group">
-            <label for="passyear">Passing Year</label>
-            <input type="text" name="passyear" id="passyear"  onchange="yearValidate()"/>
-            <span class="span1" id="year-error"></span>
-          </div>
-          <div class="input-group">
-            <label for="percentage">Percentage</label>
-            <input type="text" name="percent" id="percent" onchange="percentValidate()" />
-            <span class="span1" id="percent-error"></span>
-          </div>
-          </div>
-        </div>
-           
-         
-      `;
+          s +="<div id='education' name='edu'><div class='input-group'><div class='select-dropdown'><label for='Course'>Course</label><select name='course' id='course'><option value='' selected disabled> select option</option>"
+
+          for(k=0;k<data2.length ;k++) {
+         s+=` <option value=' ${data2[k].cource_name}'> ${data2[k].cource_name}</option>`
+        }
+
+         s+= "</select><span class='span1' id='city-error'></span></div></div><div class='input-group'><label for='University'>University/college</label><input type='text' name='uni' id='uni' onchange='univalidate()'/><span class='span1' id='uni-error'></span></div><div class='input-group'><label for='passyear'>Passing Year</label><input type='text' name='passyear' id='passyear'  onchange='yearValidate()'/><span class='span1' id='year-error'></span></div><div class='input-group'><label for='percentage'>Percentage</label><input type='text' name='percent' id='percent' onchange='percentValidate()' /><span class='span1' id='percent-error'></span></div></div></div> ";
+
+          v2.innerHTML = s;
           table2.append(v2);
           clk++;
           }

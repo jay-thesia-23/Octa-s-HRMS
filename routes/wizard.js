@@ -66,6 +66,20 @@ app.get("/wizard",(req,res)=>{
     })
 });
 
+app.get('/cource',function(req,res){
+
+ 
+
+  
+  con.query(`select *from cource_master;`,function(error,data2){
+      if (error) throw error;
+      // console.log(result)
+    
+      res.send(data2);
+      res.end();
+  })
+});
+
 
 
 
