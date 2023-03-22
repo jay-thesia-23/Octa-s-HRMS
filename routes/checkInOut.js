@@ -84,7 +84,7 @@ app.post('/check_out', function (req, res) {
         res.json({ result })
     })
 
-    var ofline_status = `update check_master set ofline_status='1' where reg_id = '${login_user__id}' and status = 'check_out'; `
+    var ofline_status = `update check_master set online_status='0' where reg_id = '${login_user__id}' and status = 'check_in'; `
     console.log(ofline_status);
         con.query(ofline_status , function(err,data1){
             if(err) throw err
