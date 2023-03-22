@@ -60,34 +60,36 @@ app.post("/leaves", (req, res) => {
 
   jwt.verify(token, "sanjay", function (err, decoded) {
     console.log(req.body);
-    let ldate = req.body.ldate;
-    let leavetype = req.body.leavetype;
-    let reason = req.body.reason;
-    console.log(ldate);
-    console.log(leavetype);
-    console.log(reason);
+  let ldate = req.body.ldate;
+  let leavetype = req.body.leavetype;
+  let reason = req.body.reason;
+  console.log(ldate);
+  console.log(leavetype);
+  console.log(reason);
 
-    //date
-    var today = new Date();
-    var dd = today.getDate();
+  //date
+  var today = new Date();
+var dd = today.getDate();
 
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
 
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-    today = yyyy + "-" + mm + "-" + dd;
-    console.log(today);
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = yyyy+'-'+mm+'-'+dd;
+console.log(today);
 
-    // console.log(JSON.stringify(decoded.id) + "decodeeeee");
-    console.log(decoded.id);
+   console.log(JSON.stringify(decoded.id) + "decodeeeee");
+   console.log(decoded.id);
 
-    var id = decoded.id;
-    console.log(id + "iddd");
+   var id = decoded.id[0].id;
+   console.log(id+"iddd");
 
     var sql = `INSERT INTO request_leave_table(employee_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
 
