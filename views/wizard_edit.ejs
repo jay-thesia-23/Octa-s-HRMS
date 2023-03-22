@@ -179,6 +179,7 @@
                 <% console.log("hellow in reslut 2") %>
                 <% console.log(result2.length) %>
                 <% console.log(result2) %>
+                <% console.log(data2) %>
                     <% for(let j=0;j<result2.length;j++){%>
                         <div id="education" name="edu">
 
@@ -187,10 +188,11 @@
                                     <label for="Course">Course</label>
                                     <select name="course" id="course">
                                         <option value="" selected disabled> select option</option>
+                                        
                                         <% for(let i=0;i<data2.length ;i++) {%>
-
-                                            <% if(result2[j].cource_name==data2[i].cource_name){%>
-
+                                          
+                                            <% if(data2[i].cource_name==result2[j].cource_name){%>
+                                                
                                                 <option value="<%= data2[i].cource_name%>" selected>
                                                     <%= data2[i].cource_name%>
                                                 </option>
@@ -198,6 +200,7 @@
                                                 <% }else{%>
 
                                                     <option value="<%= data2[i].cource_name%>">
+                                                    
                                                         <%= data2[i].cource_name%>
                                                     </option>
                                                     <% }%>
