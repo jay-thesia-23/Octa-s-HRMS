@@ -26,10 +26,12 @@ connection.connect(function (err, data) {
 var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async(req, res) => {
+    // var id=req.query.id;
+    var checkdata=await alldataquery(`select id,status,time from check_master`);
 
-    var checkdata=await alldataquery(`select entry_date,status,entry_time from check_master`);
-
-    // console.log(checkdata);
+    console.log(checkdata);
+    // console.log(checkdata[0].status);
+    console.log(checkdata[0].id);
 
     res.render('attendance',{checkdata});
 })

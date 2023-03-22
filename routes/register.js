@@ -85,8 +85,8 @@ app.post("/register", async (req, res) => {
     },
   });
 
-  const token = jwt.sign({ email: email }, "sanjay");
-  res.cookie("token", token);
+  const register_token = jwt.sign({ email: email }, "sanjay");
+  res.cookie("token", register_token);
 
   const mailConfigurations = {
     from: "hrms1650@gmail.com",
