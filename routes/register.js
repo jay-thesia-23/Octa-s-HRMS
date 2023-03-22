@@ -29,10 +29,10 @@ app.use(
 );
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
 });
 con.connect((err) => {
   if (err) throw err;
@@ -93,6 +93,7 @@ app.post("/register", async (req, res) => {
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
+        to: 'sanjayparmar1650@gmail.com',
 
     auth: {
       user: "hrms1650@gmail.com",
@@ -198,15 +199,17 @@ app.get("/verify", (req, res) => {
   console.log(email,"email qeru");
   console.log(req.session.s_email,"email session");
   if (req.session.s_email == email) {
-    res.send("e-mail verification sucesfully!!!!!");
-    con.query(
-      `update registration set isactive = '0' where u_email='${email}';`,
-      (err, data) => {
-        console.log(data);
-      }
-    );
-  } else {
-    res.send("something went wrong!!!!! e-mail is not verfied");
+      res.send("e-mail verification sucesfully!!!!!")
+      con.query(
+          `update registration set isactive = '0' where u_email='${email}';`,
+          (err, data) => {
+              console.log(data);
+          }
+      );
+
+  }
+  else {
+      res.send('something went wrong!!!!! e-mail is not verfied')
   }
   // Verifying the JWT token
   // jwt.verify(reg_token, "sanjay", function (err, decoded) {
