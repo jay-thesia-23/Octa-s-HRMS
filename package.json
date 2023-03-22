@@ -31,7 +31,5 @@
     "sweetalert": "^2.1.2",
     "util": "^0.12.5",
     "express-ejs-layouts": "^2.5.1"
-
-
   }
 }

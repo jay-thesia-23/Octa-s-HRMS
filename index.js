@@ -43,7 +43,7 @@ app.use(leaves);
 var connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Rogerqazwsx@123',
+    password: 'root',
     database: 'hrms'
   
   });

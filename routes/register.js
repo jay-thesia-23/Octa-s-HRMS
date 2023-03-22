@@ -31,7 +31,7 @@ app.use(
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Rogerqazwsx@123",
+  password: "root",
   database: "hrms",
 });
 con.connect((err) => {

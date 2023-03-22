@@ -26,7 +26,7 @@ app.use("/public", express.static("public"));
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Rogerqazwsx@123",
+  password: "root",
   database: "hrms",
 });
 

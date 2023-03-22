@@ -20,7 +20,7 @@ var jwt = require("jsonwebtoken");
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Rogerqazwsx@123',
+  password: 'root',
   database: 'hrms'
 
 });
@@ -99,12 +99,15 @@ app.post(
 
       console.log(req.files.adhar,"addhar");
 
-      let sqlDoc=`insert into document_master ("employee_id", "registration_id", "adhar", "resume", "check", "other", "profile_pic") values ("1","19","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`
+      let sqlDoc=`insert into document_master (employee_id,id,adhar,resume_doc,cheque,other,profile_pic) values ("1","1",
+      "${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`
+
+      connection.query(sqlDoc,(err,datadoc)=>{
+        console.log(datadoc);
+        console.log("documents are added successfully");
+      })
 
       console.log(sqlDoc);
-      connection.query(sqlDoc,(err,dataDoc0)=>{
-        console.log("data is inserted");
-      })
 
       // var id = decoded.id;
       // console.log(id + "iddd");
