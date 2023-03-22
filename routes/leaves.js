@@ -87,10 +87,10 @@ if(mm<10)
 today = yyyy+'-'+mm+'-'+dd;
 console.log(today);
 
-   // console.log(JSON.stringify(decoded.id) + "decodeeeee");
+   console.log(JSON.stringify(decoded.id) + "decodeeeee");
    console.log(decoded.id);
 
-   var id = decoded.id;
+   var id = decoded.id[0].id;
    console.log(id+"iddd");
 
     var sql = `INSERT INTO request_leave_table(employee_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;

@@ -15,7 +15,6 @@ var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 app.use(cookieParser());
 
-
 app.use("/public", express.static("public"));
 
 app.use(
@@ -30,10 +29,10 @@ app.use(
 );
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
 });
 con.connect((err) => {
     if (err) throw err;
@@ -107,8 +106,7 @@ app.post("/register", async (req, res) => {
         // const login_token = jwt.sign({ email: email }, "sanjay");
         // res.cookie("login_token", login_token);
 
-  const register_token = jwt.sign({ email: email }, "sanjay");
-  res.cookie("register_token", register_token);
+        to: 'sanjayparmar1650@gmail.com',
 
 
         subject: 'Email Verification',
@@ -202,7 +200,7 @@ app.get("/verify", (req, res) => {
     // const reg_token = req.query.token;
     const email = req.query.email;
         
-    console.log(req.session.s_email0);
+    console.log(req.session.s_email);
     if (req.session.s_email == email) {
         res.send("e-mail verification sucesfully!!!!!")
         con.query(
