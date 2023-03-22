@@ -30,6 +30,7 @@ var con = mysql.createConnection({
   database: "hrms",
 });
 
+
 con.connect((err) => {
   if (err) throw err;
   console.log(" database connected ");
@@ -88,14 +89,20 @@ app.post("/login", async (req, res) => {
         res.send("wait for some min");
       } else {
         if (data[0].u_login == 1) {
-          con.query(
-            `update registration set u_login = '1' where u_email='${email}';`,
+          con.query(`select * from state_master; `, function (error, data_3) {
+            if (error) throw error;
+            data3 = data_3;
+            con.query(`select * from cource_master; `, function (error, data_2) {
+                if (error) throw error;
+                data2= data_2;
+          con.query(`update registration set u_login = '1' where u_email='${email}';`,
             (err, data) => {
               if (err) throw err;
               
-              res.render("wizard.ejs");
-            }
-          );
+              res.render("wizard.ejs",{data});
+            });
+        })
+      })
         } else {
           res.redirect('/home')
         }

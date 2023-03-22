@@ -63,13 +63,13 @@ app.get('/edit_profile', function (req, res) {
 
             con.query(`SELECT * FROM employee_basic_infomation where reg_id = ${login_user__id};`, function (error, result1) {
                 if (error) throw error;
-                // console.log(result1)
+                 console.log(result1)
                 con.query(`SELECT * FROM education_table where reg_id = ${login_user__id};`, function (error, result2) {
                     if (error) throw error;
-                    // console.log(result2)
+                    //  console.log(result2)
                     con.query(`SELECT * FROM reference_master where reg_id = ${login_user__id};`, function (error, result3) {
                         if (error) throw error;
-                        // console.log(result3)
+                        //  console.log(result3)
                         res.render("wizard_edit.ejs", { data2, data3, result1, result2, result3 })
                     })
                 })
@@ -124,7 +124,9 @@ app.post("/wizard_edit", upload.fields([{
       var relationship = req.body.relationship;
       var state = req.body.state;
       var city = req.body.city;
-  
+      var email = req.body.email;
+      var designation = req.body.designation;
+      var department = req.body.department;
   
       var course_name =req.body.course || 0;
       var percentage = req.body.percent;
@@ -160,7 +162,7 @@ app.post("/wizard_edit", upload.fields([{
    })
 
 
-      con.query(`insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}') ;`, function (error, data) {
+      con.query(`insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city,email,designation,department) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}','${email}','${designation}','${department}') ;`, function (error, data) {
         if (error) throw error;
         id = data.insertId;
   console.log(id);
@@ -169,7 +171,7 @@ app.post("/wizard_edit", upload.fields([{
   // education
   
   
-  if(typeof course_name == "string"){
+  if(typeof percentage == "string"){
     
     con.query(`insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name}','${percentage}','${board_university_name}','${passout_year}');`, function (error, data) {
         if (error) throw error;

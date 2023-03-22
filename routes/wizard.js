@@ -40,10 +40,9 @@ con.connect((err) => {
   console.log("connected");
 });
 
-app.get("/wizard", (req, res) => {
-  res.render("wizard.ejs");
-});
-
+// app.get("/wizard", (req, res) => {
+//   res.render("wizard.ejs");
+// });
 
 async function Inemail(email) {
   return await new Promise((res, rej) => {
@@ -107,12 +106,12 @@ app.get('/cource',function(req,res){
 const uniqueSuffix = ""
 const storage = multer.diskStorage({
   destination: function (req, files, cb) {
-    cb(null, "./uploads");
+    cb(null, "./public/uploads");
   },
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
-    cb(null, uniqueSuffix + ".png");
+    cb(null, uniqueSuffix );
   },
 });
 
@@ -147,6 +146,9 @@ app.post("/wizard", upload.fields([{
     var relationship = req.body.relationship;
     var state = req.body.state;
     var city = req.body.city;
+    var email = req.body.email;
+    var designation = req.body.designation;
+    var department = req.body.department;
 
 
     var course_name =req.body.course || 0;
@@ -177,7 +179,7 @@ app.post("/wizard", upload.fields([{
 
 // basic_information
 
-    con.query(`insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}') ;`, function (error, data) {
+    con.query(`insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city,email,designation,department) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}','${email}','${designation}','${department}') ;`, function (error, data) {
       if (error) throw error;
       id = data.insertId;
 console.log(id);

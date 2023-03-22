@@ -89,7 +89,7 @@ app.post("/register", async (req, res) => {
             console.log(err);
             res.send(err);
         }
-    });231
+    });
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -200,6 +200,7 @@ app.get("/verify", (req, res) => {
     // const reg_token = req.query.token;
     const email = req.query.email;
         
+    console.log(req.session.s_email);
     if (req.session.s_email == email) {
         res.send("e-mail verification sucesfully!!!!!")
         con.query(

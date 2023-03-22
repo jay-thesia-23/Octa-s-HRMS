@@ -17,8 +17,8 @@ const login = require('../hrms/routes/login')
 app.use(login)
 const demo = require('./routes/checkInOut')
 app.use(demo)
-const abc = require('./routes/dashboard')
-app.use(abc)
+
+app.use(express.static("public"));
 
 
 const routes1 = require('../hrms/routes/home');
@@ -43,6 +43,9 @@ var editprofile=require("../hrms/routes/edit_profile")
 app.use(editprofile)
 
 
+
+
+
 var connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
@@ -56,10 +59,8 @@ var connection = mysql2.createConnection({
       throw err;
     console.log("connected with database");
   })
-
-
-
   
+
 app.listen(5000, () => {
-    console.log("app listion on 5000 port");
-})
+  console.log("app listening on 5000 port");
+});
