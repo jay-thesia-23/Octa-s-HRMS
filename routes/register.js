@@ -72,17 +72,17 @@ app.post("/clone-email", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  var user_name = req.body.name;
-  var email = req.body.email;
-  var password = req.body.password;
+  const user_name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
 
   req.session.s_email = email;
-  console.log(req.session.s_email,"s_email in register");
+  console.log(req.session,"s_email in register");
 
-  var encrypt_password;
+  let encrypt_password;
   encrypt_password = await bcrypt.hash(password, 10);
 
-  var sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`;
+  const sql_insert = `insert into registration (u_name,u_email,u_password,isactive,u_login) values('${user_name}','${email}','${encrypt_password}','1','1');`;
 
   con.query(sql_insert, (err, data) => {
     if (err) {
@@ -194,10 +194,12 @@ app.post("/register", async (req, res) => {
 
 app.get("/verify", (req, res) => {
   // const reg_token = req.query.token;
+
+  
   const email = req.query.email;
 
   console.log(email,"email qeru");
-  console.log(req.session.s_email,"email session");
+  console.log(req.session,"email session");
   if (req.session.s_email == email) {
       res.send("e-mail verification sucesfully!!!!!")
       con.query(
