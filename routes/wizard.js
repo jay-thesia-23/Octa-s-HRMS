@@ -196,8 +196,8 @@ app.post(
       }
     );
 
-    res.end();
-    // res.redirect("/");
+   
+    res.redirect("/home");
   }
 );
 

@@ -13,10 +13,6 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use(express.static("public"));
 
-const register = require("../hrms/routes/register");
-app.use(register);
-const login = require("../hrms/routes/login");
-app.use(login);
 
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);

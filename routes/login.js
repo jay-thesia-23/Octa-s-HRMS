@@ -108,7 +108,7 @@ app.post("/login", async (req, res) => {
             );
           });
         } else {
-          res.send("home page");
+          res.redirect('/home')
         }
 
         var query = util.promisify(con.query).bind(con);

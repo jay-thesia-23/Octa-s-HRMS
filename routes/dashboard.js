@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 
 app.use(express.static("css"));
 app.use(express.static("images"));
+const util = require('util')
+
 
 var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -33,16 +35,83 @@ con.connect((err) => {
   console.log(" database connected ");
 });
 
-
-app.get('/dashboard',(req,res)=>{
-
-    var login_token = req.cookies.login_token
-
-    jwt.verify(login_token, "sanjay", function (err, decoded) {
-        // console.log(decoded.id[0].id)
-      });
-    res.render('dashboard.ejs');
+app.get('/dashboard', function(req,res){
+  console.log("dashboard calledddddddddddddddddddddd");
+  res.render('dashboard.ejs')
 })
+// app.get("/login", (req, res) => {
+//   res.render("login.ejs", {});
+// });
 
-module.exports = app
+// async function Inemail(email) {
+//   return await new Promise((res, rej) => {
+//     con.query(
+//       `select * from registration where u_email='${email}';`,
+//       (err, data) => {
+//         if (err) throw err;
+//         res(data);
+//         // console.log(data.length);
+//       }
+//     );
+//   });
+// }
 
+// app.post("/login", async (req, res) => {
+//   var email = req.body.email;
+//   var password = req.body.password;
+//   var data = await Inemail(email);
+//   var id
+
+//   var query = util.promisify(con.query).bind(con)
+//   var id = await query(`select id from registration where u_email='${email}'`)
+//       console.log(id);
+
+
+
+
+//   if (data.length != 0) {
+//     async function compare_psw(password, data) {
+//       return await new Promise((res, rej) => {
+//         bcrypt.compare(password, data[0].u_password, (err, isMatch) => {
+//           if (err) {
+//             return err;
+//           }
+//           res(isMatch);
+//         });
+//       });
+//     }
+//     var isMatch = await compare_psw(password, data);
+//     console.log(isMatch);
+//     if (isMatch == true) {
+//       console.log(data[0].isactive);
+
+//       const login_token = jwt.sign({ email , id }, "sanjay");
+
+//       res.cookie("login_token", login_token);
+
+//       if (data[0].isactive == "1") {
+//         res.send("wait for some min");
+//       } else {
+//         if (data[0].u_login == 1) {
+//           con.query(
+//             `update registration set u_login = '1' where u_email='${email}';`,
+//             (err, data) => {
+//               if (err) throw err;
+//               res.render("wizard.ejs");
+//             }
+//           );
+//         } else {
+//           res.redirect('/dashboard')
+//         }
+//       }
+//     } else if (!isMatch) {
+//       return res.send(
+//         `Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `
+//       );
+//     }
+//   } else {
+//     res.redirect("/login");
+//     console.log("your password is not matched ");
+//   }
+// });
+module.exports = app;
