@@ -5,6 +5,9 @@ app.set('view engine', 'ejs')
 app.use(express.json());
 var bodyParser = require('body-parser');
 
+const expressLayouts = require('express-ejs-layouts')
+app.use(expressLayouts) //Added
+app.set('layout', './layouts/main') //added
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 ;

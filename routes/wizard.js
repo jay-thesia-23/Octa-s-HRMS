@@ -1,10 +1,11 @@
-var mysql = require('mysql2');
-var express = require('express');
+var mysql = require("mysql2");
+var express = require("express");
+var path = require("path");
 var app = express();
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
-var bodyParser = require('body-parser');
-const { response } = require('express');
+var bodyParser = require("body-parser");
+const { response } = require("express");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
@@ -18,8 +19,11 @@ app.use(cookieParser());
 
 var multer=require('multer')
 
-
-const upload = multer({ dest: "uploads/" });
+const register = require("./register");
+app.use(register);
+const login = require("./login");
+app.use(login);
+var jwt = require("jsonwebtoken");
 
 
 var con = mysql.createConnection({
@@ -34,7 +38,25 @@ con.connect((err) => {
   if (err)
     throw err;
   console.log("connected");
-})
+});
+
+app.get("/wizard", (req, res) => {
+  res.render("wizard.ejs");
+});
+
+
+async function Inemail(email) {
+  return await new Promise((res, rej) => {
+    connection.query(
+      `select * from registration where u_email='${email}';`,
+      (err, data) => {
+        if (err) throw err;
+        res(data);
+        // console.log(data.length);
+      }
+    );
+  });
+}
 
 
 app.get("/wizard",(req,res)=>{
@@ -82,6 +104,19 @@ app.get('/cource',function(req,res){
 
 
 
+const uniqueSuffix = ""
+const storage = multer.diskStorage({
+  destination: function (req, files, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, files, cb) {
+    uniqueSuffix = `${Date.now()}-${files.originalname}`;
+    console.log(uniqueSuffix, "from the storage");
+    cb(null, uniqueSuffix + ".png");
+  },
+});
+
+const upload = multer({ storage });
 
 app.post("/wizard", upload.fields([{
   name: 'adhar', maxCount: 1
@@ -96,20 +131,8 @@ app.post("/wizard", upload.fields([{
     
     console.log(req.files,"file in uploads");
   
-    const uniqueSuffix=""
-    const storage = multer.diskStorage({
-      destination: function (req, files, cb) {
-        cb(null, "./uploads");
-      },
-      filename: function (req, files, cb) {
-         uniqueSuffix = Date.now() + "-" + `${originalname}`+".png";
-         console.log(uniqueSuffix,"from the storage");
-        cb(null, uniqueSuffix);
-      },
-    });
-  
-    console.log(typeof storage);
-    const upload = multer({ storage });
+    
+
    
 
     console.log(req.body)
