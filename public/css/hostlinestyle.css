@@ -1,18 +1,13 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
-.container {
-    /* border: 1px solid red; */
+.hotline-section {
+    /* border: 1px solid rgb(36, 34, 34); */
     margin: 0 auto;
-    /* padding: 0 16px; */
+    padding: 0 16px;
+    /* background-color: #acacac; */
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
-
     margin: 0 -16px;
 }
 
@@ -27,7 +22,7 @@
     align-items: center;
     flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* padding: 10px; */
+    padding: 10px;
     margin: 0 16px;
     border-radius: 10px;
     color: white;
@@ -36,32 +31,31 @@
 }
 
 #card1 {
-    background-color: rgb(19, 206, 143);
+    background-color: rgb(76, 213, 167);
 }
 
 #card2 {
-    background-color: rgb(140, 127, 255);
+    background-color: rgb(178, 169, 247);
 }
 
 #card3 {
-    background-color: rgb(219, 82, 107);
+    background-color: rgb(247, 148, 168);
 }
 
 #card4 {
-    background-color: rgb(234, 201, 67);
+    background-color: rgb(239, 219, 140);
 }
 
 #card5 {
-    background-color: rgb(245, 100, 75);
+    background-color: rgb(251, 145, 126);
 }
 
 #card6 {
-    background-color: rgb(210, 84, 191);
+    background-color: rgb(243, 170, 232);
 }
 
 .part2 {
     margin-top: 20px;
-    text-align: end;
 }
 
 .select {
@@ -69,6 +63,7 @@
     font-size: 20px;
     outline: none;
     cursor: pointer;
+    justify-content: flex-end;
 }
 
 .select input {
@@ -108,7 +103,7 @@
 
 .col-ht-in {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    
     margin: 0 16px;
     padding: 10px;
     border-radius: 10px;
@@ -131,9 +126,11 @@
     border-radius: 5px;
 }
 
+
 .r2 {
     text-align: center;
     color: black;
+    padding: 20px 0;
 }
 
 .col-ht img {
@@ -155,26 +152,48 @@
 .prof1 {
     width: 50%;
 }
+.pf1{
+    width: 20%;
+}
+.pf2{
+    width: 80%;
+}
 
 .hd {
     font-size: 15px;
     color: gray;
 }
 
-.r4 {
-    padding: 10px;
-}
-
-/* .l1{
+/* .r4 {
     display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 0px;
-} */
-.l1 i {
-    display: inline-block;
+    padding: 10px;
+    width: 100%;
 }
 
-.l1 p {
-    padding: 0 10px;
-    display: inline-block;
+.l1{
+    width: 20%; 
+} */
+.r4{
+    display: flex;
+    padding: 10px;
+    line-height: 30px;
 }
+.email p{
+    transition: 0. 5s;
+    overflow: hidden;
+   
+}
+.email p:hover{
+    overflow: unset;
+    transform: scale(1);    
+    color: rgb(239, 70, 8);
+}
+
+/* .l1 i {
+    display: inline-block; 
+    line-height: 30px;
+} */
+
+/* .l1 p {
+     width: 20px;
+} */

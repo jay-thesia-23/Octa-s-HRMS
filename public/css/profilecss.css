@@ -1,4 +1,4 @@
-.container {
+.profile-container {
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 16px;
@@ -89,7 +89,7 @@
   justify-content: center;
 }
 
-table tr td {
+.proftab table tr td {
   padding: 5px;
 }
 .heading {

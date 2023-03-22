@@ -11,8 +11,7 @@
   
 .c1{
     float: right;
-    margin-right: 20px;
-    margin-bottom: 30px;
+    margin: 20px 0px;
 }
 .s1{
     background-color: #fff;
@@ -28,26 +27,35 @@
 
     /* padding: 0 16px; */
 }
+.main-body{
+    background-color: #e6ecf5;
+}
 .leave-class{
     margin: 0 auto;
     padding: 0 16px;
-    max-width: 1170px;
-    /* border: 1px solid rebeccapurple; */
+    background-color: #e6ecf5;
+   
+    /* max-width: 1170px; */
+    
 }
 .row{
     display: flex;
     flex-wrap: wrap;
-    /* border: 1px solid black; */
     margin: 0 -16px;
     /* background-color: ; */
 }
 .col{
     width:30%;
     padding:0 16px ;
+    /* border: 1px solid rgb(51, 153, 97); */
 }
 .col-1{
     width:50%;
     padding:0 16px ;
+   
+}
+.td{
+    padding: 10px;
 }
 .row-1{
     display: flex;
@@ -61,21 +69,20 @@
 .col-2{
     width:15%;
     padding:0 16px ;
+    /* border: 1px solid rebeccapurple; */
     /* border: 1px solid red; */
 }
-.col-3{
-    width:15%;
-    padding:0 16px ;
-    /* border: 1px solid red; */
-}
+
 .col-4{
     width:40%;
     padding:0 16px ;
+    /* border: 1px solid rebeccapurple; */
     /* border: 1px solid red; */
 }
 .select{
     display: flex;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 select{
     width: 150px;
@@ -86,6 +93,7 @@ select{
     font-weight: 400px;
     line-height: 1.5;
     text-align: left;
+    border: none;
 }
 option{
     background-color: white;
@@ -119,27 +127,26 @@ tbody{
     /* border: 1px solid rgb(31, 39, 43); */
 }
 .col-7{
-    width:10%;
+    width:15%;
     padding:0 16px ;
     /* border: 1px solid rgb(31, 39, 43); */
     display: inline-block;
 }
 .search{
     padding: 10px;
-    width: 100%;
+    width: 280px;
     background-color: #e6ecf5;
     border-radius: 5px;
     border: none;
+   
 }
-.container{
-    padding: 10px;
+.container_1{
+    padding: 15px;
     background-color: #fdfdfd;
-    margin-top: 50px;
+    margin-top: 20px;
+    /* border: 1px solid rgb(31, 39, 43);  */
 }
-.col-9{
-    width: 100%;
-    padding:0 16px ;
-}
+
 .btn-can{
     float: right;
     margin-right: 10px;
@@ -157,12 +164,13 @@ tbody{
 .apply{
     background-color:#002f4b;
     color: white;
-    width: 320px;
+    width: 150px;
+    text-align: center;
     padding: 10px 50px;
     font-weight: 600;
     font-size: 16px;
     border-radius: 10px;
-cursor: pointer;
+    cursor: pointer;
 }
 .tbody-css:hover{
 background-color: hwb(0 86% 11% / 0.505);
@@ -171,21 +179,20 @@ background-color: hwb(0 86% 11% / 0.505);
 .cancel:hover{
     opacity: 0.8;
 }
-select{
-    border: none;
-}
+
 .add-btn{
     /* transform: translate(-50%, -50%); */
     background-color:#0000f0dc;;
     color: white;
     font-size: 14px;
-   text-align: center;
+    text-align: center;
     padding: 10px;
     border-radius: 10px;
     width: 75px;
     float: right;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 15px;
 }
 .text-add{
     text-align: center;
@@ -203,9 +210,7 @@ select{
     font-size: 13px;
     border-radius: 10px;
 }
-.main-div-tbl{
 
-}
 .tr-head{
     background-color: #002f4b;
     color: #fff;
@@ -237,33 +242,31 @@ select{
     padding:15px;
    background-color:#002f4b; 
 }
-table{
-    border: 1px solid black;
+.tbl{
+    /* border: 1px solid black; */
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 0 0 1px #666;
     border-style: hidden;
+    border: none;
 }
-table,td{
-    padding: 18px;
 
-/* border-radius: 30px; */
+.td1{
+    padding: 15px;
+    text-align: left;
+    /* border: 1px solid black; */
 }
-.tbl{
-    border-radius: 10px;
-}
+
 .tbody-css{
-    background-color:#fff;
+    /* background-color:#fff; */
     text-align: center;
 }
+
 .tbl-footer{
     margin-top: 20px;
 }
-.f1{
-    font-size: 13px;
-    font-weight: 400;
-}
+
 .icons{
     float: right;
     display: flex;
