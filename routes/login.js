@@ -30,6 +30,7 @@ var con = mysql.createConnection({
   database: "hrms",
 });
 
+
 con.connect((err) => {
   if (err) throw err;
   console.log(" database connected ");

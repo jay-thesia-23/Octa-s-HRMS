@@ -41,16 +41,19 @@ app.use(leaves);
 
 
 var connection = mysql2.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("connected with database");
-});
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
+  
+  });
+  
+  connection.connect((err) => {
+    if (err)
+      throw err;
+    console.log("connected with database");
+  })
+  
 
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
