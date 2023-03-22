@@ -131,7 +131,7 @@ tbody{
     border-radius: 5px;
     border: none;
 }
-.container{
+.leave-container{
     padding: 10px;
     background-color: #fdfdfd;
     margin-top: 50px;
@@ -237,17 +237,17 @@ select{
     padding:15px;
    background-color:#002f4b; 
 }
-table{
-    border: 1px solid black;
+.tbl{
+    border: 1px solid rgb(52, 49, 49);
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 0 0 1px #666;
     border-style: hidden;
+   
 }
-table,td{
+.tbl td{
     padding: 18px;
-
 /* border-radius: 30px; */
 }
 .tbl{
