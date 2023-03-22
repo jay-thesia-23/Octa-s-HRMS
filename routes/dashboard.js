@@ -1,30 +1,46 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyparser = require('body-parser');
-const app = express();
-const ejs = require('ejs');
-const util=require('util');
-
-const { query } = require('express');
-app.use(express.static("public"));
-
+var express = require("express");
+var app = express();
 app.use(express.json());
-app.set('view engine', 'ejs');
+var ejs = require("ejs");
+
+const bcrypt = require("bcrypt");
+
+app.use(express.static("css"));
+app.use(express.static("images"));
+
+var bodyparser = require("body-parser");
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
+var mysql = require("mysql2");
 
-// app.get('/dashboard', async(req, res) => {
-//     res.render('dashboard.ejs');
-// });
+var cookieParser = require("cookie-parser");
+// app.use(cookieParser());
+var jwt = require("jsonwebtoken");
 
-// const dotenv = require('dotenv');
+app.use(cookieParser());
+
+app.use("/public", express.static("public"));
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "hrms",
+});
+
+con.connect((err) => {
+  if (err) throw err;
+  console.log(" database connected ");
+});
 
 
-
-// app.listen(9876,()=>{
-//     console.log("Server Started --> http://localhost:9876/")
-// });
 app.get('/dashboard',(req,res)=>{
+
+    var login_token = req.cookies.login_token
+
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        // console.log(decoded.id[0].id)
+      });
     res.render('dashboard.ejs');
 })
 

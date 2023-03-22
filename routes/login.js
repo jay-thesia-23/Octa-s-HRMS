@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 
 app.use(express.static("css"));
 app.use(express.static("images"));
+const util = require('util')
+
 
 var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -27,6 +29,7 @@ var con = mysql.createConnection({
   password: "root",
   database: "hrms",
 });
+
 
 con.connect((err) => {
   if (err) throw err;
@@ -52,16 +55,15 @@ async function Inemail(email) {
 app.post("/login", async (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
-  var id
   var data = await Inemail(email);
-  // console.log(data)
-  var sql =`select id from hrms.registration where u_email = '${email}';`
-  // console.log(sql);
-  con.query(sql, function(err,result){
-    if (err) throw err;
-    id=result[0].id
-    console.log(id+"idd");
-  })
+  var id
+
+  var query = util.promisify(con.query).bind(con)
+  var id = await query(`select id from registration where u_email='${email}'`)
+      console.log(id);
+
+
+
 
   if (data.length != 0) {
     async function compare_psw(password, data) {
@@ -75,27 +77,28 @@ app.post("/login", async (req, res) => {
       });
     }
     var isMatch = await compare_psw(password, data);
-    console.log(isMatch);
+ 
     if (isMatch == true) {
       console.log(data[0].isactive);
 
-      const token = jwt.sign({ email , id}, "sanjay");
+      const token = jwt.sign({ email , id }, "sanjay");
 
-      res.cookie("token", token);
+      res.cookie("token",token);
 
       if (data[0].isactive == "1") {
         res.send("wait for some min");
       } else {
         if (data[0].u_login == 1) {
           con.query(
-            `update registration set u_login = '0' where u_email='${email}';`,
+            `update registration set u_login = '1' where u_email='${email}';`,
             (err, data) => {
               if (err) throw err;
+              
               res.render("wizard.ejs");
             }
           );
         } else {
-          res.redirect('/')
+          res.redirect('/dashboard')
         }
       }
     } else if (!isMatch) {
