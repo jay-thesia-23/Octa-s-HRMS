@@ -167,13 +167,17 @@
     text-align: center;
     padding: 30px;
   }
-  .main{
+<<<<<<< HEAD:public/css/login_reg.css
+   .main{
+=======
+  /* .main{
+>>>>>>> jay_thesia:public/css/loginRegister.css
     border: 2px solid black;
     height: auto;
     width: auto;
     border-radius: 10px;
     background-color: #f5f5f5;
-  }
+  } */
   .verify-link{
     align-items: center;
     border: 3px solid rgb(55, 168, 206);

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/profilecss.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="profile-container">
+      <div class="row rowCols">
+        <div class="col1">
+          <div class="card1">
+            <div class="card-in">
+              <img src="/images/demo.png" alt="" />
+            </div>
+          </div>
+
+          <div class="card1">
+            <div class="card-in">
+              <p id="ProfileEdit">
+                <a href="#" id="ProfileEditAnchor"
+                  ><i class="fas fa-edit"></i> Edit Profile Pic</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="card1">
+            <div class="card-in">
+              <p id="ProfileEdit">
+                <a href="" id="ProfileEditAnchor">
+                  <span> <i class="fas fa-edit"></i> Edit Profile Fields</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col2 colBasics">
+          <div class="card2">
+            <div class="cards-in">
+              <h2>Basic Information</h2>
+              <div class="basic-row">
+                <div class="basic-col">
+                  <table class="proftab">
+                    <tr>
+                      <td>First_name</td>
+                      <td><%= basicdata[0].firstname %></td>
+                    </tr>
+                    <tr>
+                      <td>Last_name</td>
+                      <td><%= basicdata[0].lastname %></td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><%= basicdata[0].email %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Phone</td>
+                      <td><%= basicdata[0].phone_number%></td>
+                    </tr>
+
+                    <tr>
+                      <td>city</td>
+                      <td><%= basicdata[0].city %></td>
+                    </tr>
+
+                    <tr>
+                      <td>state</td>
+                      <td><%= basicdata[0].state %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Gender</td>
+                      <td><%= basicdata[0].gender %></td>
+                    </tr>
+
+                    <tr>
+                      <td>zipcode</td>
+                      <td><%= basicdata[0].zip_code %></td>
+                    </tr>
+
+                    <tr>
+                      <td>birthdate</td>
+                      <td><%= basicdata[0].birth_date %></td>
+                    </tr>
+
+                    <tr>
+                      <td>address</td>
+                      <td><%= basicdata[0].address %></td>
+                    </tr>
+
+                    <tr>
+                      <td>Relationship</td>
+                      <td><%= basicdata[0].relationship %></td>
+                    </tr>
+
+                    <tr>
+                      <td>designation</td>
+                      <td><%= basicdata[0].designation %></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3 colBasics">
+          <div class="cards-in">
+            <h2>Education Info</h2>
+            <div class="basic-row">
+              <div class="basic-col">
+                <table class="tableCourse">
+                  <thead>
+                    <tr>
+                      <td>course_name</td>
+                      <td>percent</td>
+                      <td>colg</td>
+                      <td>pass year</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<dataEdu.length;i++) { %>
+                        <tr>
+                            <td><%= dataEdu[i].course_name %></td>
+                            <td><%= dataEdu[i].percentage %></td>
+                            <td><%= dataEdu[i].board_university_name %></td>
+                            <td><%= dataEdu[i].passout_year%></td>
+                        </tr>
+                        <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col4 colBasics">
+          <div class="cards-in">
+            <h2>Experience Information</h2>
+            <div class="basic-row">
+              <div class="basic-col">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>company_name</td>
+                      <td>designation_company</td>
+                      <td>start_date</td>
+                      <td>end_date</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<dataExp.length;i++) { %>
+                        <tr>
+                            <td><%= dataExp[i].company_name %></td>
+                            <td><%= dataExp[i].designation_company %></td>
+                            <td><%= dataExp[i].start_date %></td>
+                            <td><%= dataExp[i].end_date%></td>
+                        </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rowCols">
+        <div class="col5 colBasics">
+          <div class="cards-in">
+            <h2>Reference Info</h2>
+
+            <div class="basic-row">
+              <div class="basic-col">
+                <table class="tableRef">
+                  <thead>
+                    <tr>
+                      <td>name</td>
+                      <td>number</td>
+                      <td>relationship</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <% for(let i=0;i<dataRef.length;i++) { %>
+            <tr>
+                <td><%= dataRef[i].name %></td>
+                <td><%= dataRef[i].number %></td>
+                <td><%= dataRef[i].relationship%></td>
+            </tr>
+            <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col6 colBasics">
+          <div class="cards-in">
+            <h2>Document</h2>
+
+            <div class="basic-row">
+              <div class="basic-col">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Field Name</td>
+                      <td>Field Value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i=0;i<4;i++) { %>
+                    <tr>
+                      <td>Aadhar</td>
+                      <td>9991234321.jpg</td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
