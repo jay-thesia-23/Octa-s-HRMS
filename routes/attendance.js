@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const expressLayouts = require('express-ejs-layouts') 
-app.use(expressLayouts)   //Added
-app.set('layout', './layouts/main') //added
+const expressLayouts = require('express-ejs-layouts') ;
+app.use(expressLayouts);   //Added
+app.set('layout', './layouts/main'); //added
 var mysql2 = require("mysql2");
 const util=require('util');
 
@@ -27,8 +27,11 @@ var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async(req, res) => {
 
-    // var checkdata=await alldataquery(`select * from check_master`);
-    res.render('attendance', { title: 'Attendance Page' });
+    var checkdata=await alldataquery(`select entry_date,status,entry_time from check_master`);
+
+    // console.log(checkdata);
+
+    res.render('attendance',{checkdata});
 })
 
 

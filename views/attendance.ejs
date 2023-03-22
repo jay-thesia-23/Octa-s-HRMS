@@ -67,47 +67,17 @@
             </tr>
         </thead>
         <tbody>
+            <% for(let i=0; i<checkdata.length; i++) {%>
             <tr>
-                <td>20-03-2023</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
+                <td><%= checkdata[i].entry_date %></td>
+                <td><%= checkdata[i].status %></td>
+                <td><%= checkdata[i].entry_time %></td>
+                <td>-</td>
                 <td><progress id="file" value="50" max="100"> 50%</progress><label for="file">hours</label></td>
                 <td>-</td>
-                <td>-</td>
             </tr>
-            <tr>
-                <td>20-03-2023</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>20-03-2023</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>20-03-2023</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>20-03-2023</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>9:00AM</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
+            
+            <% } %>
         </tbody>
     </table>
 </div>
