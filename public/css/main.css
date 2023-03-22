@@ -1,6 +1,6 @@
 .wrapper .main {
     padding: 40px 40px;
-    /* display: flex; */
+    display: flex;
     justify-content: center;
     align-items: center;
     /* width: 80%; */
@@ -14,4 +14,5 @@
 
 .wrapper .main main {
     margin-top: 100px;
+    /* padding-left: 250px; */
 }
