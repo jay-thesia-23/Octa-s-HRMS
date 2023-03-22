@@ -20,7 +20,7 @@ var jwt = require('jsonwebtoken')
 
 app.use(cookieParser());
 
-app.use("/public", express.static("public"));
+app.use(express.static("public"));
 
 var login_user__id
 

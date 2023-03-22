@@ -13,6 +13,10 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use(express.static("public"));
 
+const register = require("../hrms/routes/register");
+app.use(register);
+const login = require("../hrms/routes/login");
+app.use(login);
 
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
@@ -29,7 +33,7 @@ app.use(routes3);
 var wizad = require("../hrms/routes/wizard");
 app.use(wizad);
 
-const demo = require('./routes/checkInOut')
+const demo = require('../hrms/routes/checkInOut')
 app.use(demo)
 
 const leaves = require('../hrms/routes/leaves');
