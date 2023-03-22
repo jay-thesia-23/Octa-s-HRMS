@@ -33,25 +33,32 @@ app.use(routes3);
 var wizad = require("../hrms/routes/wizard");
 app.use(wizad);
 
-const demo = require('./routes/checkInOut')
+const demo = require('../hrms/routes/checkInOut')
 app.use(demo)
 
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
 
+var editprofile=require("../hrms/routes/edit_profile")
+app.use(editprofile)
+
 
 var connection = mysql2.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
-});
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
+  
+  });
+  
+  connection.connect((err) => {
+    if (err)
+      throw err;
+    console.log("connected with database");
+  })
+  
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("connected with database");
-});
-
+  
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
 });

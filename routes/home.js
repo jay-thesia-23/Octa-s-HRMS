@@ -4,7 +4,7 @@ const expressLayouts = require('express-ejs-layouts')
 app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('home.ejs', { title: 'Home Page' })
 })
 

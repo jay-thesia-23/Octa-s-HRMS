@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
-        .button {
-          background-color: #4CAF50;
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-        }
+      .button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
 
-        :disabled{
-            /* background-color: red; */
-            opacity: 0.5;
-        }
-        </style>
-</head>
-<body>
-   
-
-    <button class="button" id="check_in" onclick="test(), checkin()">check_In</button>
-    <button class="button" id="check_out" onclick="chk_out()" disabled>check_out</button><br>
-    <button class="button" id="breck_in" onclick="breck()" disabled>breck_in</button>
-    <button class="button" id="breck_out" onclick="brc_out()" disabled>breck_out</button>
-
+      :disabled {
+        /* background-color: red; */
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="button" id="check_in" onclick="test(), checkin()">
+      check_In
+    </button>
+    <button class="button" id="check_out" onclick="chk_out()" disabled>
+      check_out</button
+    ><br />
+    <button class="button" id="breck_in" onclick="breck()" disabled>
+      breck_in
+    </button>
+    <button class="button" id="breck_out" onclick="brc_out()" disabled>
+      breck_out
+    </button>
 
     <script>
+      var check_in = document.getElementById("check_in");
+      var check_out = document.getElementById("check_out");
+      var breck_in = document.getElementById("breck_in");
+      var breck_out = document.getElementById("breck_out");
 
-        var check_in = document.getElementById('check_in')
-        var check_out = document.getElementById('check_out')
-        var breck_in = document.getElementById('breck_in')
-        var breck_out = document.getElementById('breck_out')
+      function test() {
+        document.getElementById("check_in").disabled = true;
+        document.getElementById("check_out").disabled = false;
+        document.getElementById("breck_in").disabled = false;
+        document.getElementById("breck_out").disabled = true;
+      }
 
-       
+      function chk_out() {
+        document.getElementById("check_in").disabled = false;
+        document.getElementById("check_out").disabled = true;
+        document.getElementById("breck_in").disabled = true;
+        document.getElementById("breck_out").disabled = true;
+      }
 
+      function breck() {
+        document.getElementById("check_in").disabled = true;
+        document.getElementById("check_out").disabled = true;
+        document.getElementById("breck_in").disabled = true;
+        document.getElementById("breck_out").disabled = false;
+      }
 
-        function test(){
-
-            document.getElementById("check_in").disabled = true;
-            document.getElementById("check_out").disabled = false;
-            document.getElementById("breck_in").disabled = false;
-            document.getElementById("breck_out").disabled = true;
-        }
-
-        function chk_out(){
-
-            document.getElementById("check_in").disabled = false;
-            document.getElementById("check_out").disabled = true;
-            document.getElementById("breck_in").disabled = true;
-            document.getElementById("breck_out").disabled = true;
-        }
-
-        function breck(){
-            document.getElementById("check_in").disabled = true;
-            document.getElementById("check_out").disabled = true;
-            document.getElementById("breck_in").disabled = true;
-            document.getElementById("breck_out").disabled = false;
-        }
-
-        function brc_out(){
-
-            document.getElementById("check_in").disabled = true;
-            document.getElementById("check_out").disabled = false;
-            document.getElementById("breck_in").disabled = false;
-            document.getElementById("breck_out").disabled = true;
-        }
-        
-
+      function brc_out() {
+        document.getElementById("check_in").disabled = true;
+        document.getElementById("check_out").disabled = false;
+        document.getElementById("breck_in").disabled = false;
+        document.getElementById("breck_out").disabled = true;
+      }
     </script>
-</body>
+  </body>
 </html>
