@@ -39,6 +39,9 @@ app.use(demo)
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
 
+var editprofile=require("../hrms/routes/edit_profile")
+app.use(editprofile)
+
 
 var connection = mysql2.createConnection({
     host: 'localhost',
@@ -55,6 +58,7 @@ var connection = mysql2.createConnection({
   })
   
 
+  
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
 });

@@ -48,7 +48,7 @@
 
         <div class="input-group">
           <label for="dob">Date of Birth</label>
-          <input type="date" name="dob" id="dob" />
+          <input type="date" name="dob_1" id="dob_1" />
           <span class="span1" id="dob-error"></span>
         </div>
         <div class="input-group">
@@ -84,29 +84,34 @@
 
         </div>
         <div class="row">
+
+
           <div class="col">
             <div class="input-group-3">
               <label for="position"> State</label>
               <div class="select-dropdown">
-                <select name="state" id="state" >
-                  <option value="select state" disabled>select state</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Maharasthra">Maharasthra</option>
-                </select>
+                <select name="state" id="state" onchange="select(this)">
+                  <option value="" selected disabled> select option</option>
+                  <% for(let i=0;i<data3.length ;i++) {%>
+                  <option value="<%= data3[i].state_name%>"><%= data3[i].state_name%></option>
+                  <% }%>
+              </select>
               </div>
               <span class="span1" id="state-error"></span>
             </div>
           </div>
+
+        
+
+
+
+
           <div class="col">
             <div class="input-group-3">
               <label for="position"> City</label>
               <div class="select-dropdown">
                 <select name="city" id="city">
-                  <option value="" disabled="disabled">select city</option>
-                  <option value="Ahmedabad">Ahmedabad</option>
-                  <option value="surat">surat</option>
-                  <option value="Bhavnagar">Bhavnagar</option>
+                 
                 </select>
               </div>
               <span class="span1" id="city-error"></span>
@@ -114,26 +119,33 @@
           </div>
         </div>
         <div class="">
-          <a href="#" class="btn btn-next width-50 ml-auto" onclick="return registerPage1()">Next</a>
+          <p class="btn btn-next width-50 ml-auto" onclick="return registerPage1()">
+            Next
+        </p>
+         
         </div>
       </div>
     
     </div>
+
+   
+
+
     <div class="form-step" id="education" name="edu">
       <div class="input-group">
         <div class="select-dropdown">
         <label for="Course">Course</label>
-          <select name="course">
-            <option value="SSC">SSC</option>
-            <option value="HSC">HSC</option>
-            <option value="Bachelor">Bachelor</option>
-            <option value="Master">Master</option>
-          </select>
+        <select name="course" id="course">
+          <option value="" selected disabled> select option</option>
+          <% for(let i=0;i<data2.length ;i++) {%>
+          <option value="<%= data2[i].cource_name%>"><%= data2[i].cource_name%></option>
+          <% }%>
+      </select>
         <span class="span1" id="city-error"></span>
         </div>
       </div>
       <div class="input-group">
-        <label for="University">University/college</label>
+        <label for="University">School/college</label>
         <input type="text" name="uni" id="uni" onchange="uniValidate()"/>
         <span class="span1" id="uni-error"></span>
       </div>
@@ -149,12 +161,15 @@
       </div>
       <div id="add"></div>
       <div class="btn-grup-2">
-        <a href="#" class="btn-2" onclick="education()">Add Field</a>
+
+        <p class="btn-2" onclick="education()">Add Field</p>
+       
       </div>
       <p id="p1"></p>
       <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn2-next" onclick="return registerPage2()">Next</a>
+        <p class="btn btn-prev">Previous</p>
+        <p class="btn btn2-next" onclick="return registerPage2()">Next</p>
+       
       </div>
       
     </div>
@@ -169,8 +184,9 @@
       </div>
 
       <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn-next">Next</a>
+        <p class="btn btn-prev">Previous</p>
+        <p class="btn btn-next">Next</p>
+        
       </div>
     </div>
    
@@ -199,7 +215,7 @@
         <!--  -->
         <div class="input-group">
           <label for="Name">Name</label>
-          <input type="text" name="name1" id="name1" />
+          <input type="text" name="name2" id="name2" />
         </div>
         <div class="row">
             <div class="col">
@@ -216,8 +232,9 @@
             </div>
           </div>
       <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn-next">Next</a>
+        <p class="btn btn-prev">Previous</p>
+        <p class="btn btn-next">Next</p>
+      
       </div>
     
   </div>
@@ -250,7 +267,8 @@
 
 
     <div class="btns-group">
-    <a href="#" class="btn btn-prev">Previous</a>
+      <p class="btn btn-prev">Previous</p>
+   
     <input type="submit" value="Submit" class="btn" />
     </div>
     </div>
