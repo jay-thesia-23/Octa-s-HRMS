@@ -68,35 +68,24 @@
             </thead>
             <tbody>
 
-                <% for(let i=0; i<(checkdata.length); i++) {%>
+                <% for(let i=0; i<startdate.length; i++) {%>
                     <tr>
                         <td>
-                            <%= checkdata[i].time.toJSON('yyyy-mm-dd').slice(0,10) %>
+                            <%=startdate[i]%>
                         </td>
-
 
                         <td>
-
-                            <p id="entry_time">
-                                <%= checkdata[i].time.toJSON('HH:MM:SS').slice(11,18) %>
-
-                            </p>
+                            <%=starttime[i]%>
                         </td>
+
                         <td>
-                            <p id="exit_time">
-                                <%if (checkdata.length!=++i) {%>
-                                    <%= checkdata[i].time.toJSON('HH:MM:SS').slice(11,18) %>
-
-                                        <%}else { %>
-                                            <p> - </p>
-                                            <% } %>
-                            </p>
+                            <%=exittime[i]%>
                         </td>
+
                         <td>1:00</td>
+
                         <td>
-                            <P id="GFG">
-                                
-                            </p>
+                            <progress value="<%=progress[i]%>" max="100"> </progress>
                         </td>
                         <td></td>
 
@@ -123,65 +112,3 @@
         </div>
     </div>
     
-    <script>
-    //    show();
-    //     async function show(){
-
-    //     const result = await fetch(`http://localhost:5000/attendance`);
-    //     const data = await result.json();
-    //     console.log("data is"+data);
-    //     for(var i=0;i<data.length;i++)
-    //     {
-        var entry_time = document.getElementById('entry_time').innerText;
-        var exit_time = document.getElementById('exit_time').innerText;
-        // 01:03:3
-        //    0123456
-        // diffrence_time("08:31:12", "18:11:10");
-
-        diffrence_time(entry_time, exit_time);
-
-        
-        function diffrence_time(entry_time, exit_time) {
-
-
-            var h1, h2, m1, m2, s1, s2;
-            h1 = entry_time.slice(0, 2);
-            h2 = exit_time.slice(0, 2);
-            m1 = entry_time.slice(3, 5);
-            m2 = exit_time.slice(3, 5);
-            s1 = entry_time.slice(6);
-            s2 = exit_time.slice(6);
-            // console.log(entry_time);
-            // console.log(exit_time);
-            // console.log(h1, h2, m1, m2, s1, s2);
-
-            var h = h2 - h1;
-            var m = m2 - m1;
-            var s = s2 - s1;
-            var diff = `${h}:${m}:${s}`;
-            var totalsec = (h - 1) * 60 * 60 + m * 60 + s;
-            console.log(totalsec);
-            var working = (totalsec * 100) / (9 * 60 * 60);
-
-            console.log("diffrence time", Math.floor(working));
-
-            // document.getElementById('GFG').innerHTML= Math.floor(working);
-          
-            var g = document.createElement("progress");
-
-            // Set the value of progress element
-            g.setAttribute("value",`${working}`);
-
-
-            // Set the maximum value of progress element
-            g.setAttribute("max", "100");
-
-            // Get the value of progress element
-            document.getElementById("GFG").appendChild(g);
-
-            
-        }
-
-//     }
-// }
-    </script>
