@@ -78,7 +78,7 @@ app.post("/wizard", upload.fields([{
     console.log(req.files, "file in uploads");
 
     // const upload_compress = multer({ storage_compress });
-    var token = req.cookies.token
+    var token = req.cookies.login_token
     console.log(token + "tokennnnnnnnnnnnnnnn");
     console.log(upload);
 

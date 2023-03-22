@@ -56,7 +56,9 @@
     </div>
     <div class=" part3">
         <div class="row-ht">
-            <% for(let i=0; i<basicinfo.length; i++) {%>
+            
+
+            <% for(let i=0; i<alldetails.length; i++) {%>
                 <div class="col-ht">
                     <div class="col-ht-in">
                         <div class="r1">
@@ -65,10 +67,10 @@
                         <div class="r2">
                             <img src="/images/demo.png" alt="">
                             <h2>
-                                <%= basicinfo[i].firstname %>
+                                <%= alldetails[i].firstname %>
                             </h2>
                             <p>
-                                <%= basicinfo[i].designation %>
+                                <%= alldetails[i].designation %>
                             </p>
                         </div>
                         <div class="fade-area">
@@ -80,7 +82,7 @@
                                 <div class="prof1">
                                     <p class="hd">Date Hired</p>
                                     <p>
-                                        <%= basicinfo[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %>
+                                        <%= alldetails[i].email %>
                                     </p>
                                 </div>
                             </div>
@@ -99,11 +101,11 @@
                                     <div class="head2">
                                         <div class="email">
                                             <p>
-                                                <%= basicinfo[i].email %>
+                                                <%= alldetails[i].email %>
                                             </p>
                                         </div>
                                         <p>
-                                            <%= basicinfo[i].phone_number %>
+                                            <%= alldetails[i].phone_number %>
                                         </p>
                                     </div>
                                 </div>
@@ -114,7 +116,7 @@
 
                 </div>
                 <% } %>
-        </div>
+            </div>
     </div>
 
 </section>
