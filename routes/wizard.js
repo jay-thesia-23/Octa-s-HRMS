@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 var multer = require("multer");
 
-const upload = multer({ dest: "uploads/" });
+
 
 const register = require("./register");
 app.use(register);
@@ -75,9 +75,28 @@ app.get("/cource", function (req, res) {
   });
 });
 
+var uniqueSuffix = ""
+const storage = multer.diskStorage({
+  destination: function (req, files, cb) {
+    cb(null, "./public/uploads");
+  },
+  filename: function (req, files, cb) {
+    uniqueSuffix = `${Date.now()}-${files.originalname}`;
+    console.log(uniqueSuffix, "from the storage");
+    cb(null, uniqueSuffix );
+  },
+});
+
+console.log(typeof storage);
+const upload = multer({ storage });
+
 app.post(
   "/wizard",
   upload.fields([
+    {
+      name: "profilePic",
+      maxCount: 1,
+    },
     {
       name: "adhar",
       maxCount: 1,
@@ -98,20 +117,7 @@ app.post(
   async (req, res) => {
     console.log(req.files, "file in uploads");
 
-    const uniqueSuffix = "";
-    const storage = multer.diskStorage({
-      destination: function (req, files, cb) {
-        cb(null, "./uploads");
-      },
-      filename: function (req, files, cb) {
-        uniqueSuffix = Date.now() + "-" + `${originalname}` + ".png";
-        console.log(uniqueSuffix, "from the storage");
-        cb(null, uniqueSuffix);
-      },
-    });
-
-    console.log(typeof storage);
-    const upload = multer({ storage });
+   
 
     console.log(req.body);
 
