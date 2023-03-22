@@ -30,7 +30,6 @@ var con = mysql.createConnection({
   database: "hrms",
 });
 
-
 con.connect((err) => {
   if (err) throw err;
   console.log(" database connected ");
@@ -83,7 +82,7 @@ app.post("/login", async (req, res) => {
 
       const token = jwt.sign({ email , id }, "sanjay");
 
-      res.cookie("token",token);
+      res.cookie("login_token",token);
 
       if (data[0].isactive == "1") {
         res.send("wait for some min");
@@ -98,7 +97,7 @@ app.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.redirect('/dashboard')
+          res.redirect('/home')
         }
       }
     } else if (!isMatch) {
