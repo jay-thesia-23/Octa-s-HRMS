@@ -52,12 +52,13 @@ app.get("/profile", (req, res) => {
   let sqlReferenceInfo = `select * from reference_master`;
   let sqlProfilePic = `select * from document_master where id=${id}; `;
 
+  console.log(sqlProfilePic,"sql of pic");
   con.query(sqlBasicInfo, (err, dataBasic) => {
     con.query(sqlEduInfo, (err, dataEdu) => {
       con.query(sqlExperienceInfo, (err, dataExp) => {
         con.query(sqlReferenceInfo, (err, dataRef) => {
           con.query(sqlProfilePic, (err, datapic) => {
-            console.log(datapic);
+            console.log(datapic,"datapic");
             res.render("profile", {
               basicdata: dataBasic,
               dataEdu,
