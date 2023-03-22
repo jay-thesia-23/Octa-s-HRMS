@@ -146,12 +146,12 @@ function fnameValidate(){
   if(fname == null || fname == "")
   {
       document.getElementById('fname-error').innerHTML="Please enter first name";
-      return false;
+      isvalidate=false
   }
   else if(!isNaN(fname))
   {
       document.getElementById('fname-error').innerHTML="Please enter valid first name";
-      return false;
+      isvalidate=false
   }
   else{
       document.getElementById('fname-error').innerHTML="";
@@ -164,13 +164,13 @@ function lnameValidate(){
   
   if(lname == null || lname == "")
   {
-      document.getElementById('lname-error').innerHTML="Please enter lastname";
-      isvalidate = false;
+      document.getElementById('lname-error').innerHTML="Please enter last name";
+    isvalidate=false
   }
   else if(!isNaN(lname))
   {
       document.getElementById('lname-error').innerHTML="Please enter valid lastname";
-      isvalidate = false;
+      isvalidate=false
   }
   else{
       document.getElementById('lname-error').innerHTML="";
@@ -193,12 +193,31 @@ function contactValidate(){
   return true;
 }
 
+
+async function select(state_id){
+  // console.log(state_id);
+  
+  const ans = await fetch(`http://localhost:5000/test-api?state_id=${state_id.value}`);
+  
+  const data = await ans.json();
+  console.log(data)
+  var city_1 = document.getElementById("city");
+  city_1.innerHTML = "";
+
+  for(let i=0;i<data.length;i++){
+      const option = new Option(data[i].city_name,data[i].city_name);
+      city_1.add(option);
+  }
+}
+
+
+
 function registerPage1() {
 
   console.log("call the register");
   var fname = document.getElementById('fname').value || "";
   var lname = document.getElementById('lname').value || "";
-  var dob = document.getElementById('dob').value || "";
+  var dob = document.getElementById('dob_1').value || "";
   var address = document.getElementById('address').value || "";
   var contact = document.getElementById('contact').value || "";
   var state = document.getElementById('state').value || "";
@@ -218,14 +237,16 @@ function registerPage1() {
       document.getElementById('fname-error').innerHTML="";
   }
   
-  if(lname == null || lname == "")
-  {
-      document.getElementById('lname-error').innerHTML="Please enter lname";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('lname-error').innerHTML="";
-  }
+  // if(lname == null || lname == "")
+  // {
+  //     document.getElementById('lname-error').innerHTML="Please enter lname";
+  //     isvalidate = false;
+  // }
+  // else{
+  //     document.getElementById('lname-error').innerHTML="";
+  // }
+
+
   if(dob == null || dob == "")
   {
       document.getElementById('dob-error').innerHTML="Please fill date of birth";
@@ -251,7 +272,7 @@ function registerPage1() {
   }
   else if(isNaN(contact))
   {
-      document.getElementById('lname-error').innerHTML="Please enter valid lastname";
+      document.getElementById('contact-error').innerHTML="Please enter valid contact number";
       isvalidate = false;
   }
   else{
@@ -342,61 +363,31 @@ function registerPage2(){
   console.log(isvalidate);
   return isvalidate;
 }
-var s="";
+
 var clk =1;
-function education(){
-  var table2= document.getElementById('education');
-  var v2 = document.createElement('edu');
-  if(clk <= 3)
+async function education(){
+  var k
+console.log("sanjay");
+  const ans = await fetch(`http://localhost:5000/cource`);
+  
+  const data2 = await ans.json();
+  console.log(data2[0].cource_name);
+  var table2= document.getElementById('add');
+  var v2 = document.createElement('div');
+  var s = ""
+  if(clk <= 10)
       {
-          v2.innerHTML=` 
-          <div class="input-group">
-            <div class="select-dropdown">
-            <label for="Course">Course</label>
-              <select name="course">
-                <option value="SSC">SSC</option>
-                <option value="HSC">HSC</option>
-                <option value="Bachelor">Bachelor</option>
-                <option value="Master">Master</option>
-              </select>
-            <span class="span1" id="city-error"></span>
-            </div>
-          </div>
-          <div class="input-group">
-            <label for="University">University/college</label>
-            <input type="text" name="uni" id="uni" onchange="univalidate()"/>
-            <span class="span1" id="uni-error"></span>
-          </div>
-          <div class="input-group">
-            <label for="passyear">Passing Year</label>
-            <input type="text" name="passyear" id="passyear"  onchange="yearValidate()"/>
-            <span class="span1" id="year-error"></span>
-          </div>
-          <div class="input-group">
-            <label for="percentage">Percentage</label>
-            <input type="text" name="percent" id="percent" onchange="percentValidate()" />
-            <span class="span1" id="percent-error"></span>
-          </div>
-          
-        </div>
-           
-         
-      `;
+          s +="<div id='education' name='edu'><div class='input-group'><div class='select-dropdown'><label for='Course'>Course</label><select name='course' id='course'><option value='' selected disabled> select option</option>"
+
+          for(k=0;k<data2.length ;k++) {
+         s+=` <option value=' ${data2[k].cource_name}'> ${data2[k].cource_name}</option>`
+        }
+
+         s+= "</select><span class='span1' id='city-error'></span></div></div><div class='input-group'><label for='University'>University/college</label><input type='text' name='uni' id='uni' onchange='univalidate()'/><span class='span1' id='uni-error'></span></div><div class='input-group'><label for='passyear'>Passing Year</label><input type='text' name='passyear' id='passyear'  onchange='yearValidate()'/><span class='span1' id='year-error'></span></div><div class='input-group'><label for='percentage'>Percentage</label><input type='text' name='percent' id='percent' onchange='percentValidate()' /><span class='span1' id='percent-error'></span></div></div></div> ";
+
+          v2.innerHTML = s;
           table2.append(v2);
           clk++;
           }
-          else{
-          return false;
-      }
+     
   }
-
-  // gender
-  // var gender = document.getElementById('gender').value || "";
-  // function genderValidate() {
-  //   if (document.querySelectorAll('[name=gender]:checked').length == 0) {
-  //     document.getElementById('gender-error').innerHTML="Please select gender";
-  //     return false;    
-  //   }
-  // }
-  
-  // document.querySelector('[type=button]').addEventListener('click',validateFn, false);

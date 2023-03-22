@@ -1,0 +1,299 @@
+<div class="flexer" onload="">
+    <div class="data-body">
+        <div class="body-rows">
+            <div class="main-body">
+                <div class="promo-card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <h4 class="c-white">Record Your Attendance</h4>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div  class="record-data">
+                                <ul>
+                                    <li>
+                                        <p class="h3">Attendance</p>
+                                        <p class="p">11 Days</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Late</p>
+                                        <p class="p">4 Days</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Absent</p>
+                                        <p class="p">2 Days</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Half Days</p>
+                                        <p class="p">0 Days</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Worked hours</p>
+                                        <p class="p">88 hr 21 mins</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="promo-card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <h4 class="c-white">Add Your Comment</h4>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div  class="record-data">
+                                <ul>
+                                    <input onkeyup="isComment(this)" id="commenter" type="text" placeholder="comment">
+                                    <a href="#" onclick="addComment()" class="abutton =" id="commentBtn">comment</a>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="comment-body">
+                            <span id="commentBody"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="promo-card overflower">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <h4 class="c-white">Today's Action</h4>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div  class="record-data">
+                                <ul>
+                                    <li>
+                                        <p class="h3">IP Address</p>
+                                        <p class="p">103.215.158.90</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Current Date</p>
+                                        <p class="p">17/3/2023</p>
+                                    </li>
+                                    <li>
+                                        <p class="h3">Current Time</p>
+                                        <p class="p" id="realTime"></p>
+                                    </li>
+                                </ul>
+
+                                <ul class="buttonbox">
+                                    <div class="button-class">
+                                        <a href="#" onclick="checkIn(this)" id="checkIn" class="abutton checkin">check in</a>
+                                    </div>
+                                    <div class="button-class">
+                                        <a href="#" onclick="breakIn(this)" id="breakIn" class="abutton breakin">break in</a>
+                                    </div>
+                                    <div class="button-class">
+                                        <a href="#" onclick="checkOut(this)" id="checkOut" class="abutton checkout">check out</a>
+                                    </div>
+                                    <div class="button-class">
+                                        <a href="#" onclick="breakOut(this)" id="breakOut" class="abutton breakout">break out</a>
+                                    </div>
+                                    <div id="ThankYou" class="checkout-msg-class" hidden>
+                                        <p>Thank You!</p>
+                                    </div>
+                                </ul>
+                                <div id="attendenceEntry" class="comment-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-rows">
+            <div class="main-body">
+                <div class="promo-card bday">
+                    <div class="card-container">
+                        <div class="data-header card-header">
+                            <h4 class="c-white">Upcoming Birthday</h4>
+                            <div class="flexer">
+                                <a href="#" class="abutton2" style="margin-right:5px ;"> < </a>
+                                <a href="#" class="abutton2"> > </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div  class="record-data">
+                               <div class="bday-body">
+                                    <img class="b-day-img" src="bDay.jpg" alt="IMG" srcset="">
+                                    <div class="bday-detail">
+                                        <h3 class="h3">Kartik Modi</h3>
+                                        <p class="p">Development</p>
+                                        <p class="p">22nd Mar</p>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="promo-card bday">
+                    <div class="card-container">
+                        <div class="data-header card-header">
+                            <h4 class="c-white">Holidays</h4>
+                            <div class="flexer">
+                                <a href="#" class="abutton2" style="margin-right:5px ;"> < </a>
+                                <a href="#" class="abutton2"> > </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div  class="record-data">
+                               <div class="bday-body holiday-body">
+                                    <h3 class="h3">Makar Sankranti</h3>
+                                    <div class="bday-detail">
+                                        <p class="p">14th January | Sat 2023 </p>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+let clickLeave = 0;
+let clickAttend = 0;
+function myFunction(clickBtn) {
+if(clickLeave == 0 && clickBtn == 'Leave'){
+    document.getElementById("leave-sub").style.display = "block";
+    clickLeave = 1;
+}
+else if(clickLeave == 1 && clickBtn == 'Leave'){
+    document.getElementById("leave-sub").style.display = "none";
+    clickLeave = 0;
+}
+if(clickAttend == 0 && clickBtn == 'Attendence'){
+    document.getElementById("attend-sub").style.display = "block";
+    clickAttend = 1;
+}
+else if(clickAttend == 1 && clickBtn == 'Attendence'){
+    document.getElementById("attend-sub").style.display = "none";
+    clickAttend = 0;
+}
+}
+function isComment(thisElement){
+let commentBtn = document.getElementById('commentBtn');
+if(((thisElement.value).length) > 0){
+    commentBtn.style.opacity = 1;
+    commentBtn.style.pointerEvents = 'all';
+}
+else{
+    commentBtn.style.opacity = 0.6;
+    commentBtn.style.pointerEvents = 'none';
+}
+}
+function addComment(){
+let commentBtn = document.getElementById('commentBtn');
+let element = document.getElementById('commenter');
+let commentval = element.value;
+let comment = '<p style="background-color:#e6ecf5;" >'+commentval+'</p>'
+let commentBody = document.getElementById('commentBody');
+commentBody.innerHTML += comment;
+element.value = "";
+commentBtn.style.opacity = 0.6;
+commentBtn.style.pointerEvents = 'none';
+}
+function checkIn(element){
+var today = new Date();
+// var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+let time = today.toLocaleTimeString(); 
+element.style.opacity =0.6;
+element.style.pointerEvents = 'none';
+let breakIn = document.getElementById('breakIn');
+let checkOut = document.getElementById('checkOut');
+let attendenceEntry = document.getElementById('attendenceEntry');
+let entry = '<p style=" color:white; background-color:green;" > Checked In : '+ time +'</p>';
+breakIn.style.opacity = 1;
+breakIn.style.pointerEvents = "all"    
+checkOut.style.opacity = 1;
+checkOut.style.pointerEvents = "all"
+attendenceEntry.innerHTML = entry;
+}
+function breakIn(element){
+var today = new Date();
+// var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+let time = today.toLocaleTimeString(); 
+element.style.opacity =0.6;
+element.style.pointerEvents = 'none';
+let breakOut = document.getElementById('breakOut');
+let checkOut = document.getElementById('checkOut');
+let attendenceEntry = document.getElementById('attendenceEntry');
+let entry = '<p style=" color:white; background-color:#ee7f00;" > Breaked In : '+ time +'</p>';
+breakOut.style.opacity = 1;
+breakOut.style.pointerEvents = "all"    
+checkOut.style.opacity = 0.6;
+checkOut.style.pointerEvents = "none"
+attendenceEntry.innerHTML += entry;
+}
+function breakOut(element){
+
+var today = new Date();
+// var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+let time = today.toLocaleTimeString(); 
+element.style.opacity =0.6;
+element.style.pointerEvents = 'none';
+let breakIn = document.getElementById('breakIn');
+let checkOut = document.getElementById('checkOut');
+let attendenceEntry = document.getElementById('attendenceEntry');
+let entry = '<p style=" color:white; background-color:#bb6400;" > Breaked Out : '+ time +'</p>';
+breakIn.style.opacity = 1;
+breakIn.style.pointerEvents = "all"    
+checkOut.style.opacity = 1;
+checkOut.style.pointerEvents = "all"
+attendenceEntry.innerHTML += entry;
+}
+function checkOut(element){
+var today = new Date();
+// var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+let time = today.toLocaleTimeString(); 
+element.style.opacity =0.6;
+element.style.pointerEvents = 'none';
+let breakIn = document.getElementById('breakIn');
+let breakOut = document.getElementById('breakOut');
+let checkOut = document.getElementById('checkOut');
+let attendenceEntry = document.getElementById('attendenceEntry');
+let ThankYou = document.getElementById('ThankYou');
+let entry = '<p style=" color:white; background-color:red;" > Checked Out : '+ time +'</p>';
+breakIn.style.opacity = 0.6;
+breakIn.style.pointerEvents = "none";
+breakOut.style.opacity = 0.6;
+breakOut.style.pointerEvents = "none";
+checkOut.style.opacity = 0.6;
+checkOut.style.pointerEvents = "none"
+attendenceEntry.innerHTML += entry;
+ThankYou.style.display = 'block';
+}
+
+let element = document.getElementById('realTime');
+var today = new Date();
+let realTime  = formatAMPM(today);
+element.innerHTML  = realTime;
+setTimeout(setRealTime,1000)
+
+
+
+
+function formatAMPM(date) {
+var hours = date.getHours();
+var minutes = date.getMinutes();
+var seconds = date.getSeconds();
+var ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12;
+hours = hours ? hours : 12; // the hour '0' should be '12'
+minutes = minutes < 10 ? '0'+minutes : minutes;
+seconds = seconds < 10 ? '0'+seconds : seconds;
+var strTime = hours + ':' + minutes +':'+ seconds+ ' ' + ampm;
+return strTime;
+}
+</script>

@@ -5,41 +5,41 @@
 <head>
   <meta charset="UTF-8">
 
-  <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/loginRegister.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      <form action="/register" method="post" onsubmit=" return password_verification()">
+      <form action="/register" method="post" onsubmit="return password_verification()">
         <div class="user-details">
           <div class="input-box">
             <p id="showerror-name" style="color: red;"></p>
             <span class="details">Name</span>
-            <input type="text" placeholder="Enter your Name" name="name" id="name" onchange="clone_name(this.value)" required>
+            <input type="text" placeholder="Enter your Name" name="name" id="name" onchange="clone_name(this.value)" >
           </div>
           <div class="input-box">
             <p id="showerror" style="color: red;"></p>
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" name="email" onchange="clone_email(this.value)" required>
+            <input type="text" placeholder="Enter your email" name="email" onchange="clone_email(this.value)" >
           </div>
 
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" autocomplete="off" placeholder="Enter your password" name="password" id="password" required>
+            <input type="password" autocomplete="off" placeholder="Enter your password" name="password" id="password" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" autocomplete="off" name="conform_password" id="conform_password"
-              required>
+            <input type="password" placeholder="Confirm your password" autocomplete="off" name="conform_password" id="conform_password" required
+              >
             <span id="hidden_text" class="field" style="color: red;"></span>
           </div>
 
         </div>
         <div class="button">
-          <input type="submit" value="Register" id="submit" disabled>
+          <input type="submit" value="Register" id="submit">
         </div>
 
         <div class="text">
