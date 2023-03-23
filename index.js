@@ -11,15 +11,12 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 
-const register = require('../hrms/routes/register')
-app.use(register)
-const login = require('../hrms/routes/login')
-app.use(login)
-const demo = require('./routes/checkInOut')
-app.use(demo)
-const abc = require('./routes/deshbord')
-app.use(abc)
+app.use(express.static("public"));
 
+const register = require("../hrms/routes/register");
+app.use(register);
+const login = require("../hrms/routes/login");
+app.use(login);
 
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
@@ -36,8 +33,14 @@ app.use(routes3);
 var wizad = require("../hrms/routes/wizard");
 app.use(wizad);
 
+const demo = require('../hrms/routes/checkInOut')
+app.use(demo)
+
 const leaves = require('../hrms/routes/leaves');
 app.use(leaves);
+
+var editprofile=require("../hrms/routes/edit_profile")
+app.use(editprofile)
 
 
 var connection = mysql2.createConnection({
@@ -55,6 +58,7 @@ var connection = mysql2.createConnection({
   })
   
 
+  
 app.listen(5000, () => {
-    console.log("app listion on 5000 port");
-})
+  console.log("app listening on 5000 port");
+});

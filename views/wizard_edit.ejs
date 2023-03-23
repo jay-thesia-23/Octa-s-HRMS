@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/wizard.css" />
+    <script src="/js/script.js" defer></script>
+
+    <title>Registeration Form</title>
+</head>
+
+<body>
+    <form action="/wizard_edit" method="post" class="form" enctype="multipart/form-data">
+        <div class="container">
+            <h1 class="text-center">Registeration Form</h1>
+            <!-- Progress bar -->
+            <div class="progressbar">
+                <div class="progress" id="progress"></div>
+
+                <div class="progress-step progress-step-active" data-title="Basic info"></div>
+                <div class="progress-step" data-title="Education Detail"></div>
+                <div class="progress-step" data-title="Skills"></div>
+                <div class="progress-step" data-title="References"></div>
+                <div class="progress-step" data-title="Documents upload"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="form-step form-step-active">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group-3">
+                            <label for="username">First Name</label>
+                            <input type="text" name="fname" id="fname" value="<%= result1[0].firstname%>"
+                                onchange="fnameValidate()" />
+                            <span class="span1" id="fname-error"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group-3">
+                            <label for="position">Last Name</label>
+
+                            <!-- onchange="lnameValidate()" -->
+                            <input type="text" name="lname" id="lname" value="<%= result1[0].lastname%>" />
+                            <span class="span1" id="lname-error"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" name="dob_1" id="dob_1" value="<%= result1[0].birth_date%>" />
+                    <span class="span1" id="dob-error"></span>
+                </div>
+                <div class="input-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" onchange="addressValidate()"
+                        value="<%= result1[0].address%>" />
+                    <span class="span1" id="address-error"></span>
+                </div>
+                <label for="gender">Gender</label>
+                <div class="input-group-2">
+                    <div class="div-2">
+                        <% var arr=['male','female']%>
+                            <% for(let i=0;i<arr.length;i++){%>
+                                <% if(arr[i]==result1[0].gender){%>
+                                    <div> <input type="radio" name="gender" id="male" value="<%= arr[i]%>" checked />
+                                        <%= arr[i]%>
+                                    </div>
+
+                                    <% }else{%>
+
+                                        <div><input type="radio" name="gender" id="female" value="<%= arr[i]%>" />
+                                            <%= arr[i]%>
+                                        </div>
+                                        <% }%>
+                                            <% }%>
+
+
+
+                    </div>
+                </div>
+                <span class="span1" id="gender-error"></span>
+                <div class="input-group">
+                    <label for="position">Contact</label>
+                    <input type="text" name="contact" id="contact" value="<%= result1[0].phone_number%>"
+                        onchange="contactValidate()" />
+                    <span class="span1" id="contact-error"></span>
+                </div>
+                <div class="input-group">
+                    <label for="position">Relationship Status</label>
+                    <div class="select-dropdown">
+                        <% var rel=['Single','Married','Divorce']%>
+
+                            <select name="relationship" id="relationship">
+                                <% for(let i=0;i<rel.length;i++){%>
+                                    <% if(rel[i]==result1[0].relationship){%>
+
+                                        <option value="<%= rel[i]%>" selected="selected">
+                                            <%= rel[i]%>
+                                        </option>
+
+                                        <% }else{%>
+
+                                            <option value="<%= rel[i]%>">
+                                                <%= rel[i]%>
+                                            </option>
+                                            <% }%>
+                                                <% }%>
+
+                            </select>
+                            <span class="span1" id="relationship-error"></span>
+                    </div>
+
+                </div>
+                <div class="row">
+
+
+                    <div class="col">
+                        <div class="input-group-3">
+                            <label for="position"> State</label>
+                            <div class="select-dropdown">
+                                <select name="state" id="state" onclick="select(this)">
+                                    <option value="" selected disabled> select option</option>
+                                    <% for(let i=0;i<data3.length ;i++) {%>
+                                        <% if(result1[0].state==data3[i].state_name){%>
+
+                                            <option value="<%= data3[i].state_name%>" selected>
+                                                <%= data3[i].state_name%>
+                                            </option>
+
+                                            <% }else{%>
+
+                                                <option value="<%= data3[i].state_name%>">
+                                                    <%= data3[i].state_name%>
+                                                </option>
+                                                <% }%>
+
+                                                    <% }%>
+                                </select>
+                            </div>
+                            <span class="span1" id="state-error"></span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col">
+                        <div class="input-group-3">
+                            <label for="position"> City</label>
+                            <div class="select-dropdown">
+                                <select name="city" id="city">
+                                    <option value="<%= result1[0].city%>">
+                                        <%= result1[0].city%>
+                                    </option>
+                                </select>
+                            </div>
+                            <span class="span1" id="city-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="btn btn-next width-50 ml-auto" onclick="return registerPage1()">
+                        Next
+                    </p>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="form-step">
+                <% console.log("hellow in reslut 2") %>
+                <% console.log(result2.length) %>
+                <% console.log(result2) %>
+                    <% for(let j=0;j<result2.length;j++){%>
+                        <div id="education" name="edu">
+
+                            <div class="input-group">
+                                <div class="select-dropdown">
+                                    <label for="Course">Course</label>
+                                    <select name="course" id="course">
+                                        <option value="" selected disabled> select option</option>
+                                        <% for(let i=0;i<data2.length ;i++) {%>
+
+                                            <% if(result2[j].cource_name==data2[i].cource_name){%>
+
+                                                <option value="<%= data2[i].cource_name%>" selected>
+                                                    <%= data2[i].cource_name%>
+                                                </option>
+
+                                                <% }else{%>
+
+                                                    <option value="<%= data2[i].cource_name%>">
+                                                        <%= data2[i].cource_name%>
+                                                    </option>
+                                                    <% }%>
+
+                                        <% }%>
+
+                                    </select>
+                                    <span class="span1" id="city-error"></span>
+                                </div>
+                            </div>
+
+
+                                <div class="input-group">
+                                    <label for="University">School/college</label>
+                                    <input type="text" name="uni" id="uni"
+                                        value="<%= result2[j].board_university_name%>" onchange="uniValidate()" />
+                                    <span class="span1" id="uni-error"></span>
+                                </div>
+                                <div class="input-group">
+                                    <label for="passyear">Passing Year</label>
+                                    <input type="text" name="passyear" id="passyear"
+                                        value="<%= result2[j].passout_year%>" onchange="yearValidate()" />
+                                    <span class="span1" id="year-error"></span>
+                                </div>
+                                <div class="input-group">
+                                    <label for="percentage">Percentage</label>
+                                    <input type="text" name="percent" id="percent" value="<%= result2[j].percentage%>"
+                                        onchange="percentValidate()" />
+                                    <span class="span1" id="percent-error"></span>
+                                </div>
+
+
+                        </div>
+                        <% }%>
+
+                        <div id="add">
+
+                        </div>
+                            <div class="btn-grup-2">
+                                <p class="btn-2" onclick="education()">Add Field</p>
+                                
+                            </div>
+                            <p id="p1"></p>
+                            <div class="btns-group">
+                                <p class="btn btn-prev">Previous</p>
+                                <p class="btn btn2-next" onclick="return registerPage2()">Next</p>
+                              
+                            </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-step">
+            <div class="input-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob" />
+            </div>
+            <div class="input-group">
+                <label for="ID">National ID</label>
+                <input type="number" name="ID" id="ID" />
+            </div>
+
+            <div class="btns-group">
+                <p class="btn btn-prev">Previous</p>
+                <p class="btn btn-next">Next</p>
+                
+            </div>
+        </div>
+
+
+        <div class="form-step">
+            <div class="input-group">
+                <label for="Name">Name</label>
+                <input type="text" name="name1" id="name1" value="<%= result3[0].name%>" />
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group-3">
+                        <label for="contact">contact</label>
+                        <input type="text" name="cont1" id="cont1" value="<%= result3[0].number%>" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group-3">
+                        <label for="Relation">Relation</label>
+                        <input type="text" name="relation1" id="relation1" value="<%= result3[0].relationship%>" />
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
+            <div class="input-group">
+                <label for="Name">Name</label>
+                <input type="text" name="name2" id="name2" value="<%= result3[1].name%>" />
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group-3">
+                        <label for="password">contact</label>
+                        <input type="password" name="cont2" id="cont2" value="<%= result3[1].number%>" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group-3">
+                        <label for="Relation">Relation</label>
+                        <input type="password" name="relation2" id="relation2" value="<%= result3[1].relationship%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="btns-group">
+                <p class="btn btn-prev">Previous</p>
+                <p class="btn btn-next">Next</p>
+             
+            </div>
+
+        </div>
+
+
+        <div class="form-step">
+            <div class="input-group">
+                <label for="adhar">Adhaar Card / Pan Card</label>
+                <input type="file" name="adhar" id="file" />
+            </div>
+
+            <div class="input-group">
+                <label for="resume">Resume</label>
+                <input type="file" name="resume" id="file" />
+            </div>
+
+            <div class="input-group">
+                <label for="cheque">Cheques</label>
+                <input type="file" name="cheque" id="file" />
+            </div>
+
+            <div class="input-group">
+                <label for="others">Others</label>
+                <input type="file" name="others" id="file" />
+            </div>
+
+            <div class="btns-group">
+                <p class="btn btn-prev">Previous</p>
+                
+                <input type="submit" value="Submit" class="btn" />
+            </div>
+        </div>
+        </div>
+    </form>
+    
+</body>
+
+</html>
