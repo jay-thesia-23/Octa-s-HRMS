@@ -1,99 +1,114 @@
 <section class="attendance-section">
-<div class="part1">
-    <div class="row">
-        <div class="card">
-            <div class="card-in" id="card1">
-                <div class="at-content">
-                <p>Days</p>
-                <p>Lorem ipsum</p>
-            </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-in" id="card2">
-                <div class="at-content">
-                <p>Late</p>
-                <p>Lorem ipsum </p>
+    <div class="part1">
+        <div class="row">
+            <div class="card">
+                <div class="card-in" id="card1">
+                    <div class="at-content">
+                        <p>Days</p>
+                        <p>Lorem ipsum</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-in" id="card3">
-                <div class="at-content">
-                <p>Absent</p>
-                <p>Lorem ipsum </p>
+            <div class="card">
+                <div class="card-in" id="card2">
+                    <div class="at-content">
+                        <p>Late</p>
+                        <p>Lorem ipsum </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-in" id="card4">
-                <div class="at-content">
-                <p>Half Days</p>
-                <p>Lorem ipsum </p>
+            <div class="card">
+                <div class="card-in" id="card3">
+                    <div class="at-content">
+                        <p>Absent</p>
+                        <p>Lorem ipsum </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-in" id="card5">
-                <div class="at-content">
-                <p>Total office</p>
-                <p>Lorem ipsum </p>
+            <div class="card">
+                <div class="card-in" id="card4">
+                    <div class="at-content">
+                        <p>Half Days</p>
+                        <p>Lorem ipsum </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-in" id="card5">
+                    <div class="at-content">
+                        <p>Total office</p>
+                        <p>Lorem ipsum </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="part2">
-    <div class="select-dropdown">
-        <select>
-            <option value="Custom">Today</option>
-            <option value="Custom">Yesterday</option>
-            <option value="Custom">Custom</option>
+    <div class="part2">
+        <div class="select-dropdown">
+            <select>
+                <option value="Custom">Today</option>
+                <option value="Custom">Yesterday</option>
+                <option value="Custom">Custom</option>
 
-        </select>
-    </div>
-</div>
-
-<div class="part3">
-    <table class="tab">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Entry time</th>
-                <th>Exit time</th>
-                <th>Break time</th>
-                <th>Working hours</th>
-                <th>Other Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0; i<checkdata.length; i++) {%>
-            <tr>
-                <td><%= checkdata[i].entry_date %></td>
-                <td><%= checkdata[i].status %></td>
-                <td><%= checkdata[i].entry_time %></td>
-                <td>-</td>
-                <td><progress id="file" value="50" max="100"> 50%</progress><label for="file">hours</label></td>
-                <td>-</td>
-            </tr>
-            
-            <% } %>
-        </tbody>
-    </table>
-</div>
-
-<div class="part4">
-    <div class="row-page">
-        <div class="m_t_b">
-            <p>Show all entries</p>
+            </select>
         </div>
-        <div>
-            <a href="#">First</a>
-            <a href="#">Previous</a>
-            <a href="#" id="pageno">1</a>
-            <a href="#">Next</a>
-            <a href="#">Last</a>
-        </div>
-
     </div>
-</div>
+
+    <div class="part3">
+        <table class="tab">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Entry time</th>
+                    <th>Exit time</th>
+                    <th>Break time</th>
+                    <th>Working hours</th>
+                    <th>Other Details</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% for(let i=0; i<startdate.length; i++) {%>
+                    <tr>
+                        <td>
+                            <%=startdate[i]%>
+                        </td>
+
+                        <td>
+                            <%=starttime[i]%>
+                        </td>
+
+                        <td>
+                            <%=exittime[i]%>
+                        </td>
+
+                        <td>1:00</td>
+
+                        <td>
+                            <progress value="<%=progress[i]%>" max="100"> </progress>
+                        </td>
+                        <td></td>
+
+                    </tr>
+
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="part4">
+        <div class="row-page">
+            <div class="m_t_b">
+                <p>Show all entries</p>
+            </div>
+            <div>
+                <a href="#">First</a>
+                <a href="#">Previous</a>
+                <a href="#" id="pageno">1</a>
+                <a href="#">Next</a>
+                <a href="#">Last</a>
+            </div>
+
+        </div>
+    </div>
+    
