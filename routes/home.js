@@ -36,11 +36,13 @@ app.get('/home', (req, res) => {
         if (error) throw error;
         console.log(result);
         
+        let date_time = new Date();
+        console.log(date_time);
         
-        res.render('home.ejs', {result})
+        res.render('home.ejs', {result,date_time})
     })
 
-   
+    
 })
 
 module.exports = app
