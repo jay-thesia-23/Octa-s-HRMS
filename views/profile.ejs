@@ -18,15 +18,14 @@
         <div class="col1">
           <div class="card1">
             <div class="card-in">
-              <img src="/images/demo.png" alt="" />
+              <img src="public/uploads/<%=datapic[0].profile_pic%>" alt="" />
             </div>
           </div>
 
           <div class="card1">
             <div class="card-in">
               <p id="ProfileEdit">
-                <a href="#" id="ProfileEditAnchor"
-                  ><i class="fas fa-edit"></i> Edit Profile Pic</a
+                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a
                 >
               </p>
             </div>
@@ -219,12 +218,32 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for(let i=0;i<4;i++) { %>
+                    
                     <tr>
-                      <td>Aadhar</td>
-                      <td>9991234321.jpg</td>
+                      <td>Adhar</td>
+                      <td><img src="public/uploads/<%= datapic[0].adhar%>" alt="" width="20px" height="20px ">
+                       </td>
                     </tr>
-                    <% } %>
+                   
+                    <tr>
+                      <td>Resume</td>
+                      <td>datapic[0].resume_doc</td>
+                    </tr>
+
+                    <tr>
+                      <td>Cheque</td>
+                      <td>datapic[0].cheque</td>
+                    </tr>
+
+                    <tr>
+                      <td>Other</td>
+                      <td>datapic[0].other</td>
+                    </tr>
+
+                    <tr>
+                      <td>profile_pic</td>
+                      <td>datapic[0].profile_pic</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -234,4 +253,12 @@
       </div>
     </div>
   </body>
+
+  <script>
+    function picUpdate(){
+      
+
+      return false;
+    }
+  </script>
 </html>
