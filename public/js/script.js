@@ -391,14 +391,3 @@ console.log("sanjay");
           }
      
   }
-
-  // gender
-  // var gender = document.getElementById('gender').value || "";
-  // function genderValidate() {
-  //   if (document.querySelectorAll('[name=gender]:checked').length == 0) {
-  //     document.getElementById('gender-error').innerHTML="Please select gender";
-  //     return false;    
-  //   }
-  // }
-  
-  // document.querySelector('[type=button]').addEventListener('click',validateFn, false);

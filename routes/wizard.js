@@ -117,7 +117,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post("/wizard", upload.fields([{
+app.post("/wizard", upload.fields([
+  {name: "profilePic",maxCount: 1,
+}, {
   name: 'adhar', maxCount: 1
 }, {
   name: 'resume', maxCount: 1
@@ -219,8 +221,8 @@ con.query(sql, function (error, data) {
     })
 
    
-  res.end();
-    // res.redirect("/");
+  // res.end();
+    res.redirect("/home");
   });
 
 
@@ -228,4 +230,6 @@ con.query(sql, function (error, data) {
 
 
 module.exports=app
+
+
   

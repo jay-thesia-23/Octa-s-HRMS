@@ -21,6 +21,7 @@ app.use(demo)
 app.use(express.static("public"));
 
 
+
 const routes1 = require('../hrms/routes/home');
 app.use(routes1);
 
