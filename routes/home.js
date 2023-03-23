@@ -32,7 +32,7 @@ app.get('/home', (req, res) => {
      const x = year+ "-"+ month+ "-"+ day
      console.log(x);
 
-    con.query(`select firstname,lastname,birth_date from employee_basic_infomation where birth_date = '${x}'; `, function (error, result) {
+    con.query(`select firstname,lastname,birth_date,time_stamp from employee_basic_infomation where birth_date = '${x}'; `, function (error, result) {
         if (error) throw error;
         console.log(result);
         
