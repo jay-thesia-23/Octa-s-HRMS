@@ -54,7 +54,7 @@ app.get('/hotline', async (req, res) => {
 
     // console.log(basicinfo);  
 
-    var alldetails = await alldata(`select firstname,email,phone_number,designation,department from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1';`)
+    var alldetails = await alldata(`select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1';`)
 
     console.log(alldetails);
     console.log(alldetails.length);
