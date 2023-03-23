@@ -1,159 +1,231 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-* {
-  padding: 0;
-  margin: 0;
+
+.flexer{
+    display: flex;
 }
-
-.home-section .container {
-  max-width: 1170px;
+.main-body{
+    width: 100%/3;
+    flex-wrap: wrap;
+    padding: .5rem;
+    display: flex;
 }
-
-.container {
-  margin: 0 auto;
-  padding: 0 auto;
+.promo-card{
+    height: 350px;
+    color:#fff;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 0.5rem 1rem 1rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
-
-.main-body {
-  width: 100%/3;
-  flex-wrap: wrap;
-  padding: .5rem;
-  display: flex;
+.body-rows{
+    display: flex; 
+    width: calc(77.5%/3)
 }
-
-.promo-card {
-  height: 350px;
-  color: #fff;
-  margin-top: 10px;
-  border-radius: 8px;
-  padding: 0.5rem 1rem 1rem 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+.card-container{
+    color: black;
+    border-left: 6px solid #002f4b;
+    background-color:#eef3fa;
+    list-style-type: none;
 }
-
-.body-rows {
-  display: flex;
-  width: calc(77.5%/3)
-}
-
-.card-container {
-  color: black;
-  border: 6px solid #002f4b;
-  border-radius: 20px;
-  background-color: #fff;
-  list-style-type: none;
-}
-
 .card-header {
-  border-color: rgba(9, 24, 63, .1);
-  border-width: 2px;
-  padding: 10px 0 10px;
-  text-align: center;
+    border-color: rgba(9,24,63,.1);
+    border-width: 2px;
+    padding: 10px 0 10px;
+    text-align: center;
 }
-
-.card-header h4 {
-  font-size: 18px;
-  color: black;
+.card-header h4{
+    font-size: 18px;
+    color: black; 
 }
-
-hr {
-  border: rgb(155, 155, 155) solid 1px;
-  margin-left: 15px;
-  margin-right: 15px;
+hr{
+    border: rgb(155, 155, 155) solid 1px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
-
-.card-body {
-  padding: 20px 0 0;
+.card-body{
+    padding: 20px 0 0;
 }
-
-.card-body ul {
-  display: flex;
-  flex-wrap: wrap;
-  width: 250px;
-  margin: 15px;
-  list-style-type: none;
+.card-body ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 250px;
+    margin: 15px;
+    list-style-type: none;
 }
-
-.card-body ul li {
-  width: calc(100%/2);
-  flex-wrap: wrap;
-  padding: 10px;
+.card-body ul li{
+    width: calc(100%/2);
+    flex-wrap: wrap;
+    padding: 10px;
 
 }
-
 .h3 {
-  font-family: 'Lucida Sans' sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+    font-family: 'Lucida Sans' sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+  }
+.buttonbox{
+    width: calc(100%/2);
+    justify-content: space-between;
+    padding: 0;
 }
-
-.buttonbox {
-  width: calc(100%/2);
-  justify-content: space-between;
-  padding: 0;
-}
-
 .p {
-  font-family: 'Lucida Sans' sans-serif;
-  color: #747272;
-  font-size: 13px;
+    font-family: 'Lucida Sans' sans-serif;
+    color: #747272;
+    font-size: 13px;
+}
+.record-data input{
+    border: 1px solid #747272;
+    padding: 4px;
+    border-radius: 5px;
+    width: 60%;
+}
+:disabled{
+    opacity: 0.5;
+}
+.btn{
+    background-color: red;
+    padding-left: 55px;
+    padding-right: 55px;
+    color: white;
+}
+.abutton{
+    
+    margin-left: 5px;
+    background-color: rgb(0, 95, 5);  
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    padding: .5em;
+   
+}
+.green{
+    background-color: green;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 12px;
 }
 
-.record-data input {
-  border: 1px solid #747272;
-  padding: 4px;
-  border-radius: 5px;
-  width: 60%;
+.brc_out{
+    background-color: #ee4d00;
 }
 
-.abutton {
-  width: 38%;
-  margin-left: 5px;
-  background-color: rgb(0, 95, 5);
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  padding: .5em;
-  text-decoration: none;
+.saffron{
+    background-color: #ee4d00;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 12px;
 }
 
-.checkin {
-  margin: 0;
-  padding-left: 22px;
-  padding-right: 22px;
+.red{
+    background-color: red;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 12px;
 }
 
-.breakin {
-  margin: 0;
-  padding-left: 22px;
-  padding-right: 22px;
+.yellow{
+    background-color: #ee7f00;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border-radius: 12px;
 }
 
-.breakout {
-  margin: 0;
-  padding-left: 16px;
-  padding-right: 16px;
+.thankyou{
+    color: #002f4b;
+    border-radius: 15px;
+    background-color: aqua;
+    text-align: center;
+    font-weight: bold;
 }
-
-.breakin,
-.breakout {
-  background-color: #ee7f00;
+.checkin{
+    pointer-events: all;
+    margin: 0;
+    padding-left: 22px;
+    padding-right: 22px;
 }
-
+.breakin{
+    margin: 0;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.breakout{
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.breakin{
+    background-color: #ee7f00;
+}
 .checkout {
-  margin: 0;
-  padding-left: 16px;
-  padding-right: 16px;
-  background-color: red;
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: red;
 }
-
-.button-class {
-  width: 46%;
-  margin-left: 10px;
-  margin-bottom: 30px;
+.button-class{
+    width: 46%;
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
-
-.abutton:hover {
-  opacity: 0.9;
+.abutton:hover{
+opacity: 0.9;
+}
+.comment-body{
+    padding: 10px;
+}
+.comment-body p{
+    border-radius: 10px;
+    word-wrap: break-word;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    border: 1px solid #002f4b;
+}
+.checkout-msg-class{
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 11px;
+    color: white;
+    padding: 10px 28px;
+}
+.bday-body{
+    background-color: #e9d0a7;
+    margin: 5px;
+    border-radius: 10px;
+    display: flex;
+    padding: 2%;
+}
+.bday{
+    height: 230px;
+}
+.b-day-img{
+    border: 5px solid #dfe9f5;
+    width: 100px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.bday-detail{
+    margin: 0 20px;
+    width: 80%;
+}
+.abutton2{
+    background-color: #002f4b;  
+    border-radius: 50%;
+    width: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.data-header{
+    display: flex;
+    width: 275px;
+    /* padding: 10px; */
+    justify-content: space-evenly;
+    padding-left: 2px;
+}
+.holiday-body{
+   background-image: url('holiday.png');
+   height: 140px;
 }
