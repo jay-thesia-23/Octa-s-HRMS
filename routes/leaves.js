@@ -25,6 +25,7 @@ connection.connect((err) => {
 });
 
 app.get("/leaves", (req, res) => {
+  console.log("in leaves");
   var data = [];
   var count;
   var curr_page;
@@ -36,19 +37,20 @@ app.get("/leaves", (req, res) => {
   if (isNaN(offset)) {
     offset = 0;
   }
+  var login_token = req.cookies.login_token;
 
-  var token = req.cookies.token;
-  console.log(token + "tokennnnnnnnnnnnnnnn");
+  //var token = req.cookies.token;
+  console.log(login_token + "tokennnnnnnnnnnnnnnn");
 
-  jwt.verify(token, "sanjay", function (err, decoded) {
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
 
-    console.log(JSON.stringify(decoded.id) + "decodeeeee");
-    console.log(decoded.id);
+    console.log(JSON.stringify(decoded.id) , "decodeeeee");
+    console.log(decoded.id , "idddd");
  
     var id = decoded.id[0].id;
     console.log(id+"iddd");
     connection.query(
-    `select *from request_leave_table limit ${offset},${limit} where employee_id ='${id}'`,
+    `select * from request_leave_table  where reg_id ="${id}" `,
     (error, result) => {
       if (error) {
         throw error;
@@ -65,10 +67,10 @@ app.get("/leaves", (req, res) => {
 app.post("/leaves", (req, res) => {
   console.log("in leaves");
   // const upload_compress = multer({ storage_compress });
-  var token = req.cookies.token;
-  console.log(token + "tokennnnnnnnnnnnnnnn");
+  var login_token = req.cookies.login_token;
+  console.log(login_token + "tokennnnnnnnnnnnnnnn");
 
-  jwt.verify(token, "sanjay", function (err, decoded) {
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
     console.log(req.body);
   let ldate = req.body.ldate;
   let leavetype = req.body.leavetype;
@@ -101,7 +103,7 @@ app.post("/leaves", (req, res) => {
    var id = decoded.id[0].id;
    console.log(id+"iddd");
 
-    var sql = `INSERT INTO request_leave_table(employee_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
+    var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
 
     connection.query(sql, function (err, result) {
       if (err) throw err;

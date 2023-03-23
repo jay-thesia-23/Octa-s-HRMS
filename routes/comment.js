@@ -33,14 +33,14 @@ app.get("/comment", (req, res) => {
   
 
 app.post("/comment", (req, res) => {
+   // var login_token = req.cookies.login_token;
+   var login_token = req.cookies.login_token;
    
-   
-  jwt.verify(token, "sanjay", function (err, decoded) {
-    console.log(req.body);
-  let comment = req.body.comment;
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
+  console.log(req.body);
+  var comment = req.body.comment;
   
-  console.log(comment);
-
+  console.log(comment,"comment");
  
    console.log(JSON.stringify(decoded.id) + "decodeeeee");
    console.log(decoded.id);
@@ -48,7 +48,7 @@ app.post("/comment", (req, res) => {
    var id = decoded.id[0].id;
    console.log(id+"iddd");
 
-    var sql = `INSERT INTO comment_table(employee_id,comment) VALUES ("${id} ","${comment}")`;
+    var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ("${id} ","${comment}")`;
 
     connection.query(sql, function (err, result) {
       if (err) throw err;
@@ -58,4 +58,6 @@ app.post("/comment", (req, res) => {
   });
   res.redirect("/home");
 });
-  
+
+
+module.exports = app;

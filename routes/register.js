@@ -180,57 +180,55 @@ app.post("/register", async (req, res) => {
         </div>
     </body>
     
-    </html>`,
-  };
+    </html>`
+    };
 
-  transporter.sendMail(mailConfigurations, function (error, info) {
-    if (error) throw Error(error);
-    console.log("Email Sent Successfully");
-    // console.log(info);
-  });
+    transporter.sendMail(mailConfigurations, function (error, info) {
+        if (error) throw Error(error);
+        console.log('Email Sent Successfully');
+        // console.log(info);
+    });
 
-  res.send("register Succesfully!!!!");
+    res.send("register Succesfully!!!!");
 });
 
 app.get("/verify", (req, res) => {
-  // const reg_token = req.query.token;
+    // const reg_token = req.query.token;
+    const email = req.query.email;
+        
+    console.log(req.session.s_email);
+    if (req.session.s_email == email) {
+        res.send("e-mail verification sucesfully!!!!!")
+        con.query(
+            `update registration set isactive = '0' where u_email='${email}';`,
+            (err, data) => {
+                console.log(data);
+            }
+        );
 
-  
-  const email = req.query.email;
+    }
+    else {
+        res.send('something went wrong!!!!! e-mail is not verfied')
+    }
+    // Verifying the JWT token
+    // jwt.verify(reg_token, "sanjay", function (err, decoded) {
+    //   if (err) {
+    //     console.log(err);
+    //     res.send(
+    //       "Email verification failed possibly the link is invalid or expired"
+    //     );
+    // } else {
+    //   console.log(decoded);
+    //   res.send("Email verifified successfully");
+    //   con.query(
+    //     `update registration set isactive = '0' where u_email='${email}';`,
+    //     (err, data) => {
+    //       console.log(data);
+    //     }
+    //   );
+    // }
+    // });
 
-  console.log(email,"email qeru");
-  console.log(req.session,"email session");
-  if (req.session.s_email == email) {
-      res.send("e-mail verification sucesfully!!!!!")
-      con.query(
-          `update registration set isactive = '0' where u_email='${email}';`,
-          (err, data) => {
-              console.log(data);
-          }
-      );
-
-  }
-  else {
-      res.send('something went wrong!!!!! e-mail is not verfied')
-  }
-  // Verifying the JWT token
-  // jwt.verify(reg_token, "sanjay", function (err, decoded) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(
-  //       "Email verification failed possibly the link is invalid or expired"
-  //     );
-  // } else {
-  //   console.log(decoded);
-  //   res.send("Email verifified successfully");
-  //   con.query(
-  //     `update registration set isactive = '0' where u_email='${email}';`,
-  //     (err, data) => {
-  //       console.log(data);
-  //     }
-  //   );
-  // }
-  // });
 });
 
 (module.exports = app), { Inemail };

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/wizard.css" />
-    <script src="/js/script.js" defer></script>
-
-    <title>Registeration Form</title>
-</head>
-
-<body>
     <form action="/wizard_edit" method="post" class="form" enctype="multipart/form-data">
         <div class="container">
             <h1 class="text-center">Registeration Form</h1>
@@ -90,6 +77,21 @@
                     <span class="span1" id="contact-error"></span>
                 </div>
                 <div class="input-group">
+                    <label for="position">Email</label>
+                    <input type="email" name="email" id="email" value="<%= result1[0].email%>"/>
+                    <span class="span1" id="contact-error"></span>
+                  </div>
+                  <div class="input-group">
+                    <label for="position">Designation</label>
+                    <input type="text" name="designation" id="designation" value="<%= result1[0].designation%>" />
+                    <span class="span1" id="contact-error"></span>
+                  </div>
+                  <div class="input-group">
+                    <label for="position">Department</label>
+                    <input type="text" name="department" id="department" value="<%= result1[0].department%>"/>
+                    <span class="span1" id="contact-error"></span>
+                  </div>
+                <div class="input-group">
                     <label for="position">Relationship Status</label>
                     <div class="select-dropdown">
                         <% var rel=['Single','Married','Divorce']%>
@@ -149,7 +151,7 @@
 
 
 
-
+                    
                     <div class="col">
                         <div class="input-group-3">
                             <label for="position"> City</label>
@@ -179,6 +181,7 @@
                 <% console.log("hellow in reslut 2") %>
                 <% console.log(result2.length) %>
                 <% console.log(result2) %>
+                <% console.log(data2) %>
                     <% for(let j=0;j<result2.length;j++){%>
                         <div id="education" name="edu">
 
@@ -187,10 +190,11 @@
                                     <label for="Course">Course</label>
                                     <select name="course" id="course">
                                         <option value="" selected disabled> select option</option>
+                                        
                                         <% for(let i=0;i<data2.length ;i++) {%>
-
-                                            <% if(result2[j].cource_name==data2[i].cource_name){%>
-
+                                          
+                                            <% if(data2[i].cource_name==result2[j].cource_name){%>
+                                                
                                                 <option value="<%= data2[i].cource_name%>" selected>
                                                     <%= data2[i].cource_name%>
                                                 </option>
@@ -198,6 +202,7 @@
                                                 <% }else{%>
 
                                                     <option value="<%= data2[i].cource_name%>">
+                                                    
                                                         <%= data2[i].cource_name%>
                                                     </option>
                                                     <% }%>
@@ -348,6 +353,3 @@
         </div>
     </form>
     
-</body>
-
-</html>

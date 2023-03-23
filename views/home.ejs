@@ -1,5 +1,4 @@
-
-<div class="flexer" onload="">
+<div class="flexer background" onload="">
     <div class="data-body">
         <div class="body-rows">
             <div class="main-body">
@@ -49,7 +48,7 @@
                         <div class="card-body">
                             <div class="record-data">
                                 <ul>
-                                    <input onkeyup="isComment(this)" id="commenter" type="text" name="comment" placeholder="comment">
+                                    <input type="text" class="click" name="comment" placeholder="comment" onkeyup="isComment(this)" id="comment">
                                     <input type="submit" onclick="addComment()" value="comment" class="abutton =" id="commentBtn">
                                 </ul>
                             </div>
@@ -95,15 +94,15 @@
                                             in</button>
                                     </div>
                                     <div class="button-class">
-                                        <button onclick="chk_out() , checkout()" id="check_out"
-                                            class="abutton checkout" disabled>check out</button>
+                                        <button onclick="chk_out() , checkout()" id="check_out" class="abutton checkout"
+                                            disabled>check out</button>
                                     </div>
                                     <div class="button-class">
                                         <button onclick="brc_out() , breakout()" id="breck_out"
                                             class="abutton breakout brc_out" disabled>break out</button>
                                     </div>
 
-                                    <div id="ThankYou" class="checkout-msg-class" >
+                                    <div id="ThankYou" class="checkout-msg-class">
                                     </div>
                                 </ul>
                                 <div id="attendenceEntry" class="comment-body thankyou" hidden></div>
@@ -120,9 +119,10 @@
                         <div class="data-header card-header">
                             <h4 class="c-white">Upcoming Birthday</h4>
                             <div class="flexer">
+                               
                                 <a href="#" class="abutton2" style="margin-right:5px ;">
-                                    < </a>
-                                        <a href="#" class="abutton2"> > </a>
+                                </a>
+                                <a href="#" class="abutton2"> </a>
                             </div>
                         </div>
                         <hr>
@@ -131,9 +131,16 @@
                                 <div class="bday-body">
                                     <img class="b-day-img" src="bDay.jpg" alt="IMG" srcset="">
                                     <div class="bday-detail">
-                                        <h3 class="h3">Kartik Modi</h3>
-                                        <p class="p">Development</p>
-                                        <p class="p">22nd Mar</p>
+                                        <% if(result.length == ""){%>
+                                            <h3> No Birth Day</h3>
+                                            <%}else{%>
+                                        <% for(var s = 0;s<result.length;s++){%>
+                                            <h3 class="h3"><%= result[s].firstname%>  <%= result[s].lastname%> </h3>
+                                            <p class="p"><%= result[s].birth_date%></p>
+                                       <% }%>
+                                            <% }%>
+                                      
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -148,8 +155,8 @@
                             <h4 class="c-white">Holidays</h4>
                             <div class="flexer">
                                 <a href="#" class="abutton2" style="margin-right:5px ;">
-                                    < </a>
-                                        <a href="#" class="abutton2"> > </a>
+                                </a>
+                                <a href="#" class="abutton2"> </a>
                             </div>
                         </div>
                         <hr>
