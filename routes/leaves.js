@@ -99,7 +99,7 @@ console.log(today);
       console.log("data inserted successfully");
     });
   });
-  res.redirect("/");
+  res.redirect("/leaves");
 });
 
 module.exports = app;

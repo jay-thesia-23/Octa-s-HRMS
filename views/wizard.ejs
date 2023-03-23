@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/wizard.css" />
-  <script src="/js/script.js" ></script>
+  <script src="/js/script.js" defer></script>
   <script src="./multer.js"></script>
   <title>Registeration Form</title>
 </head>
@@ -68,6 +68,21 @@
         <div class="input-group">
           <label for="position">Contact</label>
           <input type="text" name="contact" id="contact" onchange="contactValidate()"/>
+          <span class="span1" id="contact-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="position">Email</label>
+          <input type="email" name="email" id="email" />
+          <span class="span1" id="contact-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="position">Designation</label>
+          <input type="text" name="designation" id="designation" />
+          <span class="span1" id="contact-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="position">Department</label>
+          <input type="text" name="department" id="department" />
           <span class="span1" id="contact-error"></span>
         </div>
         <div class="input-group">

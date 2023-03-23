@@ -91,22 +91,17 @@ app.post("/login", async (req, res) => {
           con.query(`select * from state_master; `, function (error, data_3) {
             if (error) throw error;
             data3 = data_3;
-            con.query(
-              `select * from cource_master; `,
-              function (error, data_2) {
+            con.query(`select * from cource_master; `, function (error, data_2) {
                 if (error) throw error;
-                data2 = data_2;
-
-                con.query(
-                  `update registration set u_login = '1' where u_email='${email}';`,
-                  (err, data) => {
-                    if (err) throw err;
-                    res.render("wizard.ejs", { data3, data2 });
-                  }
-                );
-              }
-            );
-          });
+                data2= data_2;
+          con.query(`update registration set u_login = '0' where u_email='${email}';`,
+            (err, data) => {
+              if (err) throw err;
+              
+              res.render("wizard.ejs",{data3,data2});
+            });
+        })
+      })
         } else {
           res.redirect('/home')
         }
@@ -166,6 +161,4 @@ app.post("/login", async (req, res) => {
     }
   }
 });
-
-
 (module.exports = app), { Inemail };
