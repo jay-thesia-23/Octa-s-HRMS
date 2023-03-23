@@ -24,7 +24,7 @@
                     <div class="logo2">
                         <img src="/images/wfh.png" alt="">
                     </div>
-                    <p>Work From Home</p>
+                    <p>WFH</p>
                     <p>22</p>
                 </div>
             </div>
@@ -51,7 +51,8 @@
     <div class="part2">
         <div class="select">
             <input type="text" name="search">
-            <input type="submit" name="searchbtn" value="Search" class="btnsearch">
+            <!-- <input type="submit" name="searchbtn" value="Search" class="btnsearch"> -->
+            <a href="#" class="btnser">Search</a>
         </div>
     </div>
     <div class=" part3">
@@ -82,7 +83,7 @@
                                 <div class="prof1">
                                     <p class="hd">Date Hired</p>
                                     <p>
-                                        <%= alldetails[i].email %>
+                                        <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %>
                                     </p>
                                 </div>
                             </div>

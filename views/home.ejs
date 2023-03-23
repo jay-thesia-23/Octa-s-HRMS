@@ -74,11 +74,11 @@
                                     </li>
                                     <li>
                                         <p class="h3">Current Date</p>
-                                        <p class="p">17/3/2023</p>
+                                        <p class="p"><%= date_time.toJSON('yyyy-mm-dd').slice(0,10) %></p>
                                     </li>
                                     <li>
                                         <p class="h3">Current Time</p>
-                                        <p class="p" id="realTime"></p>
+                                        <p class="p" id = "clock" onload="currentTime()"></p>
                                     </li>
                                 </ul>
 
@@ -174,3 +174,31 @@
         </div>
     </div>
 </div>
+<script>
+function currentTime() {
+  let date = new Date(); 
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
+
+  if(hh === 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+
+  document.getElementById("clock").innerText = time; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+
+currentTime();
+</script>

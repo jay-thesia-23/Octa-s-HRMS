@@ -105,7 +105,7 @@ app.post("/register", async (req, res) => {
     // const login_token = jwt.sign({ email: email }, "sanjay");
     // res.cookie("login_token", login_token);
 
-    to: "sanjayparmar1650@gmail.com",
+    to: "sandhyakanaujiaespark60@gmail.com",
 
     subject: "Email Verification",
 
