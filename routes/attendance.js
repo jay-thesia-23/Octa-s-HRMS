@@ -21,7 +21,6 @@ connection.connect(function (err, data) {
     else {
         console.log("connected database");
     }
-
 });
 
 var alldataquery = util.promisify(connection.query.bind(connection));

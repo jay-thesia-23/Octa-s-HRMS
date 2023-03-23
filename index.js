@@ -43,6 +43,9 @@ app.use(leaves);
 var editprofile=require("../hrms/routes/edit_profile")
 app.use(editprofile)
 
+var fatchapi = require("../hrms/routes/check_module_fatchapi")
+app.use(fatchapi)
+
 
 
 

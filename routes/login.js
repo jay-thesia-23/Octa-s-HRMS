@@ -139,7 +139,7 @@ app.post("/login", async (req, res) => {
         } else {
           if (data[0].u_login == 1) {
             con.query(
-              `update registration set u_login = '1' where u_email='${email}';`,
+              `update registration set u_login = '0' where u_email='${email}';`,
               (err, data) => {
                 if (err) throw err;
 
