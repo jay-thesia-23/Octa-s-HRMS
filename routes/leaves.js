@@ -31,7 +31,7 @@ app.get("/leaves", (req, res) => {
   page = req.query.num || 1;
   var ajax = req.query.ajax || false;
   curr_page = parseInt(req.query.num);
-  limit = 5;
+  limit = 10;
   offset = (page - 1) * limit;
   if (isNaN(offset)) {
     offset = 0;

@@ -24,20 +24,26 @@
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a
-                >
+    
+                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a>
               </p>
+            </form>
             </div>
           </div>
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor">
+                <a href="/edit_profile" id="ProfileEditAnchor">
                   <span> <i class="fas fa-edit"></i> Edit Profile Fields</span>
                 </a>
               </p>
+            </form>
             </div>
           </div>
         </div>
@@ -261,8 +267,9 @@
   <script>
     function picUpdate(){
       
+console.log("clicked");
+      
 
-      return false;
     }
   </script>
 </html>
