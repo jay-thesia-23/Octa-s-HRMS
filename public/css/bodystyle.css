@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: 'Tinos', serif;
 }
+body{
+    background-color: #e6ecf5;
+}
 
 .wrapper {
     display: flex;
