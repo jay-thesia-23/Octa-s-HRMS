@@ -27,7 +27,7 @@ var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async(req, res) => {
 
-    var checkdata=await alldataquery(`select entry_date,status,entry_time from check_master`);
+    var checkdata=await alldataquery(`select status,time from check_master`);
 
     // console.log(checkdata);
 

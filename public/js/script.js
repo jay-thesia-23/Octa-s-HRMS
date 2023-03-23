@@ -319,7 +319,7 @@ function registerPage1() {
   } 
 
   
-console.log(isvalidate);
+  console.log(isvalidate);
   return isvalidate;
 }
 

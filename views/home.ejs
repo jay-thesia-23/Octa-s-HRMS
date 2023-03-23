@@ -39,6 +39,7 @@
                 </div>
             </div>
             <div class="main-body">
+            <form  action="/comment" method="post">
                 <div class="promo-card">
                     <div class="card-container">
                         <div class="card-header">
@@ -48,8 +49,8 @@
                         <div class="card-body">
                             <div class="record-data">
                                 <ul>
-                                    <input onkeyup="isComment(this)" id="commenter" type="text" placeholder="comment">
-                                    <a href="#" onclick="addComment()" class="abutton =" id="commentBtn">comment</a>
+                                    <input onkeyup="isComment(this)" id="commenter" type="text" name="comment" placeholder="comment">
+                                    <input type="submit" onclick="addComment()" value="comment" class="abutton =" id="commentBtn">
                                 </ul>
                             </div>
                         </div>
@@ -58,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
             <div class="main-body">
                 <div class="promo-card overflower">

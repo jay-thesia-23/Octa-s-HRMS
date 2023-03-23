@@ -37,8 +37,18 @@ app.get("/leaves", (req, res) => {
     offset = 0;
   }
 
-  connection.query(
-    `select *from request_leave_table limit ${offset},${limit}`,
+  var token = req.cookies.token;
+  console.log(token + "tokennnnnnnnnnnnnnnn");
+
+  jwt.verify(token, "sanjay", function (err, decoded) {
+
+    console.log(JSON.stringify(decoded.id) + "decodeeeee");
+    console.log(decoded.id);
+ 
+    var id = decoded.id[0].id;
+    console.log(id+"iddd");
+    connection.query(
+    `select *from request_leave_table limit ${offset},${limit} where employee_id ='${id}'`,
     (error, result) => {
       if (error) {
         throw error;
@@ -48,7 +58,7 @@ app.get("/leaves", (req, res) => {
       console.log("record displayed successfully");
     }
   );
-
+});
   //res.render('leaves');
 });
 
@@ -68,22 +78,22 @@ app.post("/leaves", (req, res) => {
   console.log(reason);
 
   //date
-  var today = new Date();
-var dd = today.getDate();
+    var today = new Date();
+  var dd = today.getDate();
 
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-if(dd<10) 
-{
-    dd='0'+dd;
-} 
+  var mm = today.getMonth()+1; 
+  var yyyy = today.getFullYear();
+  if(dd<10) 
+  {
+      dd='0'+dd;
+  } 
 
-if(mm<10) 
-{
-    mm='0'+mm;
-} 
-today = yyyy+'-'+mm+'-'+dd;
-console.log(today);
+  if(mm<10) 
+  {
+      mm='0'+mm;
+  } 
+  today = yyyy+'-'+mm+'-'+dd;
+  console.log(today);
 
    console.log(JSON.stringify(decoded.id) + "decodeeeee");
    console.log(decoded.id);
@@ -99,7 +109,7 @@ console.log(today);
       console.log("data inserted successfully");
     });
   });
-  res.redirect("/");
+  res.redirect("/leaves");
 });
 
 module.exports = app;
