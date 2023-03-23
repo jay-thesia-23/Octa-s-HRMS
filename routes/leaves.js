@@ -55,10 +55,10 @@ app.get("/leaves", (req, res) => {
 app.post("/leaves", (req, res) => {
   console.log("in leaves");
   // const upload_compress = multer({ storage_compress });
-  var token = req.cookies.token;
-  console.log(token + "tokennnnnnnnnnnnnnnn");
+  var login_token = req.cookies.login_token;
+  console.log(login_token + "tokennnnnnnnnnnnnnnn");
 
-  jwt.verify(token, "sanjay", function (err, decoded) {
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
     console.log(req.body);
   let ldate = req.body.ldate;
   let leavetype = req.body.leavetype;
