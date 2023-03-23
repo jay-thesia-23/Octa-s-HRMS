@@ -13,31 +13,37 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="profile-container">
       <div class="row rowCols">
         <div class="col1">
           <div class="card1">
             <div class="card-in">
-              <img src="/images/demo.png" alt="" />
+              <img src="public/uploads/<%=datapic[0].profile_pic%>" alt="" />
             </div>
           </div>
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a
-                >
+    
+                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a>
               </p>
+            </form>
             </div>
           </div>
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor">
+                <a href="/edit_profile" id="ProfileEditAnchor">
                   <span> <i class="fas fa-edit"></i> Edit Profile Fields</span>
                 </a>
               </p>
+            </form>
             </div>
           </div>
         </div>
@@ -48,7 +54,7 @@
               <h2>Basic Information</h2>
               <div class="basic-row">
                 <div class="basic-col">
-                  <table>
+                  <table class="proftab">
                     <tr>
                       <td>First_name</td>
                       <td><%= basicdata[0].firstname %></td>
@@ -218,12 +224,36 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for(let i=0;i<4;i++) { %>
+                    
                     <tr>
-                      <td>Aadhar</td>
-                      <td>9991234321.jpg</td>
+                      <td>Adhar</td>
+                      <td><img src="public/uploads/<%= datapic[0].adhar%>" alt="" width="20px" height="20px ">
+                       </td>
                     </tr>
-                    <% } %>
+                   
+                    <tr>
+                      <td>Resume</td>
+                      <td><img src="public/uploads/<%= datapic[0].resume_doc%>" alt="" width="20px" height="20px ">
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td>Cheque</td>
+                      <td><img src="public/uploads/<%= datapic[0].cheque%>" alt="" width="20px" height="20px ">
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td>Other</td>
+                      <td><img src="public/uploads/<%= datapic[0].other%>" alt="" width="20px" height="20px ">
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td>profile_pic</td>
+                      <td><img src="public/uploads/<%= datapic[0].profile_pic%>" alt="" width="20px" height="20px ">
+                        </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -237,8 +267,9 @@
   <script>
     function picUpdate(){
       
+console.log("clicked");
+      
 
-      return false;
     }
   </script>
 </html>

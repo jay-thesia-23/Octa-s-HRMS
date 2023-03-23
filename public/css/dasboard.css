@@ -10,7 +10,7 @@
     font-family: "Poppins", sans-serif;
 }
 body{
-    background: #e6ecf5;
+    /* background: #dfe9f5; */
 }
 :disabled{
     opacity: 0.5;

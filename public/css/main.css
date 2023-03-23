@@ -1,12 +1,10 @@
 .wrapper .main {
-    padding: 20px 20px;
-    /* display: flex; */
+    padding: 40px 40px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    
-}
-body{
-    background-color: #e6ecf5;
+    /* width: 80%; */
+    /* background-color: antiquewhite; */
 }
 
 /* #main {
@@ -17,4 +15,10 @@ body{
 .wrapper .main main {
    
     margin-top: 100px;
+    /* padding-left: 250px; */
+}
+.main .background {
+    background:ghostwhite;
+    padding: 20px;
+    border-radius: 10px;
 }
