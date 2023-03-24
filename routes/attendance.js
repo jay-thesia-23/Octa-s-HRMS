@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
-app.use(expressLayouts);   //Added
+app.use(expressLayouts); //Added
 app.set('layout', './layouts/main'); //added
 var mysql2 = require("mysql2");
 const util = require('util');
 var jwt = require("jsonwebtoken");
-
 const connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
@@ -26,7 +25,6 @@ connection.connect(function (err, data) {
 var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async (req, res) => {
-    // const id=req.query.id;
 
     let pid = parseInt(req.query.pid) || 1;
     let limit = 2;
@@ -35,59 +33,65 @@ app.get('/attendance', async (req, res) => {
     if (isNaN(offset)) {
         offset = 0;
     }
-    console.log("iddddddddddddddd", pid);
 
-    // var token = req.cookies.token
-    // console.log(token + "tokennnnnnnnnnnnnnnn");
-    
+    var token = req.cookies.login_token;
+    var id;
+    console.log(token + "tokennnnnnnnnnnnnnnn");
 
-    // jwt.verify(token, 'sanjay', async function (err, decoded) {
-    //     // console.log(JSON.stringify(decoded.id) + "decodeeeee");
-    //     console.log(decoded.id);
+    jwt.verify(token, "sanjay", function (err, decoded) {
 
-    //     var id = decoded.id;
-        // console.log(id + "iddd");
-
-        var checkdata = await alldataquery(`select id,status,time from check_master order by id  LIMIT ${offset},${limit}`);
+        id = decoded.id[0].id;
+        console.log(id + "iddd");
+    })
 
 
-        var cntresult = await alldataquery(`select count(*) as count from check_master`);
-        let totalp = Math.ceil(cntresult[0].count / limit);
 
-        //res.render('displaypagi',{data:result,pid:pid,pagearray:totalp});
-
-        var starttime = [];
-        var startdate = [];
-        var exittime = [];
-        var progress = [];
+    var checkdata = await alldataquery(`select id, status, time from check_master where reg_id = '${id}' order by id  LIMIT ${offset},${limit}`);
 
 
-        for (let i = 0; i < checkdata.length; i++) {
+    var cntresult = await alldataquery(`select count(*) as count from check_master where reg_id = '${id}'`);
+    let totalp = Math.ceil(cntresult[0].count / limit);
 
-            if (checkdata[i].status == "check_in") {
-                startdate.push(checkdata[i].time.toJSON('yyyy-mm-dd').slice(0, 10));
-                starttime.push(checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18));
-            } else {
-                exittime.push(checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18));
-            }
+
+    var starttime = [];
+    var startdate = [];
+    var exittime = [];
+    var progress = [];
+
+
+    for (let i = 0; i < checkdata.length; i++) {
+
+        if (checkdata[i].status == "check_in") {
+            startdate.push(checkdata[i].time.toJSON('yyyy-mm-dd').slice(0, 10));
+            var start = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
+            var start_time_h = start.slice(0, 2);
+            var start_time_m = start.slice(3, 5);
+
+
+            var star_time = start_time_h + ":" + start_time_m
+
+            starttime.push(star_time);
+        } else {
+            var end = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
+            var end_time_h = end.slice(0, 2);
+            var end_time_m = end.slice(3, 5);
+
+
+            var end_time = end_time_h + ":" + end_time_m
+            exittime.push(end_time);
         }
+    }
+    console.log(starttime.push(checkdata[0].time.toJSON('HH-1:MM:SS').slice(11, 18)));
 
-        for (let i = 0; i < starttime.length; i++) {
-            if (exittime[i]) {
+    for (let i = 0; i < starttime.length; i++) {
+        if (exittime[i]) {
 
-                progress.push(diffrence_time(starttime[i], exittime[i]));
-            } else {
-                progress.push(0);
-            }
+            progress.push(diffrence_time(starttime[i], exittime[i]));
+        } else {
+            progress.push(0);
         }
-        console.log(checkdata);
-        // console.log(progress);
-        //     console.log("start",starttime);
-        //     console.log("exit",exittime);
-        //     console.log("date",startdate);
-    // });
-
-    res.render('attendance', { starttime, exittime, startdate, progress, pid: pid, pagearray: totalp });
+    }
+    res.render('attendance', { starttime, exittime, startdate, progress,pid:pid,pagearray:totalp });
 })
 
 function diffrence_time(entry_time, exit_time) {
@@ -113,4 +117,3 @@ function diffrence_time(entry_time, exit_time) {
 }
 
 module.exports = app
-
