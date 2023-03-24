@@ -10,8 +10,10 @@
 } */
   
 .c1{
+    display: flex;
     float: right;
     margin: 20px 0px;
+    
 }
 .s1{
     background-color: #fff;
@@ -47,11 +49,12 @@
 .col{
     width:30%;
     padding:0 16px ;
-    /* border: 1px solid rgb(51, 153, 97); */
+    border: 1px solid rgb(51, 153, 97);
 }
 .col-1{
     width:50%;
     padding:0 16px ;
+    /* border: 1px solid rgb(166, 184, 175); */
    
 }
 .td{
@@ -76,7 +79,7 @@
 .col-4{
     width:40%;
     padding:0 16px ;
-    /* border: 1px solid rebeccapurple; */
+  
     /* border: 1px solid red; */
 }
 .select{
@@ -124,7 +127,7 @@ tbody{
 .col-8{
     width:100%;
     padding:0 16px ;
-    /* border: 1px solid rgb(31, 39, 43); */
+   
 }
 .col-7{
     width:15%;
@@ -154,7 +157,7 @@ tbody{
 .cancel{
     background-color: #f44336;
     color: white;
-    width: 300px;
+    width: 150px;
     padding: 10px 50px;
     font-weight: 600;
     font-size: 16px;
