@@ -217,6 +217,7 @@ function isComment(thisElement) {
         commentBtn.style.pointerEvents = 'none';
     }
 }
+
 function addComment() {
     let commentBtn = document.getElementById('commentBtn');
     let element = document.getElementById('commenter');

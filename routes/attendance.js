@@ -45,11 +45,10 @@ if (isNaN(offset)) {
 
 
 
-var checkdata = await alldataquery(`select id,status,time from check_master where reg_id = '${id}'order by id  LIMIT ${offset},${limit};`);
+var checkdata = await alldataquery(`select id,status,time from check_master where reg_id = '${id}';`);
 
 
-var cntresult=await alldataquery(`select count(*) as count from check_master`);
-let totalp = Math.ceil(cntresult[0].count / limit);
+
 
 var starttime = [];
 var startdate = [];
@@ -62,16 +61,27 @@ for (let i = 0; i < checkdata.length; i++) {
 if (checkdata[i].status == "check_in") {
 startdate.push(checkdata[i].time.toJSON('yyyy-mm-dd').slice(0, 10));
 var start = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
+
 var start_time_h = start.slice(0,2);
+
+start_time_h = start_time_h % 12;
+start_time_h = start_time_h ? start_time_h : 12;
+start_time_h = start_time_h - 1;
+
 var start_time_m = start.slice(3,5);
 
 
 var star_time = start_time_h +":"+ start_time_m
-
+console.log(start_time_h+"fsdfcs");
 starttime.push(star_time);
 } else {
     var end = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
     var end_time_h = end.slice(0,2);
+
+    end_time_h = end_time_h % 12;
+    end_time_h = end_time_h ? end_time_h : 12;
+    end_time_h = end_time_h - 1;
+
     var end_time_m = end.slice(3,5);
 
     
@@ -89,7 +99,7 @@ progress.push(diffrence_time(starttime[i], exittime[i]));
 progress.push(0); 
 }
 }
-res.render('attendance', { starttime, exittime, startdate, progress,pid: pid, pagearray: totalp });
+res.render('attendance', { starttime, exittime, startdate, progress });
 })
 
 function diffrence_time(entry_time, exit_time) {
