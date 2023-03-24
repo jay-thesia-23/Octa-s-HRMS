@@ -8,9 +8,31 @@ function myFunction(){
 commentbtn.disabled = true;
 
 //add event listener
-if(clickBtn == ""){
-    commentbtn.disabled = false;
+    if(clickBtn == ""){
+        commentbtn.disabled = false;
+    }
 }
 
+async function fetchComment() {
 
-}
+    console.log("function is called!!!!!!!");
+    fetch("/comment_fatch", {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data,"daataaa");
+        var cmt = document.getElementById("cmt");
+
+        for(var i=0; i<data.length ; i++){
+            var div = document.createElement("div");
+            div.setAttribute("class", "green");
+            div.innerHTML= data[i].comment;
+            cmt.append(div)
+        }
+    
+      });
+  }

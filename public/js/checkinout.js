@@ -5,9 +5,6 @@ var check_out = document.getElementById('check_out')
 var breck_in = document.getElementById('breck_in')
 var breck_out = document.getElementById('breck_out')
 
-
-
-
 function demo() {
 
     document.getElementById("check_in").disabled = true;
@@ -19,10 +16,18 @@ function demo() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+    console.log(s,m);
+
+    s = s % 12;
+    s = s ? s : 12;
+
+    var timeIn12HourFormat = s + ':' + m
+    console.log(timeIn12HourFormat);
+
     
     var div = document.createElement('div')
     div.setAttribute("class", "green")
-     div.innerHTML = "Check In "+ s + ":" + m;
+     div.innerHTML = "Check In " + timeIn12HourFormat
 
      
     check.append(div)
@@ -45,10 +50,16 @@ function chk_out() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+
+    s = s % 12;
+    s = s ? s : 12;
+
+    var timeIn12HourFormat = s + ':' + m
+    console.log(timeIn12HourFormat+"timein 12");
     
     var div = document.createElement('div')
     div.setAttribute("class", "red")
-     div.innerHTML = "Check Out "+ s + ":" + m;
+     div.innerHTML = "Check Out "+ timeIn12HourFormat
 
     check.append(div)
 
@@ -67,10 +78,16 @@ function breck() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+
+    s = s % 12;
+    s = s ? s : 12;
+
+    var timeIn12HourFormat = s + ':' + m
+    console.log(timeIn12HourFormat);
     
     var div = document.createElement('div')
     div.setAttribute("class", "yellow")
-     div.innerHTML = "break In "+ s + ":" + m;
+     div.innerHTML = "break In "+ timeIn12HourFormat
 
      
     check.append(div)
@@ -87,10 +104,16 @@ function brc_out() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+
+    s = s % 12;
+    s = s ? s : 12;
+
+    var timeIn12HourFormat = s + ':' + m
+    console.log(timeIn12HourFormat);
     
     var div = document.createElement('div')
     div.setAttribute("class", "saffron")
-     div.innerHTML = "break Out "+ s + ":" + m;
+     div.innerHTML = "break Out "+ timeIn12HourFormat
 
      
     check.append(div)

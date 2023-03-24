@@ -45,7 +45,11 @@ app.use(editprofile)
 
 var comment=require("../hrms/routes/comment")
 app.use(comment)
+var fatchapi = require("../hrms/routes/check_module_fatchapi")
+app.use(fatchapi)
 
+var fetchcmt = require("../hrms/routes/fetch_comment")
+app.use(fetchcmt);
 
 
 
