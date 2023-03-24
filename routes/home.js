@@ -15,8 +15,11 @@ var con = mysql.createConnection({
   
   con.connect((err) => {
     if (err) throw err;
-    console.log(" database connected ");
+ 
   });
+
+  var {authentication}=require("../auth/auth");
+  app.use(authentication)
 
 app.get('/home', (req, res) => {
 

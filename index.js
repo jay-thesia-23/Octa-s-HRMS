@@ -11,9 +11,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 
-const register = require('../hrms/routes/register')
+const register = require('./routes/register')
 app.use(register)
-const login = require('../hrms/routes/login')
+const login = require('./routes/login')
 app.use(login)
 const demo = require('./routes/checkInOut')
 app.use(demo)
@@ -22,29 +22,32 @@ app.use(express.static("public"));
 
 
 
-const routes1 = require('../hrms/routes/home');
+const routes1 = require('./routes/home');
 app.use(routes1);
 
-const profile = require("../hrms/routes/profile");
+const profile = require("./routes/profile");
 app.use(profile);
 
-const routes2 = require('../hrms/routes/attendance');
+const routes2 = require('./routes/attendance');
 app.use(routes2);
 
-const routes3 = require('../hrms/routes/hotline');
+const routes3 = require('./routes/hotline');
 app.use(routes3);
 
-var wizad = require("../hrms/routes/wizard");
+var wizad = require("./routes/wizard");
 app.use(wizad);
 
-const leaves = require('../hrms/routes/leaves');
+const leaves = require('./routes/leaves');
 app.use(leaves);
 
-var editprofile=require("../hrms/routes/edit_profile")
+var editprofile=require("./routes/edit_profile")
 app.use(editprofile)
 
-var fatchapi = require("../hrms/routes/check_module_fatchapi")
+var fatchapi = require("./routes/check_module_fatchapi")
 app.use(fatchapi)
+
+var header=require("./routes/header")
+app.use(header)
 
 
 

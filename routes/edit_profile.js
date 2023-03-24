@@ -30,7 +30,7 @@ var con = mysql.createConnection({
 });
 con.connect((err) => {
   if (err) throw err;
-  console.log(" database connected ");
+
 });
 
 app.get("/edit_profile", function (req, res) {

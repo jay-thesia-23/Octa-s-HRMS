@@ -21,7 +21,7 @@ var connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log("connected");
+  
 });
 
 app.get("/leaves", (req, res) => {

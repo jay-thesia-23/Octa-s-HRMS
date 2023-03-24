@@ -33,7 +33,7 @@ var con = mysql.createConnection({
 
 con.connect((err) => {
   if (err) throw err;
-  console.log("connected");
+ 
 });
 
 // app.get("/wizard", (req, res) => {

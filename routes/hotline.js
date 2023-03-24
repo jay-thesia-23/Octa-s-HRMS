@@ -21,10 +21,7 @@ connection.connect(function (err, data) {
     if (err) {
         console.log(err);
     }
-    else {
-        console.log("connected database");
-    }
-
+   
 });
 var login_user__id
 

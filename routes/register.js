@@ -36,7 +36,7 @@ var con = mysql.createConnection({
 });
 con.connect((err) => {
   if (err) throw err;
-  console.log(" database connected ");
+
 });
 app.get("/register", (req, res) => {
   res.render("register.ejs", {});
