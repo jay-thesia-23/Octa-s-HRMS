@@ -9,6 +9,10 @@ var jwt = require('jsonwebtoken')
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+var path=require('path')
+app.set("views",path.join(__dirname,"../views"))
+
+
 
 const connection = mysql2.createConnection({
     host: 'localhost',

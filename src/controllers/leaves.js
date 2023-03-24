@@ -11,6 +11,9 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
 var jwt = require("jsonwebtoken");
+var path=require('path')
+app.set("views",path.join(__dirname,"../views"))
+
 
 var connection = mysql.createConnection({
   host: "localhost",

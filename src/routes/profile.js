@@ -16,10 +16,12 @@ var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
+var path = require("path");
+app.set("views", path.join(__dirname, "../views"));
 
-const expressLayouts = require('express-ejs-layouts')
-app.use(expressLayouts)   //Added
-app.set('layout', './layouts/main') //added
+const expressLayouts = require("express-ejs-layouts");
+app.use(expressLayouts); //Added
+app.set("layout", "./layouts/main"); //added
 
 app.use(cookieParser());
 
@@ -34,7 +36,6 @@ var con = mysql.createConnection({
 
 con.connect((err) => {
   if (err) throw err;
-
 });
 
 app.get("/profile", (req, res) => {
@@ -44,7 +45,6 @@ app.get("/profile", (req, res) => {
   jwt.verify(login_token, "sanjay", (err, decoded) => {
     console.log(decoded, "decoded");
 
-  
     id = decoded.id[0].id;
   });
 
@@ -54,13 +54,13 @@ app.get("/profile", (req, res) => {
   let sqlReferenceInfo = `select * from reference_master`;
   let sqlProfilePic = `select * from document_master where reg_id=${id}; `;
 
-  console.log(sqlProfilePic,"sql of pic");
+  console.log(sqlProfilePic, "sql of pic");
   con.query(sqlBasicInfo, (err, dataBasic) => {
     con.query(sqlEduInfo, (err, dataEdu) => {
       con.query(sqlExperienceInfo, (err, dataExp) => {
         con.query(sqlReferenceInfo, (err, dataRef) => {
           con.query(sqlProfilePic, (err, datapic) => {
-            console.log(datapic,"datapic");
+            console.log(datapic, "datapic");
             res.render("profile", {
               basicdata: dataBasic,
               dataEdu,
@@ -76,18 +76,16 @@ app.get("/profile", (req, res) => {
 });
 
 app.post("/profile", (req, res) => {
-
-  const login_token=req.cookies.login_token
+  const login_token = req.cookies.login_token;
 
   console.log(login_token);
 
-  jwt.verify(login_token,"sanjay",(err,decoded)=>{
+  jwt.verify(login_token, "sanjay", (err, decoded) => {
     console.log(decoded);
-  })
+  });
 });
 
 module.exports = app;
-
 
 // CREATE TABLE `document_master` (
 //   `document_id` int NOT NULL AUTO_INCREMENT,

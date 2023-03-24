@@ -6,6 +6,10 @@ app.set('layout', './layouts/main'); //added
 var mysql2 = require("mysql2");
 const util = require('util');
 var jwt = require("jsonwebtoken");
+var router=express.Router()
+var path=require('path')
+app.set("views",path.join(__dirname,"../views"))
+
 const connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
@@ -22,7 +26,8 @@ connection.connect(function (err, data) {
 
 var alldataquery = util.promisify(connection.query.bind(connection));
 
-app.get('/attendance', async (req, res) => {
+
+const attendance=async (req, res) => {
 
     let pid = parseInt(req.query.pid) || 1;
     let limit = 2;
@@ -90,7 +95,8 @@ app.get('/attendance', async (req, res) => {
         }
     }
     res.render('attendance', { starttime, exittime, startdate, progress,pid:pid,pagearray:totalp });
-})
+}
+
 
 function diffrence_time(entry_time, exit_time) {
 
@@ -114,4 +120,4 @@ function diffrence_time(entry_time, exit_time) {
     return working;
 }
 
-module.exports = app
+module.exports = {attendance}

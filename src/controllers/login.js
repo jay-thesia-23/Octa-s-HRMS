@@ -1,26 +1,21 @@
 var express = require("express");
+var ejs = require("ejs");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const util = require("util");
+var bodyparser = require("body-parser");
+
 var app = express();
 app.use(express.json());
-var ejs = require("ejs");
-
-const bcrypt = require("bcrypt");
-
-app.use(express.static("css"));
-app.use(express.static("images"));
-const util = require("util");
-
-var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 var mysql = require("mysql2");
-
-var cookieParser = require("cookie-parser");
-// app.use(cookieParser());
-var jwt = require("jsonwebtoken");
-
 app.use(cookieParser());
+app.set("views", path.join(__dirname, "../views"));
 
-app.use("/public", express.static("public"));
+var path=require('path')
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -31,11 +26,12 @@ var con = mysql.createConnection({
 
 con.connect((err) => {
   if (err) throw err;
+});
 
-});
-app.get("/login", (req, res) => {
+
+const loginGet=(req, res) => {
   res.render("login.ejs", {});
-});
+}
 
 async function Inemail(email) {
   return await new Promise((res, rej) => {
@@ -50,7 +46,8 @@ async function Inemail(email) {
   });
 }
 
-app.post("/login", async (req, res) => {
+
+var loginPost=async (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
   var data2;
@@ -91,19 +88,24 @@ app.post("/login", async (req, res) => {
           con.query(`select * from state_master; `, function (error, data_3) {
             if (error) throw error;
             data3 = data_3;
-            con.query(`select * from cource_master; `, function (error, data_2) {
+            con.query(
+              `select * from cource_master; `,
+              function (error, data_2) {
                 if (error) throw error;
-                data2= data_2;
-          con.query(`update registration set u_login = '1' where u_email='${email}';`,
-            (err, data) => {
-              if (err) throw err;
-              
-              res.render("wizard.ejs",{data3,data2});
-            });
-        })
-      })
+                data2 = data_2;
+                con.query(
+                  `update registration set u_login = '1' where u_email='${email}';`,
+                  (err, data) => {
+                    if (err) throw err;
+
+                    res.render("wizard.ejs", { data3, data2 });
+                  }
+                );
+              }
+            );
+          });
         } else {
-          res.redirect('/home')
+          res.redirect("/home");
         }
 
         var query = util.promisify(con.query).bind(con);
@@ -160,5 +162,6 @@ app.post("/login", async (req, res) => {
       console.log("your password is not matched ");
     }
   }
-});
-(module.exports = app), { Inemail };
+}
+
+module.exports={loginGet,loginPost}

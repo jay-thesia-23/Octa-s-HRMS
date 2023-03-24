@@ -1,13 +1,11 @@
 var mysql = require("mysql2");
 var express = require("express");
+var path = require("path");
 var app = express();
 app.set("view engine", "ejs");
-app.use(express.json());
-var bodyParser = require("body-parser");
 
-const expressLayouts = require("express-ejs-layouts");
-app.use(expressLayouts); //Added
-app.set("layout", "./layouts/main"); //added
+var bodyParser = require("body-parser");
+const { response } = require("express");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -20,7 +18,11 @@ app.use(cookieParser());
 
 var multer = require("multer");
 
-app.use("/public", express.static("public"));
+const register = require("./register");
+app.use(register);
+const login = require("./login");
+app.use(login);
+var jwt = require("jsonwebtoken");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -28,64 +30,63 @@ var con = mysql.createConnection({
   password: "root",
   database: "hrms",
 });
+
 con.connect((err) => {
   if (err) throw err;
-
+ 
 });
 
-app.get("/edit_profile", function (req, res) {
-  // res.render("editProfile")
-  var login = req.cookies.login_token;
+// app.get("/wizard", (req, res) => {
+//   res.render("wizard.ejs");
+// });
 
-  var login_user__id;
-
-  jwt.verify(login, "sanjay", function (err, decoded) {
-    // console.log(decoded);
-    login_user__id = decoded.id[0].id;
-    console.log(login_user__id);
+async function Inemail(email) {
+  return await new Promise((res, rej) => {
+    connection.query(
+      `select * from registration where u_email='${email}';`,
+      (err, data) => {
+        if (err) throw err;
+        res(data);
+        // console.log(data.length);
+      }
+    );
   });
+}
 
+app.get("/wizard", (req, res) => {
   con.query(`select * from cource_master; `, function (error, data2) {
     if (error) throw error;
 
     con.query(`select * from state_master; `, function (error, data3) {
       if (error) throw error;
-
-      con.query(
-        `SELECT * FROM employee_basic_infomation where reg_id = ${login_user__id};`,
-        function (error, result1) {
-          if (error) throw error;
-          console.log(result1);
-          con.query(
-            `SELECT * FROM education_table where reg_id = ${login_user__id};`,
-            function (error, result2) {
-              if (error) throw error;
-              //  console.log(result2)
-              con.query(
-                `SELECT * FROM reference_master where reg_id = ${login_user__id};`,
-                function (error, result3) {
-                  if (error) throw error;
-                  //  console.log(result3)
-                  con.query(
-                    `select * from document_master where reg_id=${login_user__id}`,
-                    (err, resultDoc) => {
-                      res.render("wizard_edit.ejs", {
-                        data2,
-                        data3,
-                        result1,
-                        result2,
-                        result3,
-                        resultDoc,
-                      });
-                    }
-                  );
-                }
-              );
-            }
-          );
-        }
-      );
+      res.render("wizard", { data3, data2 });
     });
+  });
+});
+
+app.get("/test-api", function (req, res) {
+  let state_1 = req.query.state_id || "";
+
+  console.log(state_1);
+  con.query(
+    `select city_master.city_name from city_master inner join state_master on city_master.state_id = state_master.state_id where state_name = '${state_1}';`,
+    function (error, result) {
+      if (error) throw error;
+      // console.log(result)
+
+      res.send(result);
+      res.end();
+    }
+  );
+});
+
+app.get("/cource", function (req, res) {
+  con.query(`select * from cource_master;`, function (error, data2) {
+    if (error) throw error;
+    // console.log(result)
+
+    res.send(data2);
+    res.end();
   });
 });
 
@@ -104,7 +105,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post(
-  "/wizard_edit",
+  "/wizard",
   upload.fields([
     { name: "profilePic", maxCount: 1 },
     {
@@ -126,6 +127,7 @@ app.post(
   ]),
   async (req, res) => {
     console.log(req.files, "file in uploads");
+    console.log(req.files.adhar[0].filename, "file of adhar");
     console.log(req.body);
 
     var id;
@@ -167,29 +169,30 @@ app.post(
     // basic_information
 
     con.query(
-      `delete from employee_basic_infomation where reg_id ='${login_user__id}'`,
-      function (error, res) {
-        if (error) throw error;
-      }
-    );
-
-    const deleteDoc = `delete from document_master where reg_id ='${login_user__id}'`;
-
-    console.log(deleteDoc);
-    con.query(deleteDoc, (err, dataDoc) => {
-      console.log("image is deleted");
-    });
-
-    con.query(
       `insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city,email,designation,department) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}','${email}','${designation}','${department}') ;`,
       function (error, data) {
         if (error) throw error;
         id = data.insertId;
-        console.log(id);
+        console.log(id, "last insserted id");
+
+        //document
+        var sqlDocs = `INSERT INTO document_master(
+          employee_id,
+          reg_id,
+          adhar,
+          resume_doc,
+          cheque,
+          other,
+          profile_pic) VALUES (${id},${login_user__id},"${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
+
+        console.log(sqlDocs);
+        con.query(sqlDocs, (err, docs) => {
+          console.log("doc is inserted");
+        });
 
         // education
 
-        if (typeof percentage == "string") {
+        if (typeof course_name == "string") {
           con.query(
             `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name}','${percentage}','${board_university_name}','${passout_year}');`,
             function (error, data) {
@@ -216,30 +219,12 @@ app.post(
 
         con.query(sql, function (error, data) {
           if (error) throw error;
-
-
-          var sqlGetDocs=`select * from document_master where req_id=${login_user__id}`
-          var sqlDocs = `INSERT INTO document_master(
-            employee_id,
-            reg_id,
-            adhar,
-            resume_doc,
-            cheque,
-            other,
-            profile_pic) VALUES ("${id}","${login_user__id}","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
-
-          con.query(sqlDocs, (err, docs) => {
-            console.log("doc is inserted");
-          });
         });
-
-        //documents
-        // var sqlDoc=`insert into document_master()`
       }
     );
 
     // res.end();
-    res.redirect("/profile");
+    res.redirect("/home");
   }
 );
 
