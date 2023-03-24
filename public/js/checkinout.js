@@ -58,7 +58,7 @@ function chk_out() {
     s = s ? s : 12;
 
     var timeIn12HourFormat = s + ':' + m
-    console.log(timeIn12HourFormat);
+    console.log(timeIn12HourFormat+"timein 12");
     
     var div = document.createElement('div')
     div.setAttribute("class", "red")

@@ -44,16 +44,19 @@ app.get('/abc', function(req,res){
     var year = d.getFullYear()
     var fulldate = day+"/"+month+"/"+year
 
-
-        var datequary = `select date from check_master where reg_id='${login_user__id}';`
+        console.log(fulldate+"fulldate");
+        var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}';`
         connection.query(datequary , function(err,data){
             if(err) throw err
-            // console.log(data.length);
+            console.log(data.length);
             if(data.length == 0){
                 console.log("wrong");
             }else{
+
+                console.log(data,"data");
                 query_date = data[0].date
-                if(query_date = fulldate){
+                console.log(query_date,"query in date");
+                if(query_date == fulldate){
                     var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}';`
                     connection.query(time , function(err,result){
                         if(err) throw err
@@ -84,14 +87,14 @@ app.get('/brc_in', function(req,res){
     var fulldate = day+"/"+month+"/"+year
 
 
-        var datequary = `select date from breck_master where reg_id='${login_user__id}';`
+        var datequary = `select date from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`
         connection.query(datequary , function(err,data){
             if(err) throw err
             if(data.length == 0){
                 console.log("wrong");
             }else{
                 query_date = data[0].date
-                if(query_date = fulldate){
+                if(query_date == fulldate){
                     var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`
                     connection.query(time , function(err,result){
                         if(err) throw err
@@ -122,15 +125,16 @@ app.get('/chk_out', function(req,res){
     var fulldate = day+"/"+month+"/"+year
 
 
-        var datequary = `select date from check_master where reg_id='${login_user__id}';`
+        var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}';`
         connection.query(datequary , function(err,data){
             if(err) throw err
             if(data.length == 0){
                 console.log("wrong");
             }else{
                 query_date = data[0].date
-                if(query_date = fulldate){
+                if(query_date == fulldate){
                     var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}';`
+                    console.log(time);
                     connection.query(time , function(err,result){
                         if(err) throw err
                             res.json(result)
