@@ -38,11 +38,13 @@ con.connect((err) => {
 });
 
 app.get("/profile", (req, res) => {
-  let token = req.cookies.token;
+  let login_token = req.cookies.login_token;
   var id;
-  console.log(token, "token in profile");
-  jwt.verify(token, "sanjay", (err, decoded) => {
+  console.log(login_token, "token in profile");
+  jwt.verify(login_token, "sanjay", (err, decoded) => {
     console.log(decoded, "decoded");
+
+  
     id = decoded.id[0].id;
   });
 
@@ -50,7 +52,7 @@ app.get("/profile", (req, res) => {
   let sqlEduInfo = `select * from education_table;`;
   let sqlExperienceInfo = `select * from experience_table;`;
   let sqlReferenceInfo = `select * from reference_master`;
-  let sqlProfilePic = `select * from document_master where id=${id}; `;
+  let sqlProfilePic = `select * from document_master where reg_id=${id}; `;
 
   console.log(sqlProfilePic,"sql of pic");
   con.query(sqlBasicInfo, (err, dataBasic) => {
@@ -73,7 +75,16 @@ app.get("/profile", (req, res) => {
   });
 });
 
-app.post("/profile", (req, res) => {});
+app.post("/profile", (req, res) => {
+
+  const login_token=req.cookies.login_token
+
+  console.log(login_token);
+
+  jwt.verify(login_token,"sanjay",(err,decoded)=>{
+    console.log(decoded);
+  })
+});
 
 module.exports = app;
 

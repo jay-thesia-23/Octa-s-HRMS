@@ -74,6 +74,11 @@ app.post('/check_in', function (req, res) {
 })
 
 app.post('/check_out', function (req, res) {
+    var login_token = req.cookies.login_token
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        login_user__id = decoded.id[0].id
+        // console.log(login_user__id)
+    });
     
         console.log(login_user__id);
     var check_out_entry = `insert into check_master (status,reg_id,date) values('check_out','${login_user__id}','${fulldate}');`
@@ -84,7 +89,7 @@ app.post('/check_out', function (req, res) {
         res.json({ result })
     })
 
-    var ofline_status = `update check_master set ofline_status='1' where reg_id = '${login_user__id}' and status = 'check_out'; `
+    var ofline_status = `update check_master set online_status='0' where reg_id = '${login_user__id}' and status = 'check_in'; `
     console.log(ofline_status);
         con.query(ofline_status , function(err,data1){
             if(err) throw err
@@ -94,9 +99,13 @@ app.post('/check_out', function (req, res) {
 })
 
 app.post('/breck_out', function (req, res) {
-    
+    var login_token = req.cookies.login_token
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        login_user__id = decoded.id[0].id
+        // console.log(login_user__id)
+    });
     console.log(login_user__id);
-var check_out_entry = `insert into breck_master (status,reg_id) values('breck_out','${login_user__id}');`
+var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_out','${login_user__id}','${fulldate}');`
 // console.log(check_out_entry)
 
 con.query(check_out_entry, function (err, result) {
@@ -107,9 +116,14 @@ con.query(check_out_entry, function (err, result) {
 })
 
 app.post('/breck_in', function (req, res) {
+    var login_token = req.cookies.login_token
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        login_user__id = decoded.id[0].id
+        // console.log(login_user__id)
+    });
     
     console.log(login_user__id);
-var check_out_entry = `insert into breck_master (status,reg_id) values('breck_in','${login_user__id}');`
+var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_in','${login_user__id}','${fulldate}');`
 
 con.query(check_out_entry, function (err, result) {
     if (err) throw err

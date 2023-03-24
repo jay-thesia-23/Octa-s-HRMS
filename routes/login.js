@@ -94,7 +94,7 @@ app.post("/login", async (req, res) => {
             con.query(`select * from cource_master; `, function (error, data_2) {
                 if (error) throw error;
                 data2= data_2;
-          con.query(`update registration set u_login = '0' where u_email='${email}';`,
+          con.query(`update registration set u_login = '1' where u_email='${email}';`,
             (err, data) => {
               if (err) throw err;
               
@@ -139,7 +139,7 @@ app.post("/login", async (req, res) => {
         } else {
           if (data[0].u_login == 1) {
             con.query(
-              `update registration set u_login = '1' where u_email='${email}';`,
+              `update registration set u_login = '0' where u_email='${email}';`,
               (err, data) => {
                 if (err) throw err;
 

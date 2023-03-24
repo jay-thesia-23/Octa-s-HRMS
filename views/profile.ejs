@@ -24,20 +24,26 @@
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a
-                >
+    
+                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a>
               </p>
+            </form>
             </div>
           </div>
 
           <div class="card1">
             <div class="card-in">
+
+              <form action="/edit_profile" method="POST">
               <p id="ProfileEdit">
-                <a href="" id="ProfileEditAnchor">
+                <a href="/edit_profile" id="ProfileEditAnchor">
                   <span> <i class="fas fa-edit"></i> Edit Profile Fields</span>
                 </a>
               </p>
+            </form>
             </div>
           </div>
         </div>
@@ -227,22 +233,26 @@
                    
                     <tr>
                       <td>Resume</td>
-                      <td>datapic[0].resume_doc</td>
+                      <td><img src="public/uploads/<%= datapic[0].resume_doc%>" alt="" width="20px" height="20px ">
+                        </td>
                     </tr>
 
                     <tr>
                       <td>Cheque</td>
-                      <td>datapic[0].cheque</td>
+                      <td><img src="public/uploads/<%= datapic[0].cheque%>" alt="" width="20px" height="20px ">
+                        </td>
                     </tr>
 
                     <tr>
                       <td>Other</td>
-                      <td>datapic[0].other</td>
+                      <td><img src="public/uploads/<%= datapic[0].other%>" alt="" width="20px" height="20px ">
+                        </td>
                     </tr>
 
                     <tr>
                       <td>profile_pic</td>
-                      <td>datapic[0].profile_pic</td>
+                      <td><img src="public/uploads/<%= datapic[0].profile_pic%>" alt="" width="20px" height="20px ">
+                        </td>
                     </tr>
                   </tbody>
                 </table>
@@ -257,8 +267,9 @@
   <script>
     function picUpdate(){
       
+console.log("clicked");
+      
 
-      return false;
     }
   </script>
 </html>

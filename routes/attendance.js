@@ -26,7 +26,13 @@ console.log("connected database");
 var alldataquery = util.promisify(connection.query.bind(connection));
 
 app.get('/attendance', async (req, res) => {
+let pid = parseInt(req.query.pid) || 1;
+let limit = 2;
+let offset = (pid - 1) * limit;
 
+if (isNaN(offset)) {
+    offset = 0;
+}
     var token = req.cookies.login_token;
     var id ;
     console.log(token + "tokennnnnnnnnnnnnnnn");
@@ -39,11 +45,11 @@ app.get('/attendance', async (req, res) => {
 
 
 
-var checkdata = await alldataquery(`select id,status,time from check_master where reg_id = '${id}';`);
+var checkdata = await alldataquery(`select id,status,time from check_master where reg_id = '${id}'order by id  LIMIT ${offset},${limit};`);
 
 
 var cntresult=await alldataquery(`select count(*) as count from check_master`);
-
+let totalp = Math.ceil(cntresult[0].count / limit);
 
 var starttime = [];
 var startdate = [];
@@ -80,10 +86,10 @@ if (exittime[i]) {
 
 progress.push(diffrence_time(starttime[i], exittime[i]));
 } else {
-progress.push(0);
+progress.push(0); 
 }
 }
-res.render('attendance', { starttime, exittime, startdate, progress});
+res.render('attendance', { starttime, exittime, startdate, progress,pid: pid, pagearray: totalp });
 })
 
 function diffrence_time(entry_time, exit_time) {
