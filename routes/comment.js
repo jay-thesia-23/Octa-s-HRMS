@@ -29,7 +29,8 @@ connection.connect((err) => {
 
 
 app.get("/comment", (req, res) => {
-
+  console.log("in comment");
+  
   res.render('home');
 })  
 
@@ -47,7 +48,7 @@ app.post("/comment", (req, res) => {
    var comment = req.body.comment;
    console.log(comment);
 
-   console.log(JSON.stringify(decoded.id) + "decodeeeee");
+   console.log(JSON.stringify(decoded.id) + "decoding");
    console.log(decoded.id);
 
    var id = decoded.id[0].id;
@@ -60,9 +61,11 @@ app.post("/comment", (req, res) => {
       console.log(result);
       console.log("data inserted successfully")
     })
+    res.redirect("/home");
  })
 
 
 
   res.render('home');
 })  
+module.exports = app

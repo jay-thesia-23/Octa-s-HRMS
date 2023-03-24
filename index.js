@@ -43,6 +43,9 @@ app.use(leaves);
 var editprofile=require("../hrms/routes/edit_profile")
 app.use(editprofile)
 
+var comment=require("../hrms/routes/comment")
+app.use(comment)
+
 
 
 

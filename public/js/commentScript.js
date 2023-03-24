@@ -6,9 +6,6 @@ commentbtn.disabled = true;
 
 //add event listener
 clickBtn.addEventListener('click', function(event) {
-    button.disabled = !button.disabled;
+    commentbtn.disabled = !commentbtn.disabled;
 });
 
-// button.addEventListener('click', function(event) {
-//     alert('Enabled!');
-// });
