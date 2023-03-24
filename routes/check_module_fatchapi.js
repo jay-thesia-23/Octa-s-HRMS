@@ -31,7 +31,7 @@ connection.connect(function (err, data) {
 });
     var query_date
 app.get('/abc', function(req,res){
-
+    
     var login_token = req.cookies.login_token
 
     jwt.verify(login_token, "sanjay", function (err, decoded) {
