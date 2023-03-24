@@ -163,6 +163,35 @@ app.post(
       // console.log(decoded);
       login_user__id = decoded.id[0].id;
       console.log(login_user__id);
+
+      // 
+      var leave_cl = "CL";
+      var leave_pl = "PL";
+      var leave_hl = "HL";
+      for(var i=0; i<5; i++)
+      {
+      con.query("insert into leave_balance_23(reg_id, leave_category) values('"+login_user__id+"', '"+leave_cl+"')",function(err,data){
+      if(err) throw err;
+      console.log('Data inserted successfully');
+      })
+
+      con.query("insert into leave_balance_23(reg_id, leave_category) values('"+login_user__id+"', '"+leave_pl+"')",function(err,data){
+      if(err) throw err;
+      console.log('Data inserted successfully');
+
+      })
+
+      }
+      for(var i=0; i<4; i++)
+      {
+      con.query("insert into leave_balance_23(reg_id, leave_category) values('"+login_user__id+"', '"+leave_hl+"')",function(err,data){
+      if(err) throw err;
+      console.log('Data inserted successfully');
+      })
+      }
+
+
+
     });
     console.log(login_user__id);
 

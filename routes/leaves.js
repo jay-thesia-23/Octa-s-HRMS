@@ -36,9 +36,14 @@ app.get("/leaves", (req, res) => {
   if (isNaN(offset)) {
     offset = 0;
   }
+  var login_token = req.cookies.login_token;
 
-  connection.query(
-    `select *from request_leave_table limit ${offset},${limit}`,
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
+    // console.log(decoded);
+    id = decoded.id[0].id;
+    console.log(id);
+     connection.query(
+    `select *from request_leave_table where reg_id = "${id}" `,
     (error, result) => {
       if (error) {
         throw error;
@@ -48,7 +53,7 @@ app.get("/leaves", (req, res) => {
       console.log("record displayed successfully");
     }
   );
-
+  });
   //res.render('leaves');
 });
 
@@ -68,22 +73,22 @@ app.post("/leaves", (req, res) => {
   console.log(reason);
 
   //date
-  var today = new Date();
-var dd = today.getDate();
+    var today = new Date();
+    var dd = today.getDate();
 
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-if(dd<10) 
-{
-    dd='0'+dd;
-} 
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) 
+    {
+        dd='0'+dd;
+    } 
 
-if(mm<10) 
-{
-    mm='0'+mm;
-} 
-today = yyyy+'-'+mm+'-'+dd;
-console.log(today);
+    if(mm<10) 
+    {
+        mm='0'+mm;
+    } 
+    today = yyyy+'-'+mm+'-'+dd;
+    console.log(today);
 
    console.log(JSON.stringify(decoded.id) + "decodeeeee");
    console.log(decoded.id);
@@ -91,7 +96,7 @@ console.log(today);
    var id = decoded.id[0].id;
    console.log(id+"iddd");
 
-    var sql = `INSERT INTO request_leave_table(employee_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
+    var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
 
     connection.query(sql, function (err, result) {
       if (err) throw err;

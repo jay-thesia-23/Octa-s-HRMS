@@ -35,11 +35,12 @@ app.get("/comment", (req, res) => {
 
 
 app.post("/comment", (req, res) => {
+  console.log("in comment");
   
- 
+  var login_token = req.cookies.login_token;
+  console.log(login_token + "tokennnnnnnnnnnnnnnn");
 
-  
-  jwt.verify(token, 'sanjay', function (err, decoded) {
+  jwt.verify(login_token, 'sanjay', function (err, decoded) {
 
    console.log(req.body);
    
@@ -52,7 +53,7 @@ app.post("/comment", (req, res) => {
    var id = decoded.id[0].id;
    console.log(id+"iddd");
 
-    var sql = `INSERT INTO comment_table(employee_id,comment) VALUES ("${id} ","${comment}")`;
+    var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ("${id} ","${comment}")`;
 
     connection.query(sql, function (err, result) {
       if (err) throw err
