@@ -30,7 +30,7 @@ connection.connect(function (err, data) {
     }
 
 });
-var login_user__id
+
 
 const d = new Date();
 var x = d.getMonth() + 1;
@@ -72,7 +72,7 @@ app.get('/hotline', async (req, res) => {
 
 app.get('/hotline/online', async (req, res) => {
 
-    
+
     console.log("sanjay online");
     var alldetails = await alldata(`select firstname,email,phone_number,designation,department from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}'  ;`)
 
@@ -86,6 +86,7 @@ app.get('/hotline/offline', async (req, res) => {
     console.log(alldetails_off);
     res.render('hotline_offline.ejs', { alldetails_off, total_online, total_offline });
 });
+
 
 
 module.exports = app

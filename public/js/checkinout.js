@@ -19,6 +19,10 @@ function demo() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+    if(m<10){
+        
+        m = "0" + m 
+    }
     console.log(s,m);
 
     s = s % 12;
@@ -53,6 +57,10 @@ function chk_out() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+    if(m<10){
+
+        m = "0" + m 
+    }
 
     s = s % 12;
     s = s ? s : 12;
@@ -81,6 +89,10 @@ function breck() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+    if(m<10){
+
+        m = "0" + m 
+    }
 
     s = s % 12;
     s = s ? s : 12;
@@ -107,6 +119,10 @@ function brc_out() {
     const d = new Date();
     var s = d.getHours();
     var m = d.getMinutes();
+    if(m<10){
+
+        m = "0" + m 
+    }
 
     s = s % 12;
     s = s ? s : 12;
