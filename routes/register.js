@@ -91,7 +91,7 @@ app.post("/register", async (req, res) => {
   const mailConfigurations = {
     from: "hrms1650@gmail.com",
 
-    to: "sanjayparmar1650@gmail.com",
+    to: "sandhyakanaujiaespark60@gmail.com",
 
     subject: "Email Verification",
 

@@ -102,12 +102,6 @@
                 <p>Show all entries</p>
             </div>
             <div>
-                <% if (pagearray!==1) { %>
-                    <a id="pageno" href="/attendance?pid=<%= pid-1 %>">Previous</a>
-
-                 <% } %> 
-
-
                 <% for(let i=0; i<pagearray; i++) { %>
                     <% if (i==(pid-1)) { %>
                        <a id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
@@ -117,10 +111,7 @@
                         <% } %> 
 
 
-                <% if (pid!==pagearray.length) { %>
-                    <a id="pageno" href="/attendance?pid=<%= pid+1 %>">Next</a>
-            
-                <% } %> 
+                
                 <!-- <a href="#">First</a>
                 <a href="#">Previous</a>
                 <a href="#" id="pageno">1</a>
