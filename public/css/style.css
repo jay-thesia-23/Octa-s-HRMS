@@ -183,6 +183,10 @@ body.dark .sidebar header .toggle {
   transition: var(--tran-05);
 }
 
+.commentInput{
+  display: inline;
+}
+
 .sidebar li.search-box input {
   height: 100%;
   width: 100%;
@@ -619,8 +623,12 @@ body {
   position: absolute;
   left: 50%;
 }
+
+
+
 .clr_blue{
   color: blue;
+  background-color: #e0dada;
 }
 
 /* online crd_css------------------------------------------------------------------------- */

@@ -1,52 +1,55 @@
-<section class="attendance-section background">
-    <div class="part1">
-        <div class="row">
-            <div class="card">
-                <div class="card-in" id="card1">
-                    <div class="at-content">
-                        <p>Days</p>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-in" id="card2">
-                    <div class="at-content">
-                        <p>Late</p>
-                        <p>Lorem ipsum </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-in" id="card3">
-                    <div class="at-content">
-                        <p>Absent</p>
-                        <p>Lorem ipsum </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-in" id="card4">
-                    <div class="at-content">
-                        <p>Half Days</p>
-                        <p>Lorem ipsum </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-in" id="card5">
-                    <div class="at-content">
-                        <p>Total office</p>
-                        <p>Lorem ipsum </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="part3">
-        <table class="tab">
-            <thead>
+
+
+    <section class="home">
+        <div class="ag-format-container">
+
+            <div class="online_card mb_50">
+
+                <div class="attendence_crd mrg_10 box_shadow_2">
+                    <div class="attendence_crd_stl" id="Attendancecrd1">
+                        
+                          <div>
+                            <div class="online_txt">Attendance</div>
+                            <div class="online_count">145</div>
+                          </div>
+                    </div>
+                </div>
+        
+                <div class="attendence_crd mrg_10 box_shadow_2">
+                    <div class="attendence_crd_stl" id="Attendancecrd2">
+                        
+                          <div>
+                            <div class="online_txt">Late Days</div>
+                            <div class="online_count">145</div>
+                          </div>
+                    </div>
+                </div>
+        
+                <div class="attendence_crd mrg_10 box_shadow_2">
+                    <div class="attendence_crd_stl" id="Attendancecrd3">
+                        
+                          <div>
+                            <div class="online_txt">Absent</div>
+                            <div class="online_count">145</div>
+                          </div>
+                    </div>
+                </div>
+        
+                <div class="attendence_crd mrg_10 box_shadow_2">
+                    <div class="attendence_crd_stl" id="Attendancecrd4">
+                        
+                          <div>
+                            <div class="online_txt">Half Days</div>
+                            <div class="online_count">145</div>
+                          </div>
+                    </div>
+                </div>
+              </div>
+        
+              <div>
+                <table>
+                  <thead>
                 <tr>
                     <th>Date</th>
                     <th>Entry time</th>
@@ -59,7 +62,7 @@
             <tbody>
 
                 <% for(let i=0; i<startdate.length; i++) {%>
-                    <tr>
+                    <tr class="clr_blue">
                         <td>
                             <%=startdate[i]%>
                         </td>
@@ -83,26 +86,47 @@
 
                     <% } %>
             </tbody>
-        </table>
-    </div>
-    <div class="part4">
-        <div class="row-page">
-            <div class="m_t_b">
-                <p>Show all entries</p>
+
+              
+                </table>
+              </div>
+
+              <div class="part4">
+                <div class="row-page">
+                    <div class="m_t_b">
+                        <p>Show all entries</p>
+                    </div>
+                    <div>
+        
+        
+                        <% for(let i=0; i<pagearray; i++) { %>
+                            <% if (i==(pid-1)) { %>
+                               <a id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
+                                <%} else { %>
+                                <a  id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
+                                <% } %>  
+                                <% } %> 
+                    </div>
+        
+                </div>
             </div>
-            <div>
-
-
-                <% for(let i=0; i<pagearray; i++) { %>
-                    <% if (i==(pid-1)) { %>
-                       <a id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
-                        <%} else { %>
-                        <a  id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
-                        <% } %>  
-                        <% } %> 
-            </div>
-
         </div>
-    </div>
+        
+        
+    </section>
+    <script>
 
-</section>
+        var mode_switch = document.getElementById('mode_btn')
+        var Attendancecrd1 = document.getElementById('Attendancecrd1')
+        var Attendancecrd2 = document.getElementById('Attendancecrd2')
+        var Attendancecrd3 = document.getElementById('Attendancecrd3')
+        var Attendancecrd4 = document.getElementById('Attendancecrd4')
+  
+        
+        mode_switch.addEventListener('click',function(){
+          Attendancecrd1.classList.toggle('dark_mode')
+          Attendancecrd2.classList.toggle('dark_mode')
+          Attendancecrd3.classList.toggle('dark_mode')
+          Attendancecrd4.classList.toggle('dark_mode')
+        })
+    </script>
