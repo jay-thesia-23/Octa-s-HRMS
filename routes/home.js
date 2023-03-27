@@ -45,7 +45,7 @@ app.get('/home', (req, res) => {
   console.log(x);
 
   con.query(`select firstname,lastname,birth_date,time_stamp from employee_basic_infomation where birth_date = '${x}'; `, function (error, result) {
-    if (error) throw error;
+    if (error) throw error;0
     console.log(result);
     res.render('home.ejs', { result })
   })
