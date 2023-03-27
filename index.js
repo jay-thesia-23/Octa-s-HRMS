@@ -9,7 +9,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
-// app.set("views",path.join(__dirname,"src/views"))
+app.set("views",path.join(__dirname,"src/views"))
 
 var conn = require("./src/config/dbConnect");
 
@@ -57,6 +57,10 @@ app.use(editprofile);
 
 var fatchapi = require("./src/routes/check_module_fatchapi");
 app.use(fatchapi);
+
+app.use((req, res, next) => {
+  res.render("page404",{layout:false})
+})
 
 app.listen(5000, () => {
   console.log("app listening on 5000 port");

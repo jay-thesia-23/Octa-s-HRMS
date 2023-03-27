@@ -16,8 +16,8 @@ var router=express.Router()
 var conn=require('../config/dbConnect')
 var {hotlineGet}=require("../controller/hotline")
 var router=express.Router()
+var {authentication}=require("../middleware/authMiddleware")
 
-
-app.get('/hotline',hotlineGet);
+app.get('/hotline',authentication,hotlineGet);
 
 module.exports = app

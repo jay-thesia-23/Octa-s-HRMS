@@ -38,7 +38,7 @@ var wizardGet = (req, res) => {
     conn.query(`select * from state_master; `, function (error, data3) {
       if (error) throw error;
       
-      res.render("wizard", { data3, data2 });
+      res.render("wizard", { data3, data2,layout:false });
     });
   });
 };
@@ -210,5 +210,5 @@ module.exports = {
   Inemail,
   courceGet,
   testApiGet,
-  upload,
+  upload
 };

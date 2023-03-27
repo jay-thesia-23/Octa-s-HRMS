@@ -9,8 +9,8 @@ app.set("views",path.join(__dirname,"../views"))
 var router=express.Router()
 var {homeGet}=require("../controller/home")
 
+var {authentication}=require("../middleware/authMiddleware")
 
-
-app.get('/home', homeGet)
+app.get('/home',authentication, homeGet)
 
 module.exports = app

@@ -25,7 +25,7 @@ var path = require("path");
 var conn = require("../config/dbConnect");
 
 var loginGet = (req, res) => {
-  res.render("login.ejs", {});
+  res.render("login.ejs", {layout:false});
 };
 
 async function Inemail(email) {

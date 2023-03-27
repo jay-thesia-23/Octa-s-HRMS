@@ -30,20 +30,47 @@ const {
 } = require("../controller/wizard");
 
 const expressLayouts = require("express-ejs-layouts");
+const { authentication } = require("../middleware/authMiddleware");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); 
 
 var router = express.Router();
 
-app.get("/wizard", wizardGet);
+app.get("/wizard",authentication, wizardGet);
 
-app.get("/test-api", testApiGet);
+app.get("/test-api",authentication, testApiGet);
 
-app.get("/cource", courceGet);
+app.get("/cource",authentication, courceGet);
 
+var middlewareArr={
+  uploadsMulter:(req,res,next)=>{
+    upload.fields([
+      { name: "profilePic", maxCount: 1 },
+      {
+        name: "adhar",
+        maxCount: 1,
+      },
+      {
+        name: "resume",
+        maxCount: 1,
+      },
+      {
+        name: "cheque",
+        maxCount: 1,
+      },
+      {
+        name: "others",
+        maxCount: 1,
+      },
+    ])
+
+    next();
+  },
+  
+}
 app.post(
   "/wizard",
-  upload.fields([
+  [upload.fields([
     { name: "profilePic", maxCount: 1 },
     {
       name: "adhar",
@@ -61,7 +88,7 @@ app.post(
       name: "others",
       maxCount: 1,
     },
-  ]),
+  ]),authentication],
   wizardPost
 );
 

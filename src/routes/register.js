@@ -13,14 +13,19 @@ var cookieParser = require("cookie-parser");
 
 var jwt = require("jsonwebtoken");
 
-var path=require("path")
-var {registerGet, Inemail, cloneEmailPost,registerPost,verifyGet}=require("../controller/register")
-var router=express.Router()
+var path = require("path");
+var {
+  registerGet,
+  Inemail,
+  cloneEmailPost,
+  registerPost,
+  verifyGet,
+} = require("../controller/register");
+var router = express.Router();
 app.use(cookieParser());
 
-
-app.set("views",path.join(__dirname,"../views"))
-
+app.set("views", path.join(__dirname, "../views"));
+var { authentication } = require("../middleware/authMiddleware");
 // app.use(
 //   session({
 //     secret: "your-secret-key",
@@ -31,7 +36,6 @@ app.set("views",path.join(__dirname,"../views"))
 //     },
 //   })
 // );
-
 
 app.get("/register", registerGet);
 

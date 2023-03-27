@@ -17,7 +17,8 @@ var router=express.Router()
 
 var cookieParser = require("cookie-parser");
 
-
+var path=require("path")
+app.set("views",path.join(__dirname,"../views"))
 
 app.use(cookieParser());
 

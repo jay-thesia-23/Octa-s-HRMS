@@ -16,10 +16,11 @@ var {
   breakInGet,
 } = require("../controller/check_module_fatchapi");
 
-app.get("/abc", abcGet);
+var {authentication}=require("../middleware/authMiddleware")
+app.get("/abc",authentication, abcGet);
 
-app.get("/brc_in", checkoutGet);
+app.get("/brc_in",authentication, checkoutGet);
 
-app.get("/chk_out", breakInGet);
+app.get("/chk_out",authentication, breakInGet);
 
 module.exports = app;

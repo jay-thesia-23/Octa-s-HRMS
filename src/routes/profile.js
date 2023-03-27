@@ -21,8 +21,9 @@ app.set("views", path.join(__dirname, "../views"));
 
 var { profileGet, profilePost } = require("../controller/profile");
 
-app.get("/profile", profileGet);
+var {authentication}=require("../middleware/authMiddleware")
+app.get("/profile",authentication, profileGet);
 
-app.post("/profile", profilePost);
+app.post("/profile",authentication, profilePost);
 
 module.exports = app;
