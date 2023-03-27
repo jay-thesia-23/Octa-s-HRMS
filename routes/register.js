@@ -19,6 +19,7 @@ app.use("/public", express.static("public"));
 
 app.use(
   session({
+    name:"session_id",
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
@@ -77,6 +78,7 @@ app.post("/register", async (req, res) => {
   const password = req.body.password;
 
   req.session.s_email = email;
+  console.log(req.session.save);
   console.log(req.session,"s_email in register");
 
   let encrypt_password;
