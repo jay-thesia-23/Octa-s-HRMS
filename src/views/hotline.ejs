@@ -45,10 +45,8 @@
           
            <% for(let i=0; i<alldetails.length; i++) {%>
 
-
-         
-
             
+
             <div class="ag-courses_item box_shadow_2">
               <a href="#" class="ag-courses-item_link" id="card<%=i%>">
                 <div class="ag-courses-item_bg"></div>
@@ -120,27 +118,47 @@
     </section>
 
     <script>
+let alldetails='<%-alldetails.length%>'
+
         var mode_switch = document.getElementById('mode_btn')
-      var card1 = document.getElementById('card1')
-      var card2 = document.getElementById('card2')
-      var card3 = document.getElementById('card3')
-      var card4 = document.getElementById('card4')
-      var card5 = document.getElementById('card5')
-      var card6 = document.getElementById('card6')
+        console.log(mode_switch);
+
+        for(let i=0;i<alldetails;i++){
+
+          var cardName="card"+i
+          
+           cardName = document.getElementById('card'+`${i}`)
+      
+
+        }
+    
+    
       var onlinecrd1 = document.getElementById('onlinecrd1')
       var onlinecrd2 = document.getElementById('onlinecrd2')
 
       mode_switch.addEventListener('click',function(){
 
-        for(let i=0;i<alldetails.length;i++){
-            
+        var cardIdArr=[]
+
+        
+        console.log(alldetails,"alldetains");
+        for(let j=0;j<alldetails;j++){
+          const cardId=("card"+j)
+
+          cardIdArr.push(cardId)
+  
         }
-        card1.classList.toggle('dark_mode')
-        card2.classList.toggle('dark_mode')
-        card3.classList.toggle('dark_mode')
-        card4.classList.toggle('dark_mode')
-        card5.classList.toggle('dark_mode')
-        card6.classList.toggle('dark_mode')
+
+        console.log(cardIdArr,"card id first");
+
+        for(let j=0;j<alldetails;j++){
+          var a =document.getElementById(`card${j}`);
+          
+          a.classList.toggle('dark_mode')
+         
+        }
+       
+    
         onlinecrd1.classList.toggle('dark_mode')
         onlinecrd2.classList.toggle('dark_mode')
 
