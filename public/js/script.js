@@ -7,6 +7,9 @@ const progressSteps = document.querySelectorAll(".progress-step");
 var isvalidate =true;
 let formStepsNum = 0;
 
+
+fetch("/cityCourse")
+
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister1 =registerPage1()
@@ -237,14 +240,14 @@ function registerPage1() {
       document.getElementById('fname-error').innerHTML="";
   }
   
-  // if(lname == null || lname == "")
-  // {
-  //     document.getElementById('lname-error').innerHTML="Please enter lname";
-  //     isvalidate = false;
-  // }
-  // else{
-  //     document.getElementById('lname-error').innerHTML="";
-  // }
+  if(lname == null || lname == "")
+  {
+      document.getElementById('lname-error').innerHTML="Please enter lname";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('lname-error').innerHTML="";
+  }
 
 
   if(dob == null || dob == "")
