@@ -40,7 +40,7 @@ body {
 }
 
 body.dark {
-  --body-color: #18191a;
+  --body-color: #2d2d2d;
   --sidebar-color: #242526;
   --primary-color: #141111;
   --primary-color-light: #3a3b3c;
@@ -302,7 +302,7 @@ body.dark .switch::before {
 }
 
 .home {
-  height: auto;
+  height: 100%;
   position: absolute;
   top: 0;
   top: 0;
@@ -907,7 +907,7 @@ cmt_btn:active {
 
 .btn_4-hover {
   height: 50px;
-  width: 130px;
+  width: 140px;
   font-size: 18px;
   font-weight: 600;
   color: aliceblue;

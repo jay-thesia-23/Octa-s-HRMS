@@ -55,7 +55,7 @@ const hotlineGet = async (req, res) => {
 const hotlineOnlineGet = async (req, res) => {
   console.log("sanjay online");
   var alldetails = await alldata(
-    `select firstname,email,phone_number,designation,department from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `
+    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
 
   console.log(alldetails);
@@ -64,12 +64,12 @@ const hotlineOnlineGet = async (req, res) => {
 
 const hotlineOfflineGet = async (req, res) => {
   console.log("sanjay offline");
-  var alldetails_off = await alldata(
-    `select firstname,email,phone_number,designation,department from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='0' and check_master.status='check_in' and check_master.date = '${fulldate}' ;`
+  var alldetails = await alldata(
+    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='0' and check_master.status='check_in' and check_master.date = '${fulldate}' ;`
   );
-  console.log(alldetails_off);
+  console.log(alldetails);
   res.render("hotline_offline.ejs", {
-    alldetails_off,
+    alldetails,
     total_online,
     total_offline,
 
