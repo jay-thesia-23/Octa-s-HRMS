@@ -105,4 +105,77 @@ app.post("/leaves", (req, res) => {
   res.redirect("/leaves");
 });
 
+
+app.get('/searching', function (req, res) {
+  var text = req.query.search || 1;
+  var data;
+//
+var data = [];
+var count;
+var curr_page;
+page = req.query.num || 1;
+curr_page = parseInt(req.query.num);
+limit = 25;
+offset = (page - 1) * limit;
+if (isNaN(offset)) {
+  offset = 0;
+}
+connection.query('select count(*) as numrows  from request_leave_table', (error, data) => {
+  if (error) throw error;
+  data[0] = data[0].numrows;
+  count = Math.ceil(data[0] / limit);
+  
+  console.log(count);
+
+});
+
+var category = "";
+var leavedate = "";
+      
+//       var leavedate = "";
+// //
+//   if (text == 1 || "") {
+//       connection.query(`select * from request_leave_table `, function (err, data) {
+//           if (err) throw err;
+//           data = data;
+//           res.render('leaves', { data :data });
+//       });
+//   }
+//   else {
+
+//       var category = "";
+      
+//       var leavedate = "";
+
+//       for(var i=0; i<text.length; i++)
+//       {
+//           if(text.charAt(i) == '')
+//           {
+//               for(var j=i+1; j<=text.length; j++)
+//               {
+                 
+//                       var category = category + text.charAt(j);
+                
+//               }
+//           }
+        
+//           else if(text.charAt(i) == '')
+//           {
+//               for(var j=i+1; j<=text.length; j++)
+//               {
+                  
+//                       var leavedate = leavedate + text.charAt(j);
+              
+//               }
+//           }
+//       }
+
+      connection.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
+          if (err) throw err;
+          data = data;
+          res.render('leaves', { data :data});
+      });
+  
+});
+
 module.exports = app;

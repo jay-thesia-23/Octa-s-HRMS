@@ -1,12 +1,14 @@
     <section class="site-wrap background">
         <div class="main-body">
-
+           
             <div class="leave-class">
                 <div class="container-1">
                     <div class="row">
                         <div class="col">
                             <div class="card">
-                                <input type="search" placeholder="search" class="search1">
+                                <form action="/searching" method="get">
+                                <input type="search" name="search" placeholder="search" class="search1">
+                                </form>
                             </div>
                         </div>
                         <!-- <div class="col">
@@ -179,16 +181,17 @@
 
                         <div class="col-8">
                             <div class="c1">
-                                <input type="button" class="cancel" value="cancel">
+                                <input type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancel" value="cancel">
                                 <input type="submit" class="apply" value="Apply">
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
+
+    
     </div>
 
 <script>
@@ -198,4 +201,20 @@
             modal.style.display = "none";
         }
     }
+
+  
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+            "body").style.visibility = "hidden";
+            document.querySelector(
+            "#loader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+            "#loader").style.display = "none";
+            document.querySelector(
+            "body").style.visibility = "visible";
+        }
+    };
+
 </script>
