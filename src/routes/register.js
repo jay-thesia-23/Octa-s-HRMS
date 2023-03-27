@@ -1,48 +1,48 @@
 var express = require("express");
 const session = require("express-session");
+var app = express();
+app.use(express.json());
 const bcrypt = require("bcrypt");
+app.use(express.static("css"));
+app.use(express.static("images"));
 var bodyparser = require("body-parser");
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
 var mysql = require("mysql2");
-var path = require("path");
 var cookieParser = require("cookie-parser");
+
 var jwt = require("jsonwebtoken");
+
+var path = require("path");
 var {
   registerGet,
   Inemail,
   cloneEmailPost,
   registerPost,
   verifyGet,
-} = require("../controllers/register");
-
-const nodemailer = require("nodemailer");
-var app = express();
-app.use(express.static("css"));
-app.use(express.static("images"));
-app.use(express.json());
+} = require("../controller/register");
+var router = express.Router();
 app.use(cookieParser());
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
 
 app.set("views", path.join(__dirname, "../views"));
-app.use("/public", express.static("public"));
+var { authentication } = require("../middleware/authMiddleware");
+// app.use(
+//   session({
+//     secret: "your-secret-key",
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 
-var router = express.Router();
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
-});
-con.connect((err) => {
-  if (err) throw err;
-});
+app.get("/register", registerGet);
 
-router.get("/register", registerGet);
+app.post("/clone-email", cloneEmailPost);
 
-router.post("/clone-email", cloneEmailPost);
+app.post("/register", registerPost);
 
-router.post("/register", registerPost);
+app.get("/verify", verifyGet);
 
-router.get("/verify", registerPost);
-
-module.exports = router;
+module.exports = app;

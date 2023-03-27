@@ -1,15 +1,13 @@
-
-
 <section class="hotline-section background">
     <div class="part1">
         <div class="row">
             <div class="card" onclick="online()">
-                <div class="in_card" id="card1">
+                <div class="in_card" id="card1" >
                     <div class="logo1">
                         <img src="/images/online.png" alt="">
                     </div>
-                    <p>Online</p>
-                    <p><%=total_online%></p>
+                    <p>online</p>
+                    <p><%= total_online %> </p>
                 </div>
             </div>
             <div class="card">
@@ -26,17 +24,18 @@
                     <div class="logo2">
                         <img src="/images/wfh.png" alt="">
                     </div>
-                    <p>WFH</p>
+                    <p>Work From Home</p>
                     <p>22</p>
                 </div>
             </div>
             <div class="card" onclick="offline()">
                 <div class="in_card" id="card4">
-                    <div class="logo2">
+                    <div class="logo2"  >
                         <img src="/images/offline.png" alt="">
                     </div>
-                    <p>Offline</p>
-                    <p><%=total_offline%></p>
+                    <p>offline</p>
+                    <p><%= total_offline %></p>
+                    
                 </div>
             </div>
             <div class="card">
@@ -53,14 +52,13 @@
     <div class="part2">
         <div class="select">
             <input type="text" name="search">
-            <!-- <input type="submit" name="searchbtn" value="Search" class="btnsearch"> -->
-            <a href="#" class="btnser">Search</a>
+            <input type="submit" name="searchbtn" value="Search" class="btnsearch">
         </div>
     </div>
     <div class=" part3">
         <div class="row-ht">
             
-
+          
             <% for(let i=0; i<alldetails.length; i++) {%>
                 <div class="col-ht">
                     <div class="col-ht-in">
@@ -85,7 +83,7 @@
                                 <div class="prof1">
                                     <p class="hd">Date Hired</p>
                                     <p>
-                                        <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %>
+                                        <%= alldetails[i].time_stamp %>
                                     </p>
                                 </div>
                             </div>
@@ -119,6 +117,8 @@
 
                 </div>
                 <% } %>
+            
+              
             </div>
     </div>
 

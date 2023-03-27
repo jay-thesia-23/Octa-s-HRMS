@@ -1,22 +1,30 @@
 var express = require("express");
 var bodyparser = require("body-parser");
-var mysql2 = require("mysql2");
-var ejs=require("ejs")
-var path=require("path")
 
 var app = express();
 
 app.use(express.json());
-app.set("views",path.join(__dirname,"views"))
+const session = require("express-session");
 app.set("view engine", "ejs");
-
-app.use(express.static("public"));
-
-
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.urlencoded({ extended: false }));
+var path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+app.set("views",path.join(__dirname,"src/views"))
 
+var conn = require("./src/config/dbConnect");
 
+app.use(
+  session({
+    name: "session_id",
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 
 const register = require("./src/routes/register");
 app.use(register);
@@ -24,11 +32,11 @@ app.use(register);
 const login = require("./src/routes/login");
 app.use(login);
 
-const demo = require("./src/routes/checkInOut");
-app.use(demo);
+const checkInOut = require("./src/routes/checkInOut");
+app.use(checkInOut);
 
-const routes1 = require("./src/routes/home");
-app.use(routes1);
+const home = require("./src/routes/home");
+app.use(home);
 
 const profile = require("./src/routes/profile");
 app.use(profile);
@@ -39,8 +47,8 @@ app.use(routes2);
 const routes3 = require("./src/routes/hotline");
 app.use(routes3);
 
-var wizad = require("./src/routes/wizard");
-app.use(wizad);
+var wizard = require("./src/routes/wizard");
+app.use(wizard);
 
 const leaves = require("./src/routes/leaves");
 app.use(leaves);
@@ -51,20 +59,9 @@ app.use(editprofile);
 var fatchapi = require("./src/routes/check_module_fatchapi");
 app.use(fatchapi);
 
-var header = require("./src/routes/header");
-app.use(header);
-
-var connection = mysql2.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "hrms",
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("connected with database");
-});
+app.use((req, res, next) => {
+  res.render("page404",{layout:false})
+})
 
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
