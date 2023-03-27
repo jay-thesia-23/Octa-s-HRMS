@@ -20,6 +20,7 @@ con.connect((err) => {
 });
 
 var alldata = util.promisify(con.query.bind(con));
+
 const d = new Date();
 var x = d.getMonth() + 1;
 var y = d.getDate();
@@ -58,7 +59,7 @@ app.get('/employee_activity', async (req, res) => {
   
    var employee_breck = await alldata(`select firstname,lastname,status,date,time from employee_basic_infomation inner join breck_master on employee_basic_infomation.reg_id=breck_master.reg_id where  breck_master.date = '${fulldate}';`)
    var employee_activity = employee_check.concat(employee_breck) 
-  
+ 
    res.json(employee_activity);
   
   });
@@ -67,15 +68,13 @@ app.get('/search', async (req, res) => {
 var search = req.query.name
 var f_name = ""
 var l_name = ""
-var last_name = ""
 name_array = search.split(" ");
 f_name = name_array[0]
 
 f_name = f_name.substring(1)
 
-last_name = name_array[1]
 
-var l_name=last_name.replace("'", "");
+var l_name=name_array[1]
 
 
  var search_check = await alldata(`select firstname,lastname,status,date,time from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where  check_master.date = '${fulldate}' AND employee_basic_infomation.firstname like '%${f_name}%' AND employee_basic_infomation.lastname like '%${l_name}%' ;`)
