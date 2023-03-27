@@ -1,3 +1,4 @@
+
 <section class="attendance-section background">
     <div class="part1">
         <div class="row">
@@ -43,16 +44,6 @@
             </div>
         </div>
     </div>
-    <div class="part2">
-        <div class="select-dropdown">
-            <select>
-                <option value="Custom">Today</option>
-                <option value="Custom">Yesterday</option>
-                <option value="Custom">Custom</option>
-
-            </select>
-        </div>
-    </div>
 
     <div class="part3">
         <table class="tab">
@@ -73,35 +64,30 @@
                         <td>
                             <%=startdate[i]%>
                         </td>
-
                         <td>
                             <%=starttime[i]%>
                         </td>
-
                         <td>
                             <%=exittime[i]%>
                         </td>
-
                         <td>1:00</td>
-
                         <td>
                             <progress value="<%=progress[i]%>" max="100"> </progress>
                         </td>
                         <td></td>
-
                     </tr>
-
                     <% } %>
             </tbody>
         </table>
     </div>
-
     <div class="part4">
         <div class="row-page">
             <div class="m_t_b">
                 <p>Show all entries</p>
             </div>
             <div>
+
+
                 <% for(let i=0; i<pagearray; i++) { %>
                     <% if (i==(pid-1)) { %>
                        <a id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
@@ -109,16 +95,9 @@
                         <a  id="pageno" href="/attendance?pid=<%= (i+1) %>"><%= (i+1) %></a>
                         <% } %>  
                         <% } %> 
-
-
-                
-                <!-- <a href="#">First</a>
-                <a href="#">Previous</a>
-                <a href="#" id="pageno">1</a>
-                <a href="#">Next</a>
-                <a href="#">Last</a> -->
             </div>
 
         </div>
     </div>
-    
+
+</section>
