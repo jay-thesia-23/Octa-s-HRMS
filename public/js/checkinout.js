@@ -122,6 +122,10 @@ function breck() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+
+    m = "0" + m 
+}
 
   s = s % 12;
   s = s ? s : 12;
@@ -131,7 +135,7 @@ function breck() {
 
   var div = document.createElement("div");
   div.setAttribute("class", "breckInColor");
-  div.innerHTML = "breck In " + timeIn12HourFormat;
+  div.innerHTML = "break In " + timeIn12HourFormat;
 
   check.append(div);
 }

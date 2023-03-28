@@ -43,11 +43,12 @@ const hotlineGet = async (req, res) => {
   });
 
   var alldetails = await alldata(
-    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1';`
+    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
   );
 
   console.log(alldetails);
   console.log(alldetails.length);
+  online_ofline();
 
   res.render("hotline.ejs", { total_online, total_offline,alldetails });
 };
@@ -59,6 +60,7 @@ const hotlineOnlineGet = async (req, res) => {
   );
 
   console.log(alldetails);
+  online_ofline();
   res.render("hotline_online.ejs", { alldetails, total_online, total_offline });
 };
 
@@ -68,6 +70,7 @@ const hotlineOfflineGet = async (req, res) => {
     `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='0' and check_master.status='check_in' and check_master.date = '${fulldate}' ;`
   );
   console.log(alldetails);
+  online_ofline();
   res.render("hotline_offline.ejs", {
     alldetails,
     total_online,

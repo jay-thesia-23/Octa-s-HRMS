@@ -14,7 +14,7 @@ var attendanceGet = async (req, res) => {
   // const id=req.query.id;
 
   let pid = parseInt(req.query.pid) || 1;
-  let limit = 5;
+  let limit = 2;
   let offset = (pid - 1) * limit;
 
   if (isNaN(offset)) {

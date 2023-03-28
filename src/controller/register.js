@@ -70,7 +70,8 @@ var registerPost = async function (req, res) {
 
   console.log(req.session);
   req.session.s_email = email;
-  console.log(req.session, "s_email in register");
+  console.log(req.session.save);
+  console.log(req.session,"s_email in register");
 
   let encrypt_password;
   encrypt_password = await bcrypt.hash(password, 10);

@@ -43,7 +43,10 @@ var wizardGet = (req, res) => {
   });
 };
 
-var cityCourse = (req, res) => {};
+
+var cityCourse=(req,res)=>{
+  
+}
 var testApiGet = function (req, res) {
   let state_1 = req.query.state_id || "";
 
@@ -177,7 +180,7 @@ const wizardPost = async (req, res) => {
         );
       } else {
         for (let j = 0; j < course_name.length; j++) {
-          con.query(
+          conn.query(
             `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name[j]}','${percentage[j]}','${board_university_name[j]}','${passout_year[j]}');`,
             function (error, data) {
               if (error) throw error;
@@ -207,5 +210,5 @@ module.exports = {
   Inemail,
   courceGet,
   testApiGet,
-  upload,
+  upload
 };

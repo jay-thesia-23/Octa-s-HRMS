@@ -24,10 +24,10 @@ var profileGet = (req, res) => {
     id = decoded.id[0].id;
   });
 
-  let sqlBasicInfo = `select * from employee_basic_infomation ;`;
-  let sqlEduInfo = `select * from education_table;`;
-  let sqlExperienceInfo = `select * from experience_table;`;
-  let sqlReferenceInfo = `select * from reference_master`;
+  let sqlBasicInfo = `select * from employee_basic_infomation where reg_id=${id} ;`;
+  let sqlEduInfo = `select * from education_table where reg_id=${id};`;
+  let sqlExperienceInfo = `select * from experience_table where reg_id=${id};`;
+  let sqlReferenceInfo = `select * from reference_master where reg_id=${id};`;
   let sqlProfilePic = `select * from document_master where reg_id=${id}; `;
 
   console.log(sqlProfilePic, "sql of pic");
