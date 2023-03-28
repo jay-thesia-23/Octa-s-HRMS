@@ -19,8 +19,8 @@ var {
 var {authentication}=require("../middleware/authMiddleware")
 app.get("/abc",authentication, abcGet);
 
-app.get("/brc_in",authentication, checkoutGet);
+app.get("/brc_in",authentication, breakInGet );
 
-app.get("/chk_out",authentication, breakInGet);
+app.get("/chk_out",authentication, checkoutGet);
 
 module.exports = app;

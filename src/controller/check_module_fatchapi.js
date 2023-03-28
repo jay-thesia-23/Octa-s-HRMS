@@ -38,6 +38,8 @@ var abcGet = function (req, res) {
         var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
+
+          console.log(result,"abc result");
           res.json(result);
         });
       } else {
@@ -71,6 +73,7 @@ var breakInGet = function (req, res) {
         var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
+          console.log(result,"result of the breack in out");
           res.json(result);
         });
       } else {

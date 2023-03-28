@@ -45,6 +45,7 @@ async function fatchbreckin() {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       var check = document.getElementById("time_box");
 
       for (var i = 0; i < data.length; i++) {
@@ -62,10 +63,13 @@ async function fatchbreckin() {
         var minutes = timecheckin.slice(3, 5);
         // console.log((hours),minutes);
 
+
+      
         // console.log("indivision!!!!");
         var div = document.createElement("div");
         if (i % 2 == 0) {
-          div.setAttribute("class", "yellow");
+          div.setAttribute("class", "breckInColor");
+          console.log("break 000000");
           div.innerHTML = "Breck In " + hours + ":" + minutes;
           check.append(div);
           document.getElementById("check_in").disabled = true;
@@ -73,7 +77,7 @@ async function fatchbreckin() {
           document.getElementById("breck_in").disabled = true;
           document.getElementById("breck_out").disabled = false;
         } else {
-          div.setAttribute("class", "saffron");
+          div.setAttribute("class", "breakOutColor");
           div.innerHTML = "Breck Out " + hours + ":" + minutes;
           check.append(div);
           document.getElementById("check_in").disabled = true;
@@ -111,7 +115,7 @@ async function fatchchkout() {
       // check_out.hidden = false;
 
       var div = document.createElement("div");
-      div.setAttribute("class", "red");
+      div.setAttribute("class", "checkOutColor");
       div.innerHTML = "Check Out " + hours + ":" + minutes;
       check.append(div);
       // check_out.innerHTML = "Thank You!!!!!";
