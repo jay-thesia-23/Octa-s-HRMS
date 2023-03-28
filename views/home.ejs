@@ -74,7 +74,7 @@
                                     </li>
                                     <li>
                                         <p class="h3">Current Date</p>
-                                        <p class="p"><%= date_time.toJSON('yyyy-mm-dd').slice(0,10) %></p>
+                                        <p class="p"></p>
                                     </li>
                                     <li>
                                         <p class="h3">Current Time</p>
@@ -129,14 +129,11 @@
                                 <div class="bday-body">
                                     <img class="b-day-img" src="bDay.jpg" alt="IMG" srcset="">
                                     <div class="bday-detail">
-                                        <% if(result.length == ""){%>
-                                            <h3> No Birth Day</h3>
-                                            <%}else{%>
-                                        <% for(var s = 0;s<result.length;s++){%>
-                                            <h3 class="h3"><%= result[s].firstname%>  <%= result[s].lastname%> </h3>
-                                            <p class="p"><%= result[s].birth_date%></p>
-                                       <% }%>
-                                            <% }%>
+                                       
+                                      
+                                            <h3 class="h3">heloo </h3>
+                                            <p class="p">22-03-23</p>
+                                    
                                       
                                         
                                     </div>
