@@ -58,21 +58,31 @@
     margin-top: 20px;
 }
 
-.select {
-    border-radius: .2em;
+.part2 .select {
+    /* border-radius: .2em;
     font-size: 20px;
     outline: none;
     cursor: pointer;
+    justify-content: flex-end; */
+    display: flex;
     justify-content: flex-end;
 }
-
-.select input {
+.part2 .select a{
+    border: 1px solid black;
     padding: 10px;
+    margin-left: 10px;
     border-radius: 10px;
     background-color: rgb(218, 218, 223);
 }
 
-.select input[type=text] {
+.part2 .select input {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(218, 218, 223);
+    width: 20%;
+}
+
+.part2 .select input[type=text] {
     width: 20%;
 }
 
@@ -125,6 +135,7 @@
     background-color: rgb(192, 249, 200);
     border-radius: 5px;
 }
+
 
 .r2 {
     text-align: center;

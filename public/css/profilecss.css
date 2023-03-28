@@ -36,7 +36,7 @@
 
 
 .tableCourse{
-    padding-bottom: 294px;
+    /* padding-bottom: 294px; */
 }
 .rowCols{
     display: flex;
@@ -59,7 +59,7 @@
   color: black;
 }
 .card-in img {
-  width: 257px;
+  width: 216px;
   height: 216px;
 }
 .card-in {
@@ -89,8 +89,9 @@
   justify-content: center;
 }
 
-.proftab table tr td {
+ tr td {
   padding: 5px;
+
 }
 .heading {
   display: grid;
