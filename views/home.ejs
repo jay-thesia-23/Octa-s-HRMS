@@ -1,4 +1,6 @@
-<div class="flexer background" onload="">
+<div class="flexer background" >
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
     <div class="data-body">
         <div class="body-rows">
             <div class="main-body">
@@ -178,6 +180,7 @@
         </div>
     </div>
 </div>
+</div>
 <script>
     var commentbtn = document.getElementById("commentBtn");
 var clickBtn = document.getElementsByClassName('click')[0];
@@ -199,5 +202,17 @@ clickBtn.addEventListener('click', function(event) {
     
 });
 
+
+//
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 500);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
 
 </script>
