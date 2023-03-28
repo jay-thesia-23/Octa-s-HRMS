@@ -208,21 +208,22 @@
 
                     <div class="record_atted_txt">Holidays</div>
                     <div>
+                        <% for(var s = 0;s<holidaydata.length;s++){%>
                         <div>
-                            <div class="birthday_emp_name">Makarsankranti</div>
+                            <div class="birthday_emp_name"><%= holidaydata[s].holiday_name %></div>
                         </div>
                         <div class="brd_btm_stl">
                             <div class="row">
                                 <div class="col">
-                                    <div class="birthday_dev">Saturday</div>
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_day %></div>
                                 </div>
                                 <div class="col">
-                                    <div class="birthday_dev">14/1/2023</div>
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_date %></div>
                                 </div>
                             </div>
                         </div>
 
-
+                        <% }%>
                     </div>
 
                 </div>
