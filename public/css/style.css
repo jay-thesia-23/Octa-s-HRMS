@@ -1122,3 +1122,22 @@ td:hover {
   overflow: hidden;
   position: relative;
 }
+.row-page{
+  text-align: center;
+}
+.m_t_b p{
+  padding-bottom: 20px;
+}
+.row-page a {
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(188, 186, 186);
+  padding: 10px;
+
+}
+
+#pageno {
+  background-color: rgb(43, 43, 94);
+}
