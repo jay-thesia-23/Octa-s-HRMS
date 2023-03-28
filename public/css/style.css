@@ -185,7 +185,7 @@ body.dark .sidebar header .toggle {
 }
 
 disabled {
-  opacity: 0.5;
+
 }
 
 .sidebar li.search-box input {
@@ -307,7 +307,7 @@ body.dark .switch::before {
 }
 
 .home {
-  height: 100%;
+ 
   position: absolute;
   min-height: 100vh;
   top: 0;
@@ -988,6 +988,7 @@ cmt_btn:active {
 button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
+  opacity: 0.5;
 }
 .check_in_time_btn {
   color: aquamarine;
