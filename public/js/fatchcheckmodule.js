@@ -21,7 +21,7 @@ async function fatchcheckmodule() {
       var minutes = timecheckin.slice(3, 5);
       // console.log((hours),minutes);
 
-      var check = document.getElementById("ThankYou");
+      var check = document.getElementById("time_box");
       // console.log("indivision!!!!");
 
       var div = document.createElement("div");
@@ -45,7 +45,7 @@ async function fatchbreckin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      var check = document.getElementById("ThankYou");
+      var check = document.getElementById("time_box");
 
       for (var i = 0; i < data.length; i++) {
         // console.log(data[i].time.slice(11,18))
@@ -106,15 +106,15 @@ async function fatchchkout() {
 
       var minutes = timecheckin.slice(3, 5);
 
-      var check = document.getElementById("ThankYou");
-      var check_out = document.getElementById("attendenceEntry");
-      check_out.hidden = false;
+      var check = document.getElementById("time_box");
+      // var check_out = document.getElementById("attendenceEntry");
+      // check_out.hidden = false;
 
       var div = document.createElement("div");
       div.setAttribute("class", "red");
       div.innerHTML = "Check Out " + hours + ":" + minutes;
       check.append(div);
-      check_out.innerHTML = "Thank You!!!!!";
+      // check_out.innerHTML = "Thank You!!!!!";
       document.getElementById("check_in").disabled = false;
       document.getElementById("check_out").disabled = true;
       document.getElementById("breck_in").disabled = true;

@@ -4,6 +4,8 @@ var breck_in = document.getElementById("breck_in");
 var breck_out = document.getElementById("breck_out");
 
 function demo() {
+
+    document.getElementById("attendanceRecord").hidden=false
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = false;
   document.getElementById("breck_in").disabled = false;
@@ -53,7 +55,7 @@ function chk_out() {
 
   check.append(div);
 
-  check_out.innerHTML = "Thank You!!!!!";
+//   check_out.innerHTML = "Thank You!!!!!";
 }
 
 function breck() {
