@@ -113,6 +113,8 @@ body.dark {
 .sidebar header .image-text {
   display: flex;
   align-items: center;
+  width: 40px;
+  margin-left: 20px;
 }
 
 .sidebar header .logo-text {
