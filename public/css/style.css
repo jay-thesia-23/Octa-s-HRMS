@@ -1,22 +1,19 @@
-
-
-
 /* Google Font Import - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
   /* ===== Colors ===== */
-  --body-color: #E4E9F7;
-  --sidebar-color: #FFF;
+  --body-color: #e4e9f7;
+  --sidebar-color: #fff;
   --primary-color: #315050;
-  --primary-color-light: #F6F5FF;
+  --primary-color-light: #f6f5ff;
   --toggle-color: #315050;
   --text-color: #707070;
 
@@ -183,8 +180,12 @@ body.dark .sidebar header .toggle {
   transition: var(--tran-05);
 }
 
-.commentInput{
+.commentInput {
   display: inline;
+}
+
+disabled {
+  opacity: 0.5;
 }
 
 .sidebar li.search-box input {
@@ -289,7 +290,7 @@ body.dark .mode .sun-moon i.moon {
 }
 
 .switch::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 15px;
   width: 15px;
@@ -308,6 +309,7 @@ body.dark .switch::before {
 .home {
   height: 100%;
   position: absolute;
+  min-height: 100vh;
   top: 0;
   top: 0;
   left: 250px;
@@ -323,7 +325,7 @@ body.dark .switch::before {
   padding: 12px 60px;
 }
 
-.sidebar.close~.home {
+.sidebar.close ~ .home {
   left: 78px;
   width: calc(100% - 78px);
 }
@@ -372,7 +374,7 @@ body.dark .home .text {
 .ag-courses-item_link:hover,
 .ag-courses-item_link:hover .ag-courses-item_date {
   text-decoration: none;
-  color: #FFF;
+  color: #fff;
 }
 
 .ag-courses-item_link:hover .ag-courses-item_bg {
@@ -389,7 +391,7 @@ body.dark .home .text {
 
   font-weight: bold;
   font-size: 30px;
-  color: #FFF;
+  color: #fff;
 
   z-index: 2;
   position: relative;
@@ -397,7 +399,7 @@ body.dark .home .text {
 
 .ag-courses-item_date-box {
   font-size: 18px;
-  color: #FFF;
+  color: #fff;
 
   z-index: 2;
   position: relative;
@@ -407,9 +409,9 @@ body.dark .home .text {
   font-weight: bold;
   color: #f9b234;
 
-  -webkit-transition: color .5s ease;
-  -o-transition: color .5s ease;
-  transition: color .5s ease
+  -webkit-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
 .ag-courses-item_bg {
@@ -424,9 +426,9 @@ body.dark .home .text {
 
   border-radius: 50%;
 
-  -webkit-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
@@ -449,8 +451,6 @@ body.dark .home .text {
   background-color: #4c49ea;
 }
 
-
-
 @media only screen and (max-width: 979px) {
   .ag-courses_item {
     -ms-flex-preferred-size: calc(50% - 30px);
@@ -466,7 +466,6 @@ body.dark .home .text {
   .ag-format-container {
     width: 96%;
   }
-
 }
 
 @media only screen and (max-width: 639px) {
@@ -582,7 +581,7 @@ body.dark .home .text {
 
 body {
   background: #f2f2f2;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .search {
@@ -592,24 +591,24 @@ body {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #00B4CC;
+  border: 3px solid #00b4cc;
   border-right: none;
   padding: 5px;
   height: 37px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: #9dbfaf;
 }
 
 .searchTerm:focus {
-  color: #00B4CC;
+  color: #00b4cc;
 }
 
 .searchButton {
   width: 40px;
   height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -624,9 +623,7 @@ body {
   left: 50%;
 }
 
-
-
-.clr_blue{
+.clr_blue {
   color: blue;
   background-color: #e0dada;
 }
@@ -695,7 +692,7 @@ body {
   text-align: center;
   color: antiquewhite;
   font-size: 24px;
-  font-family: 'Aleo';
+  font-family: "Aleo";
 }
 
 .welcome_txt {
@@ -704,11 +701,13 @@ body {
   font-size: 80px;
   margin-bottom: 8px;
   font-weight: normal;
-  font-family: 'Aleo';
+  font-family: "Aleo";
 }
 
 .box_shadow {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .first_card_stl {
@@ -761,15 +760,15 @@ coment:focus {
 }
 
 .cmt_btn {
-
-
   display: inline-block;
   outline: 0;
   border: 0;
   cursor: pointer;
   will-change: box-shadow, transform;
-  background: radial-gradient(100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100%);
-  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+  background: radial-gradient(100% 100% at 100% 0%, #89e5ff 0%, #5468ff 100%);
+  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%),
+    0px 7px 13px -3px rgb(45 35 66 / 30%),
+    inset 0px -3px 0px rgb(58 65 111 / 50%);
   padding: 0 32px;
   border-radius: 6px;
   color: #fff;
@@ -777,13 +776,11 @@ coment:focus {
   font-size: 18px;
   text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
   transition: box-shadow 0.15s ease, transform 0.15s ease;
-
-
-
 }
 
 cmt_btn:hover {
-  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%),
+    0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
   transform: translateY(-2px);
 }
 
@@ -824,6 +821,10 @@ cmt_btn:active {
   background-color: #076c07;
 }
 
+.green{
+  padding:6px 0px
+}
+
 .btn-hover {
   height: 50px;
   width: 130px;
@@ -835,23 +836,28 @@ cmt_btn:active {
   border: none;
   background-size: 300% 100%;
   border-radius: 13px;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn_2-hover.color {
+  background-color: #ff9800;
+}
 
-  background-color: #ff9800;}
+.breckInColor {
+  background-color: #ff9800;
+  padding:6px 0px
+}
 
 .btn_2-hover {
   height: 50px;
@@ -864,24 +870,30 @@ cmt_btn:active {
   border: none;
   background-size: 300% 100%;
   border-radius: 13px;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn_2-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 /* --------------------------------- */
 
 .btn_3-hover.color {
-  background-color: #298ad7;}
+  background-color: #298ad7;
+}
+
+.breakOutColor {
+  background-color: #298ad7;
+  padding: 6px 0px;
+}
 
 .btn_3-hover {
   height: 50px;
@@ -894,23 +906,30 @@ cmt_btn:active {
   border: none;
   background-size: 300% 100%;
   border-radius: 13px;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn_3-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 /* ------------------------------------------------ */
 
 .btn_4-hover.color {
-  background-color: red;
+  background-color: #c20404;
+}
+
+.checkOutColor {
+  background-color: #c20404;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 6px 0px;
 }
 
 .btn_4-hover {
@@ -924,24 +943,24 @@ cmt_btn:active {
   border: none;
   background-size: 300% 100%;
   border-radius: 13px;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn_4-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
-.pb_12{
+.pb_12 {
   padding-bottom: 12px;
 }
-.birthday_emp_name{
+.birthday_emp_name {
   text-align: center;
   margin-top: 20px;
   font-size: 30px;
@@ -953,19 +972,24 @@ cmt_btn:active {
   font-size: 16px;
   font-weight: 400;
 }
-.birthday_dev{
+.birthday_dev {
   color: #b5cdcb;
-    font-size: 18px;
-    text-align: center;
+  font-size: 18px;
+  text-align: center;
 }
-.brd_btm_stl{
+.brd_btm_stl {
   border-bottom: 1px dashed cadetblue;
   padding-bottom: 15px;
 }
-.height_21_2{
-  height: 21.2rem;
+.height_21_2 {
+  height: auto;
 }
-.check_in_time_btn{
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+.check_in_time_btn {
   color: aquamarine;
   text-align: center;
   margin-top: 20px;
@@ -977,32 +1001,28 @@ cmt_btn:active {
 
 .clr_brcin {
   background-color: #ff9800;
-    border-radius: 16px;
+  border-radius: 16px;
 }
-.clr_brcout{
+.clr_brcout {
   background-color: #298ad7;
   border-radius: 16px;
 }
-.clr_cheout{
-background-color: red;
+.clr_cheout {
+  background-color: red;
   border-radius: 16px;
 }
-.box_shadow_2{
+.box_shadow_2 {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.chekin_txt{
+.chekin_txt {
   font-size: 19px;
   display: flex;
   justify-content: center;
   padding-bottom: 4px;
   padding-top: 4px;
-
 }
 
 /* table css----------------------------------------------------------------- */
-
-
-
 
 /*---------- TABLES ----------*/
 /*----- basics -----*/
@@ -1022,14 +1042,12 @@ th {
   font-size: 18px;
 }
 
-
 /*----- table data (a cell) -----*/
 td {
   padding: 8px;
   border-bottom: 1px solid black;
   border: 1px solid rgb(0, 0, 0, 0.2);
 }
-
 
 /*----- table row hover animation -----*/
 tr {
@@ -1047,26 +1065,26 @@ td:hover {
 }
 
 /* .attendence card design------------------------------------------------- */
-.attendence_crd{
+.attendence_crd {
   width: 23%;
   overflow: hidden;
   border-radius: 28px;
 }
-.attendence_crd_stl{
+.attendence_crd_stl {
   display: block;
   padding: 30px 20px;
   background-color: #315050;
-   overflow: hidden;
-  position: relative; 
+  overflow: hidden;
+  position: relative;
 }
-.attendence_crd_stl.dark_mode{
+.attendence_crd_stl.dark_mode {
   display: block;
   padding: 30px 20px;
-    background-color: #121212;
-   overflow: hidden;
-  position: relative; 
+  background-color: #121212;
+  overflow: hidden;
+  position: relative;
 }
-.height_23{
+.height_23 {
   height: 23px;
 }
 
@@ -1074,7 +1092,7 @@ td:hover {
   display: block;
   padding: 30px 20px;
   background-color: #315050;
-   overflow: hidden;
+  overflow: hidden;
   position: relative;
 }
 
@@ -1082,7 +1100,7 @@ td:hover {
   display: block;
   padding: 30px 20px;
   background-color: rgb(23, 22, 22);
-   overflow: hidden;
+  overflow: hidden;
   position: relative;
 }
 
@@ -1090,7 +1108,7 @@ td:hover {
   display: block;
   padding: 30px 20px;
   background-color: #121212;
-   overflow: hidden;
+  overflow: hidden;
   position: relative;
 }
 
