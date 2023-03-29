@@ -167,7 +167,7 @@ var registerPost = async function (req, res) {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?email=${email} "> verify</a>
+                <a href=" https://octa.appdemoserver.com/verify?session=${req.cookies.session_id}&email=${email}"> verify</a>
             </div>
         </section>
        
@@ -190,6 +190,8 @@ var verifyGet = (req, res) => {
   // const reg_token = req.query.token;
   const email = req.query.email;
 
+  console.log(email);
+  console.log(req.session.s_email);
   console.log(req.session.s_email);
   if (req.session.s_email == email) {
     res.send("e-mail verification sucesfully!!!!!");
