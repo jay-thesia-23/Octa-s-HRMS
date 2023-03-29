@@ -11,7 +11,7 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
 var jwt = require("jsonwebtoken");
-var connection = require("../config/dbConnect");
+var conn = require("../config/dbConnect");
 
 var leaveGet = (req, res) => {
   var data = [];
@@ -31,7 +31,7 @@ var leaveGet = (req, res) => {
     // console.log(decoded);
     id = decoded.id[0].id;
     console.log(id);
-    connection.query(
+    conn.query(
       `select *from request_leave_table where reg_id = "${id}" `,
       (error, result) => {
         if (error) {
@@ -109,7 +109,7 @@ offset = (page - 1) * limit;
 if (isNaN(offset)) {
   offset = 0;
 }
-connection.query('select count(*) as numrows  from request_leave_table', (error, data) => {
+conntion.query('select count(*) as numrows  from request_leave_table', (error, data) => {
   if (error) throw error;
   data[0] = data[0].numrows;
   count = Math.ceil(data[0] / limit);
@@ -124,7 +124,7 @@ var leavedate = "";
 //       var leavedate = "";
 // //
 //   if (text == 1 || "") {
-//       connection.query(`select * from request_leave_table `, function (err, data) {
+//       conntion.query(`select * from request_leave_table `, function (err, data) {
 //           if (err) throw err;
 //           data = data;
 //           res.render('leaves', { data :data });
@@ -159,7 +159,7 @@ var leavedate = "";
 //           }
 //       }
 
-      connection.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
+      conntion.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
           if (err) throw err;
           data = data;
           res.render('leaves', { data :data});

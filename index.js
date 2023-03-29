@@ -67,6 +67,8 @@ app.use(fetchcmt);
 var forgotPass=require("./src/routes/forgotPass")
 app.use(forgotPass)
 
+var forgotPasschange=require("./src/routes/forgotpasschange")
+app.use(forgotPasschange)
 
 var logout=require("./src/routes/logout")
 app.use(logout)

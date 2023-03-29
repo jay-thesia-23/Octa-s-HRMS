@@ -10,7 +10,7 @@ var conn=require("../config/dbConnect")
 var util=require("util");
 const { JsonWebTokenError } = require('jsonwebtoken');
 var alldata = util.promisify(conn.query.bind(conn));
-
+var nodemailer=require("nodemailer")
 
 var forgotPassGet=(req,res)=>{
     res.render("forgotPass",{layout:false})
