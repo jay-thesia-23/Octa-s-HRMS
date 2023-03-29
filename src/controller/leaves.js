@@ -109,7 +109,7 @@ offset = (page - 1) * limit;
 if (isNaN(offset)) {
   offset = 0;
 }
-conntion.query('select count(*) as numrows  from request_leave_table', (error, data) => {
+conn.query('select count(*) as numrows  from request_leave_table', (error, data) => {
   if (error) throw error;
   data[0] = data[0].numrows;
   count = Math.ceil(data[0] / limit);
@@ -159,7 +159,7 @@ var leavedate = "";
 //           }
 //       }
 
-      conntion.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
+      conn.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
           if (err) throw err;
           data = data;
           res.render('leaves', { data :data});
