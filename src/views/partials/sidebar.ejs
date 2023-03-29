@@ -64,7 +64,7 @@
       </ul>
     </div>
 
-    <div class="bottom-content">
+    <div class="bottom-content" onclick="logout()">
       <li class="">
         <a href="#">
           <i class="bx bx-log-out icon"></i>
@@ -86,3 +86,16 @@
     </div>
   </div>
 </nav>
+
+<script>
+
+  function logout(){
+    fetch("/logout", 
+  { method: "POST" })
+  .then((res)=>res.json())
+  .then((res)=>{
+    console.log(res);
+  })
+  }
+ 
+</script>

@@ -1,3 +1,22 @@
+// function autoUnable(){
+
+//   console.log("autoUnable");
+
+//     var time = new Date();
+//      var hour = time.getHours();
+
+//      console.log(hour);
+//      console.log("in function0");
+//     if(hour==0){
+
+//       document.getElementById("check_in").disabled = false;
+//       document.getElementById("check_out").disabled = true;
+//       document.getElementById("breck_in").disabled = true;
+//       document.getElementById("breck_out").disabled = true;
+//     }
+
+// }
+
 async function fatchcheckmodule() {
   fetch("/abc", {
     method: "get",
@@ -63,13 +82,11 @@ async function fatchbreckin() {
         var minutes = timecheckin.slice(3, 5);
         // console.log((hours),minutes);
 
-
-      
         // console.log("indivision!!!!");
         var div = document.createElement("div");
         if (i % 2 == 0) {
           div.setAttribute("class", "breckInColor");
-          console.log("break 000000");
+
           div.innerHTML = "Breck In " + hours + ":" + minutes;
           check.append(div);
           document.getElementById("check_in").disabled = true;
@@ -98,11 +115,17 @@ async function fatchchkout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      var timecheckin = data[1].time.slice(11, 18);
+      console.log(data,"fatch ckercout data chhe");
+
+    console.log("Hello");
+      var timecheckin = data[0].time.slice(11, 18);
+      var dateOfToday=data[0].time.slice(0,10)
+
       var hours = timecheckin.slice(0, 2);
       hours = hours % 12;
       hours = hours ? hours : 12;
       hours = hours - 1;
+
 
       if (hours < 10) {
         hours = "0" + hours;
@@ -115,13 +138,44 @@ async function fatchchkout() {
       // check_out.hidden = false;
 
       var div = document.createElement("div");
+
+
       div.setAttribute("class", "checkOutColor");
       div.innerHTML = "Check Out " + hours + ":" + minutes;
       check.append(div);
       // check_out.innerHTML = "Thank You!!!!!";
-      document.getElementById("check_in").disabled = false;
-      document.getElementById("check_out").disabled = true;
-      document.getElementById("breck_in").disabled = true;
-      document.getElementById("breck_out").disabled = true;
+
+
+      var time = new Date();
+      var hour = time.getHours();
+
+      console.log(hour);
+
+      console.log(timecheckin,"checkin times");
+      // console.log("in function0:::");
+      console.log(dateOfToday);
+
+      var date=new Date();
+      var dateValue=date.getDate();
+      var monthValue=date.getMonth()+1;
+      monthValue="0"+monthValue
+      var yearValue=date.getFullYear()
+
+      // console.log( dateValue+""+monthValue+""+yearValue);
+      var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
+
+      console.log(TodayDates);
+      
+      if (dateOfToday==TodayDates) {
+        document.getElementById("check_in").disabled = true;
+        document.getElementById("check_out").disabled = true;
+        document.getElementById("breck_in").disabled = true;
+        document.getElementById("breck_out").disabled = true;
+      }else{
+        document.getElementById("check_in").disabled = false;
+        document.getElementById("check_out").disabled = true;
+        document.getElementById("breck_in").disabled = true;
+        document.getElementById("breck_out").disabled = true;
+      }
     });
 }

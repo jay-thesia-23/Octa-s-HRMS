@@ -7,7 +7,8 @@ app.set('layouts', path.resolve("src","view","layouts","main")) //added
 
 var conn=require("../config/dbConnect")
 
-var util=require("util")
+var util=require("util");
+const { JsonWebTokenError } = require('jsonwebtoken');
 var alldata = util.promisify(conn.query.bind(conn));
 
 const d = new Date();
@@ -81,7 +82,12 @@ var searchGet=async (req, res) => {
   }
   
 
+  var logoutPost=async (req,res)=>{
+    
+    console.log(req.cookies);
+  }
+
   
 
 
-module.exports = {homeGet,searchGet,employeeActivityGet}
+module.exports = {homeGet,searchGet,employeeActivityGet,logoutPost}

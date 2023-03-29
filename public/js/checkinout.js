@@ -5,6 +5,7 @@ var breck_out = document.getElementById("breck_out");
 
 function autoUnable(){
 
+  console.log("autoUnable");
   
     var time = new Date();
      var hour = time.getHours();
@@ -81,7 +82,31 @@ function chk_out() {
     document.getElementById("breck_in").disabled = true;
     document.getElementById("breck_out").disabled = true;
   
+     // console.log("in function0:::");
+     console.log(dateOfToday);
 
+     var date=new Date();
+     var dateValue=date.getDate();
+     var monthValue=date.getMonth()+1;
+     monthValue="0"+monthValue
+     var yearValue=date.getFullYear()
+
+     // console.log( dateValue+""+monthValue+""+yearValue);
+     var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
+
+     console.log(TodayDates);
+     
+     if (dateOfToday==TodayDates) {
+       document.getElementById("check_in").disabled = true;
+       document.getElementById("check_out").disabled = true;
+       document.getElementById("breck_in").disabled = true;
+       document.getElementById("breck_out").disabled = true;
+     }else{
+       document.getElementById("check_in").disabled = false;
+       document.getElementById("check_out").disabled = true;
+       document.getElementById("breck_in").disabled = true;
+       document.getElementById("breck_out").disabled = true;
+     }
   
 
 //   check_out.innerHTML = "Thank You!!!!!";

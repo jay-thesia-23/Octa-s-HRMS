@@ -7,7 +7,7 @@ var mysql = require('mysql2');
 var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
 var router=express.Router()
-var {homeGet,employeeActivityGet,searchGet}=require("../controller/home")
+var {homeGet,employeeActivityGet,searchGet,logoutPost}=require("../controller/home")
 
 var {authentication}=require("../middleware/authMiddleware")
 
