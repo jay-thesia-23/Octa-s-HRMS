@@ -80,33 +80,77 @@ var loginPost = async (req, res) => {
               `select * from cource_master; `,
               function (error, data_2) {
                 if (error) throw error;
-                data2= data_2;
-          conn.query(`update registration set u_login = '0' where u_email='${email}';`,
-            (err, data) => {
-              if (err) throw err;
-              
-              res.render("wizard.ejs",{data3,data2});
-            });
-        })
-      })
+                data2 = data_2;
+                conn.query(
+                  `update registration set u_login = '1' where u_email='${email}';`,
+                  (err, data) => {
+                    if (err) throw err;
+
+                    // res.render("wizard.ejs",{data3,data2});
+                    res.redirect("/wizard");
+                  }
+                );
+              }
+            );
+          });
         } else {
           res.redirect("/home");
         }
 
-      
+        var query = util.promisify(conn.query).bind(conn);
+        var id = await query(
+          `select id from registration where u_email='${email}'`
+        );
+        console.log(id);
       }
-    } else {
-      return res.send(
-        ` password  Wrong!..........<br><a href="/login"> Back to Login </a> `
-      );
     }
-  } 
-   else  {
+  } else {
+    if (data.length != 0) {
+      async function compare_psw(password, data) {
+        return await new Promise((res, rej) => {
+          bcrypt.compare(password, data[0].u_password, (err, isMatch) => {
+            if (err) {
+              return err;
+            }
+            res(isMatch);
+          });
+        });
+      }
+      var isMatch = await compare_psw(password, data);
+
+      if (isMatch == true) {
+        console.log(data[0].isactive);
+
+        const token = jwt.sign({ email, id }, "sanjay");
+
+        res.cookie("token", token);
+
+        if (data[0].isactive == "1") {
+          res.send("wait for some min");
+        } else {
+          if (data[0].u_login == 1) {
+            conn.query(
+              `update registration set u_login = '0' where u_email='${email}';`,
+              (err, data) => {
+                if (err) throw err;
+
+                res.render("wizard.ejs");
+              }
+            );
+          } else {
+            res.redirect("/home");
+          }
+        }
+      } else if (!isMatch) {
         return res.send(
-          ` email  Wrong!..........<br><a href="/login"> Back to Login </a> `
+          `Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `
         );
       }
-   
-  
+    } else {
+      res.redirect("/login");
+      console.log("your password is not matched ");
+    }
+  }
 };
+
 module.exports = { loginGet, Inemail, loginPost };

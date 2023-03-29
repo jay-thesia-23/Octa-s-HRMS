@@ -22,8 +22,11 @@ var homeGet=(req, res) => {
   console.log();
   var date = new Date;
   console.log(date);
+  var currentmonth=date.getMonth() +1 ;
+  var cm=currentmonth;
+  console.log("ccccccccccccc",cm);
   const year = date.getFullYear();
-  var month = date.getMonth() +1;
+  var month = date.getMonth();
   if (month <10) {
       month = '0' + month
   }
@@ -35,9 +38,12 @@ var homeGet=(req, res) => {
   conn.query(`select firstname,lastname,birth_date from employee_basic_infomation where birth_date = '${x}'; `, function (error, result) {
       if (error) throw error;
       console.log(result);
+  conn.query(`select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,function (error, holidaydata){
+    res.render('home.ejs', {result,date,holidaydata});
+    console.log("hhhhhhhhhhhhh",holidaydata);
+  });  
       
-      
-      res.render('home.ejs', {result})
+     
   })
 
  

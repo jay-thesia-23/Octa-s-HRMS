@@ -26,8 +26,9 @@ async function online_ofline() {
     total_online = online[0].total_online
 
 
-    var offline = await alldata(`select count(reg_id) as total_offline from check_master where date='${fulldate}' and online_status='0' and status = "check_in";`)
-    total_offline = offline[0].total_offline
+    // var offline = await alldata(`select count(reg_id) as total_offline from check_master where date='${fulldate}' and online_status='0' and status = "check_in";`)
+    // total_offline = offline[0].total_offline
+    total_offline = 250 - total_online 
 
 }
 
