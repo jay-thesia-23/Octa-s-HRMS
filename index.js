@@ -53,11 +53,25 @@ app.use(wizard);
 const leaves = require("./src/routes/leaves");
 app.use(leaves);
 
-var editprofile = require("./src/routes/edit_profile");
-app.use(editprofile);
+var editprofile=require("./src/routes/edit_profile")
+app.use(editprofile)
 
-var fatchapi = require("./src/routes/check_module_fatchapi");
-app.use(fatchapi);
+var comment=require("./src/routes/comment")
+app.use(comment)
+var fatchapi = require("./src/routes/check_module_fatchapi")
+app.use(fatchapi)
+
+var fetchcmt = require("./src/routes/fetch_comment")
+app.use(fetchcmt);
+
+var forgotPass=require("./src/routes/forgotPass")
+app.use(forgotPass)
+
+var forgotPasschange=require("./src/routes/forgotpasschange")
+app.use(forgotPasschange)
+
+var logout=require("./src/routes/logout")
+app.use(logout)
 
 app.use((req, res, next) => {
   res.render("page404",{layout:false})

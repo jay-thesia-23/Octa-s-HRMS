@@ -25,19 +25,24 @@ var leaveGet = (req, res) => {
   if (isNaN(offset)) {
     offset = 0;
   }
+  var login_token = req.cookies.login_token;
 
-  conn.query(
-    `select *from request_leave_table limit ${offset},${limit}`,
-    (error, result) => {
-      if (error) {
-        throw error;
+  jwt.verify(login_token, "sanjay", function (err, decoded) {
+    // console.log(decoded);
+    id = decoded.id[0].id;
+    console.log(id);
+    conn.query(
+      `select *from request_leave_table where reg_id = "${id}" `,
+      (error, result) => {
+        if (error) {
+          throw error;
+        }
+        data = result;
+        res.render("leaves", { data, count: count, curr_page });
+        console.log("record displayed successfully");
       }
-      data = result;
-      res.render("leaves", { data, count: count, curr_page });
-      
-    }
-  );
-
+    );
+  });
   //res.render('leaves');
 };
 
@@ -48,9 +53,13 @@ var leavePost = (req, res) => {
   console.log(login_token + "tokennnnnnnnnnnnnnnn");
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
+    console.log(req.body);
     let ldate = req.body.ldate;
     let leavetype = req.body.leavetype;
     let reason = req.body.reason;
+    console.log(ldate);
+    console.log(leavetype);
+    console.log(reason);
 
     //date
     var today = new Date();
@@ -59,13 +68,13 @@ var leavePost = (req, res) => {
     var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
     if (dd < 10) {
-      dd = "0" + dd;
+      dd = '0' + dd;
     }
 
     if (mm < 10) {
-      mm = "0" + mm;
+      mm = '0' + mm;
     }
-    today = yyyy + "-" + mm + "-" + dd;
+    today = yyyy + '-' + mm + '-' + dd;
     console.log(today);
 
     console.log(JSON.stringify(decoded.id) + "decodeeeee");
@@ -74,7 +83,7 @@ var leavePost = (req, res) => {
     var id = decoded.id[0].id;
     console.log(id + "iddd");
 
-    var sql = `INSERT INTO request_leave_table(employee_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
+    var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
 
     conn.query(sql, function (err, result) {
       if (err) throw err;
@@ -85,4 +94,78 @@ var leavePost = (req, res) => {
   res.redirect("/leaves");
 };
 
-module.exports = {leaveGet,leavePost};
+
+app.get('/searching', function (req, res) {
+  var text = req.query.search || 1;
+  var data;
+//
+var data = [];
+var count;
+var curr_page;
+page = req.query.num || 1;
+curr_page = parseInt(req.query.num);
+limit = 25;
+offset = (page - 1) * limit;
+if (isNaN(offset)) {
+  offset = 0;
+}
+conntion.query('select count(*) as numrows  from request_leave_table', (error, data) => {
+  if (error) throw error;
+  data[0] = data[0].numrows;
+  count = Math.ceil(data[0] / limit);
+  
+  console.log(count);
+
+});
+
+var category = "";
+var leavedate = "";
+      
+//       var leavedate = "";
+// //
+//   if (text == 1 || "") {
+//       conntion.query(`select * from request_leave_table `, function (err, data) {
+//           if (err) throw err;
+//           data = data;
+//           res.render('leaves', { data :data });
+//       });
+//   }
+//   else {
+
+//       var category = "";
+      
+//       var leavedate = "";
+
+//       for(var i=0; i<text.length; i++)
+//       {
+//           if(text.charAt(i) == '')
+//           {
+//               for(var j=i+1; j<=text.length; j++)
+//               {
+                 
+//                       var category = category + text.charAt(j);
+                
+//               }
+//           }
+        
+//           else if(text.charAt(i) == '')
+//           {
+//               for(var j=i+1; j<=text.length; j++)
+//               {
+                  
+//                       var leavedate = leavedate + text.charAt(j);
+              
+//               }
+//           }
+//       }
+
+      conntion.query(`select * from request_leave_table where leave_category LIKE '%${category}%' AND leave_date LIKE '%${leavedate}%'`, function (err, data) {
+          if (err) throw err;
+          data = data;
+          res.render('leaves', { data :data});
+      });
+  
+});
+
+module.exports ={ leavePost, leaveGet}; 
+ 
