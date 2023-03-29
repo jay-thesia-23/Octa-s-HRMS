@@ -12,7 +12,7 @@ app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 var jwt = require("jsonwebtoken");
 
-var connection = require("../config/dbConnect");
+var conn = require("../config/dbConnect");
 
 
 var fetchcommentGet = (req, res) => {
@@ -27,7 +27,7 @@ var fetchcommentGet = (req, res) => {
 
 
     var sql = `select comment from comment_table where reg_id='${login_user__id}';`
-    connection.query(sql, function(err,data){
+    conn.query(sql, function(err,data){
           if(err) throw err
           console.log(data.length);
           if(data.length == 0){
@@ -38,7 +38,7 @@ var fetchcommentGet = (req, res) => {
               console.log(sql,"query .....");
               
                   var sql1 = `select comment from comment_table where reg_id='${login_user__id}' ORDER BY id DESC limit 3 ;`
-                  connection.query(sql1 , function(err,result){
+                  conn.query(sql1 , function(err,result){
                       if(err) throw err
                       console.log(result,"result");
                           res.json(result)
@@ -51,38 +51,5 @@ var fetchcommentGet = (req, res) => {
 }
 
 
-// app.post("/comment", (req, res) => {
-//   console.log("in comment");
-  
-//   var login_token = req.cookies.login_token;
-//   console.log(login_token + "tokennnnnnnnnnnnnnnn");
-
-//   jwt.verify(login_token, 'sanjay', function (err, decoded) {
-
-//    console.log(req.body);
-   
-//    var comment = req.body.comment;
-//    console.log(comment);
-
-//    console.log(JSON.stringify(decoded.id) + "decoding");
-//    console.log(decoded.id);
-
-//    var id = decoded.id[0].id;
-//    console.log(id+"iddd");
-
-//     var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ("${id} ","${comment}")`;
-
-//     connection.query(sql, function (err, result) {
-//       if (err) throw err
-//       console.log(result);
-//       console.log("data inserted successfully")
-//     })
-//     res.redirect("/home");
-//  })
-
-
-
-//   res.render('home');
-// })  
 
 module.exports = { fetchcommentGet };
