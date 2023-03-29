@@ -15,6 +15,7 @@ app.use(cookieParser());
 var conn = require("../config/dbConnect");
 
 var profileGet = (req, res) => {
+
   let login_token = req.cookies.login_token;
   var id;
   console.log(login_token, "token in profile");
@@ -53,7 +54,7 @@ var profileGet = (req, res) => {
 
 let profilePost = (req, res) => {
   const login_token = req.cookies.login_token;
-
+  
   console.log(login_token);
 
   jwt.verify(login_token, "sanjay", (err, decoded) => {

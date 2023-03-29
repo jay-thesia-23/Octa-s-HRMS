@@ -91,6 +91,12 @@ var searchGet=async (req, res) => {
   var logoutPost=async (req,res)=>{
     
     console.log(req.cookies);
+     res.clearCookie("session_id");
+    res.clearCookie("login_token")
+
+    res.sendFile()
+    
+    
   }
 
   
