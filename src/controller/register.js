@@ -17,6 +17,7 @@ const { dirname } = require("path");
 app.use(express.static("public"));
 app.set("views",path.join(__dirname,"../views"));
 
+<<<<<<<<< Temporary merge branch 1
 // app.use(
 //   session({
 //     name:"session_id",
@@ -34,6 +35,27 @@ app.set("views",path.join(__dirname,"../views"));
 var registerGet = function (req, res) {
   res.render("register.ejs", {});
 };
+=========
+app.use(
+  session({
+    name:"session_id",
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
+
+
+
+var registerGet = async function (req, res) {
+  res.render("register.ejs", {});
+}
+
+>>>>>>>>> Temporary merge branch 2
 
 async function Inemail(email) {
   return await new Promise((resolve, reject) => {

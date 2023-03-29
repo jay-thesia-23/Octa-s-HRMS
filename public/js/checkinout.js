@@ -35,6 +35,10 @@ function demo() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+        
+    m = "0" + m 
+}
   console.log(s, m);
 
   s = s % 12;
@@ -65,6 +69,10 @@ function chk_out() {
 
   s = s % 12;
   s = s ? s : 12;
+  if(m<10){
+
+    m = "0" + m 
+}
 
 
   var timeIn12HourFormat = s + ":" + m;
@@ -77,12 +85,6 @@ function chk_out() {
   check.append(div);
 
  
-    document.getElementById("check_in").disabled = true;
-    document.getElementById("check_out").disabled = true;
-    document.getElementById("breck_in").disabled = true;
-    document.getElementById("breck_out").disabled = true;
-  
-    
 }
 
 function breck() {
@@ -123,6 +125,10 @@ function brc_out() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+
+    m = "0" + m 
+}
 
   s = s % 12;
   s = s ? s : 12;
