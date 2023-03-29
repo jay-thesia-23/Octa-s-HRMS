@@ -117,4 +117,4 @@ var checkoutGet = function (req, res) {
   });
 };
 
-module.exports = { abcGet, breakInGet, checkoutGet };
+module.exports = {abcGet,breakInGet,checkoutGet};

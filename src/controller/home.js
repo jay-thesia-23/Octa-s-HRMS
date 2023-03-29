@@ -27,7 +27,7 @@ var homeGet=(req, res) => {
   var cm=currentmonth+1;
   //console.log("ccccccccccccc",cm);
   const year = date.getFullYear();
-  var month = date.getMonth() +1;
+  var month = date.getMonth();
   if (month <10) {
       month = '0' + month
   }
