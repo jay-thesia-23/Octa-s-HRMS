@@ -1,0 +1,74 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/css/loginRegister.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    
+    <div class="title">Change Password
+    </div>
+    <div class="content">
+      <form action="/forgotpass" method="post" onsubmit=" return login_validation()" >
+
+        <div class="user-details">
+          
+          <div class="input-box-login">
+            <p id="showerror" style="color: red;"></p>
+            <span class="details">New Password</span>
+            <input type="email" placeholder="Enter your password" name="email" required>
+          </div>
+         
+          <div class="input-box-login">
+            <p id="showerror" style="color: red;"></p>
+            <span class="details">Confirm New Password</span>
+            <input type="email" placeholder="Enter your confirm password" name="email" required>
+          </div>
+        </div>
+       
+        <div class="button">
+          <input type="submit" value="Submit">
+        </div>
+       
+      </form>
+    </div>
+  </div>
+
+
+  <!-- <script>
+     function login_validation(){
+            var showerror=document.getElementById("showerror");
+            var email=document.getElementById("email").value;
+            var password=document.getElementById("password").value;
+            // console.log(email);
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    console.log(res);
+                    if (res == false) {
+                        console.log("error!..........................");
+                        document.getElementById("showerror").innerHTML = "Either email or password Wrong!.";
+                        
+                    } else {
+                        console.log("inside the elsse");
+                        document.getElementById("showerror").innerHTML = "";
+                    }
+                });
+         }
+  </script> -->
+
+</body>
+</html>
