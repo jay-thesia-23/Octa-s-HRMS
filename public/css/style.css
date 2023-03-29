@@ -186,8 +186,9 @@ body.dark .sidebar header .toggle {
   display: inline;
 }
 
-disabled {
-}
+/* disabled {
+  opacity: 0.5;
+} */
 
 .sidebar li.search-box input {
   height: 100%;
@@ -1236,4 +1237,15 @@ td:hover {
 
 #pageno {
   background-color: rgb(43, 43, 94);
+}
+.cmt_stl{
+  width: 100%;
+  margin-top: 15px;
+}
+
+.cmt_txt_style{
+    color: #ff9800;
+    border-radius: 15px;
+    font-size: 22px;
+    font-family: "Aleo";
 }

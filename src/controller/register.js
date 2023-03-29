@@ -11,7 +11,8 @@ app.use(cookieParser());
 var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 var path = require("path");
-var conn=require("../config/dbConnect")
+var conn=require("../config/dbConnect");
+const { dirname } = require("path");
 
 app.use(express.static("public"));
 app.set("views",path.join(__dirname,"../views"));
@@ -183,7 +184,7 @@ var registerPost = async function (req, res) {
     // console.log(info);
   });
 
-  res.send("register Succesfully!!!!");
+  res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/verificationrequest.html');
 };
 
 var verifyGet = (req, res) => {
@@ -194,7 +195,7 @@ var verifyGet = (req, res) => {
   console.log(req.session.s_email);
   console.log(req.session.s_email);
   if (req.session.s_email == email) {
-    res.send("e-mail verification sucesfully!!!!!");
+    res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/adminverifide.html');
     conn.query(
       `update registration set isactive = '0' where u_email='${email}';`,
       (err, data) => {
@@ -202,7 +203,7 @@ var verifyGet = (req, res) => {
       }
     );
   } else {
-    res.send("something went wrong!!!!! e-mail is not verfied");
+    res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/somthingwentwrong.html');
   }
   // Verifying the JWT token
   // jwt.verify(reg_token, "sanjay", function (err, decoded) {
