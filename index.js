@@ -14,17 +14,17 @@ app.set("views",path.join(__dirname,"src/views"))
 
 var conn = require("./src/config/dbConnect");
 
-app.use(
-  session({
-    name: "session_id",
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);
+// app.use(
+//   session({
+//     name: "session_id",
+//     secret: "your-secret-key",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 
 const register = require("./src/routes/register");
 app.use(register);
