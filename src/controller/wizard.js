@@ -160,14 +160,14 @@ const wizardPost = async (req, res) => {
         profile_pic) VALUES (${id},${login_user__id},"${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
 
       console.log(sqlDocs);
-      con.query(sqlDocs, (err, docs) => {
+      conn.query(sqlDocs, (err, docs) => {
         console.log("doc is inserted");
       });
 
       // education
 
       if (typeof course_name == "string") {
-        con.query(
+        conn.query(
           `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name}','${percentage}','${board_university_name}','${passout_year}');`,
           function (error, data) {
             if (error) throw error;
@@ -191,7 +191,7 @@ const wizardPost = async (req, res) => {
       var sql = `insert into reference_master (reg_id,employee_id,name,number,relationship) values('${login_user__id}','${id}','${name1}','${number1}','${relationship1}'),('${login_user__id}','${id}','${name2}','${number2}','${relationship2}') ;`;
       console.log(sql);
 
-      con.query(sql, function (error, data) {
+      conn.query(sql, function (error, data) {
         if (error) throw error;
       });
     }
