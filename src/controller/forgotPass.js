@@ -10,7 +10,7 @@ var conn=require("../config/dbConnect")
 var util=require("util");
 const { JsonWebTokenError } = require('jsonwebtoken');
 var alldata = util.promisify(conn.query.bind(conn));
-
+var nodemailer=require("nodemailer")
 
 var forgotPassGet=(req,res)=>{
     res.render("forgotPass",{layout:false})
@@ -105,7 +105,7 @@ const mailConfigurations = {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?email=${email} "> verify</a>
+                <a href=" http://localhost:5000/forgotPassChange "> verify</a>
             </div>
         </section>
        
