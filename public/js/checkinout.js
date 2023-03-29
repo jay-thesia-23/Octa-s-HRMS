@@ -1,195 +1,199 @@
+var check_in = document.getElementById("check_in");
+var check_out = document.getElementById("check_out");
+var breck_in = document.getElementById("breck_in");
+var breck_out = document.getElementById("breck_out");
 
+function autoUnable(){
 
-var check_in = document.getElementById('check_in')
-var check_out = document.getElementById('check_out')
-var breck_in = document.getElementById('breck_in')
-var breck_out = document.getElementById('breck_out')
+  console.log("autoUnable");
+  
+    var time = new Date();
+     var hour = time.getHours();
+  
+     console.log(hour);
+     console.log("in function0");
+    if(hour==0){
+      
+      document.getElementById("check_in").disabled = false;
+      document.getElementById("check_out").disabled = true;
+      document.getElementById("breck_in").disabled = true;
+      document.getElementById("breck_out").disabled = true;
+    }
+}
 
-
-
+autoUnable()
 
 function demo() {
 
-    document.getElementById("check_in").disabled = true;
-    document.getElementById("check_out").disabled = false;
-    document.getElementById("breck_in").disabled = false;
-    document.getElementById("breck_out").disabled = true;
-    var check= document.getElementById('ThankYou')
+    document.getElementById("attendanceRecord").hidden=false
+  document.getElementById("check_in").disabled = true;
+  document.getElementById("check_out").disabled = false;
+  document.getElementById("breck_in").disabled = false;
+  document.getElementById("breck_out").disabled = true;
+  var check = document.getElementById("time_box");
 
-    const d = new Date();
-    var s = d.getHours();
-    var m = d.getMinutes();
-    console.log(s,m);
+  const d = new Date();
+  var s = d.getHours();
+  var m = d.getMinutes();
+  console.log(s, m);
 
-    s = s % 12;
-    s = s ? s : 12;
+  s = s % 12;
+  s = s ? s : 12;
 
-    var timeIn12HourFormat = s + ':' + m
-    console.log(timeIn12HourFormat);
+  var timeIn12HourFormat = s + ":" + m;
+  console.log(timeIn12HourFormat);
 
-    
-    var div = document.createElement('div')
-    div.setAttribute("class", "green")
-     div.innerHTML = "Check In " + timeIn12HourFormat
+  var div = document.createElement("div");
+  div.setAttribute("class", "green");
+  div.innerHTML = "Check In " + timeIn12HourFormat;
 
-     
-    check.append(div)
-
-
+  check.append(div);
 }
 
 function chk_out() {
+  document.getElementById("check_in").disabled = false;
+  document.getElementById("check_out").disabled = true;
+  document.getElementById("breck_in").disabled = true;
+  document.getElementById("breck_out").disabled = true;
+  var check = document.getElementById("time_box");
+//   var check_out = document.getElementById("attendenceEntry");
+//   check_out.hidden = false;
 
-    document.getElementById("check_in").disabled = false;
+  const d = new Date();
+  var s = d.getHours();
+  var m = d.getMinutes();
+
+  s = s % 12;
+  s = s ? s : 12;
+
+
+  var timeIn12HourFormat = s + ":" + m;
+  console.log(timeIn12HourFormat + "timein 12");
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "checkOutColor");
+  div.innerHTML = "Check Out " + timeIn12HourFormat;
+
+  check.append(div);
+
+ 
+    document.getElementById("check_in").disabled = true;
     document.getElementById("check_out").disabled = true;
     document.getElementById("breck_in").disabled = true;
     document.getElementById("breck_out").disabled = true;
-    var check= document.getElementById('ThankYou')
-    var check_out = document.getElementById('attendenceEntry')
-    check_out.hidden=false
-
-
-
-    const d = new Date();
-    var s = d.getHours();
-    var m = d.getMinutes();
-
-    s = s % 12;
-    s = s ? s : 12;
-
-    var timeIn12HourFormat = s + ':' + m
-    console.log(timeIn12HourFormat+"timein 12");
+  
     
-    var div = document.createElement('div')
-    div.setAttribute("class", "red")
-     div.innerHTML = "Check Out "+ timeIn12HourFormat
-
-    check.append(div)
-
-    check_out.innerHTML = "Thank You!!!!!"
-
 }
 
 function breck() {
-    document.getElementById("check_in").disabled = true;
-    document.getElementById("check_out").disabled = true;
-    document.getElementById("breck_in").disabled = true;
-    document.getElementById("breck_out").disabled = false;
-    var check= document.getElementById('ThankYou')
+  document.getElementById("check_in").disabled = true;
+  document.getElementById("check_out").disabled = true;
+  document.getElementById("breck_in").disabled = true;
+  document.getElementById("breck_out").disabled = false;
+  var check = document.getElementById("time_box");
 
+  const d = new Date();
+  var s = d.getHours();
+  var m = d.getMinutes();
+  if(m<10){
 
-    const d = new Date();
-    var s = d.getHours();
-    var m = d.getMinutes();
+    m = "0" + m 
+}
 
-    s = s % 12;
-    s = s ? s : 12;
+  s = s % 12;
+  s = s ? s : 12;
 
-    var timeIn12HourFormat = s + ':' + m
-    console.log(timeIn12HourFormat);
-    
-    var div = document.createElement('div')
-    div.setAttribute("class", "yellow")
-     div.innerHTML = "break In "+ timeIn12HourFormat
+  var timeIn12HourFormat = s + ":" + m;
+  console.log(timeIn12HourFormat);
 
-     
-    check.append(div)
+  var div = document.createElement("div");
+  div.setAttribute("class", "breckInColor");
+  div.innerHTML = "break In " + timeIn12HourFormat;
+
+  check.append(div);
 }
 
 function brc_out() {
+  document.getElementById("check_in").disabled = true;
+  document.getElementById("check_out").disabled = false;
+  document.getElementById("breck_in").disabled = false;
+  document.getElementById("breck_out").disabled = true;
+  var check = document.getElementById("time_box");
 
-    document.getElementById("check_in").disabled = true;
-    document.getElementById("check_out").disabled = false;
-    document.getElementById("breck_in").disabled = false;
-    document.getElementById("breck_out").disabled = true;
-    var check= document.getElementById('ThankYou')
+  const d = new Date();
+  var s = d.getHours();
+  var m = d.getMinutes();
 
-    const d = new Date();
-    var s = d.getHours();
-    var m = d.getMinutes();
+  s = s % 12;
+  s = s ? s : 12;
 
-    s = s % 12;
-    s = s ? s : 12;
+  var timeIn12HourFormat = s + ":" + m;
+  console.log(timeIn12HourFormat);
 
-    var timeIn12HourFormat = s + ':' + m
-    console.log(timeIn12HourFormat);
-    
-    var div = document.createElement('div')
-    div.setAttribute("class", "saffron")
-     div.innerHTML = "break Out "+ timeIn12HourFormat
+  var div = document.createElement("div");
+  div.setAttribute("class", "breakOutColor");
+  div.innerHTML = "breck Out " + timeIn12HourFormat;
 
-     
-    check.append(div)
 
+
+  check.append(div);
+
+ 
 }
 
+
+
 async function checkin() {
-    fetch('/check_in', {
-        method: 'post',
-        headers: {
-            "Content-type": 'application/json'
-        }
-    })
-
-        .then(res => res.json())
-        .then(data => {
-            console.log("check in sucesfully!!!!")
-        })
-
+  fetch("/check_in", {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("check in sucesfully!!!!");
+    });
 }
 
 async function checkout() {
-    fetch('/check_out', {
-        method: 'post',
-        headers: {
-            "Content-type": 'application/json'
-        }
-    })
-
-        .then(res => res.json())
-        .then(data => {
-            console.log("check out sucesfully!!!!")
-        })
-
+  fetch("/check_out", {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("check out sucesfully!!!!");
+    });
 }
 
-async function breakin() {
-    fetch('/breck_in', {
-        method: 'post',
-        headers: {
-            "Content-type": 'application/json'
-        }
-    })
-
-        .then(res => res.json())
-        .then(data => {
-            console.log("breck in sucesfully!!!!")
-        })
-
+async function breckin() {
+  fetch("/breck_in", {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("breck in sucesfully!!!!");
+    });
 }
 
-async function breakout() {
-    fetch('/breck_out', {
-        method: 'post',
-        headers: {
-            "Content-type": 'application/json'
-        }
-    })
-
-        .then(res => res.json())
-        .then(data => {
-            console.log("breck out sucesfully!!!!")
-        })
-
+async function breckout() {
+  fetch("/breck_out", {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("breck out sucesfully!!!!");
+    });
 }
-
-
-
-
-
-
-
-
 
 
 

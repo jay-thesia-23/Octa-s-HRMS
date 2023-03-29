@@ -82,9 +82,11 @@
 .select-dropdown select::-ms-expand {
   display: none;
 }
-
+/* .part3{
+  margin-top: 40px;
+} */
 .tab {
-  margin-top: 20px;
+  margin-top: 50px;
   width: 100%;
   border: 2px solid gray;
   /* border-radius: 10px; */
@@ -115,7 +117,9 @@
   text-align: center;
 
 }
-
+.part4 .row_page .m_t_b p{
+  padding-bottom: 20px;
+}
 .row-page a {
   text-decoration: none;
   color: white;
