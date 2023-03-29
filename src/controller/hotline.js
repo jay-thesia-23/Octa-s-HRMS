@@ -57,7 +57,7 @@ const hotlineGet = async (req, res) => {
 const hotlineOnlineGet = async (req, res) => {
   console.log("sanjay online");
   var alldetails = await alldata(
-    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `
+    `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
 
   console.log(alldetails);
@@ -66,11 +66,44 @@ const hotlineOnlineGet = async (req, res) => {
 };
 
 const hotlineOfflineGet = async (req, res) => {
-  console.log("sanjay offline");
-  var alldetails = await alldata(
-    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='0' and check_master.status='check_in' and check_master.date = '${fulldate}' ;`
-  );
-  console.log(alldetails);
+
+  var on = [];
+  var total = [];
+  
+  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+
+// console.log(alldetails);
+  for(var k=0; k<alldetails_1.length;k++){
+               on.push(alldetails_1[k].reg_id) 
+      }
+
+   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+
+   for(var p=0; p<total_emp.length;p++){
+    total.push(total_emp[p].reg_id) 
+}
+
+var alldetails = [];
+
+for(var s=0;s<total_emp.length;s++){
+         var reg = total_emp[s].reg_id;
+       
+      if(on.includes(reg) ){
+
+      }else{
+
+        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+        
+        alldetails.push(empl)
+    
+      }
+     
+
+ 
+}
+
+
+
   online_ofline();
   res.render("hotline_offline.ejs", {
     alldetails,
