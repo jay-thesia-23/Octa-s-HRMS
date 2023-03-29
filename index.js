@@ -64,6 +64,9 @@ app.use(fatchapi)
 var fetchcmt = require("./src/routes/fetch_comment")
 app.use(fetchcmt);
 
+var forgotPass=require("./src/routes/forgotPass")
+app.use(forgotPass)
+
 
 var logout=require("./src/routes/logout")
 app.use(logout)
