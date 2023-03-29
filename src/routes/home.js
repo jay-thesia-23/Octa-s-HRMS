@@ -14,6 +14,6 @@ var {authentication}=require("../middleware/authMiddleware")
 app.get('/home',authentication, homeGet)
 app.get('/search',authentication,searchGet );
 app.get('/employee_activity',authentication,employeeActivityGet)
-app.post("/logout",authentication,logoutPost)
+// app.get("/logout",authentication,logoutPost)
 
 module.exports = app

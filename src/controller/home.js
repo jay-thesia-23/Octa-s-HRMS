@@ -93,13 +93,10 @@ var searchGet=async (req, res) => {
     console.log(req.cookies);
      res.clearCookie("session_id");
     res.clearCookie("login_token")
-
-    res.sendFile()
+    res.render("logout")
     
     
   }
 
   
-
-
 module.exports = {homeGet,searchGet,employeeActivityGet,logoutPost}

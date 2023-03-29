@@ -59,6 +59,10 @@ app.use(editprofile);
 var fatchapi = require("./src/routes/check_module_fatchapi");
 app.use(fatchapi);
 
+
+var logout=require("./src/routes/logout")
+app.use(logout)
+
 app.use((req, res, next) => {
   res.render("page404",{layout:false})
 })

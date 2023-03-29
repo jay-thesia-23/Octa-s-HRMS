@@ -2,7 +2,7 @@
   <header>
     <div class="image-text">
       <!-- <div class="image"> -->
-      <img src="/images/bigLogo.svg" alt="">
+      <img src="/images/bigLogo.svg" alt="" />
       <!-- </div> -->
 
       <!-- <div class="text logo-text">
@@ -50,20 +50,21 @@
 
         <li class="nav-link">
           <a href="/profile">
-            <i class="bx bx-heart icon"></i>
+           <i class="bx bx-heart icon"></i>
+           
             <span class="text nav-text">Profile</span>
           </a>
         </li>
-
-
       </ul>
     </div>
 
     <div class="bottom-content" onclick="logout()">
       <li class="">
-        <a href="#">
-          <i class="bx bx-log-out icon"></i>
-          <span class="text nav-text">Logout</span>
+        <a href="/logout">
+          <i class="bx bx-log-out icon"> </i>
+          <input type="hidden" name="logout" value="logout" id="logout">
+         <span class="text nav-text">Logout</span>
+         
         </a>
       </li>
 
@@ -83,14 +84,11 @@
 </nav>
 
 <script>
-
   function logout() {
-    fetch("/logout",
-      { method: "POST" })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res,"response");
-      })
-  }
 
+    // var logoutValue=document.getElementById("logout").value
+
+    console.log("clicked");
+  
+  }
 </script>
