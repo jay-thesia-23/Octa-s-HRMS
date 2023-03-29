@@ -113,6 +113,8 @@ body.dark {
 .sidebar header .image-text {
   display: flex;
   align-items: center;
+  width: 40px;
+  margin-left: 20px;
 }
 
 .sidebar header .logo-text {
@@ -185,7 +187,6 @@ body.dark .sidebar header .toggle {
 }
 
 disabled {
-
 }
 
 .sidebar li.search-box input {
@@ -307,7 +308,7 @@ body.dark .switch::before {
 }
 
 .home {
- 
+  height: auto;
   position: absolute;
   min-height: 100vh;
   top: 0;
@@ -351,7 +352,13 @@ body.dark .home .text {
 
   padding: 50px 0;
 }
-
+.activity-input{
+  display: block;
+  width: 100%;
+  padding: 0.52rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
 .ag-courses_item {
   -ms-flex-preferred-size: calc(33.33333% - 30px);
   flex-basis: calc(33.33333% - 30px);
@@ -821,8 +828,77 @@ cmt_btn:active {
   background-color: #076c07;
 }
 
-.green{
-  padding:6px 0px
+
+
+#activity{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 40px 60px;
+  align-items: center;
+}
+
+  
+#submit{
+  background-color: #aecbeb;
+  margin-left: 14px;
+  text-align: center;
+  padding-top: 5px;
+}
+.green {
+    padding: 6px 0px;
+    background-color: #076c07;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 6px 0px;
+}
+.green_activity {
+  padding: 6px 0px;
+  width: 70%;
+  padding: 7px 32px;
+  
+  color: #09f509;
+  border-radius: 15px;
+  margin: 5px;
+  /* color: antiquewhite; */
+  font-size: 24px;
+  font-family: "Aleo";
+}
+.yellow_activity {
+  padding: 6px 0px;
+  width: 70%;
+  padding: 7px 32px;
+  color: #ff9800;
+  /* background-color: #ff9800; */
+  border-radius: 15px;
+  margin: 5px;
+  /* color: antiquewhite; */
+  font-size: 24px;
+  font-family: "Aleo";
+}
+.saffron_activity {
+  padding: 6px 0px;
+
+  width: 70%;
+  padding: 7px 32px;
+  color: #a0d5ff;
+  /* background-color: #298ad7; */
+  border-radius: 15px;
+  margin: 5px;
+  
+  font-size: 24px;
+  font-family: "Aleo";
+}
+.red_activity {
+  padding: 6px 0px;
+  width: 70%;
+  padding: 7px 32px;
+  color: #eb0404;
+  border-radius: 15px;
+  margin: 5px;
+  /* color: antiquewhite; */
+  font-size: 24px;
+  font-family: "Aleo";
 }
 
 .btn-hover {
@@ -1119,4 +1195,23 @@ td:hover {
   background-color: #121212;
   overflow: hidden;
   position: relative;
+}
+.row-page{
+  text-align: center;
+}
+.m_t_b p{
+  padding-bottom: 20px;
+}
+.row-page a {
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(188, 186, 186);
+  padding: 10px;
+
+}
+
+#pageno {
+  background-color: rgb(43, 43, 94);
 }

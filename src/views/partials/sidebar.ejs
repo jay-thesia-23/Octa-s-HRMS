@@ -1,14 +1,14 @@
 <nav class="sidebar">
   <header>
     <div class="image-text">
-      <span class="image">
-        <!--<img src="logo.png" alt="">-->
-      </span>
+      <!-- <div class="image"> -->
+      <img src="/images/bigLogo.svg" alt="" />
+      <!-- </div> -->
 
-      <div class="text logo-text">
+      <!-- <div class="text logo-text">
         <span class="name">Codinglab</span>
         <span class="profession">Web developer</span>
-      </div>
+      </div> -->
     </div>
   </header>
 
@@ -42,33 +42,29 @@
         </li>
 
         <li class="nav-link">
-          <a href="#">
+          <a href="/leaves">
             <i class="bx bx-pie-chart-alt icon"></i>
             <span class="text nav-text">Leaves</span>
           </a>
         </li>
 
         <li class="nav-link">
-          <a href="#">
-            <i class="bx bx-heart icon"></i>
-            <span class="text nav-text">Likes</span>
-          </a>
-        </li>
-
-        <li class="nav-link">
-          <a href="#">
-            <i class="bx bx-wallet icon"></i>
-            <span class="text nav-text">Wallets</span>
+          <a href="/profile">
+           <i class="bx bx-heart icon"></i>
+           
+            <span class="text nav-text">Profile</span>
           </a>
         </li>
       </ul>
     </div>
 
-    <div class="bottom-content">
+    <div class="bottom-content" onclick="logout()">
       <li class="">
-        <a href="#">
-          <i class="bx bx-log-out icon"></i>
-          <span class="text nav-text">Logout</span>
+        <a href="/logout">
+          <i class="bx bx-log-out icon"> </i>
+          <input type="hidden" name="logout" value="logout" id="logout">
+         <span class="text nav-text">Logout</span>
+         
         </a>
       </li>
 
@@ -86,3 +82,13 @@
     </div>
   </div>
 </nav>
+
+<script>
+  function logout() {
+
+    // var logoutValue=document.getElementById("logout").value
+
+    console.log("clicked");
+  
+  }
+</script>

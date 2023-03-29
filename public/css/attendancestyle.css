@@ -117,7 +117,9 @@
   text-align: center;
 
 }
-
+.part4 .row_page .m_t_b p{
+  padding-bottom: 20px;
+}
 .row-page a {
   text-decoration: none;
   color: white;

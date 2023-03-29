@@ -13,6 +13,8 @@
   </head>
 
   <body>
+    <section class="home">
+      <div class="ag-format-container">
     <div class="profile-container">
       <div class="row rowCols">
         <div class="col1">
@@ -47,12 +49,16 @@
             </div>
           </div>
         </div>
+        
 
-        <div class="col2 colBasics">
+        <div class="col2 colBasics" >
           <div class="card2">
-            <div class="cards-in">
-              <h2>Basic Information</h2>
+            <div class="ag-courses_item box_shadow_2">
+              <div class="first_card_stl height_21_2" id="col2">
+           
+          
               <div class="basic-row">
+                <h2>Basic Information</h2>
                 <div class="basic-col">
                   <table class="proftab">
                     <tr>
@@ -116,13 +122,17 @@
                 </div>
               </div>
             </div>
-          </div>
+        
         </div>
+      </div>
+    </div>
 
-        <div class="col3 colBasics">
-          <div class="cards-in">
-            <h2>Education Info</h2>
+        <div class="col3 colBasics" >
+ 
+            <div class="ag-courses_item box_shadow_2">
+              <div class="first_card_stl height_21_2" id="col3">
             <div class="basic-row">
+              <h2>Education Info</h2>
               <div class="basic-col">
                 <table class="tableCourse">
                   <thead>
@@ -136,7 +146,7 @@
                   <tbody>
                     <% for(let i=0;i<dataEdu.length;i++) { %>
                         <tr>
-                            <td><%= dataEdu[i].course_name %></td>
+                            <td><%= dataEdu[i].cource_name %></td>
                             <td><%= dataEdu[i].percentage %></td>
                             <td><%= dataEdu[i].board_university_name %></td>
                             <td><%= dataEdu[i].passout_year%></td>
@@ -145,76 +155,25 @@
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col4 colBasics">
-          <div class="cards-in">
-            <h2>Experience Information</h2>
-            <div class="basic-row">
-              <div class="basic-col">
-                <table>
-                  <thead>
-                    <tr>
-                      <td>company_name</td>
-                      <td>designation_company</td>
-                      <td>start_date</td>
-                      <td>end_date</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% for(let i=0;i<dataExp.length;i++) { %>
-                        <tr>
-                            <td><%= dataExp[i].company_name %></td>
-                            <td><%= dataExp[i].designation_company %></td>
-                            <td><%= dataExp[i].start_date %></td>
-                            <td><%= dataExp[i].end_date%></td>
-                        </tr>
-                    <% } %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
+    </div>
+
+        
+      </div>
 
       <div class="rowCols">
-        <div class="col5 colBasics">
-          <div class="cards-in">
-            <h2>Reference Info</h2>
-
-            <div class="basic-row">
-              <div class="basic-col">
-                <table class="tableRef">
-                  <thead>
-                    <tr>
-                      <td>name</td>
-                      <td>number</td>
-                      <td>relationship</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   <% for(let i=0;i<dataRef.length;i++) { %>
-            <tr>
-                <td><%= dataRef[i].name %></td>
-                <td><%= dataRef[i].number %></td>
-                <td><%= dataRef[i].relationship%></td>
-            </tr>
-            <% } %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+       
 
         <div class="col6 colBasics">
-          <div class="cards-in">
-            <h2>Document</h2>
+        
+          <div class="ag-courses_item box_shadow_2">
+            <div class="first_card_stl height_21_2" id="col6">
 
             <div class="basic-row">
+              <h2>Document</h2>
               <div class="basic-col">
                 <table>
                   <thead>
@@ -262,14 +221,30 @@
         </div>
       </div>
     </div>
+    </div>
+    </div>
+    </section>
   </body>
 
   <script>
-    function picUpdate(){
-      
-console.log("clicked");
-      
 
-    }
+var mode_switch = document.getElementById('mode_btn')
+
+
+var dashboardcrd2 = document.getElementById('col2')
+var dashboardcrd3 = document.getElementById('col3')
+var dashboardcrd6 = document.getElementById('col6')
+
+
+mode_switch.addEventListener('click', function () {
+    // welcomecard.classList.toggle('dark_mode')
+    // dashboardcrd1.classList.toggle('dark_mode')
+    dashboardcrd2.classList.toggle('dark_mode')
+    dashboardcrd3.classList.toggle('dark_mode')
+    // dashboardcrd4.classList.toggle('dark_mode')
+    // dashboardcrd5.classList.toggle('dark_mode')
+    dashboardcrd6.classList.toggle('dark_mode')
+})
+    
   </script>
 </html>

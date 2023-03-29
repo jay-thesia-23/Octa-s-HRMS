@@ -7,7 +7,8 @@ app.set('layouts', path.resolve("src","view","layouts","main")) //added
 
 var conn=require("../config/dbConnect")
 
-var util=require("util")
+var util=require("util");
+const { JsonWebTokenError } = require('jsonwebtoken');
 var alldata = util.promisify(conn.query.bind(conn));
 
 const d = new Date();
@@ -21,7 +22,10 @@ var homeGet=(req, res) => {
 
   console.log();
   var date = new Date;
-  console.log(date);
+  //console.log(date);
+  var currentmonth=date.getMonth();
+  var cm=currentmonth+1;
+  //console.log("ccccccccccccc",cm);
   const year = date.getFullYear();
   var month = date.getMonth() +1;
   if (month <10) {
@@ -30,14 +34,17 @@ var homeGet=(req, res) => {
  
   const day = date.getDate();
    const x = year+ "-"+ month+ "-"+ day
-   console.log(x);
+   //console.log(x);
 
   conn.query(`select firstname,lastname,birth_date from employee_basic_infomation where birth_date = '${x}'; `, function (error, result) {
       if (error) throw error;
-      console.log(result);
+      //console.log(result);
+  conn.query(`select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,function (error, holidaydata){
+    res.render('home.ejs', {result,date,holidaydata});
+    //console.log("hhhhhhhhhhhhh",holidaydata);
+  });  
       
-      
-      res.render('home.ejs', {result})
+     
   })
 
  
@@ -81,7 +88,15 @@ var searchGet=async (req, res) => {
   }
   
 
+  var logoutPost=async (req,res)=>{
+    
+    console.log(req.cookies);
+     res.clearCookie("session_id");
+    res.clearCookie("login_token")
+    res.render("logout")
+    
+    
+  }
+
   
-
-
-module.exports = {homeGet,searchGet,employeeActivityGet}
+module.exports = {homeGet,searchGet,employeeActivityGet,logoutPost}

@@ -25,7 +25,6 @@ async function employee_activity() {
         hours = hours % 12;
         hours = hours ? hours : 12;
         hours = hours - 1;
-
         if (hours < 10) {
           hours = "0" + hours;
         }
@@ -33,7 +32,7 @@ async function employee_activity() {
 
         var div = document.createElement("div");
         if (data[s].status == "breck_in") {
-          div.setAttribute("class", "yellow");
+          div.setAttribute("class", "yellow_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -46,7 +45,7 @@ async function employee_activity() {
             minutes;
           check.append(div);
         } else if (data[s].status == "breck_out") {
-          div.setAttribute("class", "saffron");
+          div.setAttribute("class", "saffron_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -59,7 +58,7 @@ async function employee_activity() {
             minutes;
           check.append(div);
         } else if (data[s].status == "check_in") {
-          div.setAttribute("class", "green");
+          div.setAttribute("class", "green_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -72,7 +71,7 @@ async function employee_activity() {
             minutes;
           check.append(div);
         } else if (data[s].status == "check_out") {
-          div.setAttribute("class", "red");
+          div.setAttribute("class", "red_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -110,7 +109,6 @@ async function search() {
         hours = hours % 12;
         hours = hours ? hours : 12;
         hours = hours - 1;
-
         if (hours < 10) {
           hours = "0" + hours;
         }

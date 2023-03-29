@@ -1,6 +1,3 @@
-
-
-
 <section class="home">
     <div class="ag-format-container">
 
@@ -109,10 +106,10 @@
                                         <div class="mt_25">
                                             <div class="attendence_txt">Current Date</div>
 
-                                            <%/* %>
-                                            <div class="days_txt"><%= date_time.toJSON('yyyy-mm-dd').slice(0,10) %></div>
+                                            
+                                            <div class="days_txt"><%= date.toJSON('yyyy-mm-dd').slice(0,10) %></div>
 
-                                            <%*/ %>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +125,7 @@
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="button">
-                                                <button class="btn_2-hover color" onclick="breck(),breakin()" id="breck_in" disabled>Breck In</button>
+                                                <button class="btn_2-hover color" onclick="breck(),breckin()" id="breck_in" disabled>Break In</button>
                                             </div>
                                         </div>
                                     </div>
@@ -138,14 +135,14 @@
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="button">
-                                                <button class="btn_3-hover color" onclick="brc_out() , breakout()" id="breck_out" disabled>Breck Out</button>
+                                                <button class="btn_3-hover color" onclick="brc_out() , breckout()" id="breck_out" disabled>Break Out</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="button">
-                                                <button class="btn_4-hover color" onclick="chk_out() , checkout()" id="check_out" disabled>Check Out</button>
+                                                <button class="btn_4-hover color" onclick="chk_out() , checkout(),autoUnable()" id="check_out" disabled>Check Out</button>
                                             </div>
                                         </div>
                                         
@@ -208,49 +205,62 @@
 
                     <div class="record_atted_txt">Holidays</div>
                     <div>
+                        <% for(var s = 0;s<holidaydata.length;s++){%>
                         <div>
-                            <div class="birthday_emp_name">Makarsankranti</div>
+                            <div class="birthday_emp_name"><%= holidaydata[s].holiday_name %></div>
                         </div>
                         <div class="brd_btm_stl">
                             <div class="row">
                                 <div class="col">
-                                    <div class="birthday_dev">Saturday</div>
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_day %></div>
                                 </div>
                                 <div class="col">
-                                    <div class="birthday_dev">14/1/2023</div>
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_date %></div>
                                 </div>
                             </div>
                         </div>
 
-
+                        <% }%>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <div class="ag-courses_item box_shadow_2" id="attendanceRecord" hidden>
+        <div class="ag-courses_item box_shadow_2" id="attendanceRecord" >
             <div class="first_card_stl height_21_2" id="dashboardcrd6">
 
                     <div class="record_atted_txt">Attendance</div>
-                    <div>
-
-                       
-                        <div>
+                   
                             <div class="check_in_time_btn clr_checkin" id="time_box" >
-                                
                             </div>
-
-                            
-                        </div>
-
-
-
-                    </div>
+                   
 
                 </div>
             </div>
         </div>
+        <div class="online_card ">
+
+            <div class="dashboard_welcom_card_width mrg_10 box_shadow">
+                <div class="dashboard_welcom_card" id="welcomecard">
+
+                    <div id="activity">
+                        <div id="search_div">
+
+                            <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name" oninput="search()">
+                        </div>
+                        <div>
+                            <span id="submit" class="cmt_btn" onclick="search()">submit</span>
+                        </div>
+
+                    </div>
+                    <div id="employee">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 <script>
