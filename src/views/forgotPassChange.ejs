@@ -11,9 +11,15 @@
     <div class="title">Change Password
     </div>
     <div class="content">
-      <form action="/forgotpass" method="post" onsubmit=" return login_validation()" >
+      <form action="/forgotPassChange" method="post" onsubmit=" return login_validation()" >
 
         <div class="user-details">
+
+          <div class="input-box-login">
+            <p id="showerror" style="color: red;"></p>
+            <span class="details">Email</span>
+            <input type="email" placeholder="Enter your email" name="email" required>
+          </div>
           
           <div class="input-box-login">
             <p id="showerror" style="color: red;"></p>
