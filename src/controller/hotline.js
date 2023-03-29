@@ -11,6 +11,7 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
 var login_user__id;
+var total_offline
 
 const d = new Date();
 var x = d.getMonth() + 1;
@@ -21,6 +22,42 @@ var fulldate = y + "/" + x + "/" + z;
 console.log(fulldate);
 
 var alldata = util.promisify(conn.query.bind(conn));
+
+async function total_offline_1(){
+  var on = [];
+  var total = [];
+  
+  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+
+// console.log(alldetails);
+  for(var k=0; k<alldetails_1.length;k++){
+               on.push(alldetails_1[k].reg_id) 
+      }
+
+   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+
+   for(var p=0; p<total_emp.length;p++){
+    total.push(total_emp[p].reg_id) 
+}
+
+var alldetails = [];
+var total_offline
+
+for(var s=0;s<total_emp.length;s++){
+         var reg = total_emp[s].reg_id;
+       
+      if(on.includes(reg) ){
+
+      }else{
+
+        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+        
+        alldetails.push(empl)
+      }
+}
+}
+
+
 async function online_ofline() {
     var online = await alldata(`select count(reg_id) as total_online from check_master where date='${fulldate}' and online_status='1' and status = "check_in";`)
     total_online = online[0].total_online
@@ -28,7 +65,8 @@ async function online_ofline() {
 
     // var offline = await alldata(`select count(reg_id) as total_offline from check_master where date='${fulldate}' and online_status='0' and status = "check_in";`)
     // total_offline = offline[0].total_offline
-    total_offline = 250 - total_online 
+    total_offline_1();
+    // total_offline = 250 - total_online 
 
 }
 
@@ -50,6 +88,7 @@ const hotlineGet = async (req, res) => {
   console.log(alldetails);
   console.log(alldetails.length);
   online_ofline();
+  total_offline_1();
 
   res.render("hotline.ejs", { total_online, total_offline,alldetails });
 };
@@ -62,6 +101,7 @@ const hotlineOnlineGet = async (req, res) => {
 
   console.log(alldetails);
   online_ofline();
+  total_offline_1();
   res.render("hotline_online.ejs", { alldetails, total_online, total_offline });
 };
 
@@ -85,6 +125,7 @@ const hotlineOfflineGet = async (req, res) => {
 
 var alldetails = [];
 
+
 for(var s=0;s<total_emp.length;s++){
          var reg = total_emp[s].reg_id;
        
@@ -95,13 +136,10 @@ for(var s=0;s<total_emp.length;s++){
         var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
         
         alldetails.push(empl)
-    
       }
-     
-
- 
 }
 
+total_offline=alldetails.length
 
 
   online_ofline();

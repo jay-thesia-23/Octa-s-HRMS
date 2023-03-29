@@ -17,7 +17,6 @@ const { dirname } = require("path");
 app.use(express.static("public"));
 app.set("views",path.join(__dirname,"../views"));
 
-<<<<<<<<< Temporary merge branch 1
 // app.use(
 //   session({
 //     name:"session_id",
@@ -35,7 +34,6 @@ app.set("views",path.join(__dirname,"../views"));
 var registerGet = function (req, res) {
   res.render("register.ejs", {});
 };
-=========
 app.use(
   session({
     name:"session_id",
@@ -55,7 +53,6 @@ var registerGet = async function (req, res) {
   res.render("register.ejs", {});
 }
 
->>>>>>>>> Temporary merge branch 2
 
 async function Inemail(email) {
   return await new Promise((resolve, reject) => {
