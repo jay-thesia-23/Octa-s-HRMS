@@ -112,14 +112,25 @@ console.log(checkdata);
       s1 = entry_time.slice(6);
       s2 = exit_time.slice(6);
 
+      if(h1.charAt(1)==":"){
+        h1=h1.charAt(0)
+      }
+
+      if(h2.charAt(1)==":"){
+        h2=h2.charAt(0)
+      }
+
+
       var h = h2 - h1;
       var m = m2 - m1;
       var s = s2 - s1;
 
-      var totalsec = (h - 1) * 60 * 60 + m * 60 + s;
+      console.log(h1+" "+h2+""+"h1ms");
+      var totalsec = (h ) * 60 * 60 + m * 60 + s;
 
       var working = Math.floor((totalsec * 100) / (9 * 60 * 60));
 
+      console.log(working,"working");
       return working;
     }
 
