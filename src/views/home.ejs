@@ -46,16 +46,13 @@
                                     </div>
                                     <div class="col">
                                         <div class="mt_25">
-                                            <div class="attendence_txt">Work Hours </div>
-                                            <div class="days_txt">0 Hours</div>
+                                            <div class="attendence_txt">Produnctivity</div>
+                                    <div class="days_txt">100%</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mt_25">
-                                    <div class="attendence_txt">Produnctivity</div>
-                                    <div class="days_txt">100%</div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -164,38 +161,39 @@
 
         <div class="ag-courses_item box_shadow_2">
             <div class="first_card_stl height_21_2" id="dashboardcrd4">
+                <div class="record_atted_txt">Today's Birthday</div>
                 <div>
                 
-                    <%/* %>
+
+                    <div>
+                        
+                      
+
+                        
+                    </div>
                      <% if(result.length == ""){%>
                                         <h3> No Birth Day</h3>
                                         <%}else{%>
                                     <% for(var s = 0;s<result.length;s++){%>
-                                        <h3 class="h3"><%= result[s].firstname%>  <%= result[s].lastname%> </h3>
-                                        <p class="p"><%= result[s].birth_date%></p>
+                                        <div>
+                                            <div class="birthday_emp_name"><%= result[s].firstname%> <%= result[s].lastname%> </div>
+                                        </div>
+                                        <div class="brd_btm_stl">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="birthday_dev"> Birthday</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="birthday_dev"><%= result[s].birth_date%></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                    <% }%>
                                         <% }%> 
 
-                                        <%*/ %>
 
-                    <div class="record_atted_txt">Upcoming Birthday</div>
-                    <div>
-                        <div>
-                            <div class="birthday_emp_name">Harsh Patel</div>
-                        </div>
-                        <div class="brd_btm_stl">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="birthday_dev">Development</div>
-                                </div>
-                                <div class="col">
-                                    <div class="birthday_dev">20/3/2023</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
+                 
+                   
 
                 </div>
             </div>

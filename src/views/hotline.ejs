@@ -31,7 +31,7 @@
                 </div>
                 <div class="col_2">
                   <div>
-                    <div class="online_txt">Ofline</div>
+                    <div class="online_txt">Offline</div>
                     <div class="online_count"><%=total_offline%></div>
                   </div>
                 </div>
@@ -55,7 +55,13 @@
                 <div class="row pti_rel_2">
                   <div class="col">
                     <div class="jst_ctr">
-                      <img src="/images/1.webp" alt="Avatar" class="img">
+
+              
+                      <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
+                        <div class="img1"><img class="img" src="/hello.png"></div>
+                        <%}else{%>
+                        <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>
+                        <% } %>
                     </div>
                   </div>
                   <div class="col">
@@ -73,7 +79,7 @@
                           <p>Department</p>
                         </div>
                         <div class="clr_wht">
-                          <p>Development_chamge</p>
+                          <p>Development</p>
                         </div>
                       </div>
                     </div>
