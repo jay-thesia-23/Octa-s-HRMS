@@ -165,7 +165,7 @@ var registerPost = async function (req, res) {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?email=${email}"> verify</a>
+                <a href=" https://octa.appdemoserver.com/verify?email=${email}"> verify</a>
             </div>
         </section>
        
