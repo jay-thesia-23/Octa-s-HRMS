@@ -34,6 +34,8 @@ var abcGet = function (req, res) {
       console.log(data, "data");
       query_date = data[0].date;
       console.log(query_date, "query in date");
+
+      console.log(fulldate,"full data che");
       if (query_date == fulldate) {
         var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
         conn.query(time, function (err, result) {
@@ -96,6 +98,7 @@ var checkoutGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
+  console.log(fulldate,"checkout full date");
   var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;
@@ -103,11 +106,15 @@ var checkoutGet = function (req, res) {
       console.log("wrong");
     } else {
       query_date = data[0].date;
+
+
       if (query_date == fulldate) {
         var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
         console.log(time);
         conn.query(time, function (err, result) {
           if (err) throw err;
+
+          console.log(result,"reusllllllllllllllllllllll");
           res.json(result);
         });
       } else {

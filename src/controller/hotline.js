@@ -23,18 +23,18 @@ console.log(fulldate);
 
 var alldata = util.promisify(conn.query.bind(conn));
 
-async function total_offline_1(){
+ function total_offline_1(){
   var on = [];
   var total = [];
   
-  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+  var alldetails_1 =  alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
 
 // console.log(alldetails);
   for(var k=0; k<alldetails_1.length;k++){
                on.push(alldetails_1[k].reg_id) 
       }
 
-   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+   var total_emp =  alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
 
    for(var p=0; p<total_emp.length;p++){
     total.push(total_emp[p].reg_id) 
@@ -50,13 +50,14 @@ for(var s=0;s<total_emp.length;s++){
 
       }else{
 
-        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+        var empl =  alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
         
         alldetails.push(empl)
       }
 }
 }
 
+total_offline_1()
 
 async function online_ofline() {
     var online = await alldata(`select count(reg_id) as total_online from check_master where date='${fulldate}' and online_status='1' and status = "check_in";`)
@@ -85,12 +86,15 @@ const hotlineGet = async (req, res) => {
     `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
   );
 
+  var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
+
   console.log(alldetails);
   console.log(alldetails.length);
-  online_ofline();
   total_offline_1();
+  online_ofline();
 
-  res.render("hotline.ejs", { total_online, total_offline,alldetails });
+
+  res.render("hotline.ejs", { total_online, total_offline,alldetails,alldetailsProfile });
 };
 
 const hotlineOnlineGet = async (req, res) => {
@@ -99,10 +103,12 @@ const hotlineOnlineGet = async (req, res) => {
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
 
+  var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
+
   console.log(alldetails);
   online_ofline();
   total_offline_1();
-  res.render("hotline_online.ejs", { alldetails, total_online, total_offline });
+  res.render("hotline_online.ejs", { alldetails, total_online, total_offline,alldetailsProfile });
 };
 
 const hotlineOfflineGet = async (req, res) => {
@@ -141,12 +147,17 @@ for(var s=0;s<total_emp.length;s++){
 
 total_offline=alldetails.length
 
+var alldetailsProfile=await alldata(`select * from document_master RIGHT JOIN employee_basic_infomation ON document_master.reg_id=employee_basic_infomation.reg_id;`);
+
+console.log(JSON.stringify(alldetailsProfile[0].profile_pic),"profilleeeeeeeee");
 
   online_ofline();
+  total_offline_1();
   res.render("hotline_offline.ejs", {
     alldetails,
     total_online,
     total_offline,
+    alldetailsProfile
 
   });
 };

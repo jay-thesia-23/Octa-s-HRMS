@@ -37,6 +37,11 @@ async function fatchcheckmodule() {
         hours = "0" + hours;
       }
 
+      console.log(hours+"hours 12");
+      if(hours=="00"){
+        hours="12";
+      }
+
       var minutes = timecheckin.slice(3, 5);
       // console.log((hours),minutes);
 
@@ -75,10 +80,15 @@ async function fatchbreckin() {
         hours = hours ? hours : 12;
         hours = hours - 1;
 
+        console.log(hours,"hourse OF CHECKOUT");
         if (hours < 10) {
           hours = "0" + hours;
         }
 
+        console.log(hours+"hours 12");
+        if(hours=="00"){
+          hours="12";
+        }
         var minutes = timecheckin.slice(3, 5);
         // console.log((hours),minutes);
 
@@ -126,11 +136,16 @@ async function fatchchkout() {
       hours = hours ? hours : 12;
       hours = hours - 1;
 
+      console.log(hours,"hourse OF CHECKOUT");
 
       if (hours < 10) {
         hours = "0" + hours;
       }
 
+      console.log(hours+"hours 12");
+      if(hours=="00"){
+        hours="12";
+      }
       var minutes = timecheckin.slice(3, 5);
 
       var check = document.getElementById("time_box");
@@ -164,7 +179,8 @@ async function fatchchkout() {
       // console.log( dateValue+""+monthValue+""+yearValue);
       var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
 
-      console.log(TodayDates);
+      console.log(TodayDates,"tody date");
+      console.log(dateOfToday,"today dates first");
       
       if (dateOfToday==TodayDates) {
         document.getElementById("check_in").disabled = true;
