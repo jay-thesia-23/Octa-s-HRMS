@@ -26,6 +26,7 @@ var conn = require("./src/config/dbConnect");
 //   })
 // );
 
+app.use(express.static("uploads"));
 const register = require("./src/routes/register");
 app.use(register);
 
