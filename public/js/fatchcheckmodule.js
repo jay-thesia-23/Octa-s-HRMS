@@ -164,7 +164,8 @@ async function fatchchkout() {
       // console.log( dateValue+""+monthValue+""+yearValue);
       var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
 
-      console.log(TodayDates);
+      console.log(TodayDates,"tody date");
+      console.log(dateOfToday,"today dates first");
       
       if (dateOfToday==TodayDates) {
         document.getElementById("check_in").disabled = true;
