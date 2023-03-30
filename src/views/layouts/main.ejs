@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="" />
+    <!-- <link rel="stylesheet" href="/css/main.css" /> -->
+   
+
+    <!-- <link rel="stylesheet" href="/css/attendancestyle.css" />
+
+    <link rel="stylesheet" href="/css/profilecss.css" />
+ -->
+    <link rel="stylesheet" href="/css/wizard.css" />
+    <script src="/js/script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/leaves.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/regular.min.css"
+    />
+    <link href="https://css.gg/css?=" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Aleo"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!----===== Boxicons CSS ===== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="/js/commentScript.js"></script>
+    <script type="text/javascript" src="/js/checkinout.js"></script>
+    <script type="text/javascript" src="/js/fatchcheckmodule.js"></script>
+    <script type="text/javascript" src="/js/online_offline.js"></script>
+  </head>
+
+  <body
+    onload="fatchcheckmodule(), fatchbreckin() , fatchchkout(),employee_activity(),autoUnable(), fetchComment()"
+  >
+    <!-- sidebar -->
+    <div class=""><%- include('../partials/sidebar.ejs') %></div>
+
+
+    <div class="">
+      <main><%- body %></main>
+    </div>
+
+    <script>
+      const body = document.querySelector("body"),
+        sidebar = body.querySelector("nav"),
+        searchBtn = body.querySelector(".search-box"),
+        modeSwitch = body.querySelector(".toggle-switch"),
+        modeText = body.querySelector(".mode-text");
+
+     
+
+      modeSwitch.addEventListener("click", () => {
+        body.classList.toggle("dark");
+
+        if (body.classList.contains("dark")) {
+          modeText.innerText = "Light mode";
+        } else {
+          modeText.innerText = "Dark mode";
+        }
+      });
+    </script>
+  </body>
+</html>
