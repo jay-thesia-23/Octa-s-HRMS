@@ -23,7 +23,7 @@ var email=req.body.email
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
-    to: "sanjayparmar1650@gmail.com",
+    to: `${email}`,
 
     auth: {
       user: "hrms1650@gmail.com",
@@ -37,7 +37,7 @@ const mailConfigurations = {
     // const login_token = jwt.sign({ email: email }, "sanjay");
     // res.cookie("login_token", login_token);
 
-    to: "sanjayparmar1650@gmail.com",
+    to: `${email}`,
 
     subject: "Email Verification",
 
@@ -105,7 +105,7 @@ const mailConfigurations = {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/forgotPassChange?email=${email} "> verify</a>
+                <a href=" https://octa.appdemoserver.com/forgotPassChange?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -113,7 +113,13 @@ const mailConfigurations = {
     </body>
     
     </html>`,
+
+    
+
+
   };
+
+  res.send("hello")
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
