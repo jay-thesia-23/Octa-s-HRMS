@@ -6,9 +6,11 @@ var path=require("path")
 app.set('layouts', path.resolve("src","view","layouts","main")) //added
 
 var conn=require("../config/dbConnect")
+var jwt=require("jsonwebtoken")
+
 
 var util=require("util");
-const { JsonWebTokenError } = require('jsonwebtoken');
+
 var alldata = util.promisify(conn.query.bind(conn));
 
 const d = new Date();
@@ -40,12 +42,30 @@ var homeGet=(req, res) => {
       if (error) throw error;
       //console.log(result);
   conn.query(`select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,function (error, holidaydata){
-    res.render('home.ejs', {result,date,holidaydata});
+
+    jwt.verify(req.cookies.login_token,"sanjay",(err,decode)=>{
+
+      console.log(decode.id[0].id);
+  
+      var login_id=decode.id[0].id
+      conn.query(`select count(*) as checkinCount from check_master where reg_id=${login_id} and status="check_in" ;`,(err,data)=>{
+          
+        var attendaceCount=data[0].checkinCount
+      
+        var totalHours=(attendaceCount*9)
+          res.render('home.ejs', {result,date,holidaydata,attendaceCount,totalHours});
+      })
+    })
+   
     //console.log("hhhhhhhhhhhhh",holidaydata);
   });  
       
      
   })
+
+
+ 
+  
 
  
 }
