@@ -55,10 +55,10 @@ var profileGet = (req, res) => {
 let profilePost = (req, res) => {
   const login_token = req.cookies.login_token;
   
-  console.log(login_token);
+
 
   jwt.verify(login_token, "sanjay", (err, decoded) => {
-    console.log(decoded);
+
   });
 };
 

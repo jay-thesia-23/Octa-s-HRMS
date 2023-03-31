@@ -19,7 +19,7 @@ var y = d.getDate();
 var z = d.getFullYear();
 
 var fulldate = y + "/" + x + "/" + z;
-console.log(fulldate);
+
 
 var alldata = util.promisify(conn.query.bind(conn));
 
@@ -79,7 +79,7 @@ const hotlineGet = async (req, res) => {
   var login_token = req.cookies.login_token;
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     login_user__id = decoded.id[0].id;
-    console.log(login_user__id);
+   
   });
 
   var alldetails = await alldata(
@@ -88,8 +88,7 @@ const hotlineGet = async (req, res) => {
 
   var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
 
-  console.log(alldetails);
-  console.log(alldetails.length);
+ 
   total_offline_1();
   online_ofline();
 
@@ -98,14 +97,14 @@ const hotlineGet = async (req, res) => {
 };
 
 const hotlineOnlineGet = async (req, res) => {
-  console.log("sanjay online");
+
   var alldetails = await alldata(
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
 
   var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
 
-  console.log(alldetails);
+  
   online_ofline();
   total_offline_1();
   res.render("hotline_online.ejs", { alldetails, total_online, total_offline,alldetailsProfile });

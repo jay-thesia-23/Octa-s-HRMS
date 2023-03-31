@@ -31,12 +31,12 @@ app.get('/attendance', async (req, res) => {
 
     var token = req.cookies.login_token;
     var id ;
-    console.log(token + "tokennnnnnnnnnnnnnnn");
+    
   
     jwt.verify(token, "sanjay", function (err, decoded) {
     
         id = decoded.id[0].id;
-        console.log(id+"iddd");
+        
     })
 
 
@@ -74,7 +74,7 @@ starttime.push(star_time);
 exittime.push(end_time);
 }
 }
-console.log(starttime.push(checkdata[0].time.toJSON('HH-1:MM:SS').slice(11, 18)));
+
 
 for (let i = 0; i < starttime.length; i++) {
 if (exittime[i]) {

@@ -23,7 +23,7 @@ var abcGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
-  console.log(fulldate + "fulldate");
+ 
   var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;
@@ -31,17 +31,15 @@ var abcGet = function (req, res) {
     if (data.length == 0) {
       console.log("wrong");
     } else {
-      console.log(data, "data");
+     
       query_date = data[0].date;
-      console.log(query_date, "query in date");
-
-      console.log(fulldate,"full data che");
+    
       if (query_date == fulldate) {
         var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
 
-          console.log(result,"abc result");
+   
           res.json(result);
         });
       } else {
@@ -75,7 +73,7 @@ var breakInGet = function (req, res) {
         var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
-          console.log(result,"result of the breack in out");
+        
           res.json(result);
         });
       } else {
@@ -110,11 +108,11 @@ var checkoutGet = function (req, res) {
 
       if (query_date == fulldate) {
         var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
-        console.log(time);
+      
         conn.query(time, function (err, result) {
           if (err) throw err;
 
-          console.log(result,"reusllllllllllllllllllllll");
+        
           res.json(result);
         });
       } else {

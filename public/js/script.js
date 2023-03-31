@@ -360,18 +360,18 @@ function registerPage2(){
   else{
       document.getElementById('percent-error').innerHTML="";
   }
-  console.log(isvalidate);
+
   return isvalidate;
 }
 
 var clk =1;
 async function education(){
   var k
-console.log("sanjay");
+
   const ans = await fetch(`https://octa.appdemoserver.com/cource`);
   
   const data2 = await ans.json();
-  console.log(data2[0].cource_name);
+
   var table2= document.getElementById('add');
   var v2 = document.createElement('div');
   var s = ""

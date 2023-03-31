@@ -9,7 +9,7 @@ async function fetchComment() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data,"daataaa");
+    
       var cmt = document.getElementById("cmt");
 
       for(var i=0; i<data.length ; i++){

@@ -123,8 +123,8 @@ const mailConfigurations = {
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
-    console.log("Email Sent Successfully");
-    // console.log(info);
+ 
+  
   });
 
   res.send("register Succesfully!!!!");
