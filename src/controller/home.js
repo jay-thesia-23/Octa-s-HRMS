@@ -22,7 +22,7 @@ var z = d.getFullYear();
 var fulldate = y + "/" + x + "/" + z;
 
 var homeGet = (req, res) => {
-  console.log();
+  
   var date = new Date();
   //console.log(date);
   var currentmonth = date.getMonth();
@@ -36,7 +36,7 @@ var homeGet = (req, res) => {
 
   const day = date.getDate();
   const x = year + "-" + month + "-" + day;
-  console.log(x,"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
 
   conn.query(
     `select firstname,lastname,birth_date from employee_basic_infomation where birth_date = '${x}'; `,
@@ -47,7 +47,7 @@ var homeGet = (req, res) => {
         `select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,
         function (error, holidaydata) {
           jwt.verify(req.cookies.login_token, "sanjay", (err, decode) => {
-            console.log(decode.id[0].id);
+           
 
             var login_id = decode.id[0].id;
             conn.query(
@@ -69,7 +69,7 @@ var homeGet = (req, res) => {
             );
           });
 
-          //console.log("hhhhhhhhhhhhh",holidaydata);
+
         }
       );
     }
@@ -108,12 +108,12 @@ var searchGet = async (req, res) => {
     `select firstname,lastname,status,date,time from employee_basic_infomation inner join breck_master on employee_basic_infomation.reg_id=breck_master.reg_id where  breck_master.date = '${fulldate}'  AND employee_basic_infomation.firstname like '%${f_name}%' AND employee_basic_infomation.lastname like '%${l_name}%' ;`
   );
   var search_result = search_check.concat(search_breck);
-  console.log(search_result);
+
   res.json(search_result);
 };
 
 var logoutPost = async (req, res) => {
-  console.log(req.cookies);
+ 
   res.clearCookie("session_id");
   res.clearCookie("login_token");
   res.render("logout");

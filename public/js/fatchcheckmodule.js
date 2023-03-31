@@ -37,16 +37,16 @@ async function fatchcheckmodule() {
         hours = "0" + hours;
       }
 
-      console.log(hours+"hours 12");
+    
       if(hours=="00"){
         hours="12";
       }
 
       var minutes = timecheckin.slice(3, 5);
-      // console.log((hours),minutes);
+   
 
       var check = document.getElementById("time_box");
-      // console.log("indivision!!!!");
+    
 
       var div = document.createElement("div");
       div.setAttribute("class", "green");
@@ -69,7 +69,7 @@ async function fatchbreckin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+  
       var check = document.getElementById("time_box");
 
       for (var i = 0; i < data.length; i++) {
@@ -80,19 +80,17 @@ async function fatchbreckin() {
         hours = hours ? hours : 12;
         hours = hours - 1;
 
-        console.log(hours,"hourse OF CHECKOUT");
+        
         if (hours < 10) {
           hours = "0" + hours;
         }
 
-        console.log(hours+"hours 12");
+      
         if(hours=="00"){
           hours="12";
         }
         var minutes = timecheckin.slice(3, 5);
-        // console.log((hours),minutes);
-
-        // console.log("indivision!!!!");
+     
         var div = document.createElement("div");
         if (i % 2 == 0) {
           div.setAttribute("class", "breckInColor");
@@ -125,9 +123,8 @@ async function fatchchkout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data,"fatch ckercout data chhe");
 
-    console.log("Hello");
+
       var timecheckin = data[0].time.slice(11, 18);
       var dateOfToday=data[0].time.slice(0,10)
 
@@ -136,13 +133,13 @@ async function fatchchkout() {
       hours = hours ? hours : 12;
       hours = hours - 1;
 
-      console.log(hours,"hourse OF CHECKOUT");
+      
 
       if (hours < 10) {
         hours = "0" + hours;
       }
 
-      console.log(hours+"hours 12");
+  
       if(hours=="00"){
         hours="12";
       }
@@ -164,11 +161,8 @@ async function fatchchkout() {
       var time = new Date();
       var hour = time.getHours();
 
-      console.log(hour);
-
-      console.log(timecheckin,"checkin times");
-      // console.log("in function0:::");
-      console.log(dateOfToday);
+     
+   
 
       var date=new Date();
       var dateValue=date.getDate();
@@ -176,11 +170,10 @@ async function fatchchkout() {
       monthValue="0"+monthValue
       var yearValue=date.getFullYear()
 
-      // console.log( dateValue+""+monthValue+""+yearValue);
+
       var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
 
-      console.log(TodayDates,"tody date");
-      console.log(dateOfToday,"today dates first");
+    
       
       if (dateOfToday==TodayDates) {
         document.getElementById("check_in").disabled = true;

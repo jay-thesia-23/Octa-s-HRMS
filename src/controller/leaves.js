@@ -30,7 +30,7 @@ var leaveGet = (req, res) => {
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     // console.log(decoded);
     id = decoded.id[0].id;
-    console.log(id);
+  
     conn.query(
       `select *from request_leave_table where reg_id = "${id}" `,
       (error, result) => {
@@ -39,7 +39,7 @@ var leaveGet = (req, res) => {
         }
         data = result;
         res.render("leaves", { data, count: count, curr_page });
-        console.log("record displayed successfully");
+     
       }
     );
   });
@@ -47,19 +47,17 @@ var leaveGet = (req, res) => {
 };
 
 var leavePost = (req, res) => {
-  console.log("in leaves");
-  // const upload_compress = multer({ storage_compress });
+
+  
   var login_token = req.cookies.login_token;
-  console.log(login_token + "tokennnnnnnnnnnnnnnn");
+  
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
-    console.log(req.body);
+  
     let ldate = req.body.ldate;
     let leavetype = req.body.leavetype;
     let reason = req.body.reason;
-    console.log(ldate);
-    console.log(leavetype);
-    console.log(reason);
+   
 
     //date
     var today = new Date();
@@ -75,20 +73,16 @@ var leavePost = (req, res) => {
       mm = '0' + mm;
     }
     today = yyyy + '-' + mm + '-' + dd;
-    console.log(today);
 
-    console.log(JSON.stringify(decoded.id) + "decodeeeee");
-    console.log(decoded.id);
 
     var id = decoded.id[0].id;
-    console.log(id + "iddd");
+  
 
     var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
 
     conn.query(sql, function (err, result) {
       if (err) throw err;
-      console.log(result);
-      console.log("data inserted successfully");
+     
     });
   });
   res.redirect("/leaves");
@@ -114,7 +108,7 @@ conn.query('select count(*) as numrows  from request_leave_table', (error, data)
   data[0] = data[0].numrows;
   count = Math.ceil(data[0] / limit);
   
-  console.log(count);
+
 
 });
 

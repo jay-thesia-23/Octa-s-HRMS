@@ -198,9 +198,7 @@ var verifyGet = (req, res) => {
     } else {
       console.log(decoded);
       res.sendFile(path.join(__dirname, "adminverifide.html"));
-      conn.query(
-        `update registration set isactive = '0' where u_email='${email}';`,
-        (err, data) => {
+      conn.query(`update registration set isactive = '0' where u_email='${email}';`,(err, data) => {
           console.log(data);
         }
       );
