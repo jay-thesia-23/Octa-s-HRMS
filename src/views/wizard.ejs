@@ -253,38 +253,40 @@
       </div>
     
   </div>
-  <div class="form-step">
+  <div class="form-step" >
     <div class="input-group">
     <label for="adhar">Adhaar Card / Pan Card</label>
-    <input type="file" name="adhar" id="file"  />
+    <input type="file" name="adhar" id="file" class="file" />
     </div>
     
     <div class="input-group">
     <label for="resume">Resume</label>
-    <input type="file" name="resume" id="file" />
+    <input type="file" name="resume" id="file" class="file" />
     </div>
 
     <div class="input-group">
     <label for="cheque">Cheques</label>
-    <input type="file" name="cheque" id="file" />
+    <input type="file" name="cheque" id="file" class="file"/>
     </div>
 
     <div class="input-group">
     <label for="others">Others</label>
-    <input type="file" name="others" id="file" />
+    <input type="file" name="others" id="file" class="file" />
     </div>
 
 
     <div class="input-group">
       <label for="profilePic">profilePic</label>
-      <input type="file" name="profilePic" id="file" />
+      <input type="file" name="profilePic" id="file" class="file" />
       </div>
 
 
     <div class="btns-group">
       <p class="btn btn-prev">Previous</p>
    
-    <input type="submit" value="Submit" class="btn" />
+
+      <span class="span1" id="doc-error"></span>
+    <input type="submit" value="Submit" class="btn" onclick="return registerPage5()"/>
     </div>
     </div>
     </div>

@@ -215,6 +215,9 @@ async function select(state_id){
 function registerPage1() {
 
   console.log("call the register");
+  registerPage5()
+
+ 
   var fname = document.getElementById('fname').value || "";
   var lname = document.getElementById('lname').value || "";
   var dob = document.getElementById('dob_1').value || "";
@@ -362,6 +365,25 @@ function registerPage2(){
   }
   console.log(isvalidate);
   return isvalidate;
+}
+
+function registerPage5(){
+  var file=document.getElementsByClassName("file");
+  var docerror=document.getElementById("doc-error")
+
+// console.log(file[0]+"fillllllllllllle");
+  for (let i = 0; i < file.length; i++) {
+    if(file[i].files.length==0){
+
+      docerror.innerHTML="please fill  all the file"
+      console.log("please fill  all the file");
+      return false;
+    }
+    
+  }
+
+  return true;
+
 }
 
 var clk =1;

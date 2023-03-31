@@ -20,7 +20,12 @@
         <div class="col1">
           <div class="card1">
             <div class="card-in">
-              <img src="/<%=datapic[0].profile_pic%>" alt="" />
+              <%if(datapic[0].profile_pic!="" || datapic[0].profile_pic!=null){%>
+                <div class="img1"><img class="img" src="/<%= datapic[0].profile_pic%>"></div>
+                <%}else{%>
+                  <div class="img1"><img class="img" src="/hello.png"></div>
+                <% } %>
+              
             </div>
           </div>
 
