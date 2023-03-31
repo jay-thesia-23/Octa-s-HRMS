@@ -378,6 +378,8 @@ function registerPage5(){
       docerror.innerHTML="please fill  all the file"
       console.log("please fill  all the file");
       return false;
+    }else{
+      docerror.innerHTML=""
     }
     
   }
