@@ -42,8 +42,12 @@ async function fatchcheckmodule() {
 
       var check = document.getElementById("time_box");
       // console.log("indivision!!!!");
+      
+      console.log(hours,"hours in 12 hour formate!!!!!!!!");
+      console.log(minutes,"hours in 12 hour formate!!!!!!!!");
 
       var div = document.createElement("div");
+
       div.setAttribute("class", "green");
       div.innerHTML = "Check In " + hours + ":" + minutes;
 
