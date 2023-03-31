@@ -12,19 +12,21 @@ var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views",path.join(__dirname,"src/views"))
 
+app.use(express.static(path.join(__dirname, "uploads")))
+
 var conn = require("./src/config/dbConnect");
 
-app.use(
-  session({
-    name: "session_id",
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);
+// app.use(
+//   session({
+//     name: "session_id",
+//     secret: "your-secret-key",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 
 const register = require("./src/routes/register");
 app.use(register);

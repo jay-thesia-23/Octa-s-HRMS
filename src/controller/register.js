@@ -1,6 +1,6 @@
 var express = require("express");
 
-var app=express()
+var app = express();
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 var bodyparser = require("body-parser");
@@ -11,48 +11,27 @@ app.use(cookieParser());
 var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 var path = require("path");
-var conn=require("../config/dbConnect");
+var conn = require("../config/dbConnect");
 const { dirname } = require("path");
 
 app.use(express.static("public"));
-app.set("views",path.join(__dirname,"../views"));
+app.set("views", path.join(__dirname, "../views"));
 
-// app.use(
-//   session({
-//     name:"session_id",
-//     secret: "your-secret-key",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//       maxAge: 1000 * 60 * 60 * 24,
-//     },
-//   })
-// );
-
-
-
-var registerGet = function (req, res) {
-  res.render("register.ejs", {});
-};
 app.use(
   session({
-    name:"session_id",
+    name: "session_id",
     secret: "your-secret-key",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
 
-
-
-
-var registerGet = async function (req, res) {
+var registerGet = function (req, res) {
   res.render("register.ejs", {});
-}
-
+};
 
 async function Inemail(email) {
   return await new Promise((resolve, reject) => {
@@ -88,10 +67,7 @@ var registerPost = async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  console.log(req.session);
-  req.session.s_email = email;
-  console.log(req.session.save);
-  console.log(req.session,"s_email in register");
+
 
   let encrypt_password;
   encrypt_password = await bcrypt.hash(password, 10);
@@ -107,7 +83,7 @@ var registerPost = async function (req, res) {
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
-    to: "sanjayparmar1650@gmail.com",
+    to: `${email}`,
 
     auth: {
       user: "hrms1650@gmail.com",
@@ -115,11 +91,13 @@ var registerPost = async function (req, res) {
     },
   });
 
-  const mailConfigurations = {
-    // const login_token = jwt.sign({ email: email }, "sanjay");
-    // res.cookie("login_token", login_token);
+  const login_token = jwt.sign({ email: email }, "sanjay")
+  res.cookie("login_token", login_token)
 
-    to: "sanjayparmar1650@gmail.com",
+
+  const mailConfigurations = {
+
+    to: `${email}`,
 
     subject: "Email Verification",
 
@@ -187,7 +165,7 @@ var registerPost = async function (req, res) {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?email=${email} "> verify</a>
+                <a href=" https://octa.appdemoserver.com/verify?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -203,43 +181,34 @@ var registerPost = async function (req, res) {
     // console.log(info);
   });
 
-  res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/verificationrequest.html');
+  res.sendFile(path.join(__dirname, "verificationrequest.html"));
 };
 
 var verifyGet = (req, res) => {
-  // const reg_token = req.query.token;
+
   const email = req.query.email;
 
-  console.log(req.session.s_email);
-  if (req.session.s_email == email) {
-    res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/adminverifide.html');
-    conn.query(
-      `update registration set isactive = '0' where u_email='${email}';`,
-      (err, data) => {
-        console.log(data);
-      }
-    );
-  } else {
-    res.sendFile('/home/om-gajipara/Desktop/hrms/src/views/template/somthingwentwrong.html');
-  }
-  // Verifying the JWT token
-  // jwt.verify(reg_token, "sanjay", function (err, decoded) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(
-  //       "Email verification failed possibly the link is invalid or expired"
-  //     );
-  // } else {
-  //   console.log(decoded);
-  //   res.send("Email verifified successfully");
-  //   con.query(
-  //     `update registration set isactive = '0' where u_email='${email}';`,
-  //     (err, data) => {
-  //       console.log(data);
-  //     }
-  //   );
-  // }
-  // });
+  console.log(email);
+
+  const token=req.cookies.login_token
+  jwt.verify(token, "sanjay", function (err, decoded) {
+    if (err) {
+     
+      res.sendFile(path.join(__dirname, "somthingwentwrong.html"));
+    } else {
+      console.log(decoded);
+      res.sendFile(path.join(__dirname, "adminverifide.html"));
+      conn.query(
+        `update registration set isactive = '0' where u_email='${email}';`,
+        (err, data) => {
+          console.log(data);
+        }
+      );
+    }
+  });
+
+
+ 
 };
 
 module.exports = {

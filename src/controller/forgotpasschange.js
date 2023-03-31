@@ -11,18 +11,18 @@ const expressLayouts = require('express-ejs-layouts')
 app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 var jwt = require("jsonwebtoken");
-
+var bcrypt=require("bcrypt")
 var conn=require("../config/dbConnect")
 
-var forgotpassget=(req,res)=>{
+var forgotpasschangeget=(req,res)=>{
     res.render("forgotPassChange",{layout:false})
 }
 
-var forgotpasspost=async (req,res)=>{
+var forgotpasschangepost=async (req,res)=>{
 
     var newpass=req.body.newpass
     var confnewpass=req.body.conpass
-    var email=req.query.email
+    var email=req.body.email
 
     console.log(req.body);
 
@@ -30,15 +30,18 @@ var forgotpasspost=async (req,res)=>{
     encrypt_password = await bcrypt.hash(newpass, 10);
 
 
-    let sql=`update register 
-    set u_password=${encrypt_password}
-    where email=${email}`
+    let sql=`update registration 
+    set u_password="${encrypt_password}"
+    where u_email="${email}";`
 
+    console.log(sql);
     
     conn.query(sql,(err,data)=>{
         res.send("password is change")
     })
+
+ 
 }
 
 
-module.exports={forgotpassget}
+module.exports={forgotpasschangeget,forgotpasschangepost}

@@ -12,21 +12,7 @@ app.use(expressLayouts)   //Added
 app.set('layout', './layouts/main') //added
 var jwt = require("jsonwebtoken");
 
-
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'hrms'
-
-});
-
-connection.connect((err) => {
-  if (err)
-    throw err;
-  console.log("connected");
-})
-
+var conn = require("../config/dbConnect");
 
 commentGet=(req, res) => {
   console.log("in comment");
@@ -56,7 +42,7 @@ commentPost=(req, res) => {
 
     var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ("${id} ","${comment}")`;
 
-    connection.query(sql, function (err, result) {
+    conn.query(sql, function (err, result) {
       if (err) throw err
       console.log(result);
       console.log("data inserted successfully")

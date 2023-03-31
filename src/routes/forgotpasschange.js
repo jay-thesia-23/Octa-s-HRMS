@@ -7,10 +7,11 @@ var mysql = require('mysql2');
 var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
 var router=express.Router()
-var {forgotpassget}=require("../controller/forgotpasschange")
+var {forgotpasschangeget, forgotpasschangepost}=require("../controller/forgotpasschange")
 
 var {authentication}=require("../middleware/authMiddleware")
 
-app.get("/forgotPassChange",forgotpassget)
+app.get("/forgotPassChange",authentication,forgotpasschangeget)
+app.post("/forgotPassChange",authentication,forgotpasschangepost)
 
 module.exports=app
