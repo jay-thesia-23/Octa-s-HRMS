@@ -19,6 +19,10 @@ var forgotPassGet=(req,res)=>{
 var forgotPassPost=(req,res)=>{
 console.log(req.body);
 
+const login_token = jwt.sign({ email: email }, "sanjay")
+res.cookie("login_token", login_token)
+
+
 var email=req.body.email
 
 const transporter = nodemailer.createTransport({
