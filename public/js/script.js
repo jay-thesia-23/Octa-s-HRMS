@@ -384,7 +384,7 @@ function registerPage5(){
     
   }
 
-  return false;
+  return true;
 
 }
 
