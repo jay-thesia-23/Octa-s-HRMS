@@ -1,0 +1,142 @@
+.attendance-section {
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  padding: 0 16px;
+  /* background-color: #acacac; */
+  /* padding: 40px 40px; */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.card {
+  width: 20%;
+  /* padding: 16px 0; */
+
+}
+
+.card-in {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px;
+  margin: 0 16px;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500; 
+}
+.at-content{
+  display: grid;
+  padding: 20px;
+}
+
+#card1 {
+  background-color: rgb(141, 215, 189);
+}
+
+#card2 {
+  background-color: rgb(183, 176, 246);
+}
+
+#card3 {
+  background-color: rgb(235, 119, 140);
+}
+
+#card4 {
+  background-color: rgb(239, 215, 117);
+}
+
+#card5 {
+  background-color: rgb(236, 127, 108);
+}
+
+#card6 {
+  background-color: rgb(243, 159, 230);
+}
+
+.m_t_b {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.part2 {
+  margin-top: 20px;
+  text-align: end;
+}
+
+.select-dropdown select {
+  padding: 1em;
+  width: 30%;
+  border-radius: .2em;
+  border: 1px solid #acacac;
+  font-size: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-dropdown select::-ms-expand {
+  display: none;
+}
+/* .part3{
+  margin-top: 40px;
+} */
+.tab {
+  margin-top: 50px;
+  width: 100%;
+  border: 2px solid gray;
+  /* border-radius: 10px; */
+  border-spacing: 0;
+}
+
+.tab thead tr {
+  background-color: rgb(43, 43, 94);
+  color: white;
+}
+
+.tab thead tr th {
+  /* border-radius: 10px; */
+  padding: 15px;
+}
+
+
+.tab tbody tr:hover {
+  background-color: rgb(185, 185, 194);
+}
+
+.tab tbody tr td {
+  text-align: center;
+  /* border-radius: 10px; */
+  padding: 15px;
+}
+.row-page {
+  text-align: center;
+
+}
+.part4 .row_page .m_t_b p{
+  padding-bottom: 20px;
+}
+.row-page a {
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(188, 186, 186);
+  padding: 10px;
+}
+
+#pageno {
+  background-color: rgb(43, 43, 94);
+}
+
+
+/* tr:nth-child(even){
+  background-color: #acacac;
+}
+tr:nth-child(odd){
+  background-color: aliceblue;
+} */
