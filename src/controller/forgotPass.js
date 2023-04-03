@@ -105,7 +105,7 @@ const mailConfigurations = {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/forgotPassChange?email=${email} "> verify</a>
+                <a href=" ${req.get('origin')}/forgotPassChange?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -121,7 +121,7 @@ const mailConfigurations = {
     // console.log(info);
   });
 
-  res.send("register Succesfully!!!!");
+  res.send("Change password mail sent Successfully!!!!");
 };
 
 

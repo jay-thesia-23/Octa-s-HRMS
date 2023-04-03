@@ -30,6 +30,10 @@ app.use(
 );
 
 var registerGet = function (req, res) {
+  
+
+  
+
   res.render("register.ejs", {});
 };
 
@@ -66,6 +70,11 @@ var registerPost = async function (req, res) {
   const user_name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+
+ 
+  var url = req.get('origin')
+  res.cookie('om', url)
+  var server_url = req.cookies.om
 
 
 
@@ -165,8 +174,8 @@ var registerPost = async function (req, res) {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" https://octa.appdemoserver.com/verify?email=${email} "> verify</a>
-            </div>
+                <a href=" ${req.get('origin')}/verify?email=${email} "> verify</a>
+            </div>  
         </section>
        
         </div>
@@ -180,7 +189,6 @@ var registerPost = async function (req, res) {
     console.log("Email Sent Successfully");
     // console.log(info);
   });
-
   res.sendFile(path.join(__dirname, "verificationrequest.html"));
 };
 

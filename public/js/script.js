@@ -7,6 +7,12 @@ const progressSteps = document.querySelectorAll(".progress-step");
 var isvalidate =true;
 let formStepsNum = 0;
 
+  var x = document.cookie
+  let decodedCookie = decodeURIComponent(x);
+  let ca = decodedCookie.split(';');
+  var split_url = ca[0].split('=')
+  var complete_url = split_url[1]
+
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister1 =registerPage1()
@@ -195,9 +201,12 @@ function contactValidate(){
 
 
 async function select(state_id){
-  // console.log(state_id);
   
-  const ans = await fetch(`http://localhost:5000/test-api?state_id=${state_id.value}`);
+
+
+
+  const ans = await fetch(`${complete_url}/test-api?state_id=${state_id.value}`);
+  console.log(ans);
   
   const data = await ans.json();
   console.log(data)
@@ -366,9 +375,9 @@ function registerPage2(){
 
 var clk =1;
 async function education(){
+
   var k
-console.log("sanjay");
-  const ans = await fetch(`http://localhost:5000/cource`);
+  const ans = await fetch(`${complete_url}/cource`);
   
   const data2 = await ans.json();
   console.log(data2[0].cource_name);

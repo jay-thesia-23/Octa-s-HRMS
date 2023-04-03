@@ -110,7 +110,7 @@ var breakInPost=function (req, res) {
     jwt.verify(login_token, "sanjay", function (err, decoded) {
       login_user__id = decoded.id[0].id;
       // console.log(login_user__id)
-    });
+    }); 
   
     console.log(login_user__id);
     var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_in','${login_user__id}','${fulldate}');`;
