@@ -101,12 +101,12 @@ const mailConfigurations = {
         <div class="main">
             <header>
                 <div class="heading">
-                    <h1>Confirm Your Employe</h1>
+                    <h1>Confirm Password Change</h1>
                 </div>
             </header>
          <section class="section">
             <div class="section-p">
-                <p>Tap the button below to confirm your Employe.</p>
+                <p>Tap to change your password</p>
             </div>
             <div class="verify-link">
                 <a href=" https://octa.appdemoserver.com/forgotPassChange?email=${email} "> verify</a>
