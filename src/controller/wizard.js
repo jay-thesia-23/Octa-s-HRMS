@@ -49,6 +49,7 @@ var cityCourse=(req,res)=>{
 }
 var testApiGet = function (req, res) {
   let state_1 = req.query.state_id || "";
+  console.log(req.get('Host'));
 
   console.log(state_1);
   conn.query(

@@ -109,7 +109,7 @@ const mailConfigurations = {
                 <p>Tap to change your password</p>
             </div>
             <div class="verify-link">
-                <a href=" https://octa.appdemoserver.com/forgotPassChange?email=${email} "> verify</a>
+                <a href=" ${req.get('origin')}/forgotPassChange?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -131,7 +131,7 @@ const mailConfigurations = {
   
   });
 
-  res.send("register Succesfully!!!!");
+  res.send("Change password mail sent Successfully!!!!");
 };
 
 

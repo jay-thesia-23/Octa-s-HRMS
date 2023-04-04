@@ -22,18 +22,21 @@ commentGet=(req, res) => {
 
 
 commentPost=(req, res) => {
-
+  console.log("in comment");
   
   var login_token = req.cookies.login_token;
   
 
   jwt.verify(login_token, 'sanjay', function (err, decoded) {
 
+   console.log(req.body);
    
    var comment = req.body.comment;
-  
+   console.log(comment);
 
-   
+   console.log(JSON.stringify(decoded.id) + "decoding");
+   console.log(decoded.id);
+
    var id = decoded.id[0].id;
   
 

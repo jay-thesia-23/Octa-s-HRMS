@@ -16,6 +16,7 @@ app.use(cookieParser());
 var path = require("path");
 // app.set("views",path.join(__dirname,"views"))
 
+
 var conn = require("../config/dbConnect");
 
 var loginGet = (req, res) => {
