@@ -25,7 +25,7 @@ var editProfileGet = function (req, res) {
   jwt.verify(login, "sanjay", function (err, decoded) {
     // console.log(decoded);
     login_user__id = decoded.id[0].id;
-    console.log(login_user__id);
+ 
   });
 
   conn.query(`select * from cource_master; `, function (error, data2) {
@@ -38,7 +38,7 @@ var editProfileGet = function (req, res) {
         `SELECT * FROM employee_basic_infomation where reg_id = ${login_user__id};`,
         function (error, result1) {
           if (error) throw error;
-          console.log(result1);
+        
           conn.query(
             `SELECT * FROM education_table where reg_id = ${login_user__id};`,
             function (error, result2) {
@@ -122,9 +122,9 @@ var editProfilePost = async (req, res) => {
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     // console.log(decoded);
     login_user__id = decoded.id[0].id;
-    console.log(login_user__id);
+   
   });
-  console.log(login_user__id);
+
 
   // basic_information
 
@@ -139,7 +139,7 @@ var editProfilePost = async (req, res) => {
 
   console.log(deleteDoc);
   conn.query(deleteDoc, (err, dataDoc) => {
-    console.log("image is deleted");
+  
   });
 
   conn.query(
@@ -147,7 +147,7 @@ var editProfilePost = async (req, res) => {
     function (error, data) {
       if (error) throw error;
       id = data.insertId;
-      console.log(id);
+   
 
       // education
 
@@ -174,7 +174,7 @@ var editProfilePost = async (req, res) => {
 
       // reference_master
       var sql = `insert into reference_master (reg_id,employee_id,name,number,relationship) values('${login_user__id}','${id}','${name1}','${number1}','${relationship1}'),('${login_user__id}','${id}','${name2}','${number2}','${relationship2}') ;`;
-      console.log(sql);
+      
 
       conn.query(sql, function (error, data) {
         if (error) throw error;
@@ -190,7 +190,7 @@ var editProfilePost = async (req, res) => {
           profile_pic) VALUES ("${id}","${login_user__id}","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
 
           conn.query(sqlDocs, (err, docs) => {
-          console.log("doc is inserted");
+          
         });
       });
 

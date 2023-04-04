@@ -31,7 +31,7 @@
                   </div>
                   <div class="col_2">
                     <div>
-                      <div class="online_txt">Ofline</div>
+                      <div class="online_txt">Offline</div>
                       <div class="online_count"><%=total_offline%></div>
                     </div>
                   </div>
@@ -42,11 +42,12 @@
           </div>
 
           <div class="ag-courses_box">
-          
+           
+
            <% for(let i=0; i<alldetails.length; i++) {%>
 
 
-         
+       
 
             
             <div class="ag-courses_item box_shadow_2">
@@ -57,7 +58,13 @@
                   <div class="row pti_rel_2">
                     <div class="col">
                       <div class="jst_ctr">
-                        <img src="/images/1.webp" alt="Avatar" class="img">
+
+                        <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
+                          <div class="img1"><img class="img" src="/hello.png"></div>
+                          <%}else{%>
+                          <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>
+                          <% } %>
+                  
                       </div>
                     </div>
                     <div class="col">
@@ -67,7 +74,7 @@
                             <p>Date of hire</p>
                           </div>
                           <div class="clr_wht">
-                            <p> <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %></p>
+                            <p> <%= alldetails[i][0].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %></p>
                           </div>
                         </div>
                         <div>
@@ -75,7 +82,7 @@
                             <p>Department</p>
                           </div>
                           <div class="clr_wht">
-                            <p>Development_chamge</p>
+                            <p>Development</p>
                           </div>
                         </div>
                       </div>
@@ -84,27 +91,27 @@
     
                   <div>
                     <div class="crd_emp_name">
-                      <p>   <%= alldetails[i].firstname %></p>
+                      <p>   <%= alldetails[i][0].firstname %></p>
                     </div>
                   </div>
     
                   <div class="pti_rel_2">
                     <div class="crd_designation">
-                      <p> <%= alldetails[i].designation %></p>
+                      <p> <%= alldetails[i][0].designation %></p>
                     </div>
                   </div>
     
                   <div class="display_flex crd_mail_aln">
                     <div class="mr_8 clr_tomato"><i class="fa fa-envelope"></i></div>
                     <div class="clr_drk_grey">
-                      <p> <%= alldetails[i].email %></p>
+                      <p> <%= alldetails[i][0].email %></p>
                     </div>
                   </div>
     
                   <div class="display_flex crd_mail_aln">
                     <div class="mr_8 clr_tomato"><i class="fa fa-mobile-phone" style="font-size:30px"></i>
                     </div>
-                    <div class="clr_drk_grey"><%= alldetails[i].phone_number %></div>
+                    <div class="clr_drk_grey"><%= alldetails[i][0].phone_number %></div>
                   </div>
                 </div>
     
@@ -120,30 +127,50 @@
     </section>
 
     <script>
-        var mode_switch = document.getElementById('mode_btn')
-      var card1 = document.getElementById('card1')
-      var card2 = document.getElementById('card2')
-      var card3 = document.getElementById('card3')
-      var card4 = document.getElementById('card4')
-      var card5 = document.getElementById('card5')
-      var card6 = document.getElementById('card6')
-      var onlinecrd1 = document.getElementById('onlinecrd1')
-      var onlinecrd2 = document.getElementById('onlinecrd2')
+      let alldetails='<%-alldetails.length%>'
 
-      mode_switch.addEventListener('click',function(){
+var mode_switch = document.getElementById('mode_btn')
+console.log(mode_switch);
 
-        for(let i=0;i<alldetails.length;i++){
-            
-        }
-        card1.classList.toggle('dark_mode')
-        card2.classList.toggle('dark_mode')
-        card3.classList.toggle('dark_mode')
-        card4.classList.toggle('dark_mode')
-        card5.classList.toggle('dark_mode')
-        card6.classList.toggle('dark_mode')
-        onlinecrd1.classList.toggle('dark_mode')
-        onlinecrd2.classList.toggle('dark_mode')
+for(let i=0;i<alldetails;i++){
 
-      })
+  var cardName="card"+i
+  
+   cardName = document.getElementById('card'+`${i}`)
+
+
+}
+
+
+var onlinecrd1 = document.getElementById('onlinecrd1')
+var onlinecrd2 = document.getElementById('onlinecrd2')
+
+mode_switch.addEventListener('click',function(){
+
+var cardIdArr=[]
+
+
+console.log(alldetails,"alldetains");
+for(let j=0;j<alldetails;j++){
+  const cardId=("card"+j)
+
+  cardIdArr.push(cardId)
+
+}
+
+console.log(cardIdArr,"card id first");
+
+for(let j=0;j<alldetails;j++){
+  var a =document.getElementById(`card${j}`);
+  
+  a.classList.toggle('dark_mode')
+ 
+}
+
+
+onlinecrd1.classList.toggle('dark_mode')
+onlinecrd2.classList.toggle('dark_mode')
+
+})
   </script>
    

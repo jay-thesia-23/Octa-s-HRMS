@@ -4,7 +4,7 @@ async function online() {
 
 async function offline() {
   window.location.replace("/hotline/offline");
-  console.log("ofline");
+
 }
 
 async function employee_activity() {
@@ -90,7 +90,7 @@ async function employee_activity() {
 
 async function search() {
   const name = document.getElementById("search").value;
-  console.log(name);
+
 
   fetch(`/search?name=${name}`, {
     method: "get",
@@ -116,7 +116,7 @@ async function search() {
 
         var div = document.createElement("div");
         if (data[s].status == "breck_in") {
-          div.setAttribute("class", "yellow");
+          div.setAttribute("class", "yellow_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -129,7 +129,7 @@ async function search() {
             minutes;
           check.append(div);
         } else if (data[s].status == "breck_out") {
-          div.setAttribute("class", "saffron");
+          div.setAttribute("class", "saffron_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -142,7 +142,7 @@ async function search() {
             minutes;
           check.append(div);
         } else if (data[s].status == "check_in") {
-          div.setAttribute("class", "green");
+          div.setAttribute("class", "green_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +
@@ -155,7 +155,7 @@ async function search() {
             minutes;
           check.append(div);
         } else if (data[s].status == "check_out") {
-          div.setAttribute("class", "red");
+          div.setAttribute("class", "red_activity");
           div.innerHTML =
             data[s].firstname +
             "  " +

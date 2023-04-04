@@ -5,13 +5,12 @@ var breck_out = document.getElementById("breck_out");
 
 function autoUnable(){
 
-  console.log("autoUnable");
+ 
   
     var time = new Date();
      var hour = time.getHours();
   
-     console.log(hour);
-     console.log("in function0");
+ 
     if(hour==0){
       
       document.getElementById("check_in").disabled = false;
@@ -35,13 +34,17 @@ function demo() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
-  console.log(s, m);
+  if(m<10){
+        
+    m = "0" + m 
+}
+ 
 
   s = s % 12;
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat);
+ 
 
   var div = document.createElement("div");
   div.setAttribute("class", "green");
@@ -65,6 +68,10 @@ function chk_out() {
 
   s = s % 12;
   s = s ? s : 12;
+  if(m<10){
+
+    m = "0" + m 
+}
 
 
   var timeIn12HourFormat = s + ":" + m;
@@ -77,39 +84,6 @@ function chk_out() {
   check.append(div);
 
  
-    document.getElementById("check_in").disabled = true;
-    document.getElementById("check_out").disabled = true;
-    document.getElementById("breck_in").disabled = true;
-    document.getElementById("breck_out").disabled = true;
-  
-     // console.log("in function0:::");
-     console.log(dateOfToday);
-
-     var date=new Date();
-     var dateValue=date.getDate();
-     var monthValue=date.getMonth()+1;
-     monthValue="0"+monthValue
-     var yearValue=date.getFullYear()
-
-     // console.log( dateValue+""+monthValue+""+yearValue);
-     var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
-
-     console.log(TodayDates);
-     
-     if (dateOfToday==TodayDates) {
-       document.getElementById("check_in").disabled = true;
-       document.getElementById("check_out").disabled = true;
-       document.getElementById("breck_in").disabled = true;
-       document.getElementById("breck_out").disabled = true;
-     }else{
-       document.getElementById("check_in").disabled = false;
-       document.getElementById("check_out").disabled = true;
-       document.getElementById("breck_in").disabled = true;
-       document.getElementById("breck_out").disabled = true;
-     }
-  
-
-//   check_out.innerHTML = "Thank You!!!!!";
 }
 
 function breck() {
@@ -150,6 +124,10 @@ function brc_out() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+
+    m = "0" + m 
+}
 
   s = s % 12;
   s = s ? s : 12;
@@ -179,7 +157,7 @@ async function checkin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check in sucesfully!!!!");
+     
     });
 }
 
@@ -192,7 +170,7 @@ async function checkout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check out sucesfully!!!!");
+      
     });
 }
 
@@ -205,7 +183,7 @@ async function breckin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck in sucesfully!!!!");
+     
     });
 }
 
@@ -218,7 +196,7 @@ async function breckout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck out sucesfully!!!!");
+      
     });
 }
 

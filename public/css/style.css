@@ -172,7 +172,7 @@ body.dark .sidebar header .toggle {
 }
 
 .sidebar .menu {
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .sidebar li.search-box {
@@ -186,8 +186,9 @@ body.dark .sidebar header .toggle {
   display: inline;
 }
 
-disabled {
-}
+/* disabled {
+  opacity: 0.5;
+} */
 
 .sidebar li.search-box input {
   height: 100%;
@@ -230,7 +231,7 @@ body.dark .sidebar li a:hover .text {
 }
 
 .sidebar .menu-bar {
-  height: calc(100% - 55px);
+  height: calc(100% - 7%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -852,6 +853,28 @@ cmt_btn:active {
     border-top-right-radius: 16px;
     padding: 6px 0px;
 }
+.saffron{
+  padding: 6px 0px;
+  background-color: #a0d5ff;
+  /* border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
+  padding: 6px 0px;
+}
+.yellow{
+  padding: 6px 0px;
+  background-color: #ff9800;
+  /* border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
+  padding: 6px 0px;
+}
+.red{
+  padding: 6px 0px;
+  background-color: #eb0404;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 6px 0px;
+}
+
 .green_activity {
   padding: 6px 0px;
   width: 70%;
@@ -962,6 +985,9 @@ cmt_btn:active {
 
 /* --------------------------------- */
 
+tbody.dark_mode{
+  background-color:#121212 ;
+}
 .btn_3-hover.color {
   background-color: #298ad7;
 }
@@ -1214,4 +1240,15 @@ td:hover {
 
 #pageno {
   background-color: rgb(43, 43, 94);
+}
+.cmt_stl{
+  width: 100%;
+  margin-top: 15px;
+}
+
+.cmt_txt_style{
+    color: #ff9800;
+    border-radius: 15px;
+    font-size: 22px;
+    font-family: "Aleo";
 }

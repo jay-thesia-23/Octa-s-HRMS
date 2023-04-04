@@ -197,7 +197,7 @@ function contactValidate(){
 async function select(state_id){
   // console.log(state_id);
   
-  const ans = await fetch(`http://localhost:5000/test-api?state_id=${state_id.value}`);
+  const ans = await fetch(`https://octa.appdemoserver.com/test-api?state_id=${state_id.value}`);
   
   const data = await ans.json();
   console.log(data)
@@ -215,6 +215,9 @@ async function select(state_id){
 function registerPage1() {
 
   console.log("call the register");
+  registerPage5()
+
+ 
   var fname = document.getElementById('fname').value || "";
   var lname = document.getElementById('lname').value || "";
   var dob = document.getElementById('dob_1').value || "";
@@ -319,7 +322,7 @@ function registerPage1() {
   } 
 
   
-console.log(isvalidate);
+  console.log(isvalidate);
   return isvalidate;
 }
 
@@ -360,18 +363,39 @@ function registerPage2(){
   else{
       document.getElementById('percent-error').innerHTML="";
   }
-  console.log(isvalidate);
+
   return isvalidate;
+}
+
+function registerPage5(){
+  var file=document.getElementsByClassName("file");
+  var docerror=document.getElementById("doc-error")
+
+// console.log(file[0]+"fillllllllllllle");
+  for (let i = 0; i < file.length; i++) {
+    if(file[i].files.length==0){
+
+      docerror.innerHTML="please fill  all the file"
+      console.log("please fill  all the file");
+      return false;
+    }else{
+      docerror.innerHTML=""
+    }
+    
+  }
+
+  return true;
+
 }
 
 var clk =1;
 async function education(){
   var k
-console.log("sanjay");
-  const ans = await fetch(`http://localhost:5000/cource`);
+
+  const ans = await fetch(`https://octa.appdemoserver.com/cource`);
   
   const data2 = await ans.json();
-  console.log(data2[0].cource_name);
+
   var table2= document.getElementById('add');
   var v2 = document.createElement('div');
   var s = ""

@@ -3,7 +3,7 @@ var bodyparser = require("body-parser");
 
 var app = express();
 
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 const session = require("express-session");
 app.set("view engine", "ejs");
 app.use(bodyparser.json());
@@ -12,20 +12,23 @@ var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views",path.join(__dirname,"src/views"))
 
+app.use(express.static(path.join(__dirname, "uploads")))
+
 var conn = require("./src/config/dbConnect");
 
-app.use(
-  session({
-    name: "session_id",
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);
+// app.use(
+//   session({
+//     name: "session_id",
+//     secret: "your-secret-key",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 
+app.use(express.static("uploads"));
 const register = require("./src/routes/register");
 app.use(register);
 
@@ -64,13 +67,42 @@ app.use(fatchapi)
 var fetchcmt = require("./src/routes/fetch_comment")
 app.use(fetchcmt);
 
+var forgotPass=require("./src/routes/forgotPass")
+app.use(forgotPass)
+
+var forgotPasschange=require("./src/routes/forgotpasschange")
+app.use(forgotPasschange)
 
 var logout=require("./src/routes/logout")
 app.use(logout)
 
+<<<<<<< HEAD
+var comment=require("./src/routes/comment")
+app.use(comment)
+
+
+
+var connection = mysql2.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'hrms'
+  
+  });
+  
+  connection.connect((err) => {
+    if (err)
+      throw err;
+    console.log("connected with database");
+  })
+  
+var fatchapi = require("./src/routes/check_module_fatchapi");
+app.use(fatchapi);
+=======
 app.use((req, res, next) => {
   res.render("page404",{layout:false})
 })
+>>>>>>> dcced8ac3f2aa7a8f50041baff2eac02e95aebc4
 
 app.listen(5000, () => {
   console.log("app listening on 5000 port");

@@ -26,13 +26,13 @@
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="attendence_txt">Attendance</div>
-                                            <div class="days_txt">28 Days</div>
+                                            <div class="days_txt"><%=attendaceCount%> Days</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="attendence_txt">Late Days</div>
-                                            <div class="days_txt">1 Days</div>
+                                            <div class="days_txt">0 Days</div>
                                         </div>
                                     </div>
                                 </div>
@@ -40,27 +40,41 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="mt_25">
-                                            <div class="attendence_txt">Absent</div>
-                                            <div class="days_txt">4 Days</div>
+                                            <div class="attendence_txt">Total Hours</div>
+                                            <div class="days_txt"><%=totalHours%> Hours</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mt_25">
-                                            <div class="attendence_txt">Half Days</div>
-                                            <div class="days_txt">0 Days</div>
+                                            <div class="attendence_txt">Produnctivity</div>
+                                    <div class="days_txt">100%</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mt_25">
-                                    <div class="attendence_txt">Worked Hours</div>
-                                    <div class="days_txt">172 Hours</div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+            <div class="main-body">
+            <form  action="/comment" method="post">
+                <div class="promo-card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <h4 class="c-white">Add Your Comment</h4>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="record-data">
+                                <ul>
+                                    <input type="text" class="click" name="comment" placeholder="comment" onkeyup="isComment(this)" id="comment">
+                                    <input type="submit" onclick="addComment()" value="comment" class="abutton =" id="commentBtn">
+                                </ul>
+                            </div>
+=======
 
             <div class="ag-courses_item box_shadow_2">
                 <div class="first_card_stl height_21" id="dashboardcrd2">
@@ -73,9 +87,16 @@
                             <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
 
 
+<<<<<<< HEAD
                             <input  id="comment" name="comment"  type="text" class="commentInput coment"  onclick="myFun()"  placeholder="comment">
                             <input type="submit"  value="comment" name="commentBtn" class="cmt_btn abutton" id="commentBtn"></a>
                             <div id="cmt"></div>
+=======
+                            <input  id="comment" name="comment" type="text" class="commentInput coment"  placeholder="comment">
+                            <input type="submit"  value="comment"  class="cmt_btn abutton" id="commentBtn"></a>
+                            <div id="cmt" class="cmt_stl"></div>
+>>>>>>> dcced8ac3f2aa7a8f50041baff2eac02e95aebc4
+>>>>>>> master
                         </div>
                         <div class="pt_28">
                         
@@ -89,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
 
             <div class="ag-courses_item box_shadow_2">
@@ -164,38 +186,39 @@
 
         <div class="ag-courses_item box_shadow_2">
             <div class="first_card_stl height_21_2" id="dashboardcrd4">
+                <div class="record_atted_txt">Today's Birthday</div>
                 <div>
                 
-                    <%/* %>
+
+                    <div>
+                        
+                      
+
+                        
+                    </div>
                      <% if(result.length == ""){%>
                                         <h3> No Birth Day</h3>
                                         <%}else{%>
                                     <% for(var s = 0;s<result.length;s++){%>
-                                        <h3 class="h3"><%= result[s].firstname%>  <%= result[s].lastname%> </h3>
-                                        <p class="p"><%= result[s].birth_date%></p>
+                                        <div>
+                                            <div class="birthday_emp_name"><%= result[s].firstname%> <%= result[s].lastname%> </div>
+                                        </div>
+                                        <div class="brd_btm_stl">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="birthday_dev"> Birthday</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="birthday_dev"><%= result[s].birth_date%></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                    <% }%>
                                         <% }%> 
 
-                                        <%*/ %>
 
-                    <div class="record_atted_txt">Upcoming Birthday</div>
-                    <div>
-                        <div>
-                            <div class="birthday_emp_name">Harsh Patel</div>
-                        </div>
-                        <div class="brd_btm_stl">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="birthday_dev">Development</div>
-                                </div>
-                                <div class="col">
-                                    <div class="birthday_dev">20/3/2023</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
+                 
+                   
 
                 </div>
             </div>
@@ -244,12 +267,13 @@
         <div class="online_card ">
 
             <div class="dashboard_welcom_card_width mrg_10 box_shadow">
-                <div class="dashboard_welcom_card" id="welcomecard">
+                <div class="dashboard_welcom_card" id="alleployee">
 
                     <div id="activity">
                         <div id="search_div">
 
-                            <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name" oninput="search()">
+                            <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
+                                oninput="search()">
                         </div>
                         <div>
                             <span id="submit" class="cmt_btn" onclick="search()">submit</span>
@@ -279,6 +303,7 @@ if(clickBtn == ""){
 
 // -------------------------------------------------------------------------
     var mode_switch = document.getElementById('mode_btn')
+    console.log("in a script of home");
 
     var welcomecard = document.getElementById('welcomecard')
     var dashboardcrd1 = document.getElementById('dashboardcrd1')
@@ -287,6 +312,7 @@ if(clickBtn == ""){
     var dashboardcrd4 = document.getElementById('dashboardcrd4')
     var dashboardcrd5 = document.getElementById('dashboardcrd5')
     var dashboardcrd6 = document.getElementById('dashboardcrd6')
+    var dashboardcrd7 = document.getElementById('alleployee')
 
     mode_switch.addEventListener('click', function () {
         welcomecard.classList.toggle('dark_mode')
@@ -296,6 +322,7 @@ if(clickBtn == ""){
         dashboardcrd4.classList.toggle('dark_mode')
         dashboardcrd5.classList.toggle('dark_mode')
         dashboardcrd6.classList.toggle('dark_mode')
+        dashboardcrd7.classList.toggle('dark_mode')
     })
 
 
