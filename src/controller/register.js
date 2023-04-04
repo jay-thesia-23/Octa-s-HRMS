@@ -165,7 +165,7 @@ var registerPost = async function (req, res) {
                 <p>Tap the button below to confirm your Employe.</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/verify?email=${email}"> verify</a>
+                <a href=" https://octa.appdemoserver.com/verify?email=${email}"> verify</a>
             </div>
         </section>
        
@@ -198,9 +198,7 @@ var verifyGet = (req, res) => {
     } else {
       console.log(decoded);
       res.sendFile(path.join(__dirname, "adminverifide.html"));
-      conn.query(
-        `update registration set isactive = '0' where u_email='${email}';`,
-        (err, data) => {
+      conn.query(`update registration set isactive = '0' where u_email='${email}';`,(err, data) => {
           console.log(data);
         }
       );

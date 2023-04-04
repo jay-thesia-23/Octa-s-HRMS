@@ -5,13 +5,12 @@ var breck_out = document.getElementById("breck_out");
 
 function autoUnable(){
 
-  console.log("autoUnable");
+ 
   
     var time = new Date();
      var hour = time.getHours();
   
-     console.log(hour);
-     console.log("in function0");
+ 
     if(hour==0){
       
       document.getElementById("check_in").disabled = false;
@@ -39,13 +38,13 @@ function demo() {
         
     m = "0" + m 
 }
-  console.log(s, m);
+ 
 
   s = s % 12;
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat);
+ 
 
   var div = document.createElement("div");
   div.setAttribute("class", "green");
@@ -158,7 +157,7 @@ async function checkin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check in sucesfully!!!!");
+     
     });
 }
 
@@ -171,7 +170,7 @@ async function checkout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check out sucesfully!!!!");
+      
     });
 }
 
@@ -184,7 +183,7 @@ async function breckin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck in sucesfully!!!!");
+     
     });
 }
 
@@ -197,7 +196,7 @@ async function breckout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck out sucesfully!!!!");
+      
     });
 }
 

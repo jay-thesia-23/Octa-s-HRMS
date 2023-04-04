@@ -19,11 +19,15 @@ var forgotPassGet=(req,res)=>{
 var forgotPassPost=(req,res)=>{
 console.log(req.body);
 
+const login_token = jwt.sign({ email: email }, "sanjay")
+res.cookie("login_token", login_token)
+
+
 var email=req.body.email
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
-    to: "sanjayparmar1650@gmail.com",
+    to: `${email}`,
 
     auth: {
       user: "hrms1650@gmail.com",
@@ -37,7 +41,7 @@ const mailConfigurations = {
     // const login_token = jwt.sign({ email: email }, "sanjay");
     // res.cookie("login_token", login_token);
 
-    to: "sanjayparmar1650@gmail.com",
+    to: `${email}`,
 
     subject: "Email Verification",
 
@@ -97,15 +101,15 @@ const mailConfigurations = {
         <div class="main">
             <header>
                 <div class="heading">
-                    <h1>Confirm Your Employe</h1>
+                    <h1>Confirm Password Change</h1>
                 </div>
             </header>
          <section class="section">
             <div class="section-p">
-                <p>Tap the button below to confirm your Employe.</p>
+                <p>Tap to change your password</p>
             </div>
             <div class="verify-link">
-                <a href=" http://localhost:5000/forgotPassChange?email=${email} "> verify</a>
+                <a href=" https://octa.appdemoserver.com/forgotPassChange?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -113,12 +117,18 @@ const mailConfigurations = {
     </body>
     
     </html>`,
+
+    
+
+
   };
+
+  res.send("hello")
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
-    console.log("Email Sent Successfully");
-    // console.log(info);
+ 
+  
   });
 
   res.send("register Succesfully!!!!");

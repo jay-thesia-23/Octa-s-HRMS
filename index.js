@@ -3,7 +3,7 @@ var bodyparser = require("body-parser");
 
 var app = express();
 
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 const session = require("express-session");
 app.set("view engine", "ejs");
 app.use(bodyparser.json());
@@ -28,6 +28,7 @@ var conn = require("./src/config/dbConnect");
 //   })
 // );
 
+app.use(express.static("uploads"));
 const register = require("./src/routes/register");
 app.use(register);
 

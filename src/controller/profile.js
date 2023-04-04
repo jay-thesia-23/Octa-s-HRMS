@@ -2,8 +2,8 @@ var express = require("express");
 var app = express();
 app.use(express.json());
 var bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyparser.json({ limit: "50mb" }));
 var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 const expressLayouts = require("express-ejs-layouts");
@@ -15,7 +15,6 @@ app.use(cookieParser());
 var conn = require("../config/dbConnect");
 
 var profileGet = (req, res) => {
-
   let login_token = req.cookies.login_token;
   var id;
   console.log(login_token, "token in profile");
@@ -55,11 +54,11 @@ var profileGet = (req, res) => {
 let profilePost = (req, res) => {
   const login_token = req.cookies.login_token;
   
-
+  console.log(login_token);
 
   jwt.verify(login_token, "sanjay", (err, decoded) => {
-
+    console.log(decoded);
   });
 };
 
-module.exports = {profileGet,profilePost};
+module.exports = { profileGet, profilePost };

@@ -20,21 +20,19 @@
         <div class="col1">
           <div class="card1">
             <div class="card-in">
-              <img src="public/uploads/<%=datapic[0].profile_pic%>" alt="" />
+
+              <%console.log(datapic.length,"looggoogdjgd")%>
+              <%if( datapic.length==0  || datapic.length==""){%>
+                <div class="img1"><img class="img" src="/hello.png"></div>
+                
+                <%}else{%>
+                  <div class="img1"><img class="img" src="/<%= datapic[0].profile_pic%>"></div>
+                <% } %>
+              
             </div>
           </div>
 
-          <div class="card1">
-            <div class="card-in">
-
-              <form action="/edit_profile" method="POST">
-              <p id="ProfileEdit">
-    
-                <a href="" id="ProfileEditAnchor" onclick="return picUpdate()"><span> <i class="fas fa-edit"></i> Edit Profile Pic</span></a>
-              </p>
-            </form>
-            </div>
-          </div>
+          
 
           <div class="card1">
             <div class="card-in">
@@ -54,70 +52,71 @@
         <div class="col2 colBasics" >
           <div class="card2">
             <div class="ag-courses_item box_shadow_2">
-              <div class="first_card_stl height_21_2" id="col2">
+              <div class="first_card_stl height_21_2" id="col1">
            
           
               <div class="basic-row">
                 <h2>Basic Information</h2>
                 <div class="basic-col">
-                  <table class="proftab">
-                    <tr>
-                      <td>First_name</td>
-                      <td><%= basicdata[0].firstname %></td>
-                    </tr>
-                    <tr>
-                      <td>Last_name</td>
-                      <td><%= basicdata[0].lastname %></td>
-                    </tr>
-                    <tr>
-                      <td>Email</td>
-                      <td><%= basicdata[0].email %></td>
-                    </tr>
+                  <table class="proftab " >
+  <tbody id="card1" >                  
+    <tr>
+    <td>First_name</td>
+    <td><%= basicdata[0].firstname %></td>
+  </tr>
+  <tr>
+    <td>Last_name</td>
+    <td><%= basicdata[0].lastname %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= basicdata[0].email %></td>
+  </tr>
 
-                    <tr>
-                      <td>Phone</td>
-                      <td><%= basicdata[0].phone_number%></td>
-                    </tr>
+  <tr>
+    <td>Phone</td>
+    <td><%= basicdata[0].phone_number%></td>
+  </tr>
 
-                    <tr>
-                      <td>city</td>
-                      <td><%= basicdata[0].city %></td>
-                    </tr>
+  <tr>
+    <td>city</td>
+    <td><%= basicdata[0].city %></td>
+  </tr>
 
-                    <tr>
-                      <td>state</td>
-                      <td><%= basicdata[0].state %></td>
-                    </tr>
+  <tr>
+    <td>state</td>
+    <td><%= basicdata[0].state %></td>
+  </tr>
 
-                    <tr>
-                      <td>Gender</td>
-                      <td><%= basicdata[0].gender %></td>
-                    </tr>
+  <tr>
+    <td>Gender</td>
+    <td><%= basicdata[0].gender %></td>
+  </tr>
 
-                    <tr>
-                      <td>zipcode</td>
-                      <td><%= basicdata[0].zip_code %></td>
-                    </tr>
+  <tr>
+    <td>zipcode</td>
+    <td><%= basicdata[0].zip_code %></td>
+  </tr>
 
-                    <tr>
-                      <td>birthdate</td>
-                      <td><%= basicdata[0].birth_date %></td>
-                    </tr>
+  <tr>
+    <td>birthdate</td>
+    <td><%= basicdata[0].birth_date %></td>
+  </tr>
 
-                    <tr>
-                      <td>address</td>
-                      <td><%= basicdata[0].address %></td>
-                    </tr>
+  <tr>
+    <td>address</td>
+    <td><%= basicdata[0].address %></td>
+  </tr>
 
-                    <tr>
-                      <td>Relationship</td>
-                      <td><%= basicdata[0].relationship %></td>
-                    </tr>
+  <tr>
+    <td>Relationship</td>
+    <td><%= basicdata[0].relationship %></td>
+  </tr>
 
-                    <tr>
-                      <td>designation</td>
-                      <td><%= basicdata[0].designation %></td>
-                    </tr>
+  <tr>
+    <td>designation</td>
+    <td><%= basicdata[0].designation %></td>
+  </tr></tbody>
                   </table>
                 </div>
               </div>
@@ -125,6 +124,105 @@
         
         </div>
       </div>
+
+      <div class="card2">
+        <div class="ag-courses_item box_shadow_2">
+          <div class="first_card_stl height_21_2" id="col2">
+       
+      
+          <div class="basic-row">
+            <h2>Documents</h2>
+            <div class="basic-col">
+              <table>
+                <thead>
+                  <tr>
+                    <td>Field Name</td>
+                    <td>Field Value</td>
+                  </tr>
+                </thead>
+                <tbody id="card3" >
+                  
+                  <tr>
+                    <td>Adhar</td>
+
+                    
+                    <td>
+                      <%if( datapic.length==0  || datapic.length==""){%>
+                        <div class="img1"><img class="img" src="/hello.png"></div>
+                        
+                        <%}else{%>
+                          <img src="/<%= datapic[0].adhar%>" alt="" width="20px" height="20px ">
+                         
+                        <% } %>
+                      
+                      
+                     </td>
+                  </tr>
+                 
+                  <tr>
+                    <td>Resume</td>
+                    <td>
+                      <%if( datapic.length==0  || datapic.length==""){%>
+                        <div class="img1"><img class="img" src="/hello.png"></div>
+                        
+                        <%}else{%>
+                          <img src="/<%= datapic[0].resume_doc%>" alt="" width="20px" height="20px ">
+                         
+                        <% } %>
+                      
+                    
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td>Cheque</td>
+                    <td>
+                      <%if( datapic.length==0  || datapic.length==""){%>
+                        <div class="img1"><img class="img" src="/hello.png"></div>
+                        
+                        <%}else{%>
+                          <img src="/<%= datapic[0].cheque%>" alt="" width="20px" height="20px ">
+                         
+                        <% } %>
+                      
+                      
+                     
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td>Other</td>
+                    <td>   <%if( datapic.length==0  || datapic.length==""){%>
+                      <div class="img1"><img class="img" src="/hello.png"></div>
+                      
+                      <%}else{%>
+                        <img src="/<%= datapic[0].cheque%>" alt="" width="20px" height="20px ">
+                       
+                      <% } %>
+                    
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td>profile_pic</td>
+                    <td>
+                      <%if( datapic.length==0 || datapic.length==""){%>
+                        <div class="img1"><img class="img" src="/hello.png"></div>
+                        
+                        <%}else{%>
+                          <div class="img1"><img class="img" src="/<%= datapic[0].profile_pic%>"></div>
+                        <% } %>
+                      
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    
+    </div>
+  </div>
     </div>
 
         <div class="col3 colBasics" >
@@ -143,7 +241,7 @@
                       <td>pass year</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="card2">
                     <% for(let i=0;i<dataEdu.length;i++) { %>
                         <tr>
                             <td><%= dataEdu[i].cource_name %></td>
@@ -164,63 +262,7 @@
         
       </div>
 
-      <div class="rowCols">
-       
-
-        <div class="col6 colBasics">
-        
-          <div class="ag-courses_item box_shadow_2">
-            <div class="first_card_stl height_21_2" id="col6">
-
-            <div class="basic-row">
-              <h2>Document</h2>
-              <div class="basic-col">
-                <table>
-                  <thead>
-                    <tr>
-                      <td>Field Name</td>
-                      <td>Field Value</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                    <tr>
-                      <td>Adhar</td>
-                      <td><img src="public/uploads/<%= datapic[0].adhar%>" alt="" width="20px" height="20px ">
-                       </td>
-                    </tr>
-                   
-                    <tr>
-                      <td>Resume</td>
-                      <td><img src="public/uploads/<%= datapic[0].resume_doc%>" alt="" width="20px" height="20px ">
-                        </td>
-                    </tr>
-
-                    <tr>
-                      <td>Cheque</td>
-                      <td><img src="public/uploads/<%= datapic[0].cheque%>" alt="" width="20px" height="20px ">
-                        </td>
-                    </tr>
-
-                    <tr>
-                      <td>Other</td>
-                      <td><img src="public/uploads/<%= datapic[0].other%>" alt="" width="20px" height="20px ">
-                        </td>
-                    </tr>
-
-                    <tr>
-                      <td>profile_pic</td>
-                      <td><img src="public/uploads/<%= datapic[0].profile_pic%>" alt="" width="20px" height="20px ">
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+     
     </div>
     </div>
     </section>
@@ -230,19 +272,21 @@
 
 var mode_switch = document.getElementById('mode_btn')
 
-
+var dashboardcrd1=document.getElementById('card1')
 var dashboardcrd2 = document.getElementById('col2')
-var dashboardcrd3 = document.getElementById('col3')
-var dashboardcrd6 = document.getElementById('col6')
+var dashboardcrd3 = document.getElementById('card2')
+var dashboardcrd6 = document.getElementById('card3')
+var dashboardcrd4=document.getElementById("col3")
+var dashboardcrd5=document.getElementById("col1")
 
 
 mode_switch.addEventListener('click', function () {
     // welcomecard.classList.toggle('dark_mode')
-    // dashboardcrd1.classList.toggle('dark_mode')
+    dashboardcrd1.classList.toggle('dark_mode')
     dashboardcrd2.classList.toggle('dark_mode')
     dashboardcrd3.classList.toggle('dark_mode')
-    // dashboardcrd4.classList.toggle('dark_mode')
-    // dashboardcrd5.classList.toggle('dark_mode')
+    dashboardcrd4.classList.toggle('dark_mode')
+    dashboardcrd5.classList.toggle('dark_mode')
     dashboardcrd6.classList.toggle('dark_mode')
 })
     

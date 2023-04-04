@@ -24,7 +24,7 @@ var forgotpasschangepost=async (req,res)=>{
     var confnewpass=req.body.conpass
     var email=req.body.email
 
-    console.log(req.body);
+  
 
     let encrypt_password;
     encrypt_password = await bcrypt.hash(newpass, 10);
@@ -34,8 +34,7 @@ var forgotpasschangepost=async (req,res)=>{
     set u_password="${encrypt_password}"
     where u_email="${email}";`
 
-    console.log(sql);
-    
+   
     conn.query(sql,(err,data)=>{
         res.send("password is change")
     })

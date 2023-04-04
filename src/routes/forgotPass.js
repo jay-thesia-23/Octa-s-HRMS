@@ -11,6 +11,6 @@ var {forgotPassGet,forgotPassPost}=require("../controller/forgotPass")
 
 var {authentication}=require("../middleware/authMiddleware")
 
-app.get("/forgotpass",authentication,forgotPassGet)
-app.post("/forgotpass",authentication,forgotPassPost)
+app.get("/forgotpass",forgotPassGet)
+app.post("/forgotpass",forgotPassPost)
 module.exports=app

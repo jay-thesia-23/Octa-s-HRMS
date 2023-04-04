@@ -172,7 +172,7 @@ body.dark .sidebar header .toggle {
 }
 
 .sidebar .menu {
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .sidebar li.search-box {
@@ -231,7 +231,7 @@ body.dark .sidebar li a:hover .text {
 }
 
 .sidebar .menu-bar {
-  height: calc(100% - 55px);
+  height: calc(100% - 7%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -985,6 +985,9 @@ cmt_btn:active {
 
 /* --------------------------------- */
 
+tbody.dark_mode{
+  background-color:#121212 ;
+}
 .btn_3-hover.color {
   background-color: #298ad7;
 }

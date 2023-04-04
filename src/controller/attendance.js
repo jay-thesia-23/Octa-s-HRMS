@@ -32,7 +32,7 @@ var attendanceGet = async (req, res) => {
     var checkdata = await alldataquery(`select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
 
     //console.log("reg is dataaaaaaaa", `select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
-console.log(checkdata);
+
     var cntresult = await alldataquery(`select count(*) as count from check_master where reg_id = '${ login_user__id}'`);
     let totalp = Math.ceil(cntresult[0].count / limit);
 
@@ -133,5 +133,8 @@ console.log(checkdata);
       console.log(working,"working");
       return working;
     }
+
+  
+
 
     module.exports = { attendanceGet, diffrence_time };

@@ -4,7 +4,7 @@ async function online() {
 
 async function offline() {
   window.location.replace("/hotline/offline");
-  console.log("ofline");
+
 }
 
 async function employee_activity() {
@@ -90,7 +90,7 @@ async function employee_activity() {
 
 async function search() {
   const name = document.getElementById("search").value;
-  console.log(name);
+
 
   fetch(`/search?name=${name}`, {
     method: "get",

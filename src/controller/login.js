@@ -29,7 +29,7 @@ async function Inemail(email) {
       (err, data) => {
         if (err) throw err;
         res(data);
-        // console.log(data.length);
+  
       }
     );
   });
@@ -46,7 +46,7 @@ var loginPost = async (req, res) => {
 
   var query = util.promisify(conn.query).bind(conn);
   var id = await query(`select id from registration where u_email='${email}'`);
-  console.log(id);
+ 
   // console.log(data)
 
   if (data.length != 0) {

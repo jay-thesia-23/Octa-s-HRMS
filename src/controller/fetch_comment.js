@@ -29,7 +29,7 @@ var fetchcommentGet = (req, res) => {
     var sql = `select comment from comment_table where reg_id='${login_user__id}';`
     conn.query(sql, function(err,data){
           if(err) throw err
-          console.log(data.length);
+         
           if(data.length == 0){
               console.log("wrong");
           }else{
