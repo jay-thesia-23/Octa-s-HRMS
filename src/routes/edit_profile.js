@@ -6,8 +6,8 @@ app.use(express.json());
 var bodyParser = require("body-parser");
 
 const expressLayouts = require("express-ejs-layouts");
-app.use(expressLayouts); //Added
-app.set("layout", "../views/layouts/main"); //added
+// app.use(expressLayouts); //Added
+// app.set("layout", "../views/layouts/main"); //added
 var path = require("path");
 app.set("views", path.join(__dirname, "../views"));
 app.use(bodyParser.json());

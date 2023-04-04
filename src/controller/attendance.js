@@ -34,10 +34,9 @@ var attendanceGet = async (req, res) => {
     //console.log("reg is dataaaaaaaa", `select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
 
     var cntresult = await alldataquery(`select count(*) as count from check_master where reg_id = '${ login_user__id}'`);
+
     let totalp = Math.ceil(cntresult[0].count / limit);
-
   
-
     var starttime = [];
     var startdate = [];
     var exittime = [];
