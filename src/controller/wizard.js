@@ -6,8 +6,8 @@ const bcrypt = require("bcrypt");
 app.use(express.static("css"));
 app.use(express.static("images"));
 var bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({limit: '50mb', extended: true }));
+app.use(bodyparser.json({limit: '50mb'}));
 var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -37,8 +37,8 @@ var wizardGet = (req, res) => {
 
     conn.query(`select * from state_master; `, function (error, data3) {
       if (error) throw error;
-      
-      res.render("wizard", { data3, data2 });
+
+      res.render("wizard", { data3, data2, layout: false });
     });
   });
 };
@@ -76,7 +76,7 @@ var courceGet = function (req, res) {
 var uniqueSuffix = "";
 const storage = multer.diskStorage({
   destination: function (req, files, cb) {
-    cb(null, "./public/uploads");
+    cb(null, "./uploads");
   },
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
@@ -163,14 +163,14 @@ const wizardPost = async (req, res) => {
         profile_pic) VALUES (${id},${login_user__id},"${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
 
       console.log(sqlDocs);
-      con.query(sqlDocs, (err, docs) => {
+      conn.query(sqlDocs, (err, docs) => {
         console.log("doc is inserted");
       });
 
       // education
 
       if (typeof course_name == "string") {
-        con.query(
+        conn.query(
           `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name}','${percentage}','${board_university_name}','${passout_year}');`,
           function (error, data) {
             if (error) throw error;
@@ -180,7 +180,7 @@ const wizardPost = async (req, res) => {
         );
       } else {
         for (let j = 0; j < course_name.length; j++) {
-          con.query(
+          conn.query(
             `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name[j]}','${percentage[j]}','${board_university_name[j]}','${passout_year[j]}');`,
             function (error, data) {
               if (error) throw error;
@@ -194,7 +194,7 @@ const wizardPost = async (req, res) => {
       var sql = `insert into reference_master (reg_id,employee_id,name,number,relationship) values('${login_user__id}','${id}','${name1}','${number1}','${relationship1}'),('${login_user__id}','${id}','${name2}','${number2}','${relationship2}') ;`;
       console.log(sql);
 
-      con.query(sql, function (error, data) {
+      conn.query(sql, function (error, data) {
         if (error) throw error;
       });
     }
@@ -210,5 +210,5 @@ module.exports = {
   Inemail,
   courceGet,
   testApiGet,
-  upload,
+  upload
 };

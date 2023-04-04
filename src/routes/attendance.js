@@ -10,7 +10,8 @@ var { attendanceGet } = require("../controller/attendance");
 var path = require("path");
 
 app.set("views", path.join(__dirname, "../views"));
+var {authentication}=require("../middleware/authMiddleware")
 
-app.get("/attendance", attendanceGet);
+app.get("/attendance",authentication, attendanceGet);
 
 module.exports = app;

@@ -1,23 +1,17 @@
 var express = require("express");
+var ejs = require("ejs");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const util = require("util");
+var bodyparser = require("body-parser");
+
 var app = express();
 app.use(express.json());
-var ejs = require("ejs");
-
-const bcrypt = require("bcrypt");
-
-app.use(express.static("css"));
-app.use(express.static("images"));
-const util = require("util");
-
-var bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 var mysql = require("mysql2");
-
-var cookieParser = require("cookie-parser");
-// app.use(cookieParser());
-var jwt = require("jsonwebtoken");
-
 app.use(cookieParser());
 var path = require("path");
 // app.set("views",path.join(__dirname,"views"))
@@ -25,7 +19,7 @@ var path = require("path");
 var conn = require("../config/dbConnect");
 
 var loginGet = (req, res) => {
-  res.render("login.ejs", {});
+  res.render("login.ejs", {layout:false});
 };
 
 async function Inemail(email) {
@@ -35,7 +29,7 @@ async function Inemail(email) {
       (err, data) => {
         if (err) throw err;
         res(data);
-        // console.log(data.length);
+  
       }
     );
   });
@@ -52,7 +46,7 @@ var loginPost = async (req, res) => {
 
   var query = util.promisify(conn.query).bind(conn);
   var id = await query(`select id from registration where u_email='${email}'`);
-  console.log(id);
+ 
   // console.log(data)
 
   if (data.length != 0) {
@@ -86,77 +80,33 @@ var loginPost = async (req, res) => {
               `select * from cource_master; `,
               function (error, data_2) {
                 if (error) throw error;
-                data2 = data_2;
-                conn.query(
-                  `update registration set u_login = '1' where u_email='${email}';`,
-                  (err, data) => {
-                    if (err) throw err;
-
-                    // res.render("wizard.ejs",{data3,data2});
-                    res.redirect("/wizard");
-                  }
-                );
-              }
-            );
-          });
+                data2= data_2;
+          conn.query(`update registration set u_login = '0' where u_email='${email}';`,
+            (err, data) => {
+              if (err) throw err;
+              
+              res.render("wizard.ejs",{data3,data2});
+            });
+        })
+      })
         } else {
           res.redirect("/home");
         }
 
-        var query = util.promisify(conn.query).bind(conn);
-        var id = await query(
-          `select id from registration where u_email='${email}'`
-        );
-        console.log(id);
-      }
-    }
-  } else {
-    if (data.length != 0) {
-      async function compare_psw(password, data) {
-        return await new Promise((res, rej) => {
-          bcrypt.compare(password, data[0].u_password, (err, isMatch) => {
-            if (err) {
-              return err;
-            }
-            res(isMatch);
-          });
-        });
-      }
-      var isMatch = await compare_psw(password, data);
-
-      if (isMatch == true) {
-        console.log(data[0].isactive);
-
-        const token = jwt.sign({ email, id }, "sanjay");
-
-        res.cookie("token", token);
-
-        if (data[0].isactive == "1") {
-          res.send("wait for some min");
-        } else {
-          if (data[0].u_login == 1) {
-            conn.query(
-              `update registration set u_login = '0' where u_email='${email}';`,
-              (err, data) => {
-                if (err) throw err;
-
-                res.render("wizard.ejs");
-              }
-            );
-          } else {
-            res.redirect("/home");
-          }
-        }
-      } else if (!isMatch) {
-        return res.send(
-          `Either email or password Wrong!..........<br><a href="/login"> Back to Login </a> `
-        );
+      
       }
     } else {
-      res.redirect("/login");
-      console.log("your password is not matched ");
+      return res.send(
+        ` password  Wrong!..........<br><a href="/login"> Back to Login </a> `
+      );
     }
-  }
+  } 
+   else  {
+        return res.send(
+          ` email  Wrong!..........<br><a href="/login"> Back to Login </a> `
+        );
+      }
+   
+  
 };
-
 module.exports = { loginGet, Inemail, loginPost };

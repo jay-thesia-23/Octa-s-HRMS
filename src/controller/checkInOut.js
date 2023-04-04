@@ -35,7 +35,6 @@ var y = d.getDate();
 var z = d.getFullYear();
 
 var fulldate = y + "/" + x + "/" + z;
-console.log(fulldate);
 
 
 var checkInPost=function (req, res) {
@@ -43,11 +42,11 @@ var checkInPost=function (req, res) {
   
     jwt.verify(login_token, "sanjay", function (err, decoded) {
       login_user__id = decoded.id[0].id;
-      // console.log(login_user__id)
+     
     });
   
     var check_in_entry = `insert into check_master (status,reg_id,date) values('check_in','${login_user__id}','${fulldate}');`;
-    console.log(check_in_entry);
+   
   
     conn.query(check_in_entry, function (err, result) {
       if (err) throw err;
@@ -55,7 +54,7 @@ var checkInPost=function (req, res) {
     });
   
     var online_status = `update check_master set online_status='1' where reg_id = '${login_user__id}' and status = 'check_in'; `;
-    console.log(online_status);
+ 
     conn.query(online_status, function (err, data1) {
       if (err) throw err;
       console.log("data update checkin");
@@ -69,8 +68,7 @@ var checkOutPost=function (req, res) {
       login_user__id = decoded.id[0].id;
       // console.log(login_user__id)
     });
-  
-    console.log(login_user__id);
+
     var check_out_entry = `insert into check_master (status,reg_id,date) values('check_out','${login_user__id}','${fulldate}');`;
     // console.log(check_out_entry)
   
@@ -80,7 +78,7 @@ var checkOutPost=function (req, res) {
     });
   
     var ofline_status = `update check_master set online_status='0' where reg_id = '${login_user__id}' and status = 'check_in'; `;
-    console.log(ofline_status);
+   
     conn.query(ofline_status, function (err, data1) {
       if (err) throw err;
       console.log("data update checkout");
@@ -94,9 +92,9 @@ var breakOutPost=function (req, res) {
       login_user__id = decoded.id[0].id;
       // console.log(login_user__id)
     });
-    console.log(login_user__id);
+ 
     var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_out','${login_user__id}','${fulldate}');`;
-    // console.log(check_out_entry)
+   
   
     conn.query(check_out_entry, function (err, result) {
       if (err) throw err;

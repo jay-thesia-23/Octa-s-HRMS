@@ -1,42 +1,64 @@
-<div class="flexer background" onload="">
-    <div class="data-body">
-        <div class="body-rows">
-            <div class="main-body">
-                <div class="promo-card">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <h4 class="c-white">Record Your Attendance</h4>
+<section class="home">
+    <div class="ag-format-container">
+
+        <div class="online_card ">
+            <div class="dashboard_welcom_card_width mrg_10 box_shadow">
+                <div class="dashboard_welcom_card" id="welcomecard">
+                    <div>
+                        <div>
+                            <h1 class="welcome_txt">Welcome To eSparkBiz</h1>
                         </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="record-data">
-                                <ul>
-                                    <li>
-                                        <p class="h3">Attendance</p>
-                                        <p class="p">11 Days</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Late</p>
-                                        <p class="p">4 Days</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Absent</p>
-                                        <p class="p">2 Days</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Half Days</p>
-                                        <p class="p">0 Days</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Worked hours</p>
-                                        <p class="p">88 hr 21 mins</p>
-                                    </li>
-                                </ul>
+                        <div class="tagline_stl">"Where Affordability Meets Professionalism"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ag-courses_box">
+
+            <div class="ag-courses_item box_shadow_2">
+                <div class="first_card_stl" id="dashboardcrd1">
+                    <div>
+                        <div>
+                            <div class="record_atted_txt">Record Your Attendance</div>
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Attendance</div>
+                                            <div class="days_txt"><%=attendaceCount%> Days</div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Late Days</div>
+                                            <div class="days_txt">0 Days</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Total Hours</div>
+                                            <div class="days_txt"><%=totalHours%> Hours</div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Produnctivity</div>
+                                    <div class="days_txt">100%</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="main-body">
             <form  action="/comment" method="post">
                 <div class="promo-card">
@@ -52,127 +74,264 @@
                                     <input type="submit" onclick="addComment()" value="comment" class="abutton =" id="commentBtn">
                                 </ul>
                             </div>
+=======
+
+            <div class="ag-courses_item box_shadow_2">
+                <div class="first_card_stl height_21" id="dashboardcrd2">
+                    <div>
+                        <form action="/comment" method="post">
+                        <div class="record_atted_txt">Add Your Comment</div>
+
+                        <div class="mt_30">
+                            <!-- <input  onkeyup="isComment(this)" id="commenter" type="text" class="commentInput coment" placeholder="Add Comment" />
+                            <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
+
+
+                            <input  id="comment" name="comment" type="text" class="commentInput coment"  placeholder="comment">
+                            <input type="submit"  value="comment"  class="cmt_btn abutton" id="commentBtn"></a>
+                            <div id="cmt" class="cmt_stl"></div>
+>>>>>>> dcced8ac3f2aa7a8f50041baff2eac02e95aebc4
                         </div>
+                        <div class="pt_28">
+                        
                         <div class="comment-body">
                             <span id="commentBody"></span>
+                        </div>
+                    </form>
+                   
+                           
+                       
                         </div>
                     </div>
                 </div>
             </form>
             </div>
-            <div class="main-body">
-                <div class="promo-card overflower">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <h4 class="c-white">Today's Action</h4>
-                        </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="record-data">
-                                <ul>
-                                    <li>
-                                        <p class="h3">IP Address</p>
-                                        <p class="p">103.215.158.90</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Current Date</p>
-                                        <p class="p">17/3/2023</p>
-                                    </li>
-                                    <li>
-                                        <p class="h3">Current Time</p>
-                                        <p class="p" id="realTime"></p>
-                                    </li>
-                                </ul>
 
-                                <ul class="buttonbox">
-                                    <div class="button-class">
-                                        <button  onclick="demo(),checkin()" id="check_in" class="abutton checkin">check
-                                            in</button>
+            <div class="ag-courses_item box_shadow_2">
+                <div class="first_card_stl" id="dashboardcrd3">
+                    <div>
+                        <div>
+                            <div class="record_atted_txt">Today's Action</div>
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Current Time</div>
+                                            <div class="days_txt" id = "clock" onload="currentTime()"></div>
+                                        </div>
                                     </div>
-                                    <div class="button-class">
-                                        <button onclick="breck(),breakin()" id="breck_in" class="abutton breakin" disabled>break
-                                            in</button>
-                                    </div>
-                                    <div class="button-class">
-                                        <button onclick="chk_out() , checkout()" id="check_out" class="abutton checkout"
-                                            disabled>check out</button>
-                                    </div>
-                                    <div class="button-class">
-                                        <button onclick="brc_out() , breakout()" id="breck_out"
-                                            class="abutton breakout brc_out" disabled>break out</button>
-                                    </div>
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="attendence_txt">Current Date</div>
 
-                                    <div id="ThankYou" class="checkout-msg-class">
-                                    </div>
-                                </ul>
-                                <div id="attendenceEntry" class="comment-body thankyou" hidden></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="body-rows">
-            <div class="main-body">
-                <div class="promo-card bday">
-                    <div class="card-container">
-                        <div class="data-header card-header">
-                            <h4 class="c-white">Upcoming Birthday</h4>
-                            <div class="flexer">
-                               
-                                <a href="#" class="abutton2" style="margin-right:5px ;">
-                                </a>
-                                <a href="#" class="abutton2"> </a>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="record-data">
-                                <div class="bday-body">
-                                    <img class="b-day-img" src="bDay.jpg" alt="IMG" srcset="">
-                                    <div class="bday-detail">
-                                        <% if(result.length == ""){%>
-                                            <h3> No Birth Day</h3>
-                                            <%}else{%>
-                                        <% for(var s = 0;s<result.length;s++){%>
-                                            <h3 class="h3"><%= result[s].firstname%>  <%= result[s].lastname%> </h3>
-                                            <p class="p"><%= result[s].birth_date%></p>
-                                       <% }%>
-                                            <% }%>
-                                      
+                                            
+                                            <div class="days_txt"><%= date.toJSON('yyyy-mm-dd').slice(0,10) %></div>
+
                                         
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="button">
+                                                <button class="btn-hover color"  onclick="demo(),checkin()" id="check_in">Check In</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="button">
+                                                <button class="btn_2-hover color" onclick="breck(),breckin()" id="breck_in" disabled>Break In</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pb_12">
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="button">
+                                                <button class="btn_3-hover color" onclick="brc_out() , breckout()" id="breck_out" disabled>Break Out</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mt_25">
+                                            <div class="button">
+                                                <button class="btn_4-hover color" onclick="chk_out() , checkout(),autoUnable()" id="check_out" disabled>Check Out</button>
+                                            </div>
+                                        </div>
+                                        
+                                           
+                                </div>
+
                             </div>
                         </div>
                     </div>
+                       
                 </div>
             </div>
-            <div class="main-body">
-                <div class="promo-card bday">
-                    <div class="card-container">
-                        <div class="data-header card-header">
-                            <h4 class="c-white">Holidays</h4>
-                            <div class="flexer">
-                                <a href="#" class="abutton2" style="margin-right:5px ;">
-                                </a>
-                                <a href="#" class="abutton2"> </a>
-                            </div>
+
+         
+
+        </div>
+
+        <div class="ag-courses_item box_shadow_2">
+            <div class="first_card_stl height_21_2" id="dashboardcrd4">
+                <div class="record_atted_txt">Today's Birthday</div>
+                <div>
+                
+
+                    <div>
+                        
+                      
+
+                        
+                    </div>
+                     <% if(result.length == ""){%>
+                                        <h3> No Birth Day</h3>
+                                        <%}else{%>
+                                    <% for(var s = 0;s<result.length;s++){%>
+                                        <div>
+                                            <div class="birthday_emp_name"><%= result[s].firstname%> <%= result[s].lastname%> </div>
+                                        </div>
+                                        <div class="brd_btm_stl">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="birthday_dev"> Birthday</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="birthday_dev"><%= result[s].birth_date%></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   <% }%>
+                                        <% }%> 
+
+
+                 
+                   
+
+                </div>
+            </div>
+        </div>
+
+        <div class="ag-courses_item box_shadow_2">
+            <div class="first_card_stl height_21_2" id="dashboardcrd5">
+                <div>
+
+                    <div class="record_atted_txt">Holidays</div>
+                    <div>
+                        <% for(var s = 0;s<holidaydata.length;s++){%>
+                        <div>
+                            <div class="birthday_emp_name"><%= holidaydata[s].holiday_name %></div>
                         </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="record-data">
-                                <div class="bday-body holiday-body">
-                                    <h3 class="h3">Makar Sankranti</h3>
-                                    <div class="bday-detail">
-                                        <p class="p">14th January | Sat 2023 </p>
-                                    </div>
+                        <div class="brd_btm_stl">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_day %></div>
+                                </div>
+                                <div class="col">
+                                    <div class="birthday_dev"><%= holidaydata[s].holiday_date %></div>
                                 </div>
                             </div>
                         </div>
+
+                        <% }%>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="ag-courses_item box_shadow_2" id="attendanceRecord" >
+            <div class="first_card_stl height_21_2" id="dashboardcrd6">
+
+                    <div class="record_atted_txt">Attendance</div>
+                   
+                            <div class="check_in_time_btn clr_checkin" id="time_box" >
+                            </div>
+                   
+
+                </div>
+            </div>
+        </div>
+        <div class="online_card ">
+
+            <div class="dashboard_welcom_card_width mrg_10 box_shadow">
+                <div class="dashboard_welcom_card" id="alleployee">
+
+                    <div id="activity">
+                        <div id="search_div">
+
+                            <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
+                                oninput="search()">
+                        </div>
+                        <div>
+                            <span id="submit" class="cmt_btn" onclick="search()">submit</span>
+                        </div>
+
+                    </div>
+                    <div id="employee">
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+</section>
+<script>
+    var mode_switch = document.getElementById('mode_btn')
+    console.log("in a script of home");
+
+    var welcomecard = document.getElementById('welcomecard')
+    var dashboardcrd1 = document.getElementById('dashboardcrd1')
+    var dashboardcrd2 = document.getElementById('dashboardcrd2')
+    var dashboardcrd3 = document.getElementById('dashboardcrd3')
+    var dashboardcrd4 = document.getElementById('dashboardcrd4')
+    var dashboardcrd5 = document.getElementById('dashboardcrd5')
+    var dashboardcrd6 = document.getElementById('dashboardcrd6')
+    var dashboardcrd7 = document.getElementById('alleployee')
+
+    mode_switch.addEventListener('click', function () {
+        welcomecard.classList.toggle('dark_mode')
+        dashboardcrd1.classList.toggle('dark_mode')
+        dashboardcrd2.classList.toggle('dark_mode')
+        dashboardcrd3.classList.toggle('dark_mode')
+        dashboardcrd4.classList.toggle('dark_mode')
+        dashboardcrd5.classList.toggle('dark_mode')
+        dashboardcrd6.classList.toggle('dark_mode')
+        dashboardcrd7.classList.toggle('dark_mode')
+    })
+
+
+function currentTime() {
+  let date = new Date(); 
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
+
+  if(hh === 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+
+  document.getElementById("clock").innerText = time; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+
+currentTime();
+</script>

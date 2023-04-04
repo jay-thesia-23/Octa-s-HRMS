@@ -2,8 +2,8 @@ var express = require("express");
 var app = express();
 app.use(express.json());
 var bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyparser.json({ limit: "50mb" }));
 var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 const expressLayouts = require("express-ejs-layouts");
@@ -24,10 +24,10 @@ var profileGet = (req, res) => {
     id = decoded.id[0].id;
   });
 
-  let sqlBasicInfo = `select * from employee_basic_infomation ;`;
-  let sqlEduInfo = `select * from education_table;`;
-  let sqlExperienceInfo = `select * from experience_table;`;
-  let sqlReferenceInfo = `select * from reference_master`;
+  let sqlBasicInfo = `select * from employee_basic_infomation where reg_id=${id} ;`;
+  let sqlEduInfo = `select * from education_table where reg_id=${id};`;
+  let sqlExperienceInfo = `select * from experience_table where reg_id=${id};`;
+  let sqlReferenceInfo = `select * from reference_master where reg_id=${id};`;
   let sqlProfilePic = `select * from document_master where reg_id=${id}; `;
 
   console.log(sqlProfilePic, "sql of pic");
@@ -54,11 +54,7 @@ var profileGet = (req, res) => {
 let profilePost = (req, res) => {
   const login_token = req.cookies.login_token;
 
-  console.log(login_token);
-
-  jwt.verify(login_token, "sanjay", (err, decoded) => {
-    console.log(decoded);
-  });
+  jwt.verify(login_token, "sanjay", (err, decoded) => {});
 };
 
-module.exports = {profileGet,profilePost};
+module.exports = { profileGet, profilePost };

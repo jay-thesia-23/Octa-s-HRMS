@@ -3,23 +3,48 @@ var check_out = document.getElementById("check_out");
 var breck_in = document.getElementById("breck_in");
 var breck_out = document.getElementById("breck_out");
 
+function autoUnable(){
+
+ 
+  
+    var time = new Date();
+     var hour = time.getHours();
+  
+ 
+    if(hour==0){
+      
+      document.getElementById("check_in").disabled = false;
+      document.getElementById("check_out").disabled = true;
+      document.getElementById("breck_in").disabled = true;
+      document.getElementById("breck_out").disabled = true;
+    }
+}
+
+autoUnable()
+
 function demo() {
+
+    document.getElementById("attendanceRecord").hidden=false
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = false;
   document.getElementById("breck_in").disabled = false;
   document.getElementById("breck_out").disabled = true;
-  var check = document.getElementById("ThankYou");
+  var check = document.getElementById("time_box");
 
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
-  console.log(s, m);
+  if(m<10){
+        
+    m = "0" + m 
+}
+ 
 
   s = s % 12;
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat);
+ 
 
   var div = document.createElement("div");
   div.setAttribute("class", "green");
@@ -33,9 +58,9 @@ function chk_out() {
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
   document.getElementById("breck_out").disabled = true;
-  var check = document.getElementById("ThankYou");
-  var check_out = document.getElementById("attendenceEntry");
-  check_out.hidden = false;
+  var check = document.getElementById("time_box");
+//   var check_out = document.getElementById("attendenceEntry");
+//   check_out.hidden = false;
 
   const d = new Date();
   var s = d.getHours();
@@ -43,17 +68,22 @@ function chk_out() {
 
   s = s % 12;
   s = s ? s : 12;
+  if(m<10){
+
+    m = "0" + m 
+}
+
 
   var timeIn12HourFormat = s + ":" + m;
   console.log(timeIn12HourFormat + "timein 12");
 
   var div = document.createElement("div");
-  div.setAttribute("class", "red");
+  div.setAttribute("class", "checkOutColor");
   div.innerHTML = "Check Out " + timeIn12HourFormat;
 
   check.append(div);
 
-  check_out.innerHTML = "Thank You!!!!!";
+ 
 }
 
 function breck() {
@@ -61,11 +91,15 @@ function breck() {
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
   document.getElementById("breck_out").disabled = false;
-  var check = document.getElementById("ThankYou");
+  var check = document.getElementById("time_box");
 
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+
+    m = "0" + m 
+}
 
   s = s % 12;
   s = s ? s : 12;
@@ -74,7 +108,7 @@ function breck() {
   console.log(timeIn12HourFormat);
 
   var div = document.createElement("div");
-  div.setAttribute("class", "yellow");
+  div.setAttribute("class", "breckInColor");
   div.innerHTML = "break In " + timeIn12HourFormat;
 
   check.append(div);
@@ -85,11 +119,15 @@ function brc_out() {
   document.getElementById("check_out").disabled = false;
   document.getElementById("breck_in").disabled = false;
   document.getElementById("breck_out").disabled = true;
-  var check = document.getElementById("ThankYou");
+  var check = document.getElementById("time_box");
 
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
+  if(m<10){
+
+    m = "0" + m 
+}
 
   s = s % 12;
   s = s ? s : 12;
@@ -98,11 +136,17 @@ function brc_out() {
   console.log(timeIn12HourFormat);
 
   var div = document.createElement("div");
-  div.setAttribute("class", "saffron");
-  div.innerHTML = "break Out " + timeIn12HourFormat;
+  div.setAttribute("class", "breakOutColor");
+  div.innerHTML = "breck Out " + timeIn12HourFormat;
+
+
 
   check.append(div);
+
+ 
 }
+
+
 
 async function checkin() {
   fetch("/check_in", {
@@ -113,7 +157,7 @@ async function checkin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check in sucesfully!!!!");
+     
     });
 }
 
@@ -126,11 +170,11 @@ async function checkout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("check out sucesfully!!!!");
+      
     });
 }
 
-async function breakin() {
+async function breckin() {
   fetch("/breck_in", {
     method: "post",
     headers: {
@@ -139,11 +183,11 @@ async function breakin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck in sucesfully!!!!");
+     
     });
 }
 
-async function breakout() {
+async function breckout() {
   fetch("/breck_out", {
     method: "post",
     headers: {
@@ -152,88 +196,9 @@ async function breakout() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("breck out sucesfully!!!!");
+      
     });
 }
 
-let clickLeave = 0;
-let clickAttend = 0;
-function myFunction(clickBtn) {
-  if (clickLeave == 0 && clickBtn == "Leave") {
-    document.getElementById("leave-sub").style.display = "block";
-    clickLeave = 1;
-  } else if (clickLeave == 1 && clickBtn == "Leave") {
-    document.getElementById("leave-sub").style.display = "none";
-    clickLeave = 0;
-  }
-  if (clickAttend == 0 && clickBtn == "Attendence") {
-    document.getElementById("attend-sub").style.display = "block";
-    clickAttend = 1;
-  } else if (clickAttend == 1 && clickBtn == "Attendence") {
-    document.getElementById("attend-sub").style.display = "none";
-    clickAttend = 0;
-  }
-}
 
-function isComment(thisElement) {
-  let commentBtn = document.getElementById("commentBtn");
-  if (thisElement.value.length > 0) {
-    commentBtn.style.opacity = 1;
-    commentBtn.style.pointerEvents = "all";
-  } else {
-    commentBtn.style.opacity = 0.6;
-    commentBtn.style.pointerEvents = "none";
-  }
-}
-function addComment() {
-  let commentBtn = document.getElementById("commentBtn");
-  let element = document.getElementById("commenter");
-  let commentval = element.value;
-  let comment = '<p style="background-color:#e6ecf5;" >' + commentval + "</p>";
-  let commentBody = document.getElementById("commentBody");
-  commentBody.innerHTML += comment;
-  element.value = "";
-  commentBtn.style.opacity = 0.6;
-  commentBtn.style.pointerEvents = "none";
-}
-var today = new Date();
-// var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-let time = today.toLocaleTimeString();
-element.style.opacity = 0.6;
-element.style.pointerEvents = "none";
-let breakIn = document.getElementById("breakIn");
-let breakOut = document.getElementById("breakOut");
-let checkOut = document.getElementById("checkOut");
-let attendenceEntry = document.getElementById("attendenceEntry");
-let ThankYou = document.getElementById("ThankYou");
-let entry =
-  '<p style=" color:white; background-color:red;" > Checked Out : ' +
-  time +
-  "</p>";
-breakIn.style.opacity = 0.6;
-breakIn.style.pointerEvents = "none";
-breakOut.style.opacity = 0.6;
-breakOut.style.pointerEvents = "none";
-checkOut.style.opacity = 0.6;
-checkOut.style.pointerEvents = "none";
-attendenceEntry.innerHTML += entry;
-ThankYou.style.display = "block";
 
-let element = document.getElementById("realTime");
-var today = new Date();
-let realTime = formatAMPM(today);
-element.innerHTML = realTime;
-setTimeout(setRealTime, 1000);
-
-function formatAMPM(date) {
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
-  var ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
-  var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
-  return strTime;
-}

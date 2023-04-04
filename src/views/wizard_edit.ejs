@@ -303,14 +303,14 @@
             <div class="row">
                 <div class="col">
                     <div class="input-group-3">
-                        <label for="password">contact</label>
-                        <input type="password" name="cont2" id="cont2" value="<%= result3[1].number%>" />
+                        <label for="contact">contact</label>
+                        <input type="text" name="cont2" id="cont2" value="<%= result3[1].number%>" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="input-group-3">
-                        <label for="Relation">Relation</label>
-                        <input type="password" name="relation2" id="relation2" value="<%= result3[1].relationship%>" />
+                        <label for="relationship">Relation</label>
+                        <input type="text" name="relation2" id="relation2" value="<%= result3[1].relationship%>" />
                     </div>
                 </div>
             </div>
@@ -355,7 +355,7 @@
             <div class="btns-group">
               <p class="btn btn-prev">Previous</p>
            
-            <input type="submit" value="Submit" class="btn" />
+            <input type="submit" value="Submit" class="btn" onsubmit="return registerPage5()" />
             </div>
             </div>
         </div>

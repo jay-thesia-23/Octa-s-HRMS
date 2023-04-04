@@ -14,9 +14,9 @@ var jwt = require("jsonwebtoken");
 var {leaveGet,leavePost}=require("../controller/leaves")
 var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
+var {authentication}=require("../middleware/authMiddleware")
+app.get("/leaves",authentication, leaveGet);
 
-app.get("/leaves", leaveGet);
-
-app.post("/leaves",leavePost);
+app.post("/leaves",authentication,leavePost);
 
 module.exports = app;

@@ -42,7 +42,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
-    console.log(uniqueSuffix, "from the storage");
+  
     cb(null, uniqueSuffix);
   },
 });

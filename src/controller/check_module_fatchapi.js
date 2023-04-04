@@ -23,21 +23,23 @@ var abcGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
-  console.log(fulldate + "fulldate");
-  var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}';`;
+ 
+  var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;
     console.log(data.length);
     if (data.length == 0) {
       console.log("wrong");
     } else {
-      console.log(data, "data");
+     
       query_date = data[0].date;
-      console.log(query_date, "query in date");
+    
       if (query_date == fulldate) {
-        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}';`;
+        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
+
+   
           res.json(result);
         });
       } else {
@@ -71,6 +73,7 @@ var breakInGet = function (req, res) {
         var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
           if (err) throw err;
+        
           res.json(result);
         });
       } else {
@@ -93,18 +96,23 @@ var checkoutGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
-  var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}';`;
+  console.log(fulldate,"checkout full date");
+  var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;
     if (data.length == 0) {
       console.log("wrong");
     } else {
       query_date = data[0].date;
+
+
       if (query_date == fulldate) {
-        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}';`;
-        console.log(time);
+        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
+      
         conn.query(time, function (err, result) {
           if (err) throw err;
+
+        
           res.json(result);
         });
       } else {
@@ -114,4 +122,4 @@ var checkoutGet = function (req, res) {
   });
 };
 
-module.exports = {abcGet,breakInGet,checkoutGet};
+module.exports = { abcGet, breakInGet, checkoutGet };

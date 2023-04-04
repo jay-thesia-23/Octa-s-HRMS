@@ -6,16 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/wizard.css" />
-  <script src="/js/script.js" ></script>
-  <script src="./multer.js"></script>
+  <script src="/js/script.js" defer></script>
+
   <title>Basic Info Form</title>
 </head>
 
 <body>
-  <div class="container">
   <form action="/wizard" method="post" class="form" enctype="multipart/form-data">
-   
-      <h1 class="text-center">Basic Info Form</h1>
+    <div class="container">
+      <h1 class="text-center">Basic Infomation Form</h1>
       <!-- Progress bar -->
       <div class="progressbar">
         <div class="progress" id="progress"></div>
@@ -237,13 +236,13 @@
             <div class="col">
             <div class="input-group-3">
               <label for="password">contact</label>
-              <input type="password" name="cont2" id="cont2" />
+              <input type="text" name="cont2" id="cont2" />
             </div>
           </div>
           <div class="col">
             <div class="input-group-3">
               <label for="Relation">Relation</label>
-              <input type="password" name="relation2" id="relation2" />
+              <input type="text" name="relation2" id="relation2" />
             </div>
             </div>
           </div>
@@ -254,38 +253,39 @@
       </div>
     
   </div>
-  <div class="form-step">
+  <div class="form-step" >
     <div class="input-group">
     <label for="adhar">Adhaar Card / Pan Card</label>
-    <input type="file" name="adhar" id="file"  />
+    <input type="file" name="adhar" id="file" class="file" />
     </div>
     
     <div class="input-group">
     <label for="resume">Resume</label>
-    <input type="file" name="resume" id="file" />
+    <input type="file" name="resume" id="file" class="file" />
     </div>
 
     <div class="input-group">
     <label for="cheque">Cheques</label>
-    <input type="file" name="cheque" id="file" />
+    <input type="file" name="cheque" id="file" class="file"/>
     </div>
 
     <div class="input-group">
     <label for="others">Others</label>
-    <input type="file" name="others" id="file" />
+    <input type="file" name="others" id="file" class="file" />
     </div>
 
 
     <div class="input-group">
       <label for="profilePic">profilePic</label>
-      <input type="file" name="profilePic" id="file" />
+      <input type="file" name="profilePic" id="file" class="file" />
       </div>
 
 
+      <span class="span1" id="doc-error"></span>
     <div class="btns-group">
       <p class="btn btn-prev">Previous</p>
-   
-    <input type="submit" value="Submit" class="btn" />
+
+    <input type="submit" value="Submit" class="btn" onclick="return registerPage5()"/>
     </div>
     </div>
     </div>
