@@ -55,7 +55,7 @@ app.use(leaves);
 var editprofile = require("./src/routes/edit_profile");
 app.use(editprofile);
 
-var comment=require("../hrms/routes/comment")
+var comment=require("./src/routes/comment")
 app.use(comment)
 
 
