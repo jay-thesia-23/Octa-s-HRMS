@@ -73,8 +73,8 @@
                             <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
 
 
-                            <input  id="comment" name="comment" type="text" class="commentInput coment"  placeholder="comment">
-                            <input type="submit"  value="comment"  class="cmt_btn abutton" id="commentBtn"></a>
+                            <input  id="comment" name="comment"  type="text" class="commentInput coment"  onclick="myFun()"  placeholder="comment">
+                            <input type="submit"  value="comment" name="commentBtn" class="cmt_btn abutton" id="commentBtn"></a>
                             <div id="cmt"></div>
                         </div>
                         <div class="pt_28">
@@ -266,6 +266,18 @@
     </div>
 </section>
 <script>
+ function myFun(){
+var commentbtn = document.getElementById("commentBtn");
+var clickBtn = document.getElementById('comment');
+commentbtn.disabled = true;   
+if(clickBtn == ""){
+    commentbtn.disabled = false;
+}
+ }
+// Disable the button on initial page load
+//add event listener
+
+// -------------------------------------------------------------------------
     var mode_switch = document.getElementById('mode_btn')
 
     var welcomecard = document.getElementById('welcomecard')
