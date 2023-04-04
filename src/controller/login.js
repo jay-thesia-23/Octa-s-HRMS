@@ -20,6 +20,12 @@ var path = require("path");
 var conn = require("../config/dbConnect");
 
 var loginGet = (req, res) => {
+
+  var url = req.get('Host')
+
+  console.log(url,"..........................");
+  res.cookie('om', url)
+  var server_url = req.cookies.om
   res.render("login.ejs", {layout:false});
 };
 
@@ -37,6 +43,12 @@ async function Inemail(email) {
 }
 
 var loginPost = async (req, res) => {
+
+  var url = req.get('origin')
+
+  console.log(url,"..........................");
+  res.cookie('om', url)
+  var server_url = req.cookies.om
   var email = req.body.email;
   var password = req.body.password;
   var data2;

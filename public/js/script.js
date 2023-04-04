@@ -8,11 +8,24 @@ var isvalidate =true;
 let formStepsNum = 0;
 
   var x = document.cookie
+  var complete_url=""
+
+  console.log(x);
   let decodedCookie = decodeURIComponent(x);
   let ca = decodedCookie.split(';');
-  var split_url = ca[0].split('=')
-  var complete_url = split_url[1]
 
+  for(let i=0;i<ca.length;i++){
+    let currString=ca[i].split("=")
+
+
+    if(currString[0]=="om"){
+       complete_url=currString[1]
+    }
+ 
+
+  }
+
+  console.log(complete_url,"urllllllllllll");
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister1 =registerPage1()
@@ -202,9 +215,6 @@ function contactValidate(){
 
 async function select(state_id){
   
-
-
-
   const ans = await fetch(`${complete_url}/test-api?state_id=${state_id.value}`);
   console.log(ans);
   
@@ -401,12 +411,7 @@ var clk =1;
 async function education(){
 
   var k
-<<<<<<< HEAD
-
-  const ans = await fetch(`https://octa.appdemoserver.com/cource`);
-=======
   const ans = await fetch(`${complete_url}/cource`);
->>>>>>> om_gajipara
   
   const data2 = await ans.json();
 

@@ -31,8 +31,11 @@ app.use(
 
 var registerGet = function (req, res) {
   
+  var url = req.get('Host')
 
-  
+  console.log(url,"..........................");
+  res.cookie('om', url)
+  var server_url = req.cookies.om
 
   res.render("register.ejs", {});
 };
@@ -72,7 +75,9 @@ var registerPost = async function (req, res) {
   const password = req.body.password;
 
  
-  var url = req.get('origin')
+  var url = req.get('Host')
+
+  console.log(url,"..........................");
   res.cookie('om', url)
   var server_url = req.cookies.om
 
