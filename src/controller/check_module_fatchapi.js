@@ -3,14 +3,20 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
-
+var moment=require("moment")
 var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 
 app.use(cookieParser());
 var conn = require("../config/dbConnect");
 
+let momentOne = moment();
+var tz=momentOne.utcOffset(330);
+
+console.log(momentOne,"oneeeeeeeeeeeeee");
+
 var abcGet = function (req, res) {
+  res.cookie("tz",tz)
   var login_token = req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
