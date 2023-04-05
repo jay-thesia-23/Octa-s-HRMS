@@ -15,7 +15,7 @@ async function fetchComment() {
       for(var i=0; i<data.length ; i++){
           var div = document.createElement("div");
           div.setAttribute("class", "cmt_txt_style");
-          div.innerHTML= data[i].comment;
+          div.innerText= data[i].comment;
           cmt.append(div)
       }
   

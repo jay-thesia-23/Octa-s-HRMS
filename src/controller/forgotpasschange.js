@@ -36,7 +36,7 @@ var forgotpasschangepost=async (req,res)=>{
 
    
     conn.query(sql,(err,data)=>{
-        res.send("password is change")
+        res.redirect("/login")
     })
 
  
