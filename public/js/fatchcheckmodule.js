@@ -20,22 +20,21 @@
 // document.cookie = `tz=${tz}`;
 
 var tzcookie=document.cookie
-var tz;
+var tz
 
 let arraycookie = tzcookie.split(';');
+console.log(arraycookie);
 
 for(let i=0;i<arraycookie.length;i++){
-let currString=arraycookie[i].split("=")
-
+let currString=arraycookie[i].replace(/ /g, "").split("=")
+console.log( typeof currString,"currstring");
 
 if(currString[0]=="tz"){
 tz=currString[1]
+console.log(tz,"inside if");
 
 }
-
-
 }
-
 tz=Number(tz)
 async function fatchcheckmodule() {
   fetch("/abc", {
