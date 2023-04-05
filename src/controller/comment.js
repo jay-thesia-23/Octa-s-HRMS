@@ -40,7 +40,7 @@ commentPost=(req, res) => {
    var id = decoded.id[0].id;
   
 
-    var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ("${id} ","${comment}")`;
+    var sql = `INSERT INTO comment_table(reg_id,comment) VALUES ('${id}','${comment}')`;
 
     conn.query(sql, function (err, result) {
       if (err) throw err

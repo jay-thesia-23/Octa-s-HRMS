@@ -25,7 +25,7 @@ let formStepsNum = 0;
 
   }
 
-  console.log(complete_url,"urllllllllllll");
+
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister1 =registerPage1()

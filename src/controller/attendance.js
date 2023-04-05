@@ -6,6 +6,7 @@ app.set("layout", "./layouts/main"); //added
 
 const util = require("util");
 var jwt = require("jsonwebtoken");
+var moment = require("moment");
 
 var conn = require("../config/dbConnect");
 var alldataquery = util.promisify(conn.query.bind(conn));
@@ -13,6 +14,10 @@ var alldataquery = util.promisify(conn.query.bind(conn));
 var attendanceGet = async (req, res) => {
   // const id=req.query.id;
 
+  var tzcookie = req.cookies;
+  var tz;
+
+  tz = Number(tzcookie.tz);
   let pid = parseInt(req.query.pid) || 1;
   let limit = 5;
   let offset = (pid - 1) * limit;
@@ -21,22 +26,21 @@ var attendanceGet = async (req, res) => {
     offset = 0;
   }
 
-
   var login_token = req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", async function (err, decoded) {
-
     login_user__id = decoded.id[0].id;
 
-
-    var checkdata = await alldataquery(`select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
+    var checkdata = await alldataquery(
+      `select id, status, time from check_master where reg_id = '${login_user__id}' order by id  LIMIT ${offset},${limit}`
+    );
 
     //console.log("reg is dataaaaaaaa", `select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
 
-    var cntresult = await alldataquery(`select count(*) as count from check_master where reg_id = '${ login_user__id}'`);
+    var cntresult = await alldataquery(
+      `select count(*) as count from check_master where reg_id = '${login_user__id}'`
+    );
     let totalp = Math.ceil(cntresult[0].count / limit);
-
-  
 
     var starttime = [];
     var startdate = [];
@@ -44,47 +48,49 @@ var attendanceGet = async (req, res) => {
     var progress = [];
 
     for (let i = 0; i < checkdata.length; i++) {
-
       if (checkdata[i].status == "check_in") {
-      startdate.push(checkdata[i].time.toJSON('yyyy-mm-dd').slice(0, 10));
-      var start = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
-      
-      var start_time_h = start.slice(0,2);
-      
-      start_time_h = start_time_h % 12;
-      start_time_h = start_time_h ? start_time_h : 12;
-      start_time_h = start_time_h - 1;
-      
-      var start_time_m = start.slice(3,5);
-      
-      
-      var star_time = start_time_h +":"+ start_time_m
-      console.log(start_time_h+"fsdfcs");
-      starttime.push(star_time);
+        startdate.push(checkdata[i].time.toJSON("yyyy-mm-dd").slice(0, 10));
+        var start = checkdata[i].time.toJSON("HH:MM:SS").slice(11, 18);
+
+        var start_time_h = start.slice(0, 2);
+
+        start_time_h = start_time_h % 12;
+        start_time_h = start_time_h ? start_time_h : 12;
+        start_time_h = start_time_h - 1;
+
+        var start_time_m = start.slice(3, 5);
+
+        var star_time = moment(checkdata[i].time)
+          .utc()
+          .utcOffset(tz)
+          .format("hh:mm");
+        console.log(start_time_h + "fsdfcs");
+        starttime.push(star_time);
       } else {
-          var end = checkdata[i].time.toJSON('HH:MM:SS').slice(11, 18);
-          var end_time_h = end.slice(0,2);
-      
-          end_time_h = end_time_h % 12;
-          end_time_h = end_time_h ? end_time_h : 12;
-          end_time_h = end_time_h - 1;
-      
-          var end_time_m = end.slice(3,5);
-      
-          
-          var end_time = end_time_h +":"+ end_time_m
-      exittime.push(end_time);
+        var end = checkdata[i].time.toJSON("HH:MM:SS").slice(11, 18);
+        var end_time_h = end.slice(0, 2);
+
+        end_time_h = end_time_h % 12;
+        end_time_h = end_time_h ? end_time_h : 12;
+        end_time_h = end_time_h - 1;
+
+        var end_time_m = end.slice(3, 5);
+
+        var end_time = moment(checkdata[i].time)
+        .utc()
+        .utcOffset(tz)
+        .format("hh:mm");
+        exittime.push(end_time);
       }
-      }
+    }
 
     for (let i = 0; i < starttime.length; i++) {
       if (exittime[i]) {
-      
-      progress.push(diffrence_time(starttime[i], exittime[i]));
+        progress.push(diffrence_time(starttime[i], exittime[i]));
       } else {
-      progress.push(0); 
+        progress.push(0);
       }
-      }
+    }
 
     // console.log(progress);
     //     console.log("start",starttime);
@@ -101,40 +107,36 @@ var attendanceGet = async (req, res) => {
       pagearray: totalp,
     });
   });
+};
+
+function diffrence_time(entry_time, exit_time) {
+  var h1, h2, m1, m2, s1, s2;
+  h1 = entry_time.slice(0, 2);
+  h2 = exit_time.slice(0, 2);
+  m1 = entry_time.slice(3, 5);
+  m2 = exit_time.slice(3, 5);
+  s1 = entry_time.slice(6);
+  s2 = exit_time.slice(6);
+
+  if (h1.charAt(1) == ":") {
+    h1 = h1.charAt(0);
+  }
+
+  if (h2.charAt(1) == ":") {
+    h2 = h2.charAt(0);
+  }
+
+  var h = h2 - h1;
+  var m = m2 - m1;
+  var s = s2 - s1;
+
+  console.log(h1 + " " + h2 + "" + "h1ms");
+  var totalsec = h * 60 * 60 + m * 60 + s;
+
+  var working = Math.floor((totalsec * 100) / (9 * 60 * 60));
+
+  console.log(working, "working");
+  return working;
 }
 
-    function diffrence_time(entry_time, exit_time) {
-      var h1, h2, m1, m2, s1, s2;
-      h1 = entry_time.slice(0, 2);
-      h2 = exit_time.slice(0, 2);
-      m1 = entry_time.slice(3, 5);
-      m2 = exit_time.slice(3, 5);
-      s1 = entry_time.slice(6);
-      s2 = exit_time.slice(6);
-
-      if(h1.charAt(1)==":"){
-        h1=h1.charAt(0)
-      }
-
-      if(h2.charAt(1)==":"){
-        h2=h2.charAt(0)
-      }
-
-
-      var h = h2 - h1;
-      var m = m2 - m1;
-      var s = s2 - s1;
-
-      console.log(h1+" "+h2+""+"h1ms");
-      var totalsec = (h ) * 60 * 60 + m * 60 + s;
-
-      var working = Math.floor((totalsec * 100) / (9 * 60 * 60));
-
-      console.log(working,"working");
-      return working;
-    }
-
-  
-
-
-    module.exports = { attendanceGet, diffrence_time };
+module.exports = { attendanceGet, diffrence_time };

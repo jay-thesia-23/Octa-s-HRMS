@@ -30,13 +30,13 @@ let currString=arraycookie[i].split("=")
 
 if(currString[0]=="tz"){
 tz=currString[1]
-console.log(tz,"tzzzzarrayyyyyyyyyy");
-}
-
 
 }
 
 
+}
+
+tz=Number(tz)
 async function fatchcheckmodule() {
   fetch("/abc", {
     method: "get",
@@ -48,10 +48,6 @@ async function fatchcheckmodule() {
     .then((data) => {
       // console.log(data[0].time.slice(11,18))
 
-    
-    
-
-    
       var timecheckin = data[0].time.slice(11, 18);
 
      
@@ -71,23 +67,16 @@ async function fatchcheckmodule() {
 
       var minutes = timecheckin.slice(3, 5);
 
-      console.log(hours,"timecheckinzzzzzzzzzzzzzzzzzzzzzz");
+
    
 
       var check = document.getElementById("time_box");
       // console.log("indivision!!!!");
       
-      console.log(hours,"hours in 12 hour formate!!!!!!!!");
-      console.log(minutes,"hours in 12 hour formate!!!!!!!!");
 
       var div = document.createElement("div");
 
       div.setAttribute("class", "green");
-
-      tz=Number(tz)
-      
-      console.log(moment(data[0].time).utc().format("DD-MM-YYYY hh:mm:ss"));
-      console.log(moment(data[0].time).utc().utcOffset(330).format("hh:mm"))
       div.innerHTML = "Check In " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
 
       check.append(div);
@@ -133,7 +122,7 @@ async function fatchbreckin() {
         if (i % 2 == 0) {
           div.setAttribute("class", "breckInColor");
 
-          div.innerHTML = "Breck In " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
+          div.innerHTML = "Breck In " + moment(data[i].time).utc().utcOffset(tz).format("hh:mm");
           check.append(div);
           document.getElementById("check_in").disabled = true;
           document.getElementById("check_out").disabled = true;
@@ -141,7 +130,7 @@ async function fatchbreckin() {
           document.getElementById("breck_out").disabled = false;
         } else {
           div.setAttribute("class", "breakOutColor");
-          div.innerHTML = "Breck Out " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
+          div.innerHTML = "Breck Out " + moment(data[i].time).utc().utcOffset(tz).format("hh:mm");
           check.append(div);
           document.getElementById("check_in").disabled = true;
           document.getElementById("check_out").disabled = false;

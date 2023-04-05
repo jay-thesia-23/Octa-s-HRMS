@@ -40,9 +40,7 @@ async function employee_activity() {
             "  " +
             data[s].status +
             "  " +
-            hours +
-            ":" +
-            minutes;
+            moment(data[s].time).utc().utcOffset(tz).format("hh:mm");
           check.append(div);
         } else if (data[s].status == "breck_out") {
           div.setAttribute("class", "saffron_activity");
@@ -53,9 +51,7 @@ async function employee_activity() {
             "  " +
             data[s].status +
             "  " +
-            hours +
-            ":" +
-            minutes;
+            moment(data[s].time).utc().utcOffset(tz).format("hh:mm")
           check.append(div);
         } else if (data[s].status == "check_in") {
           div.setAttribute("class", "green_activity");
@@ -66,9 +62,7 @@ async function employee_activity() {
             "  " +
             data[s].status +
             "  " +
-            hours +
-            ":" +
-            minutes;
+            moment(data[s].time).utc().utcOffset(tz).format("hh:mm")
           check.append(div);
         } else if (data[s].status == "check_out") {
           div.setAttribute("class", "red_activity");
@@ -79,9 +73,7 @@ async function employee_activity() {
             "  " +
             data[s].status +
             "  " +
-            hours +
-            ":" +
-            minutes;
+            moment(data[s].time).utc().utcOffset(tz).format("hh:mm")
           check.append(div);
         }
       }
