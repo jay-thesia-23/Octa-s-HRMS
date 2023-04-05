@@ -58,28 +58,11 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <div class="main-body">
-            <form  action="/comment" method="post">
-                <div class="promo-card">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <h4 class="c-white">Add Your Comment</h4>
-                        </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="record-data">
-                                <ul>
-                                    <input type="text" class="click" name="comment" placeholder="comment" onkeyup="isComment(this)" id="comment">
-                                    <input type="submit" onclick="addComment()" value="comment" class="abutton =" id="commentBtn">
-                                </ul>
-                            </div>
-=======
 
             <div class="ag-courses_item box_shadow_2">
                 <div class="first_card_stl height_21" id="dashboardcrd2">
                     <div>
-                        <form action="/comment" method="post">
+                        <form action="/comment" method="post"  >
                         <div class="record_atted_txt">Add Your Comment</div>
 
                         <div class="mt_30">
@@ -87,16 +70,9 @@
                             <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
 
 
-<<<<<<< HEAD
-                            <input  id="comment" name="comment"  type="text" class="commentInput coment"  onclick="myFun()"  placeholder="comment">
-                            <input type="submit"  value="comment" name="commentBtn" class="cmt_btn abutton" id="commentBtn"></a>
-                            <div id="cmt"></div>
-=======
-                            <input  id="comment" name="comment" type="text" class="commentInput coment"  placeholder="comment">
-                            <input type="submit"  value="comment"  class="cmt_btn abutton" id="commentBtn"></a>
+                            <input  id="comment" name="comment" type="text" class="commentInput"  placeholder="comment">
+                            <input type="submit"  value="comment"  class="cmt_btn abutton btn" id="commentBtn" ></a>
                             <div id="cmt" class="cmt_stl"></div>
->>>>>>> dcced8ac3f2aa7a8f50041baff2eac02e95aebc4
->>>>>>> master
                         </div>
                         <div class="pt_28">
                         
@@ -110,7 +86,6 @@
                         </div>
                     </div>
                 </div>
-            </form>
             </div>
 
             <div class="ag-courses_item box_shadow_2">
@@ -290,18 +265,29 @@
     </div>
 </section>
 <script>
- function myFun(){
-var commentbtn = document.getElementById("commentBtn");
-var clickBtn = document.getElementById('comment');
-commentbtn.disabled = true;   
-if(clickBtn == ""){
-    commentbtn.disabled = false;
-}
- }
-// Disable the button on initial page load
-//add event listener
 
-// -------------------------------------------------------------------------
+// function myComment(){
+//     var input = document.getElementById("comment").value;
+//     var cmt = document.getElementById("commentBtn");
+   
+//     if(input.trim()== ''){
+//         cmt.disable
+//     }
+// }
+
+let input = document.querySelector(".commentInput");
+let button = document.querySelector(".btn");
+button.disabled = true;
+input.addEventListener("change", stateHandle);
+
+function stateHandle() {
+    if(document.querySelector(".commentInput").value === "") {
+        button.disabled = true;
+    } else {
+        button.disabled = false;
+    }
+}
+
     var mode_switch = document.getElementById('mode_btn')
     console.log("in a script of home");
 

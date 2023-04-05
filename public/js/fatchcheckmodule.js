@@ -170,6 +170,9 @@ async function fatchchkout() {
       monthValue="0"+monthValue
       var yearValue=date.getFullYear()
 
+      if(dateValue<10){
+        dateValue="0"+dateValue
+      }
 
       var TodayDates=yearValue+"-"+monthValue+"-"+dateValue
 

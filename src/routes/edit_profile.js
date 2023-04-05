@@ -27,7 +27,7 @@ app.get("/edit_profile",authentication, editProfileGet);
 var uniqueSuffix = "";
 const storage = multer.diskStorage({
   destination: function (req, files, cb) {
-    cb(null, "./public/uploads");
+    cb(null, "./uploads");
   },
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;

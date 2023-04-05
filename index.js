@@ -76,33 +76,9 @@ app.use(forgotPasschange)
 var logout=require("./src/routes/logout")
 app.use(logout)
 
-<<<<<<< HEAD
-var comment=require("./src/routes/comment")
-app.use(comment)
-
-
-
-var connection = mysql2.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'hrms'
-  
-  });
-  
-  connection.connect((err) => {
-    if (err)
-      throw err;
-    console.log("connected with database");
-  })
-  
-var fatchapi = require("./src/routes/check_module_fatchapi");
-app.use(fatchapi);
-=======
 app.use((req, res, next) => {
   res.render("page404",{layout:false})
 })
->>>>>>> dcced8ac3f2aa7a8f50041baff2eac02e95aebc4
 
 app.listen(5000, () => {
   console.log("app listening on 5000 port");
