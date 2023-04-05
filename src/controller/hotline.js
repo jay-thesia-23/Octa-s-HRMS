@@ -11,7 +11,8 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
 var login_user__id;
-var total_offline
+
+var total_online
 
 const d = new Date();
 var x = d.getMonth() + 1;
@@ -24,6 +25,8 @@ var fulldate = y + "/" + x + "/" + z;
 var alldata = util.promisify(conn.query.bind(conn));
 
  function total_offline_1(){
+ 
+  var total_offli
   var on = [];
   var total = [];
   
@@ -41,7 +44,7 @@ var alldata = util.promisify(conn.query.bind(conn));
 }
 
 var alldetails = [];
-var total_offline
+
 
 for(var s=0;s<total_emp.length;s++){
          var reg = total_emp[s].reg_id;
@@ -55,19 +58,19 @@ for(var s=0;s<total_emp.length;s++){
         alldetails.push(empl)
       }
 }
+total_offli=alldetails.length
+return total_offli;
+
 }
 
-total_offline_1()
+
 
 async function online_ofline() {
     var online = await alldata(`select count(reg_id) as total_online from check_master where date='${fulldate}' and online_status='1' and status = "check_in";`)
     total_online = online[0].total_online
 
 
-    // var offline = await alldata(`select count(reg_id) as total_offline from check_master where date='${fulldate}' and online_status='0' and status = "check_in";`)
-    // total_offline = offline[0].total_offline
-    total_offline_1();
-    // total_offline = 250 - total_online 
+  
 
 }
 
@@ -76,6 +79,8 @@ online_ofline();
 
 
 const hotlineGet = async (req, res) => {
+  total_online
+  var total_offline
   var login_token = req.cookies.login_token;
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     login_user__id = decoded.id[0].id;
@@ -88,8 +93,41 @@ const hotlineGet = async (req, res) => {
 
   var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
 
+  var on = [];
+  var total = [];
+  
+  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+
+// console.log(alldetails);
+  for(var k=0; k<alldetails_1.length;k++){
+               on.push(alldetails_1[k].reg_id) 
+      }
+
+   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+
+   for(var p=0; p<total_emp.length;p++){
+    total.push(total_emp[p].reg_id) 
+}
+
+var alldetails_off = [];
+
+
+for(var s=0;s<total_emp.length;s++){
+         var reg = total_emp[s].reg_id;
+       
+      if(on.includes(reg) ){
+
+      }else{
+
+        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+        
+        alldetails_off.push(empl)
+      }
+}
+
+total_offline=alldetails_off.length
  
-  total_offline_1();
+
   online_ofline();
 
 
@@ -97,7 +135,7 @@ const hotlineGet = async (req, res) => {
 };
 
 const hotlineOnlineGet = async (req, res) => {
-
+let total_offline 
   var alldetails = await alldata(
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
@@ -106,7 +144,40 @@ const hotlineOnlineGet = async (req, res) => {
 
   
   online_ofline();
-  total_offline_1();
+
+  var on = [];
+  var total = [];
+  
+  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+
+// console.log(alldetails);
+  for(var k=0; k<alldetails_1.length;k++){
+               on.push(alldetails_1[k].reg_id) 
+      }
+
+   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+
+   for(var p=0; p<total_emp.length;p++){
+    total.push(total_emp[p].reg_id) 
+}
+
+var alldetails_off = [];
+
+
+for(var s=0;s<total_emp.length;s++){
+         var reg = total_emp[s].reg_id;
+       
+      if(on.includes(reg) ){
+
+      }else{
+
+        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+        
+        alldetails_off.push(empl)
+      }
+}
+
+total_offline=alldetails_off.length
   res.render("hotline_online.ejs", { alldetails, total_online, total_offline,alldetailsProfile });
 };
 
