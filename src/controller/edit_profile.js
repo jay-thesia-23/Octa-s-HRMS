@@ -15,7 +15,8 @@ var jwt = require("jsonwebtoken");
 app.use(cookieParser());
 var multer = require("multer");
 var conn = require("../config/dbConnect");
-
+var sharp=require("sharp")
+var path=require("path")
 var editProfileGet = function (req, res) {
   // res.render("editProfile")
   var login = req.cookies.login_token;
@@ -25,7 +26,6 @@ var editProfileGet = function (req, res) {
   jwt.verify(login, "sanjay", function (err, decoded) {
     // console.log(decoded);
     login_user__id = decoded.id[0].id;
- 
   });
 
   conn.query(`select * from cource_master; `, function (error, data2) {
@@ -38,7 +38,7 @@ var editProfileGet = function (req, res) {
         `SELECT * FROM employee_basic_infomation where reg_id = ${login_user__id};`,
         function (error, result1) {
           if (error) throw error;
-        
+
           conn.query(
             `SELECT * FROM education_table where reg_id = ${login_user__id};`,
             function (error, result2) {
@@ -75,11 +75,14 @@ var editProfileGet = function (req, res) {
 var uniqueSuffix = "";
 const storage = multer.diskStorage({
   destination: function (req, files, cb) {
-    cb(null, "./public/uploads");
+    cb(null, "./uploads");
   },
-  filename: function (req, files, cb) {
+  filename: async function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
+    console.log(uniqueSuffix,"unuidfssufficx");
+   
+
     cb(null, uniqueSuffix);
   },
 });
@@ -87,8 +90,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 var editProfilePost = async (req, res) => {
+
+  console.log("helllo POASTETUEH");
   console.log(req.files, "file in uploads");
   console.log(req.body);
+
+  
+req.files.adhar.map(async index=>{
+  console.log(index.filename,"mappppppppppppp");
+
+  await sharp(`uploads/${index.filename}`)
+  .resize({ width: 200 })
+  .png({ quality: 80 })
+  .toFile(path.resolve("compress", index.filename));
+
+})
+  
 
   var id;
   var firstname = req.body.fname;
@@ -122,32 +139,27 @@ var editProfilePost = async (req, res) => {
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     // console.log(decoded);
     login_user__id = decoded.id[0].id;
-   
   });
-
 
   // basic_information
 
-  conn.query(
-    `delete from employee_basic_infomation where reg_id ='${login_user__id}'`,
-    function (error, res) {
-      if (error) throw error;
-    }
-  );
+  // conn.query(
+  //   `delete from employee_basic_infomation where reg_id ='${login_user__id}'`,
+  //   function (error, res) {
+  //     if (error) throw error;
+  //   }
+  // );
 
   const deleteDoc = `delete from document_master where reg_id ='${login_user__id}'`;
 
   console.log(deleteDoc);
-  conn.query(deleteDoc, (err, dataDoc) => {
-  
-  });
+  conn.query(deleteDoc, (err, dataDoc) => {});
 
   conn.query(
     `insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city,email,designation,department) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}','${email}','${designation}','${department}') ;`,
     function (error, data) {
       if (error) throw error;
       id = data.insertId;
-   
 
       // education
 
@@ -174,7 +186,6 @@ var editProfilePost = async (req, res) => {
 
       // reference_master
       var sql = `insert into reference_master (reg_id,employee_id,name,number,relationship) values('${login_user__id}','${id}','${name1}','${number1}','${relationship1}'),('${login_user__id}','${id}','${name2}','${number2}','${relationship2}') ;`;
-      
 
       conn.query(sql, function (error, data) {
         if (error) throw error;
@@ -189,9 +200,7 @@ var editProfilePost = async (req, res) => {
           other,
           profile_pic) VALUES ("${id}","${login_user__id}","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
 
-          conn.query(sqlDocs, (err, docs) => {
-          
-        });
+        conn.query(sqlDocs, (err, docs) => {});
       });
 
       //documents
