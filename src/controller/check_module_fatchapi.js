@@ -10,13 +10,13 @@ var jwt = require("jsonwebtoken");
 app.use(cookieParser());
 var conn = require("../config/dbConnect");
 
-let momentOne = moment();
-var tz=momentOne.utcOffset(330);
+// let momentOne = moment();
+// var tz=momentOne.utcOffset(330);
 
-console.log(momentOne,"oneeeeeeeeeeeeee");
+// console.log(momentOne,"oneeeeeeeeeeeeee");
 
 var abcGet = function (req, res) {
-  res.cookie("tz",tz)
+
   var login_token = req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
@@ -29,7 +29,7 @@ var abcGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
- 
+ console.log(fulldate,"full datae");
   var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;
@@ -113,7 +113,8 @@ var checkoutGet = function (req, res) {
 
 
       if (query_date == fulldate) {
-        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_out';`;
+        var time = `select time from check_master where reg_id='${login_user__id}' and date='${fulldate}'
+         and status='check_out';`;
       
         conn.query(time, function (err, result) {
           if (err) throw err;

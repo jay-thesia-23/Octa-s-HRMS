@@ -17,6 +17,26 @@
 
 // }
 
+// document.cookie = `tz=${tz}`;
+
+var tzcookie=document.cookie
+var tz;
+
+let arraycookie = tzcookie.split(';');
+
+for(let i=0;i<arraycookie.length;i++){
+let currString=arraycookie[i].split("=")
+
+
+if(currString[0]=="tz"){
+tz=currString[1]
+console.log(tz,"tzzzzarrayyyyyyyyyy");
+}
+
+
+}
+
+
 async function fatchcheckmodule() {
   fetch("/abc", {
     method: "get",
@@ -27,7 +47,14 @@ async function fatchcheckmodule() {
     .then((res) => res.json())
     .then((data) => {
       // console.log(data[0].time.slice(11,18))
+
+    
+    
+
+    
       var timecheckin = data[0].time.slice(11, 18);
+
+     
       var hours = timecheckin.slice(0, 2);
       hours = hours % 12;
       hours = hours ? hours : 12;
@@ -43,6 +70,8 @@ async function fatchcheckmodule() {
       }
 
       var minutes = timecheckin.slice(3, 5);
+
+      console.log(hours,"timecheckinzzzzzzzzzzzzzzzzzzzzzz");
    
 
       var check = document.getElementById("time_box");
@@ -54,7 +83,12 @@ async function fatchcheckmodule() {
       var div = document.createElement("div");
 
       div.setAttribute("class", "green");
-      div.innerHTML = "Check In " + hours + ":" + minutes;
+
+      tz=Number(tz)
+      
+      console.log(moment(data[0].time).utc().format("DD-MM-YYYY hh:mm:ss"));
+      console.log(moment(data[0].time).utc().utcOffset(330).format("hh:mm"))
+      div.innerHTML = "Check In " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
 
       check.append(div);
       document.getElementById("check_in").disabled = true;
@@ -99,7 +133,7 @@ async function fatchbreckin() {
         if (i % 2 == 0) {
           div.setAttribute("class", "breckInColor");
 
-          div.innerHTML = "Breck In " + hours + ":" + minutes;
+          div.innerHTML = "Breck In " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
           check.append(div);
           document.getElementById("check_in").disabled = true;
           document.getElementById("check_out").disabled = true;
@@ -107,7 +141,7 @@ async function fatchbreckin() {
           document.getElementById("breck_out").disabled = false;
         } else {
           div.setAttribute("class", "breakOutColor");
-          div.innerHTML = "Breck Out " + hours + ":" + minutes;
+          div.innerHTML = "Breck Out " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
           check.append(div);
           document.getElementById("check_in").disabled = true;
           document.getElementById("check_out").disabled = false;
@@ -157,7 +191,7 @@ async function fatchchkout() {
 
 
       div.setAttribute("class", "checkOutColor");
-      div.innerHTML = "Check Out " + hours + ":" + minutes;
+      div.innerHTML = "Check Out " + moment(data[0].time).utc().utcOffset(tz).format("hh:mm");
       check.append(div);
       // check_out.innerHTML = "Thank You!!!!!";
 

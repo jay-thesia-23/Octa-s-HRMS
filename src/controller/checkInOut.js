@@ -16,7 +16,7 @@ var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
-
+var moment=require("moment")
 app.use(cookieParser());
 
 app.use(express.static("public"));
@@ -24,6 +24,7 @@ var conn = require("../config/dbConnect");
 
 var login_user__id;
 
+const tz = moment().utcOffset()
 var checkInOutGet=function (req, res) {
     res.render("checkInOut.ejs");
   }

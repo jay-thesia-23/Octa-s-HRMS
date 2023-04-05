@@ -8,7 +8,7 @@ app.set("layouts", path.resolve("src", "view", "layouts", "main")); //added
 var conn = require("../config/dbConnect");
 var jwt = require("jsonwebtoken");
 var util = require("util");
-
+var moment=require("moment")
 
 var alldata = util.promisify(conn.query.bind(conn));
 
@@ -20,9 +20,10 @@ var y = d.getDate();
 var z = d.getFullYear();
 
 var fulldate = y + "/" + x + "/" + z;
+const tz = moment().utcOffset()
 
 var homeGet = (req, res) => {
-  
+  res.cookie("tz",tz)
   var date = new Date();
   //console.log(date);
   var currentmonth = date.getMonth();

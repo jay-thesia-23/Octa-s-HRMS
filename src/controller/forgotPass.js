@@ -8,7 +8,7 @@ app.set('layouts', path.resolve("src","view","layouts","main")) //added
 var conn=require("../config/dbConnect")
 
 var util=require("util");
-const { JsonWebTokenError } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 var alldata = util.promisify(conn.query.bind(conn));
 var nodemailer=require("nodemailer")
 
@@ -123,7 +123,7 @@ const mailConfigurations = {
 
   };
 
-  res.send("hello")
+  res.sendFile(path.join(__dirname, "verificationrequest.html"));
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
