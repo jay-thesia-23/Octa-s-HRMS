@@ -20,10 +20,10 @@ var y = d.getDate();
 var z = d.getFullYear();
 
 var fulldate = y + "/" + x + "/" + z;
-const tz = moment().utcOffset()
+
 
 var homeGet = (req, res) => {
-  res.cookie("tz",tz)
+  // res.cookie("tz",tz)
   var date = new Date();
   //console.log(date);
   var currentmonth = date.getMonth();

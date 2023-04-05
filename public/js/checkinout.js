@@ -3,28 +3,22 @@ var check_out = document.getElementById("check_out");
 var breck_in = document.getElementById("breck_in");
 var breck_out = document.getElementById("breck_out");
 
-function autoUnable(){
+function autoUnable() {
+  var time = new Date();
+  var hour = time.getHours();
 
- 
-  
-    var time = new Date();
-     var hour = time.getHours();
-  
- 
-    if(hour==0){
-      
-      document.getElementById("check_in").disabled = false;
-      document.getElementById("check_out").disabled = true;
-      document.getElementById("breck_in").disabled = true;
-      document.getElementById("breck_out").disabled = true;
-    }
+  if (hour == 0) {
+    document.getElementById("check_in").disabled = false;
+    document.getElementById("check_out").disabled = true;
+    document.getElementById("breck_in").disabled = true;
+    document.getElementById("breck_out").disabled = true;
+  }
 }
 
-autoUnable()
+autoUnable();
 
 function demo() {
-
-    document.getElementById("attendanceRecord").hidden=false
+  document.getElementById("attendanceRecord").hidden = false;
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = false;
   document.getElementById("breck_in").disabled = false;
@@ -34,17 +28,14 @@ function demo() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
-  if(m<10){
-        
-    m = "0" + m 
-}
- 
+  if (m < 10) {
+    m = "0" + m;
+  }
 
   s = s % 12;
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
- 
 
   var div = document.createElement("div");
   div.setAttribute("class", "green");
@@ -59,8 +50,8 @@ function chk_out() {
   document.getElementById("breck_in").disabled = true;
   document.getElementById("breck_out").disabled = true;
   var check = document.getElementById("time_box");
-//   var check_out = document.getElementById("attendenceEntry");
-//   check_out.hidden = false;
+  //   var check_out = document.getElementById("attendenceEntry");
+  //   check_out.hidden = false;
 
   const d = new Date();
   var s = d.getHours();
@@ -68,11 +59,9 @@ function chk_out() {
 
   s = s % 12;
   s = s ? s : 12;
-  if(m<10){
-
-    m = "0" + m 
-}
-
+  if (m < 10) {
+    m = "0" + m;
+  }
 
   var timeIn12HourFormat = s + ":" + m;
   console.log(timeIn12HourFormat + "timein 12");
@@ -82,8 +71,6 @@ function chk_out() {
   div.innerHTML = "Check Out " + timeIn12HourFormat;
 
   check.append(div);
-
- 
 }
 
 function breck() {
@@ -96,10 +83,9 @@ function breck() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
-  if(m<10){
-
-    m = "0" + m 
-}
+  if (m < 10) {
+    m = "0" + m;
+  }
 
   s = s % 12;
   s = s ? s : 12;
@@ -124,10 +110,9 @@ function brc_out() {
   const d = new Date();
   var s = d.getHours();
   var m = d.getMinutes();
-  if(m<10){
-
-    m = "0" + m 
-}
+  if (m < 10) {
+    m = "0" + m;
+  }
 
   s = s % 12;
   s = s ? s : 12;
@@ -137,16 +122,10 @@ function brc_out() {
 
   var div = document.createElement("div");
   div.setAttribute("class", "breakOutColor");
-  div.innerHTML = "breck Out " + timeIn12HourFormat;
-
-
+  div.innerHTML = "break Out " + timeIn12HourFormat;
 
   check.append(div);
-
- 
 }
-
-
 
 async function checkin() {
   fetch("/check_in", {
@@ -156,9 +135,7 @@ async function checkin() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-     
-    });
+    .then((data) => {});
 }
 
 async function checkout() {
@@ -169,9 +146,7 @@ async function checkout() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      
-    });
+    .then((data) => {});
 }
 
 async function breckin() {
@@ -182,9 +157,7 @@ async function breckin() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-     
-    });
+    .then((data) => {});
 }
 
 async function breckout() {
@@ -195,10 +168,5 @@ async function breckout() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      
-    });
+    .then((data) => {});
 }
-
-
-
