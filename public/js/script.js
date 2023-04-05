@@ -1,4 +1,4 @@
-var tz=document.cookie
+
 
 console.log(tz,"tz in wirzaard");
 // document.cookie = tz=${tz};

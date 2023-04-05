@@ -39,8 +39,7 @@ console.log(tz,"tz in frronet end");
 
 async function fatchcheckmodule() {
   document.cookie = `tz=${tz}`;
-  tz = moment().utcOffset();
-  console.log(tz,"tzzzzzzzzzzzzzzzzzz");
+
 
   fetch("/abc", {
     method: "get",
