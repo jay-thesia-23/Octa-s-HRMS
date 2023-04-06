@@ -1,3 +1,8 @@
+// var tz=document.cookie
+
+console.log(tz,"tz in wirzaard");
+// document.cookie = tz=${tz};
+
 const prevBtns = document.querySelectorAll(".btn-prev");
 const nextBtns = document.querySelectorAll(".btn-next");
 const nextBtns2 = document.querySelectorAll(".btn2-next");

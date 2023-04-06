@@ -6,8 +6,8 @@ const bcrypt = require("bcrypt");
 app.use(express.static("css"));
 app.use(express.static("images"));
 var bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({limit: '50mb', extended: true }));
-app.use(bodyparser.json({limit: '50mb'}));
+app.use(bodyparser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyparser.json({ limit: "50mb" }));
 var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -16,6 +16,7 @@ const nodemailer = require("nodemailer");
 var path = require("path");
 var conn = require("../config/dbConnect");
 var multer = require("multer");
+const sharp = require("sharp");
 
 app.use(express.static("public"));
 async function Inemail(email) {
@@ -43,13 +44,10 @@ var wizardGet = (req, res) => {
   });
 };
 
-
-var cityCourse=(req,res)=>{
-  
-}
+var cityCourse = (req, res) => {};
 var testApiGet = function (req, res) {
   let state_1 = req.query.state_id || "";
-  console.log(req.get('Host'));
+  console.log(req.get("Host"));
 
   console.log(state_1);
   conn.query(
@@ -82,6 +80,14 @@ const storage = multer.diskStorage({
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
+
+    sharp("photo.png")
+      .resize({ width: 200 })
+      .png({ quality: 80 })
+      .toFile("compressed-image.png", (err, info) => {
+        if (err) throw err;
+        console.log(info,"infooooooooooooooooo");
+      });
     cb(null, uniqueSuffix);
   },
 });
@@ -211,5 +217,5 @@ module.exports = {
   Inemail,
   courceGet,
   testApiGet,
-  upload
+  upload,
 };
