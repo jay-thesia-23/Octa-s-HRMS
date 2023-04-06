@@ -81,13 +81,6 @@ const storage = multer.diskStorage({
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
 
-    sharp("photo.png")
-      .resize({ width: 200 })
-      .png({ quality: 80 })
-      .toFile("compressed-image.png", (err, info) => {
-        if (err) throw err;
-        console.log(info,"infooooooooooooooooo");
-      });
     cb(null, uniqueSuffix);
   },
 });
@@ -106,9 +99,25 @@ const uploadDoc = (req, res) => {
 };
 
 const wizardPost = async (req, res) => {
-  console.log(req.files, "file in uploads");
-  console.log(req.files.adhar[0].filename, "file of adhar");
-  console.log(req.body);
+
+  var data = req.files;
+
+  console.log(Object.keys(data).length);
+
+  for (let i = 0; i < 5; i++) {
+    var objKey = Object.keys(data)[i];
+
+    for (let j = 0; j < data[objKey].length; j++) {
+      console.log(data[objKey], "objectkdfsjdf");
+      var subItem = data[objKey][j];
+      console.log(subItem.filename, "file namessssssss");
+
+      await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .png({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+    }
+  }
 
   console.log(req.cookies, "in get cookie");
   var id;

@@ -15,8 +15,8 @@ var jwt = require("jsonwebtoken");
 app.use(cookieParser());
 var multer = require("multer");
 var conn = require("../config/dbConnect");
-var sharp=require("sharp")
-var path=require("path")
+var sharp = require("sharp");
+var path = require("path");
 var editProfileGet = function (req, res) {
   // res.render("editProfile")
   var login = req.cookies.login_token;
@@ -80,8 +80,7 @@ const storage = multer.diskStorage({
   filename: async function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
-    console.log(uniqueSuffix,"unuidfssufficx");
-   
+    console.log(uniqueSuffix, "unuidfssufficx");
 
     cb(null, uniqueSuffix);
   },
@@ -90,22 +89,50 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 var editProfilePost = async (req, res) => {
+  // console.log("helllo POASTETUEH");
+  // console.log(req.files, "file in uploads");
+  // console.log(req.body);
 
-  console.log("helllo POASTETUEH");
-  console.log(req.files, "file in uploads");
-  console.log(req.body);
+  var data = req.files;
+
+  console.log(Object.keys(data).length);
+
+  for (let i = 0; i < 5; i++) {
+    var objKey = Object.keys(data)[i];
+
+    for (let j = 0; j < data[objKey].length; j++) {
+      console.log(data[objKey], "objectkdfsjdf");
+      var subItem = data[objKey][j];
+      console.log(subItem.filename, "file namessssssss");
+
+      var fileNameFormat=subItem.filename.split(".")
+
+      console.log(fileNameFormat,"format");
+
+      if(fileNameFormat[1]=="png"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .png({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+      if(fileNameFormat[1]=="jpeg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jpeg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+      if(fileNameFormat[1]=="jpg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jpg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
 
   
-req.files.adhar.map(async index=>{
-  console.log(index.filename,"mappppppppppppp");
-
-  await sharp(`uploads/${index.filename}`)
-  .resize({ width: 200 })
-  .png({ quality: 80 })
-  .toFile(path.resolve("compress", index.filename));
-
-})
-  
+    }
+  }
 
   var id;
   var firstname = req.body.fname;
@@ -143,12 +170,12 @@ req.files.adhar.map(async index=>{
 
   // basic_information
 
-  // conn.query(
-  //   `delete from employee_basic_infomation where reg_id ='${login_user__id}'`,
-  //   function (error, res) {
-  //     if (error) throw error;
-  //   }
-  // );
+  conn.query(
+    `delete from employee_basic_infomation where reg_id ='${login_user__id}'`,
+    function (error, res) {
+      if (error) throw error;
+    }
+  );
 
   const deleteDoc = `delete from document_master where reg_id ='${login_user__id}'`;
 
