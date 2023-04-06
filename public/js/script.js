@@ -198,14 +198,6 @@ function registerPage1() {
     document.getElementById("state-error").innerHTML = "";
   }
 
-  if(gender == null || gender == "")
-  {
-      document.getElementById('gender-error').innerHTML="Please select gender";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('gender-error').innerHTML="";
-  }
 
   if (city == null || city == "") {
     document.getElementById("city-error").innerHTML = "Please select city";
