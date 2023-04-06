@@ -100,7 +100,7 @@ var editProfilePost = async (req, res) => {
   for (let i = 0; i < 5; i++) {
     var objKey = Object.keys(data)[i];
 
-    for (let j = 0; j < data[objKey].length; j++) {
+    for (let j = 0; j < 1; j++) {
       console.log(data[objKey], "objectkdfsjdf");
       var subItem = data[objKey][j];
       console.log(subItem.filename, "file namessssssss");
@@ -126,7 +126,7 @@ var editProfilePost = async (req, res) => {
       if(fileNameFormat[1]=="jpg"){
         await sharp(`uploads/${subItem.filename}`)
         .resize({ width: 200 })
-        .jpg({ quality: 80 })
+        .jpgg({ quality: 80 })
         .toFile(path.resolve("compress", `compress+${subItem.filename}`));
       }
 
