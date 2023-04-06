@@ -123,7 +123,7 @@
           hidden_text_name.innerHTML = "Please enter your name......";
           return false;
         }
-        if (!name.value.match(namevalid)) {
+        if (!isNaN(name.value)) {
           console.log("sanjay");
           hidden_text_name.innerHTML = "Enter Correct name .....";
           return false;
