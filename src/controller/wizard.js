@@ -33,6 +33,8 @@ async function Inemail(email) {
 }
 
 var wizardGet = (req, res) => {
+  console.log(req.get("Host"),"hoset");
+
   conn.query(`select * from cource_master; `, function (error, data2) {
     if (error) throw error;
 
@@ -47,7 +49,9 @@ var wizardGet = (req, res) => {
 var cityCourse = (req, res) => {};
 var testApiGet = function (req, res) {
   let state_1 = req.query.state_id || "";
-  console.log(req.get("Host"));
+
+
+  console.log(req.get("Host"),"hoset");
 
   console.log(state_1);
   conn.query(

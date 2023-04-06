@@ -1,6 +1,5 @@
 
 
-console.log(tz,"tz in wirzaard");
 // document.cookie = tz=${tz};
 
 const prevBtns = document.querySelectorAll(".btn-prev");
@@ -15,15 +14,17 @@ let formStepsNum = 0;
 var x = document.cookie;
 var complete_url = "";
 
-console.log(x);
+
 let decodedCookie = decodeURIComponent(x);
 let ca = decodedCookie.split(";");
+
 
 for (let i = 0; i < ca.length; i++) {
   let currString = ca[i].split("=");
 
   if (currString[0] == "om") {
     complete_url = currString[1];
+    
   }
 }
 
