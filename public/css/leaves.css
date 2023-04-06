@@ -77,7 +77,7 @@
 }
 
 .col-4{
-    width:70%;
+    width:100%;
     padding:0 16px ;
   
     /* border: 1px solid red; */
@@ -119,6 +119,9 @@ tbody{
    
     margin-top: 8px;
 }
+.span1{
+    color:red;
+  }
 .col-6{
     width:40%;
     padding:0 16px ;
@@ -523,3 +526,21 @@ input:checked + .slider:before {
     right: 0;
     margin: auto;
 }
+
+/*  pg*/
+.row-page {
+    text-align: center;
+  
+  }
+  .part4 .row_page .m_t_b p{
+    padding-bottom: 20px;
+  }
+  .row-page a {
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(188, 186, 186);
+    padding: 10px;
+  }
+  
