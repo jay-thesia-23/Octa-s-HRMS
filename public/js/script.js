@@ -106,6 +106,22 @@ function uniValidate(){
 }
 
 
+function cmtValidate(){
+  var cmt = document.getElementById('comment').value;
+  
+  if(cmt == "<input type='text'>")
+  {
+      document.getElementById('uni-error').innerHTML="Please enter valid comment";
+      isvalidate = false;
+  }
+ 
+  else{
+      document.getElementById('uni-error').innerHTML="";
+  }
+  return true;
+}
+
+
 function addressValidate(){
   var address = document.getElementById('address').value;
   

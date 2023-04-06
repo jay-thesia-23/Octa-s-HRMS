@@ -1,4 +1,8 @@
+
+
+
 async function fetchComment() {
+
 
   console.log("function is called!!!!!!!");
   fetch("/comment_fatch", {
@@ -20,4 +24,4 @@ async function fetchComment() {
       }
   
     });
-}
+  }
