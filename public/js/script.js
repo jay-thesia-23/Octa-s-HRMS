@@ -1,6 +1,5 @@
-// var tz=document.cookie
 
-console.log(tz,"tz in wirzaard");
+
 // document.cookie = tz=${tz};
 
 const prevBtns = document.querySelectorAll(".btn-prev");
@@ -15,15 +14,17 @@ let formStepsNum = 0;
 var x = document.cookie;
 var complete_url = "";
 
-console.log(x);
+
 let decodedCookie = decodeURIComponent(x);
 let ca = decodedCookie.split(";");
+
 
 for (let i = 0; i < ca.length; i++) {
   let currString = ca[i].split("=");
 
   if (currString[0] == "om") {
     complete_url = currString[1];
+    
   }
 }
 
@@ -86,128 +87,7 @@ function updateProgressbar() {
     ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
 
-// -----------------validation--------------------
 
-// function uniValidate(){
-//   var uni = document.getElementById('uni').value;
-
-//   if(uni == null || uni == "")
-//   {
-//       document.getElementById('uni-error').innerHTML="Please enter university";
-//       isvalidate = false;
-//   }
-
-//   else{
-//       document.getElementById('uni-error').innerHTML="";
-//   }
-//   return true;
-// }
-
-// function addressValidate(){
-//   var address = document.getElementById('address').value;
-
-//   if(address == null || address == "")
-//   {
-//       document.getElementById('address-error').innerHTML="Please enter address";
-//       isvalidate = false;
-//   }
-
-//   else{
-//       document.getElementById('address-error').innerHTML="";
-//   }
-//   return true;
-// }
-
-// function yearValidate(){
-//   var passyear = document.getElementById('passyear').value;
-
-//   if(passyear == null || passyear == "")
-//   {
-//       document.getElementById('passyear-error').innerHTML="Please enter passing year";
-//       isvalidate = false;
-//   }
-//   else if(isNaN(passyear))
-//   {
-//       document.getElementById('year-error').innerHTML="Please enter valid passing year";
-//       isvalidate = false;
-//   }
-//   else{
-//       document.getElementById('year-error').innerHTML="";
-//   }
-//   return true;
-// }
-
-// function percentValidate(){
-//   var percent = document.getElementById('percent').value;
-
-//   if(percent == null || percent == "")
-//   {
-//       document.getElementById('percent-error').innerHTML="Please enter percentage";
-//       isvalidate = false;
-//   }
-//   else if(isNaN(percent))
-//   {
-//       document.getElementById('percent-error').innerHTML="Please enter valid percentage";
-//       isvalidate = false;
-//   }
-//   else{
-//       document.getElementById('percent-error').innerHTML="";
-//   }
-//   return true;
-// }
-
-// function fnameValidate(){
-//   var fname = document.getElementById('fname').value;
-
-//   if(fname == null || fname == "")
-//   {
-//       document.getElementById('fname-error').innerHTML="Please enter first name";
-//       isvalidate=false
-//   }
-//   else if(!isNaN(fname))
-//   {
-//       document.getElementById('fname-error').innerHTML="Please enter valid first name";
-//       isvalidate=false
-//   }
-//   else{
-//       document.getElementById('fname-error').innerHTML="";
-//       // return false;
-//   }
-//   return true;
-// }
-// function lnameValidate(){
-//   var lname = document.getElementById('lname').value;
-
-//   if(lname == null || lname == "")
-//   {
-//       document.getElementById('lname-error').innerHTML="Please enter last name";
-//     isvalidate=false
-//   }
-//   else if(!isNaN(lname))
-//   {
-//       document.getElementById('lname-error').innerHTML="Please enter valid lastname";
-//       isvalidate=false
-//   }
-//   else{
-//       document.getElementById('lname-error').innerHTML="";
-//   }
-//   return true;
-// }
-
-// function contactValidate(){
-//   var contact = document.getElementById('contact').value;
-
-//   if(contact == null || contact == "")
-//   {
-//       document.getElementById('contact-error').innerHTML="Please enter contact";
-//       isvalidate = false;
-//   }
-
-//   else{
-//       document.getElementById('contact-error').innerHTML="";
-//   }
-//   return true;
-// }
 
 async function select(state_id) {
   const ans = await fetch(
@@ -236,20 +116,41 @@ function registerPage1() {
   var address = document.getElementById("address").value || "";
   var contact = document.getElementById("contact").value || "";
   var state = document.getElementById("state").value || "";
+  var validRegex =
+          /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+
+
+  var email=document.getElementById("email").value || ""
+  var designation=document.getElementById("designation").value || ""
+  var department=document.getElementById("department").value || ""  
 
   var relationship = document.getElementById("relationship").value || "";
   //var gender = document.getElementById('gender').value || "";
   var city = document.getElementById("city").value || "";
   var isvalidate = true;
 
-  if (fname == null || fname == "") {
+  if (fname == null || fname == "" || !isNaN(fname)) {
     document.getElementById("fname-error").innerHTML = "Please enter username";
     isvalidate = false;
   } else {
     document.getElementById("fname-error").innerHTML = "";
   }
 
-  if (lname == null || lname == "") {
+  if (designation == null || designation == "" || !isNaN(designation)) {
+    document.getElementById("designation-error").innerHTML = "Please enter Designation";
+    isvalidate = false;
+  } else {
+    document.getElementById("designation-error").innerHTML = "";
+  }
+
+  if (department == null || department == "" || !isNaN(department)) {
+    document.getElementById("department-error").innerHTML = "Please enter Department";
+    isvalidate = false;
+  } else {
+    document.getElementById("department-error").innerHTML = "";
+  }
+
+  if (lname == null || lname == ""  || !isNaN(lname)) {
     document.getElementById("lname-error").innerHTML = "Please enter lname";
     isvalidate = false;
   } else {
@@ -283,6 +184,13 @@ function registerPage1() {
     document.getElementById("contact-error").innerHTML = "";
   }
 
+
+  if (!email.match(validRegex)) {
+    document.getElementById("email-error").innerHTML = "Enter Correct email_id .....";
+    isvalidate= false;
+  }
+
+  
   if (state.length <= 0) {
     document.getElementById("state-error").innerHTML = "Please select state";
     isvalidate = false;
@@ -290,14 +198,6 @@ function registerPage1() {
     document.getElementById("state-error").innerHTML = "";
   }
 
-  // if(gender == null || gender == "")
-  // {
-  //     document.getElementById('gender-error').innerHTML="Please select gender";
-  //     isvalidate = false;
-  // }
-  // else{
-  //     document.getElementById('gender-error').innerHTML="";
-  // }
 
   if (city == null || city == "") {
     document.getElementById("city-error").innerHTML = "Please select city";

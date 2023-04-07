@@ -35,130 +35,129 @@ async function online_ofline() {
 
 
 
-async function online_ofline_1(){
-  var on = [];
-  var total = [];
-  
-  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+async function online_ofline_1() {
+    var on = [];
+    var total = [];
 
-// console.log(alldetails);
-  for(var k=0; k<alldetails_1.length;k++){
-               on.push(alldetails_1[k].reg_id) 
-      }
+    var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
 
-   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+    // console.log(alldetails);
+    for (var k = 0; k < alldetails_1.length; k++) {
+        on.push(alldetails_1[k].reg_id)
+    }
 
-   for(var p=0; p<total_emp.length;p++){
-    total.push(total_emp[p].reg_id) 
+    var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+
+    for (var p = 0; p < total_emp.length; p++) {
+        total.push(total_emp[p].reg_id)
+    }
+
+    var alldetails_off = [];
+
+
+    for (var s = 0; s < total_emp.length; s++) {
+        var reg = total_emp[s].reg_id;
+
+        if (on.includes(reg)) {
+
+        } else {
+
+            var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
+
+            alldetails_off.push(empl)
+        }
+    }
+
+
+    total_offline = alldetails_off.length
 }
-
-var alldetails_off = [];
-
-
-for(var s=0;s<total_emp.length;s++){
-         var reg = total_emp[s].reg_id;
-       
-      if(on.includes(reg) ){
-
-      }else{
-
-        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
-        
-        alldetails_off.push(empl)
-      }
-}
-
-total_offline=alldetails_off.length
-}
-
-
 const hotlineGet = async (req, res) => {
-  total_online
-  
-  var login_token = req.cookies.login_token;
-  jwt.verify(login_token, "sanjay", function (err, decoded) {
-    login_user__id = decoded.id[0].id;
-   
-  });
+    total_online
 
-  var alldetails = await alldata(
-    `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
-  );
+    var login_token = req.cookies.login_token;
+    jwt.verify(login_token, "sanjay", function (err, decoded) {
+        login_user__id = decoded.id[0].id;
 
-  var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
+    });
 
+    var alldetails = await alldata(
+        `select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
+    );
 
-  online_ofline();
- 
-  online_ofline_1();
-
- 
+    var alldetailsProfile = await alldata(`select profile_pic,reg_id from document_master`);
 
 
-  res.render("hotline.ejs", { total_online, total_offline,alldetails,alldetailsProfile });
+    online_ofline();
+
+    online_ofline_1();
+
+
+
+
+    res.render("hotline.ejs", { total_online, total_offline, alldetails, alldetailsProfile });
 };
 
 const hotlineOnlineGet = async (req, res) => {
 
-  var alldetails = await alldata(
-    `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
-  );
+    var alldetails = await alldata(
+        `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.status='check_in' and check_master.online_status='1' and check_master.date = '${fulldate}' ; `
+    );
 
-  var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master `);
+    var alldetailsProfile = await alldata(`select profile_pic,reg_id from document_master`);
 
-  
-  online_ofline();
-  online_ofline_1();
-  
 
- 
-  res.render("hotline_online.ejs", { alldetails, total_online, total_offline,alldetailsProfile });
+    online_ofline();
+    online_ofline_1();
+
+
+
+    res.render("hotline_online.ejs", { alldetails, total_online, total_offline, alldetailsProfile });
 };
 
 const hotlineOfflineGet = async (req, res) => {
 
-  var on = [];
-  var total = [];
-  
-  var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
+    var on = [];
+    var total = [];
 
-// console.log(alldetails);
-  for(var k=0; k<alldetails_1.length;k++){
-               on.push(alldetails_1[k].reg_id) 
-      }
+    var alldetails_1 = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `);
 
-   var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
+    // console.log(alldetails);
+    for (var k = 0; k < alldetails_1.length; k++) {
+        on.push(alldetails_1[k].reg_id)
+    }
 
-   for(var p=0; p<total_emp.length;p++){
-    total.push(total_emp[p].reg_id) 
-}
+    var total_emp = await alldata(`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`);
 
-var alldetails = [];
+    for (var p = 0; p < total_emp.length; p++) {
+        total.push(total_emp[p].reg_id)
+    }
+
+    var alldetails = [];
 
 
-for(var s=0;s<total_emp.length;s++){
-         var reg = total_emp[s].reg_id;
-       
-      if(on.includes(reg) ){
+    for (var s = 0; s < total_emp.length; s++) {
+        var reg = total_emp[s].reg_id;
 
-      }else{
+        if (on.includes(reg)) {
 
-        var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
-        
-        alldetails.push(empl)
-      }
-}
+        } else {
 
-total_offline=alldetails.length
+            var empl = await alldata(`select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}`);
 
-var alldetailsProfile=await alldata(`select * from document_master RIGHT JOIN employee_basic_infomation ON document_master.reg_id=employee_basic_infomation.reg_id;`);
+            alldetails.push(empl)
+        }
+    }
 
-console.log(JSON.stringify(alldetailsProfile[0].profile_pic),"profilleeeeeeeee");
+    total_offline = alldetails.length
 
-  online_ofline();
+    var alldetailsProfile = await alldata(`select * from document_master RIGHT JOIN employee_basic_infomation ON document_master.reg_id=employee_basic_infomation.reg_id;`);
 
-  res.render("hotline_offline.ejs", {alldetails,total_online,total_offline,alldetailsProfile });
+    console.log(JSON.stringify(alldetailsProfile[0].profile_pic), "profilleeeeeeeee");
+
+    online_ofline();
+
+    res.render("hotline_offline.ejs", { alldetails, total_online, total_offline, alldetailsProfile });
 
 };
 
-module.exports = { hotlineGet,hotlineOfflineGet,hotlineOnlineGet };
+module.exports = { hotlineGet, hotlineOfflineGet, hotlineOnlineGet };

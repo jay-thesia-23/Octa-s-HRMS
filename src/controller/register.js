@@ -12,7 +12,7 @@ var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 var path = require("path");
 var conn = require("../config/dbConnect");
-const { dirname } = require("path");
+
 
 app.use(express.static("public"));
 app.set("views", path.join(__dirname, "../views"));
@@ -31,9 +31,9 @@ app.use(
 
 var registerGet = function (req, res) {
   
+ 
   var url = req.get('Host')
 
-  console.log(url,"..........................");
   res.cookie('om', url)
   var server_url = req.cookies.om
 
@@ -77,7 +77,9 @@ var registerPost = async function (req, res) {
  
   var url = req.get('Host')
 
-  console.log(url,"..........................");
+
+
+
   res.cookie('om', url)
   var server_url = req.cookies.om
 
@@ -209,7 +211,7 @@ var verifyGet = (req, res) => {
      
       res.sendFile(path.join(__dirname, "somthingwentwrong.html"));
     } else {
-      console.log(decoded);
+
       res.sendFile(path.join(__dirname, "adminverifide.html"));
       conn.query(`update registration set isactive = '0' where u_email='${email}';`,(err, data) => {
           console.log(data);

@@ -39,8 +39,6 @@ console.log(tz,"tz in frronet end");
 
 async function fatchcheckmodule() {
   document.cookie = `tz=${tz}`;
-  // tz = moment().utcOffset();
-  console.log(tz,"tzzzzzzzzzzzzzzzzzz");
 
   fetch("/abc", {
     method: "get",
@@ -113,7 +111,7 @@ async function fatchbreckin() {
         }
 
         if (hours == "00") {
-          hours = "12";
+          hours = "12"; 
         }
         var minutes = timecheckin.slice(3, 5);
 
