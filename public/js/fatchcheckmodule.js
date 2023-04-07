@@ -202,6 +202,9 @@ async function fatchchkout() {
 
       var TodayDates = yearValue + "-" + monthValue + "-" + dateValue;
 
+      console.log(TodayDates,"made by us");
+      console.log(dateOfToday,"from db")
+
       if (dateOfToday == TodayDates) {
         document.getElementById("check_in").disabled = true;
         document.getElementById("check_out").disabled = true;

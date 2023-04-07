@@ -38,6 +38,8 @@ var z = d.getFullYear();
 var fulldate = y + "/" + x + "/" + z;
 
 
+
+
 var checkInPost=function (req, res) {
     var login_token = req.cookies.login_token;
   
@@ -47,7 +49,7 @@ var checkInPost=function (req, res) {
     });
   
     var check_in_entry = `insert into check_master (status,reg_id,date) values('check_in','${login_user__id}','${fulldate}');`;
-   
+   console.log(check_in_entry);
   
     conn.query(check_in_entry, function (err, result) {
       if (err) throw err;

@@ -126,7 +126,7 @@ var editProfilePost = async (req, res) => {
       if(fileNameFormat[1]=="jpg"){
         await sharp(`uploads/${subItem.filename}`)
         .resize({ width: 200 })
-        .jpgg({ quality: 80 })
+        .jepg({ quality: 80 })
         .toFile(path.resolve("compress", `compress+${subItem.filename}`));
       }
 

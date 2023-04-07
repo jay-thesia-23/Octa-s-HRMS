@@ -108,20 +108,44 @@ const wizardPost = async (req, res) => {
 
   console.log(Object.keys(data).length);
 
-  for (let i = 0; i < 5; i++) {
+   for (let i = 0; i < 5; i++) {
     var objKey = Object.keys(data)[i];
 
-    for (let j = 0; j < data[objKey].length; j++) {
+    for (let j = 0; j < 1; j++) {
       console.log(data[objKey], "objectkdfsjdf");
       var subItem = data[objKey][j];
       console.log(subItem.filename, "file namessssssss");
 
-      await sharp(`uploads/${subItem.filename}`)
+      var fileNameFormat=subItem.filename.split(".")
+
+      console.log(fileNameFormat,"format");
+
+      if(fileNameFormat[1]=="png"){
+        await sharp(`uploads/${subItem.filename}`)
         .resize({ width: 200 })
         .png({ quality: 80 })
         .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+      if(fileNameFormat[1]=="jpeg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jpeg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+        if(fileNameFormat[1]=="jpg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jepg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+
+  
     }
   }
+
 
   console.log(req.cookies, "in get cookie");
   var id;
