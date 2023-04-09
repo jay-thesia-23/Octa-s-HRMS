@@ -29,7 +29,7 @@ var abcGet = function (req, res) {
   var year = d.getFullYear();
   var fulldate = day + "/" + month + "/" + year;
 
- console.log(fulldate,"full datae");
+ 
   var datequary = `select date from check_master where reg_id='${login_user__id}' and date='${fulldate}' and status='check_in';`;
   conn.query(datequary, function (err, data) {
     if (err) throw err;

@@ -72,7 +72,7 @@ alldetails_off.push(empl)
 total_offline=alldetails_off.length
 }
 const hotlineGet = async (req, res) => {
-total_online
+
 
 var login_token = req.cookies.login_token;
 jwt.verify(login_token, "sanjay", function (err, decoded) {
@@ -81,11 +81,11 @@ login_user__id = decoded.id[0].id;
 });
 
 var alldetails = await alldata(
-`select firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
+`select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ;`
 );
 
-var alldetailsProfile=await alldata(`select profile_pic,reg_id from document_master`);
-
+var alldetailsProfile=await alldata(`select  profile_pic,reg_id from document_master where reg_id=${login_user__id}`);
+console.log(alldetailsProfile,"profile");
 
 online_ofline();
 

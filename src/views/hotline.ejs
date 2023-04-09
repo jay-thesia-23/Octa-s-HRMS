@@ -46,9 +46,9 @@
          <% for(let i=0; i<alldetails.length; i++) {%>
 
           
-
+        
           <div class="ag-courses_item box_shadow_2">
-            <a href="#" class="ag-courses-item_link" id="card<%=i%>">
+            <a href="/showprofile?id=<%=alldetailsProfile[i]?.reg_id%>" class="ag-courses-item_link" id="card<%=i%>">
               <div class="ag-courses-item_bg"></div>
   
               <div>
@@ -56,8 +56,8 @@
                   <div class="col">
                     <div class="jst_ctr">
 
-              
-                      <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
+                     
+                      <%if(alldetailsProfile[i]?.profile_pic=="" || alldetailsProfile[i]?.profile_pic==null  ){%>
                         <div class="img1"><img class="img" src="/hello.png"></div>
                         <%}else{%>
                         <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>

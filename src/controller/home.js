@@ -23,12 +23,12 @@ var fulldate = y + "/" + x + "/" + z;
 
 
 var homeGet = (req, res) => {
-  // res.cookie("tz",tz)
+  
   var date = new Date();
-  //console.log(date);
+  
   var currentmonth = date.getMonth();
   var cm = currentmonth + 1;
-  //console.log("ccccccccccccc",cm);
+  
   const year = date.getFullYear();
   var month = date.getMonth()+1;
   if (month < 10) {
@@ -58,7 +58,7 @@ var homeGet = (req, res) => {
 
                 var totalHours = attendaceCount * 9;
 
-              console.log(result,"resulttnhjyjuyujyjuttttttttttttt");
+              
                 res.render("home.ejs", {
                   result,
                   date,

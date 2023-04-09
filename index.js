@@ -59,6 +59,9 @@ app.use(leaves);
 var editprofile=require("./src/routes/edit_profile")
 app.use(editprofile)
 
+var showprofile=require("./src/routes/showProfile")
+app.use(showprofile)
+
 var comment=require("./src/routes/comment")
 app.use(comment)
 var fatchapi = require("./src/routes/check_module_fatchapi")

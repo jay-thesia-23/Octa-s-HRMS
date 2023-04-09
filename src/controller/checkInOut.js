@@ -77,6 +77,8 @@ var checkOutPost=function (req, res) {
   
     conn.query(check_out_entry, function (err, result) {
       if (err) throw err;
+
+      console.log(result,"result form the check _out");
       res.json({ result });
     });
   

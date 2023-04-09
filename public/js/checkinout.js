@@ -71,6 +71,11 @@ function chk_out() {
   div.innerHTML = "Check Out " + timeIn12HourFormat;
 
   check.append(div);
+
+  document.getElementById("check_in").disabled = true;
+  document.getElementById("check_out").disabled = true;
+  document.getElementById("breck_in").disabled = true;
+  document.getElementById("breck_out").disabled = true;
 }
 
 function breck() {
