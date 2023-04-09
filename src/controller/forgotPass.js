@@ -1,31 +1,30 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const expressLayouts = require('express-ejs-layouts')
-app.use(expressLayouts)   //Added
-var path=require("path")
-app.set('layouts', path.resolve("src","view","layouts","main")) //added
+const expressLayouts = require("express-ejs-layouts");
+app.use(expressLayouts); //Added
+var path = require("path");
+app.set("layouts", path.resolve("src", "view", "layouts", "main")); //added
 
-var conn=require("../config/dbConnect")
+var conn = require("../config/dbConnect");
 
-var util=require("util");
-const { JsonWebTokenError } = require('jsonwebtoken');
+var util = require("util");
+const jwt = require("jsonwebtoken");
 var alldata = util.promisify(conn.query.bind(conn));
-var nodemailer=require("nodemailer")
+var nodemailer = require("nodemailer");
 
-var forgotPassGet=(req,res)=>{
-    res.render("forgotPass",{layout:false})
-}
+var forgotPassGet = (req, res) => {
+  res.render("forgotPass", { layout: false });
+};
 
-var forgotPassPost=(req,res)=>{
-console.log(req.body);
+var forgotPassPost = (req, res) => {
+  console.log(req.body);
 
-const login_token = jwt.sign({ email: email }, "sanjay")
-res.cookie("login_token", login_token)
+  const login_token = jwt.sign({ email: email }, "sanjay");
+  res.cookie("login_token", login_token);
 
+  var email = req.body.email;
 
-var email=req.body.email
-
-const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     to: `${email}`,
 
@@ -35,9 +34,7 @@ const transporter = nodemailer.createTransport({
     },
   });
 
-
-
-const mailConfigurations = {
+  const mailConfigurations = {
     // const login_token = jwt.sign({ email: email }, "sanjay");
     // res.cookie("login_token", login_token);
 
@@ -109,7 +106,9 @@ const mailConfigurations = {
                 <p>Tap to change your password</p>
             </div>
             <div class="verify-link">
-                <a href=" ${req.get('origin')}/forgotPassChange?email=${email} "> verify</a>
+                <a href=" ${req.get(
+                  "origin"
+                )}/forgotPassChange?email=${email} "> verify</a>
             </div>
         </section>
        
@@ -117,26 +116,13 @@ const mailConfigurations = {
     </body>
     
     </html>`,
-
-    
-
-
   };
-
-  res.send("hello")
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
- 
-  
   });
 
-  res.send("Change password mail sent Successfully!!!!");
+  res.sendFile(path.join(__dirname, "verificationrequest.html"));
 };
 
-
-
-
-
-
-module.exports={forgotPassGet,forgotPassPost}
+module.exports = { forgotPassGet, forgotPassPost };

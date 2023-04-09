@@ -16,7 +16,7 @@ var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 // app.use(cookieParser());
 var jwt = require("jsonwebtoken");
-
+var moment=require("moment")
 app.use(cookieParser());
 
 app.use(express.static("public"));
@@ -24,6 +24,7 @@ var conn = require("../config/dbConnect");
 
 var login_user__id;
 
+const tz = moment().utcOffset()
 var checkInOutGet=function (req, res) {
     res.render("checkInOut.ejs");
   }
@@ -37,6 +38,8 @@ var z = d.getFullYear();
 var fulldate = y + "/" + x + "/" + z;
 
 
+
+
 var checkInPost=function (req, res) {
     var login_token = req.cookies.login_token;
   
@@ -46,7 +49,7 @@ var checkInPost=function (req, res) {
     });
   
     var check_in_entry = `insert into check_master (status,reg_id,date) values('check_in','${login_user__id}','${fulldate}');`;
-   
+   console.log(check_in_entry);
   
     conn.query(check_in_entry, function (err, result) {
       if (err) throw err;

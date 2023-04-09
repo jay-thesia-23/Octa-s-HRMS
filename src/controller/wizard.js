@@ -6,8 +6,8 @@ const bcrypt = require("bcrypt");
 app.use(express.static("css"));
 app.use(express.static("images"));
 var bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({limit: '50mb', extended: true }));
-app.use(bodyparser.json({limit: '50mb'}));
+app.use(bodyparser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyparser.json({ limit: "50mb" }));
 var mysql = require("mysql2");
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -16,6 +16,7 @@ const nodemailer = require("nodemailer");
 var path = require("path");
 var conn = require("../config/dbConnect");
 var multer = require("multer");
+const sharp = require("sharp");
 
 app.use(express.static("public"));
 async function Inemail(email) {
@@ -32,6 +33,8 @@ async function Inemail(email) {
 }
 
 var wizardGet = (req, res) => {
+  console.log(req.get("Host"),"hoset");
+
   conn.query(`select * from cource_master; `, function (error, data2) {
     if (error) throw error;
 
@@ -43,13 +46,12 @@ var wizardGet = (req, res) => {
   });
 };
 
-
-var cityCourse=(req,res)=>{
-  
-}
+var cityCourse = (req, res) => {};
 var testApiGet = function (req, res) {
   let state_1 = req.query.state_id || "";
-  console.log(req.get('Host'));
+
+
+  console.log(req.get("Host"),"hoset");
 
   console.log(state_1);
   conn.query(
@@ -82,6 +84,7 @@ const storage = multer.diskStorage({
   filename: function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
     console.log(uniqueSuffix, "from the storage");
+
     cb(null, uniqueSuffix);
   },
 });
@@ -100,9 +103,49 @@ const uploadDoc = (req, res) => {
 };
 
 const wizardPost = async (req, res) => {
-  console.log(req.files, "file in uploads");
-  console.log(req.files.adhar[0].filename, "file of adhar");
-  console.log(req.body);
+
+  var data = req.files;
+
+  console.log(Object.keys(data).length);
+
+   for (let i = 0; i < 5; i++) {
+    var objKey = Object.keys(data)[i];
+
+    for (let j = 0; j < 1; j++) {
+      console.log(data[objKey], "objectkdfsjdf");
+      var subItem = data[objKey][j];
+      console.log(subItem.filename, "file namessssssss");
+
+      var fileNameFormat=subItem.filename.split(".")
+
+      console.log(fileNameFormat,"format");
+
+      if(fileNameFormat[1]=="png"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .png({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+      if(fileNameFormat[1]=="jpeg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jpeg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+        if(fileNameFormat[1]=="jpg"){
+        await sharp(`uploads/${subItem.filename}`)
+        .resize({ width: 200 })
+        .jepg({ quality: 80 })
+        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
+      }
+
+
+  
+    }
+  }
+
 
   console.log(req.cookies, "in get cookie");
   var id;
@@ -211,5 +254,5 @@ module.exports = {
   Inemail,
   courceGet,
   testApiGet,
-  upload
+  upload,
 };

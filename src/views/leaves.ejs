@@ -5,32 +5,7 @@
                 <div class="container_1">
                     <div class="row">
                         
-                        <div class="col-2">
-                            <div class="select">
-                                <select>
-                                    <option value="all">Duration:All</option>
-                                    <option value="this month">This Month</option>
-                                    <option value="Last 30 days">Last 30 days</option>
-                                    <option value="Last 3 months">Last 3 months</option>
-                                    <option value="Last 6 months">Last 6 months</option>
-                                    <option value="Last Year">Last Year</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="col-2">
-                            <div class="select">
-                                <select>
-                                    <option value="all">Status:All</option>
-                                    <option value="this month">Accepted</option>
-                                    <option value="Last 30 days">Rejected</option>
-                                    <option value="Last 3 months">Pending</option>
-                                    <option value="Last 6 months">WFH</option>
-                                    <option value="Last Year">Cancel</option>
-                                </select>
-                            </div>
-                        </div>
+                        
 
                         <div class="col-4">
                             <div class="add-btn">
@@ -74,48 +49,42 @@
                         </table>
                         <div class="tbl-footer">
                             <div class="row">
+                                
                                 <div class="col-1">
                                     <div class="card">
-                                        <span class="f1">Showing 0 to 0 of entries</span>
+                                        <!-- <span class="f1">Showing 0 to 0 of entries</span> -->
+                                      
                                     </div>
-                                </div>
-                                <div class="col-1">
-                                    <div class="icons">
-                                        <!--  -->
-                                        <!-- <% if (curr_page==1){ %>
-                                            <a href="#">Previous</a>
-                                            <%} else { %>
-                                                <a href="/leaves?num=<%= curr_page-1%>">Previous</a>
-                                        <%}%>
                                     
-                                        <% if(curr_page==count){ %>
-                                             <a href="#">Next</a>
-                                        <%}else {%>
-                                             <a href="/leaves?num=<%= curr_page+1%>">Next</a>
-                                        <%}%> -->
-                                        <!--  -->
-                                        <div class="left">
-                                            <i class="fa fa-angle-double-left "
-                                                style="font-weight: bold;font-size: 18px;"></i>
-                                        </div>
-                                        <div class="left">
-                                            <i class="fa fa-angle-left " style="font-weight: bold;font-size: 18px;"></i>
-                                        </div>
-                                        <div class="left">
-                                            <i class="fa fa-angle-right "
-                                                style="font-weight: bold;font-size: 18px;"></i>
-                                        </div>
-                                        <div class="left">
-                                            <i class="fa fa-angle-double-right"
-                                                style="font-weight: bold;font-size: 18px;"></i>
-                                        </div>
-                                    </div>
                                 </div>
-
-
+                                
                             </div>
                         </div>
+                        
                     </div>
+                    <!--  -->
+                    <div class="part4">
+                        <div class="row-page">
+                            <div class="m_t_b">
+                                <p>Show all entries</p>
+                            </div>
+                            <div>
+                                <% for(i=1; i<=count; i++){ %>
+                                    <% if (curr_page==i){%>
+                                        <a id="pageno" href="#"><b><%= i%></b></a>
+                                        <% } else {%>
+                                            <a id="pageno" href="/leaves?num=<%= i%>">
+                                        <%= i%>
+                                        </a>
+                                            <%}%>
+                                <%}%>
+                
+                               
+                            </div>
+                
+                        </div>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
         </div>
@@ -147,6 +116,7 @@
                         <div class="col-6">
                             <label><b>Leave Date</b></label>
                             <input type="date" placeholder="Leave Date" name="ldate">
+                            <span class="span1" id="leave-error"></span>
                         </div>
                         <div class="col-6">
                             <label><b>Leave Type</b></label>
@@ -158,8 +128,9 @@
                                 <option value="UPL">UPL</option>
 
                             </select>
+                            <span class="span1" id="ltype-error"></span>
                         </div>
-                        <div class="col-7">
+                        <!-- <div class="col-7">
                             
                             <label><b>Half Day</b></label>
                             <div class="toggle">
@@ -168,13 +139,14 @@
                                 <span class="slider round"></span>
                             </label>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="row">
                         <div class="col-8">
                             <label for="reason">Reason</label>
                             <textarea rows="4" name="reason"></textarea>
+                            <span class="span1" id="reason-error"></span>
                         </div>
                     </div>
                 </div>
@@ -184,8 +156,8 @@
 
                         <div class="col-8">
                             <div class="c1">
-                                <span class="cancel">Cancel</span>
-                                <input type="submit" class="apply" value="Apply">
+                                <span class="cancel" onclick="document.getElementById('id01').style.display='none'">Cancel</span>
+                                <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
                             </div>
 
                         </div>
@@ -203,4 +175,41 @@
             modal.style.display = "none";
         }
     }
+
+    function leaveFunction(){
+
+  var ldate = document.getElementById('ldate').value || "";
+  var reason = document.getElementById('reason').value || "";
+  var ltype = document.getElementById('leavetype').value || "";
+  var isvalidate = true;
+
+  // validation
+if(ldate == null || ldate == "")
+  {
+      document.getElementById('leave-error').innerHTML="Please fill date ";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('leave-error').innerHTML="";
+  }
+
+  if(ltype == null || ltype == "")
+  {
+      document.getElementById('ltype-error').innerHTML="Please select type ";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('ltype-error').innerHTML="";
+  }
+
+  if(reason == null || reason == "")
+  {
+      document.getElementById('reason-error').innerHTML="Please enter reason";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('reason-error').innerHTML="";
+  }
+}
+
 </script>
