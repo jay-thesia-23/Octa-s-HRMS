@@ -164,6 +164,8 @@ async function search() {
 
 async function hotSearch() {
   const search = document.getElementById("search").value;
+  const noSearch=document.getElementById("noSearch")
+  noSearch.innerHTML=""
 
   fetch(`/hotsearch?search=${search}`, {
     method: "GET",
@@ -177,7 +179,6 @@ async function hotSearch() {
 
       let s="";
       let searchCard = document.getElementById("searchCard");
-      searchCard.innerHTML=""
 
       
       for (let i = 0; i < res.length; i++) {
