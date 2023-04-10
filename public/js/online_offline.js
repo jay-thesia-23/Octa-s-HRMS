@@ -177,6 +177,7 @@ async function hotSearch() {
 
       let s="";
       let searchCard = document.getElementById("searchCard");
+      searchCard.innerHTML=""
 
       
       for (let i = 0; i < res.length; i++) {
@@ -251,3 +252,5 @@ async function hotSearch() {
       searchCard.innerHTML = s;
     });
 }
+
+
