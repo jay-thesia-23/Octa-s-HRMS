@@ -49,16 +49,16 @@
       <div id="search_div">
 
         <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
-          oninput="hotSearch()">
+          oninput="hotoffSearch()">
       </div>
       <div>
-        <span id="submit" class="cmt_btn" onclick="hotSearch()">submit</span>
+        <span id="submit" class="cmt_btn" onclick="hotoffSearch()">submit</span>
       </div>
 
     </div>
 
 
-    <div class="ag-courses_box">
+    <div class="ag-courses_box"  id ="off_static">
            
 
       <% for(let i=0; i<alldetails.length; i++) {%>

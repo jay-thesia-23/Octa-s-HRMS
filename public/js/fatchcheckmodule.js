@@ -40,7 +40,6 @@ console.log(tz,"tz in frronet end");
 async function fatchcheckmodule() {
   document.cookie = `tz=${tz}`;
 
-
   fetch("/abc", {
     method: "get",
     headers: {
@@ -50,7 +49,7 @@ async function fatchcheckmodule() {
     .then((res) => res.json())
     .then((data) => {
       // console.log(data[0].time.slice(11,18))
-
+console.log(data[0]);
       var timecheckin = data[0].time.slice(11, 18);
 
       var hours = timecheckin.slice(0, 2);
@@ -112,7 +111,7 @@ async function fatchbreckin() {
         }
 
         if (hours == "00") {
-          hours = "12";
+          hours = "12"; 
         }
         var minutes = timecheckin.slice(3, 5);
 

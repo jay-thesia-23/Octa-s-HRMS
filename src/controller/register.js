@@ -12,7 +12,7 @@ var jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 var path = require("path");
 var conn = require("../config/dbConnect");
-const { dirname } = require("path");
+
 
 app.use(express.static("public"));
 app.set("views", path.join(__dirname, "../views"));

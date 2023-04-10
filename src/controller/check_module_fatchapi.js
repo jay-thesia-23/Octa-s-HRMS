@@ -74,9 +74,9 @@ var breakInGet = function (req, res) {
       if (query_date == fulldate) {
         var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
-          if (err) throw err;
+        if (err) throw err;
         
-          res.json(result);
+        res.json(result);
         });
       } else {
         console.log("somthing went wrong!!!!!");

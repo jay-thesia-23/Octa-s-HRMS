@@ -77,9 +77,9 @@ var attendanceGet = async (req, res) => {
         var end_time_m = end.slice(3, 5);
 
         var end_time = moment(checkdata[i].time)
-        .utc()
-        .utcOffset(tz)
-        .format("hh:mm");
+          .utc()
+          .utcOffset(tz)
+          .format("hh:mm");
         exittime.push(end_time);
       }
     }
