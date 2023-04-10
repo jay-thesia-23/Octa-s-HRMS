@@ -4,8 +4,7 @@ let conn = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "hrms",
-    timezone :"utc"
+    database: "hrms"
 })
 
 conn.connect((err) => {
