@@ -64,13 +64,18 @@ function chk_out() {
   }
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat + "timein 12");
+  
 
   var div = document.createElement("div");
   div.setAttribute("class", "checkOutColor");
   div.innerHTML = "Check Out " + timeIn12HourFormat;
 
   check.append(div);
+
+  document.getElementById("check_in").disabled = true;
+  document.getElementById("check_out").disabled = true;
+  document.getElementById("breck_in").disabled = true;
+  document.getElementById("breck_out").disabled = true;
 }
 
 function breck() {
@@ -91,7 +96,7 @@ function breck() {
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat);
+  
 
   var div = document.createElement("div");
   div.setAttribute("class", "breckInColor");
@@ -118,7 +123,7 @@ function brc_out() {
   s = s ? s : 12;
 
   var timeIn12HourFormat = s + ":" + m;
-  console.log(timeIn12HourFormat);
+  
 
   var div = document.createElement("div");
   div.setAttribute("class", "breakOutColor");

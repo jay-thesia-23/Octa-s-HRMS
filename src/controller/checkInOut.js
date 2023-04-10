@@ -49,7 +49,7 @@ var checkInPost=function (req, res) {
     });
   
     var check_in_entry = `insert into check_master (status,reg_id,date) values('check_in','${login_user__id}','${fulldate}');`;
-   console.log(check_in_entry);
+   
   
     conn.query(check_in_entry, function (err, result) {
       if (err) throw err;
@@ -60,23 +60,25 @@ var checkInPost=function (req, res) {
  
     conn.query(online_status, function (err, data1) {
       if (err) throw err;
-      console.log("data update checkin");
+      
     });
-    // console.log("end point called");
+    
   }
 
 var checkOutPost=function (req, res) {
     var login_token = req.cookies.login_token;
     jwt.verify(login_token, "sanjay", function (err, decoded) {
       login_user__id = decoded.id[0].id;
-      // console.log(login_user__id)
+      
     });
 
     var check_out_entry = `insert into check_master (status,reg_id,date) values('check_out','${login_user__id}','${fulldate}');`;
-    // console.log(check_out_entry)
+    
   
     conn.query(check_out_entry, function (err, result) {
       if (err) throw err;
+
+      
       res.json({ result });
     });
   
@@ -84,16 +86,16 @@ var checkOutPost=function (req, res) {
    
     conn.query(ofline_status, function (err, data1) {
       if (err) throw err;
-      console.log("data update checkout");
+      
     });
-    // console.log("end point called");
+    
   }
 
 var breakOutPost=function (req, res) {
     var login_token = req.cookies.login_token;
     jwt.verify(login_token, "sanjay", function (err, decoded) {
       login_user__id = decoded.id[0].id;
-      // console.log(login_user__id)
+      
     });
  
     var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_out','${login_user__id}','${fulldate}');`;
@@ -103,17 +105,17 @@ var breakOutPost=function (req, res) {
       if (err) throw err;
       res.json({ result });
     });
-    // console.log("end point called");
+    
   }
 
 var breakInPost=function (req, res) {
     var login_token = req.cookies.login_token;
     jwt.verify(login_token, "sanjay", function (err, decoded) {
       login_user__id = decoded.id[0].id;
-      // console.log(login_user__id)
+      
     }); 
   
-    console.log(login_user__id);
+    
     var check_out_entry = `insert into breck_master (status,reg_id,date) values('breck_in','${login_user__id}','${fulldate}');`;
   
     conn.query(check_out_entry, function (err, result) {

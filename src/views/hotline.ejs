@@ -2,172 +2,191 @@
 
   <div class="ag-format-container">
 
-      <div class="online_card mb_50">
+    <div class="online_card mb_50">
 
-          <div class="online_crd_stl mrg_10 box_shadow_2"  onclick="online()">
-            <a href="#" class="ag-courses-item_link" id="onlinecrd1">
-             <div>
-              <div class="row">
-                <div class="col_2 grp_icon mt_17 jst_ctr">
-                  <i class="fa fa-group"></i>
-                </div>
-                <div class="col_2">
-                  <div>
-                    <div class="online_txt">Online</div>
-                    <div class="online_count"><%=total_online%></div>
-                  </div>
-                </div>
+      <div class="online_crd_stl mrg_10 box_shadow_2" onclick="online()">
+        <a href="#" class="ag-courses-item_link" id="onlinecrd1">
+          <div>
+            <div class="row">
+              <div class="col_2 grp_icon mt_17 jst_ctr">
+                <i class="fa fa-group"></i>
               </div>
-             </div>
-            </a>
-          </div>
-  
-          <div class="online_crd_stl mrg_10 box_shadow_2"  onclick="offline()">
-            <a href="#" class="ag-courses-item_link" id="onlinecrd2">
-             <div>
-              <div class="row">
-                <div class="col_2 grp_icon mt_17 jst_ctr">
-                  <i class="fa fa-group"></i>
-                </div>
-                <div class="col_2">
-                  <div>
-                    <div class="online_txt">Offline</div>
-                    <div class="online_count"><%=total_offline%></div>
-                  </div>
-                </div>
-              </div>
-             </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="ag-courses_box">
-        
-         <% for(let i=0; i<alldetails.length; i++) {%>
-
-          
-
-          <div class="ag-courses_item box_shadow_2">
-            <a href="#" class="ag-courses-item_link" id="card<%=i%>">
-              <div class="ag-courses-item_bg"></div>
-  
-              <div>
-                <div class="row pti_rel_2">
-                  <div class="col">
-                    <div class="jst_ctr">
-
-              
-                      <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
-                        <div class="img1"><img class="img" src="/hello.png"></div>
-                        <%}else{%>
-                        <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>
-                        <% } %>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <div class="mb_10">
-                        <div class="date_of_hire">
-                          <p>Date of hire</p>
-                        </div>
-                        <div class="clr_wht">
-                          <p> <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %></p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="date_of_hire">
-                          <p>Department</p>
-                        </div>
-                        <div class="clr_wht">
-                          <p>Development</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
+              <div class="col_2">
                 <div>
-                  <div class="crd_emp_name">
-                    <p>   <%= alldetails[i].firstname %></p>
+                  <div class="online_txt">Online</div>
+                  <div class="online_count">
+                    <%=total_online%>
                   </div>
-                </div>
-  
-                <div class="pti_rel_2">
-                  <div class="crd_designation">
-                    <p> <%= alldetails[i].designation %></p>
-                  </div>
-                </div>
-  
-                <div class="display_flex crd_mail_aln">
-                  <div class="mr_8 clr_tomato"><i class="fa fa-envelope"></i></div>
-                  <div class="clr_drk_grey">
-                    <p> <%= alldetails[i].email %></p>
-                  </div>
-                </div>
-  
-                <div class="display_flex crd_mail_aln">
-                  <div class="mr_8 clr_tomato"><i class="fa fa-mobile-phone" style="font-size:30px"></i>
-                  </div>
-                  <div class="clr_drk_grey"><%= alldetails[i].phone_number %></div>
                 </div>
               </div>
-  
-            
-            </a>
+            </div>
           </div>
-          
-           <% } %>
-  
-     
-        </div>
-  </div>
-  </section>
+        </a>
+      </div>
 
-  <script>
-let alldetails='<%-alldetails.length%>'
+      <div class="online_crd_stl mrg_10 box_shadow_2" onclick="offline()">
+        <a href="#" class="ag-courses-item_link" id="onlinecrd2">
+          <div>
+            <div class="row">
+              <div class="col_2 grp_icon mt_17 jst_ctr">
+                <i class="fa fa-group"></i>
+              </div>
+              <div class="col_2">
+                <div>
+                  <div class="online_txt">Offline</div>
+                  <div class="online_count">
+                    <%=total_offline%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
 
-      var mode_switch = document.getElementById('mode_btn')
-      console.log(mode_switch);
+    <div id="activity">
+      <div id="search_div">
 
-      for(let i=0;i<alldetails;i++){
+        <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
+          oninput="hotSearch()">
+      </div>
+      <div>
+        <span id="submit" class="cmt_btn" onclick="hotSearch()">submit</span>
+      </div>
 
-        var cardName="card"+i
+    </div>
+
+    <div class="ag-courses_box" id="on_static">
         
-         cardName = document.getElementById('card'+`${i}`)
+      <% for(let i=0; i<alldetails.length; i++) {%>
+       
+       <div class="ag-courses_item box_shadow_2">
+         <a href="#" class="ag-courses-item_link" id="card<%=i%>">
+           <div class="ag-courses-item_bg"></div>
+
+           <div>
+             <div class="row pti_rel_2">
+               <div class="col">
+                 <div class="jst_ctr">
+           
+                   <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
+                     <div class="img1"><img class="img" src="/hello.png"></div>
+                     <%}else{%>
+                     <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>
+                     <% } %>
+                 </div>
+               </div>
+               <div class="col">
+                 <div>
+                   <div class="mb_10">
+                     <div class="date_of_hire">
+                       <p>Date of hire</p>
+                     </div>
+                     <div class="clr_wht">
+                       <p> <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %></p>
+                     </div>
+                   </div>
+                   <div>
+                     <div class="date_of_hire">
+                       <p>Department</p>
+                     </div>
+                     <div class="clr_wht">
+                       <p>Development</p>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div>
+               <div class="crd_emp_name">
+                 <p>   <%= alldetails[i].firstname %></p>
+               </div>
+             </div>
+
+             <div class="pti_rel_2">
+               <div class="crd_designation">
+                 <p> <%= alldetails[i].designation %></p>
+               </div>
+             </div>
+
+             <div class="display_flex crd_mail_aln">
+               <div class="mr_8 clr_tomato"><i class="fa fa-envelope"></i></div>
+               <div class="clr_drk_grey">
+                 <p> <%= alldetails[i].email %></p>
+               </div>
+             </div>
+
+             <div class="display_flex crd_mail_aln">
+               <div class="mr_8 clr_tomato"><i class="fa fa-mobile-phone" style="font-size:30px"></i>
+               </div>
+               <div class="clr_drk_grey"><%= alldetails[i].phone_number %></div>
+             </div>
+           </div>
+
+         
+         </a>
+       </div>
+       
+        <% } %>
+
+  
+     </div>
     
 
-      }
-  
-  
-    var onlinecrd1 = document.getElementById('onlinecrd1')
-    var onlinecrd2 = document.getElementById('onlinecrd2')
+    <div class="ag-courses_box" id="searchCard">
+  </div>
+</section>
 
-    mode_switch.addEventListener('click',function(){
+<script>
 
-      var cardIdArr=[]
 
-      
-      console.log(alldetails,"alldetains");
-      for(let j=0;j<alldetails;j++){
-        const cardId=("card"+j)
 
-        cardIdArr.push(cardId)
 
-      }
+  let alldetails = '<%-alldetails.length%>'
 
-      console.log(cardIdArr,"card id first");
+  var mode_switch = document.getElementById('mode_btn')
+  console.log(mode_switch);
 
-      for(let j=0;j<alldetails;j++){
-        var a =document.getElementById(`card${j}`);
-        
-        a.classList.toggle('dark_mode')
-       
-      }
-     
-  
-      onlinecrd1.classList.toggle('dark_mode')
-      onlinecrd2.classList.toggle('dark_mode')
+  for (let i = 0; i < alldetails; i++) {
 
-    })
+    var cardName = "card" + i
+
+    cardName = document.getElementById('card' + `${i}`)
+
+
+  }
+
+
+  var onlinecrd1 = document.getElementById('onlinecrd1')
+  var onlinecrd2 = document.getElementById('onlinecrd2')
+
+  mode_switch.addEventListener('click', function () {
+
+    var cardIdArr = []
+
+
+    console.log(alldetails, "alldetains");
+    for (let j = 0; j < alldetails; j++) {
+      const cardId = ("card" + j)
+
+      cardIdArr.push(cardId)
+
+    }
+
+    console.log(cardIdArr, "card id first");
+
+    for (let j = 0; j < alldetails; j++) {
+      var a = document.getElementById(`card${j}`);
+
+      a.classList.toggle('dark_mode')
+
+    }
+
+
+    onlinecrd1.classList.toggle('dark_mode')
+    onlinecrd2.classList.toggle('dark_mode')
+
+  })
 </script>
- 
