@@ -18,6 +18,7 @@ var {
   hotlineGet,
   hotlineOfflineGet,
   hotlineOnlineGet,
+  hotlineSearchGet
 } = require("../controller/hotline");
 var router = express.Router();
 var { authentication } = require("../middleware/authMiddleware");
@@ -25,4 +26,6 @@ var { authentication } = require("../middleware/authMiddleware");
 app.get("/hotline", authentication, hotlineGet);
 app.get("/hotline/online",authentication, hotlineOnlineGet);
 app.get("/hotline/offline",authentication, hotlineOfflineGet);
+app.get("/hotsearch",authentication,hotlineSearchGet)
+
 module.exports = app;

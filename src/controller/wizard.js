@@ -137,7 +137,7 @@ const wizardPost = async (req, res) => {
         if(fileNameFormat[1]=="jpg"){
         await sharp(`uploads/${subItem.filename}`)
         .resize({ width: 200 })
-        .jepg({ quality: 80 })
+        .jpeg({ quality: 80 })
         .toFile(path.resolve("compress", `compress+${subItem.filename}`));
       }
 

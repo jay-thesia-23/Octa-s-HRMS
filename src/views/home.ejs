@@ -26,7 +26,9 @@
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="attendence_txt">Attendance</div>
-                                            <div class="days_txt"><%=attendaceCount%> Days</div>
+                                            <div class="days_txt">
+                                                <%=attendaceCount%> Days
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -41,18 +43,20 @@
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="attendence_txt">Total Hours</div>
-                                            <div class="days_txt"><%=totalHours%> Hours</div>
+                                            <div class="days_txt">
+                                                <%=totalHours%> Hours
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mt_25">
                                             <div class="attendence_txt">Produnctivity</div>
-                                    <div class="days_txt">100%</div>
+                                            <div class="days_txt">100%</div>
                                         </div>
                                     </div>
                                 </div>
 
-                               
+
                             </div>
                         </div>
                     </div>
@@ -62,100 +66,108 @@
             <div class="ag-courses_item box_shadow_2">
                 <div class="first_card_stl height_21" id="dashboardcrd2">
                     <div>
-                        <form action="/comment" method="post"  >
-                        <div class="record_atted_txt">Add Your Comment</div>
+                        <form action="/comment" method="post">
+                            <div class="record_atted_txt">Add Your Comment</div>
 
-                        <div class="mt_30">
-                            <!-- <input  onkeyup="isComment(this)" id="commenter" type="text" class="commentInput coment" placeholder="Add Comment" />
+                            <div class="mt_30">
+                                <!-- <input  onkeyup="isComment(this)" id="commenter" type="text" class="commentInput coment" placeholder="Add Comment" />
                             <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
 
 
-                            <input  id="comment" name="comment" type="text" class="commentInput"  placeholder="comment">
-                            <input type="submit"  value="comment"  class="cmt_btn abutton btn" id="commentBtn" ></a>
-                            <div id="cmt" class="cmt_stl"></div>
-                        </div>
-                        <div class="pt_28">
-                        
-                        <div class="comment-body">
-                            <span id="commentBody"></span>
-                        </div>
-                    </form>
-                   
-                           
-                       
-                        </div>
+                                <input id="comment" name="comment" type="text" class="commentInput"
+                                    placeholder="comment">
+                                <input type="submit" value="comment" class="cmt_btn abutton btn" id="commentBtn"></a>
+                                <div id="cmt" class="cmt_stl"></div>
+                            </div>
+                            <div class="pt_28">
+
+                                <div class="comment-body">
+                                    <span id="commentBody"></span>
+                                </div>
+                        </form>
+
+
+
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="ag-courses_item box_shadow_2">
-                <div class="first_card_stl" id="dashboardcrd3">
+        <div class="ag-courses_item box_shadow_2">
+            <div class="first_card_stl" id="dashboardcrd3">
+                <div>
                     <div>
+                        <div class="record_atted_txt">Today's Action</div>
                         <div>
-                            <div class="record_atted_txt">Today's Action</div>
-                            <div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="attendence_txt">Current Time</div>
-                                            <div class="days_txt" id = "clock" onload="currentTime()"></div>
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="attendence_txt">Current Time</div>
+                                        <div class="days_txt" id="clock" onload="currentTime()"></div>
                                     </div>
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="attendence_txt">Current Date</div>
+                                </div>
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="attendence_txt">Current Date</div>
 
-                                            
-                                            <div class="days_txt"><%= date.toJSON('yyyy-mm-dd').slice(0,10) %></div>
 
-                                        
+                                        <div class="days_txt">
+                                            <%= date.toJSON('yyyy-mm-dd').slice(0,10) %>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="button">
+                                            <button class="btn-hover color" onclick="demo(),checkin()"
+                                                id="check_in">Check In</button>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="button">
-                                                <button class="btn-hover color"  onclick="demo(),checkin()" id="check_in">Check In</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="button">
-                                                <button class="btn_2-hover color" onclick="breck(),breckin()" id="breck_in" disabled>Break In</button>
-                                            </div>
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="button">
+                                            <button class="btn_2-hover color" onclick="breck(),breckin()" id="breck_in"
+                                                disabled>Break In</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row pb_12">
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="button">
-                                                <button class="btn_3-hover color" onclick="brc_out() , breckout()" id="breck_out" disabled>Break Out</button>
-                                            </div>
+                            <div class="row pb_12">
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="button">
+                                            <button class="btn_3-hover color" onclick="brc_out() , breckout()"
+                                                id="breck_out" disabled>Break Out</button>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="mt_25">
-                                            <div class="button">
-                                                <button class="btn_4-hover color" onclick="chk_out() , checkout(),autoUnable()" id="check_out" disabled>Check Out</button>
-                                            </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mt_25">
+                                        <div class="button">
+                                            <button class="btn_4-hover color"
+                                                onclick="chk_out() , checkout(),autoUnable()" id="check_out"
+                                                disabled>Check Out</button>
                                         </div>
-                                        
-                                           
+                                    </div>
+
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                       
+
                 </div>
             </div>
 
-         
+
 
         </div>
 
@@ -163,37 +175,42 @@
             <div class="first_card_stl height_21_2" id="dashboardcrd4">
                 <div class="record_atted_txt">Today's Birthday</div>
                 <div>
-                
+
 
                     <div>
-                        
-                      
 
-                        
+
+
+
                     </div>
-                     <% if(result.length == ""){%>
-                                        <h3> No Birth Day</h3>
-                                        <%}else{%>
-                                    <% for(var s = 0;s<result.length;s++){%>
-                                        <div>
-                                            <div class="birthday_emp_name"><%= result[s].firstname%> <%= result[s].lastname%> </div>
+                    <% if(result.length=="" ){%>
+                        <h3> No Birth Day</h3>
+                        <%}else{%>
+                            <% for(var s=0;s<result.length;s++){%>
+                                <div>
+                                    <div class="birthday_emp_name">
+                                        <%= result[s].firstname%>
+                                            <%= result[s].lastname%>
+                                    </div>
+                                </div>
+                                <div class="brd_btm_stl">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="birthday_dev"> Birthday</div>
                                         </div>
-                                        <div class="brd_btm_stl">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="birthday_dev"> Birthday</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="birthday_dev"><%= result[s].birth_date%></div>
-                                                </div>
+                                        <div class="col">
+                                            <div class="birthday_dev">
+                                                <%= result[s].birth_date%>
                                             </div>
                                         </div>
-                                   <% }%>
-                                        <% }%> 
+                                    </div>
+                                </div>
+                                <% }%>
+                                    <% }%>
 
 
-                 
-                   
+
+
 
                 </div>
             </div>
@@ -205,88 +222,94 @@
 
                     <div class="record_atted_txt">Holidays</div>
                     <div>
-                        <% for(var s = 0;s<holidaydata.length;s++){%>
-                        <div>
-                            <div class="birthday_emp_name"><%= holidaydata[s].holiday_name %></div>
-                        </div>
-                        <div class="brd_btm_stl">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="birthday_dev"><%= holidaydata[s].holiday_day %></div>
-                                </div>
-                                <div class="col">
-                                    <div class="birthday_dev"><%= holidaydata[s].holiday_date %></div>
+                        <% for(var s=0;s<holidaydata.length;s++){%>
+                            <div>
+                                <div class="birthday_emp_name">
+                                    <%= holidaydata[s].holiday_name %>
                                 </div>
                             </div>
-                        </div>
+                            <div class="brd_btm_stl">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="birthday_dev">
+                                            <%= holidaydata[s].holiday_day %>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="birthday_dev">
+                                            <%= holidaydata[s].holiday_date %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <% }%>
+                            <% }%>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <div class="ag-courses_item box_shadow_2" id="attendanceRecord" >
+        <div class="ag-courses_item box_shadow_2" id="attendanceRecord">
             <div class="first_card_stl height_21_2" id="dashboardcrd6">
 
-                    <div class="record_atted_txt">Attendance</div>
-                   
-                            <div class="check_in_time_btn clr_checkin" id="time_box" >
-                            </div>
-                   
+                <div class="record_atted_txt">Attendance</div>
+
+                <div class="check_in_time_btn clr_checkin" id="time_box">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="online_card ">
+
+        <div class="dashboard_welcom_card_width mrg_10 box_shadow">
+            <div class="dashboard_welcom_card" id="alleployee">
+
+                <div id="activity">
+                    <div id="search_div">
+
+                        <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
+                            oninput="search()">
+                    </div>
+                    <div>
+                        <span id="submit" class="cmt_btn" onclick="search()">submit</span>
+                    </div>
+
+                </div>
+                <div id="employee">
 
                 </div>
             </div>
         </div>
-        <div class="online_card ">
-
-            <div class="dashboard_welcom_card_width mrg_10 box_shadow">
-                <div class="dashboard_welcom_card" id="alleployee">
-
-                    <div id="activity">
-                        <div id="search_div">
-
-                            <input type="text" name="search" class="activity-input" id="search" placeholder="Enter name"
-                                oninput="search()">
-                        </div>
-                        <div>
-                            <span id="submit" class="cmt_btn" onclick="search()">submit</span>
-                        </div>
-
-                    </div>
-                    <div id="employee">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 
     </div>
 </section>
 <script>
 
-// function myComment(){
-//     var input = document.getElementById("comment").value;
-//     var cmt = document.getElementById("commentBtn");
-   
-//     if(input.trim()== ''){
-//         cmt.disable
-//     }
-// }
+    // function myComment(){
+    //     var input = document.getElementById("comment").value;
+    //     var cmt = document.getElementById("commentBtn");
 
-let input = document.querySelector(".commentInput");
-let button = document.querySelector(".btn");
-button.disabled = true;
-input.addEventListener("change", stateHandle);
+    //     if(input.trim()== ''){
+    //         cmt.disable
+    //     }
+    // }
 
-function stateHandle() {
-    if(document.querySelector(".commentInput").value === "") {
-        button.disabled = true;
-    } else {
-        button.disabled = false;
+    let input = document.querySelector(".commentInput");
+    let button = document.querySelector(".btn");
+    button.disabled = true;
+    input.addEventListener("change", stateHandle);
+
+    function stateHandle() {
+        if (document.querySelector(".commentInput").value === "") {
+            button.disabled = true;
+        } else {
+            button.disabled = false;
+        }
     }
-}
 
     var mode_switch = document.getElementById('mode_btn')
     console.log("in a script of home");
@@ -312,30 +335,30 @@ function stateHandle() {
     })
 
 
-function currentTime() {
-  let date = new Date(); 
-  let hh = date.getHours();
-  let mm = date.getMinutes();
-  let ss = date.getSeconds();
-  let session = "AM";
+    function currentTime() {
+        let date = new Date();
+        let hh = date.getHours();
+        let mm = date.getMinutes();
+        let ss = date.getSeconds();
+        let session = "AM";
 
-  if(hh === 0){
-      hh = 12;
-  }
-  if(hh > 12){
-      hh = hh - 12;
-      session = "PM";
-   }
+        if (hh === 0) {
+            hh = 12;
+        }
+        if (hh > 12) {
+            hh = hh - 12;
+            session = "PM";
+        }
 
-   hh = (hh < 10) ? "0" + hh : hh;
-   mm = (mm < 10) ? "0" + mm : mm;
-   ss = (ss < 10) ? "0" + ss : ss;
-    
-   let time = hh + ":" + mm + ":" + ss + " " + session;
+        hh = (hh < 10) ? "0" + hh : hh;
+        mm = (mm < 10) ? "0" + mm : mm;
+        ss = (ss < 10) ? "0" + ss : ss;
 
-  document.getElementById("clock").innerText = time; 
-  let t = setTimeout(function(){ currentTime() }, 1000);
-}
+        let time = hh + ":" + mm + ":" + ss + " " + session;
 
-currentTime();
+        document.getElementById("clock").innerText = time;
+        let t = setTimeout(function () { currentTime() }, 1000);
+    }
+
+    currentTime();
 </script>
