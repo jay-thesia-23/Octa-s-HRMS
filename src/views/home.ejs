@@ -222,6 +222,9 @@
 
                     <div class="record_atted_txt">Holidays</div>
                     <div>
+                        <% if(holidaydata.length==""){%>
+                            <h3>No holidays in this month</h3>
+                        <%}else{%>
                         <% for(var s=0;s<holidaydata.length;s++){%>
                             <div>
                                 <div class="birthday_emp_name">
@@ -242,7 +245,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <% }%>
                             <% }%>
                     </div>
 
