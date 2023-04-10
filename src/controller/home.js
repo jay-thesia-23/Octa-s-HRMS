@@ -8,7 +8,8 @@ app.set("layouts", path.resolve("src", "view", "layouts", "main")); //added
 var conn = require("../config/dbConnect");
 var jwt = require("jsonwebtoken");
 var util = require("util");
-var moment=require("moment")
+var moment=require("moment");
+const { log } = require("console");
 
 var alldata = util.promisify(conn.query.bind(conn));
 
@@ -88,29 +89,35 @@ var employeeActivityGet = async (req, res) => {
   var employee_activity = employee_check.concat(employee_breck);
 
   res.json(employee_activity);
+  console.log(employee_activity +"employeeeeee");
 };
 
 var searchGet = async (req, res) => {
   var search = req.query.name;
   var f_name = "";
   var l_name = "";
-  name_array = search.split(" ");
-  f_name = name_array[0];
 
+  name_array = search.split(" ");
+
+  f_name = name_array[0];
+console.log(f_name +"fname");
   f_name = f_name.substring(1);
 
   var l_name = name_array[1];
+  console.log(l_name +"lname");
 
   var search_check = await alldata(
-    `select firstname,lastname,status,date,time from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where  check_master.date = '${fulldate}' AND employee_basic_infomation.firstname like '%${f_name}%' AND employee_basic_infomation.lastname like '%${l_name}%' ;`
+    `select firstname,lastname,status,date,time from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where  check_master.date = '${fulldate}' AND (employee_basic_infomation.firstname like '%${f_name}%' or employee_basic_infomation.lastname like '%${l_name}%' or employee_basic_infomation.firstname like '%${l_name}%' or employee_basic_infomation.lastname like '%${f_name}%') ;`
   );
 
   var search_breck = await alldata(
-    `select firstname,lastname,status,date,time from employee_basic_infomation inner join breck_master on employee_basic_infomation.reg_id=breck_master.reg_id where  breck_master.date = '${fulldate}'  AND employee_basic_infomation.firstname like '%${f_name}%' AND employee_basic_infomation.lastname like '%${l_name}%' ;`
+    `select firstname,lastname,status,date,time from employee_basic_infomation inner join breck_master on employee_basic_infomation.reg_id=breck_master.reg_id where  breck_master.date = '${fulldate}'  AND (employee_basic_infomation.firstname like '%${f_name}%' or employee_basic_infomation.lastname like '%${l_name}%' or employee_basic_infomation.firstname like '%${l_name}%' or employee_basic_infomation.lastname like '%${f_name}%');`
   );
+  // console.log(search_breck);
   var search_result = search_check.concat(search_breck);
 
   res.json(search_result);
+  // console.log(search_result);
 };
 
 var logoutPost = async (req, res) => {
