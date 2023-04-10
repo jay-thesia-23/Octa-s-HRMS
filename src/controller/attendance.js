@@ -140,4 +140,3 @@ function diffrence_time(entry_time, exit_time) {
 }
 
 module.exports = { attendanceGet, diffrence_time };
-

@@ -110,13 +110,13 @@ var loginPost = async (req, res) => {
       }
     } else {
       return res.send(
-        ` password  Wrong!..........<br><a href="/login"> Back to Login </a> `
+        ` Email or Password is Wrong!..........<br><a href="/login"> Back to Login </a> `
       );
     }
   } 
    else  {
         return res.send(
-          ` email  Wrong!..........<br><a href="/login"> Back to Login </a> `
+          `  Email or Password is Wrong!.........<br><a href="/login"> Back to Login </a> `
         );
       }
    
