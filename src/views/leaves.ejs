@@ -1,215 +1,349 @@
-    <section class="site-wrap background home">
-        <div class="main-body ag-format-container">
+<section class="site-wrap background home">
+    <div class="main-body ag-format-container">
 
-            <div class="leave-class">
-                <div class="container_1">
-                    <div class="row">
-                        
-                        
+        <div class="leave-class">
+            <div class="container_1">
+                <div class="row">
 
-                        <div class="col-4">
-                            <div class="add-btn">
-                                <i class="fa fa-plus"></i><span class="text-add"
-                                    onclick="document.getElementById('id01').style.display='block'"> Add</span>
-                            </div><!-- <div class="add-btn">
-                        <i class="fa fa-plus"></i> <span class="text-add" onclick="document.getElementById('id01').style.display='block'"> Add</span>
-                    </div> -->
+
+
+                    <div class="col-4">
+                        <div class="add-btn">
+                            <i class="fa fa-plus"></i><span class="text-add"
+                                onclick="document.getElementById('id01').style.display='block'"> Add</span>
                         </div>
-
                     </div>
-                    <!--  -->
-                    <div class="container-1">
 
-                      
-                        <table class="tbl">
-                            <div class="main-div-tbl">
-                                <thead class="tr-head">
-                                    <tr>
-                                        <td class="t1"></td>
-                                        <td class="t2">Leave Type<img src="/images/sort1.png" class="sort"></td>
-                                        <td class="t2">Date<img src="/images/sort1.png" class="sort"></td>
-                                        <td class="t2">Days<img src="/images/sort1.png" class="sort"></td>
-                                        <td class="t2">Status<img src="/images/sort1.png" class="sort"></td>
-                                    </tr>
-                                </thead>
-                            </div>
-                            <% for(var i=0;i<data.length;i++){%>
-                            <tbody class="tbody-css">
-                               
+                </div>
+             
+                <div class="container-1">
+
+
+                    <table class="tbl">
+                        <div class="main-div-tbl">
+                            <thead class="tr-head">
                                 <tr>
-                                    <td class="td1"><%= data[i].employee_id%></td>
-                                    <td class="td1"><%= data[i].leave_category%></td>
-                                    <td class="td1"><%= data[i].leave_date%></td>
-                                    <td class="td1"> 1 day</td>
-                                    <td class="td1"><%= data[i].leave_status%></td>
+                                    <td class="t1"></td>
+                                    <td class="t2">Leave Type<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Date<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Days<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Status<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Edit<img src="/images/sort1.png" class="sort"></td>
+                                    <!-- <td class="t2">Approve Leave<img src="/images/sort1.png" class="sort"></td> -->
+
                                 </tr>
-                              
+                            </thead>
+                        </div>
+                        <% for(var i=0;i<data.length;i++){%>
+                            <tbody class="tbody-css">
+
+                                <tr>
+                                    <td class="td1">
+                                        <%= i+1 %>
+                                    </td>
+                                    <td class="td1">
+                                        <%= data[i].leave_category%>
+                                    </td>
+                                    <td class="td1">
+                                        <%= data[i].leave_date%>
+                                    </td>
+                                    <td class="td1"> 1 day</td>
+                                    <td class="td1">
+                                        <%= data[i].leave_status%>
+                                    </td>
+                                    <td class="td1" onclick="leave_edit(`<%= data[i].request_id%>`,`<%= i %>`)">Edit
+                                    </td>
+                                    <!-- <td class="td1" onclick="leave_approve(`<%= data[i].request_id%>`)">Approve
+                                    </td> -->
+
+                                </tr>
+
                             </tbody>
                             <% } %>
-                        </table>
-                        <div class="tbl-footer">
-                            <div class="row">
-                                
-                                <div class="col-1">
-                                    <div class="card">
-                                        <!-- <span class="f1">Showing 0 to 0 of entries</span> -->
-                                      
-                                    </div>
+                    </table>
+
+
+                    <div class="tbl-footer">
+                        <div class="row">
+
+                            <div class="col-1">
+                                <div class="card">
                                     
+
                                 </div>
-                                
+
                             </div>
+
                         </div>
-                        
                     </div>
-                    <!--  -->
-                    <div class="part4">
-                        <div class="row-page">
-                            <div class="m_t_b">
-                                <p>Show all entries</p>
-                            </div>
-                            <div>
-                                <% for(i=1; i<=count; i++){ %>
-                                    <% if (curr_page==i){%>
-                                        <a id="pageno" href="#"><b><%= i%></b></a>
-                                        <% } else {%>
-                                            <a id="pageno" href="/leaves?num=<%= i%>">
-                                        <%= i%>
+
+                </div>
+               
+                <div class="part4">
+                    <div class="row-page">
+                        <div class="m_t_b">
+                            <p>Show all entries</p>
+                        </div>
+                        <div>
+                            <% for(i=1; i<=count; i++){ %>
+                                <% if (curr_page==i){%>
+                                    <a id="pageno" href="#"><b>
+                                            <%= i%>
+                                        </b></a>
+                                    <% } else {%>
+                                        <a id="pageno" href="/leaves?num=<%= i%>">
+                                            <%= i%>
                                         </a>
+                                        <%}%>
                                             <%}%>
-                                <%}%>
-                
-                               
-                            </div>
-                
+
+
                         </div>
+
                     </div>
-                    <!--  -->
+                </div>
+                <div id="edit_leave">
+
                 </div>
             </div>
         </div>
-        </div>
-
-    </section>
-    <!-- model -->
-    <div id="id01" class="modal">
-
-        <form class="modal-content animate"  method="post" action="/leaves" >
-
-            <!-- <div class="imgcontainer">
-                </div> -->
-            <div class="main-modal">
-                <div class="row-1">
-                    <div class="col-1">
-                        <div class="modal-container">
-                            <span>Add Leave</span>
-                        </div>
-                    </div>
-                    <div class="col-1">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                            title="Close Modal">&times;</span>
-                    </div>
-                </div>
-
-                <div class="container-2">
-                    <div class="row">
-                        <div class="col-6">
-                            <label><b>Leave Date</b></label>
-                            <input type="date" placeholder="Leave Date" name="ldate">
-                            <span class="span1" id="leave-error"></span>
-                        </div>
-                        <div class="col-6">
-                            <label><b>Leave Type</b></label>
-                            <select class="s1" name="leavetype">
-                                <option value="hide" >Select Leave Type</option>
-                                <option value="SL">SL</option>
-                                <option value="CL">CL</option>
-                                <option value="PL">PL</option>
-                                <option value="UPL">UPL</option>
-
-                            </select>
-                            <span class="span1" id="ltype-error"></span>
-                        </div>
-                        <!-- <div class="col-7">
-                            
-                            <label><b>Half Day</b></label>
-                            <div class="toggle">
-                                <label class="switch">  
-                                <input type="checkbox" name="halfday">
-                                <span class="slider round"></span>
-                            </label>
-                            </div>
-                        </div> -->
-
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <label for="reason">Reason</label>
-                            <textarea rows="4" name="reason"></textarea>
-                            <span class="span1" id="reason-error"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container-2">
-                    <div class="row">
-
-                        <div class="col-8">
-                            <div class="c1">
-                                <span class="cancel" onclick="document.getElementById('id01').style.display='none'">Cancel</span>
-                                <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </form>
+    </div>
     </div>
 
+</section>
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" method="post" action="/leaves">
+
+      
+        <div class="main-modal">
+            <div class="row-1">
+                <div class="col-1">
+                    <div class="modal-container">
+                        <span>Add Leave</span>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+            </div>
+
+            <div class="container-2">
+                <div class="row">
+                    <div class="col-6">
+                        <label><b>Leave Date</b></label>
+                        <input type="date" placeholder="Leave Date" name="ldate">
+                        <span class="span1" id="leave-error"></span>
+                    </div>
+                    <div class="col-6">
+                        <label><b>Leave Type</b></label>
+                        <select class="s1" name="leavetype">
+                            <option value="hide">Select Leave Type</option>
+                            <option value="SL">SL</option>
+                            <option value="CL">CL</option>
+                            <option value="PL">PL</option>
+                            <option value="UPL">UPL</option>
+
+                        </select>
+                        <span class="span1" id="ltype-error"></span>
+                    </div>
+                   
+
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <label for="reason">Reason</label>
+                        <textarea rows="4" name="reason"></textarea>
+                        <span class="span1" id="reason-error"></span>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="container-2">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="c1">
+                            <span class="cancel"
+                                onclick="document.getElementById('id01').style.display='none'">Cancel</span>
+                            <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+
+
 <script>
+
+
+    function leave_edit(leave, b) {
+
+
+        fetch(`/leave_edit?request_id=${leave}`, {
+            method: "get",
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+
+            .then((result_edit) => {
+               console.log(result_edit,"nnnnnnn");
+                var edit_leave = document.getElementById("edit_leave")
+
+                var s = ""
+                s += `
+
+    <form class="modal-content animate"  method="post" action="/update_leaves" >
+
+      
+        <div class="main-modal">
+            <div class="row-1">
+                <div class="col-1">
+                    <div class="modal-container">
+                        <span>Add Leave</span>
+                    </div>
+                </div>
+             
+            </div>
+
+            <div class="container-2">
+                <div class="row">
+                    <div class="col-6">
+                        <label><b>Leave Date</b></label>
+                        <input type="date" placeholder="Leave Date" name="ldate" value= ${result_edit[0].leave_date} >
+                        <span class="span1" id="leave-error"></span>
+                    </div>
+                    <div class="col-6">
+                        <label><b>Leave Type</b></label>
+                        <select class="s1" name="leavetype">
+                           
+                            <option value="" selected>${result_edit[0].leave_category}</option>
+                            <option value="SL">SL</option>
+                            <option value="CL">CL</option>
+                            <option value="PL">PL</option>
+                            <option value="UPL">UPL</option>
+
+                        </select>
+                        <span class="span1" id="ltype-error"></span>
+                    </div>
+                
+
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <label for="reason">Reason</label>
+                        <textarea rows="4" name="reason" value= ${result_edit[0].leave_reason} ></textarea>
+                        <span class="span1" id="reason-error"></span>
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" value=${result_edit[0].request_id} name="request_id" id="request_id">
+                </div>
+
+            </div>
+
+            <div class="container-2">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="c1">
+                            
+                            <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+`
+
+
+                 edit_leave.innerHTML = s
+                 console.log(s);
+                console.log(edit_leave+"ZZZZZ");
+
+               
+            })
+
+
+        console.log(leave);
+        console.log(b);
+
+       
+
+    }
     var modal = document.getElementById('id01');
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+
+     
     }
 
-    function leaveFunction(){
 
-  var ldate = document.getElementById('ldate').value || "";
-  var reason = document.getElementById('reason').value || "";
-  var ltype = document.getElementById('leavetype').value || "";
-  var isvalidate = true;
+    // leave approve
 
-  // validation
-if(ldate == null || ldate == "")
-  {
-      document.getElementById('leave-error').innerHTML="Please fill date ";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('leave-error').innerHTML="";
-  }
+    function leave_approve(approve) {
 
-  if(ltype == null || ltype == "")
-  {
-      document.getElementById('ltype-error').innerHTML="Please select type ";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('ltype-error').innerHTML="";
-  }
+// console.log(leave,"approve");
+        fetch(`/leave_approve?request_id=${approve}`, {
+            method: "post",
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+    }
 
-  if(reason == null || reason == "")
-  {
-      document.getElementById('reason-error').innerHTML="Please enter reason";
-      isvalidate = false;
-  }
-  else{
-      document.getElementById('reason-error').innerHTML="";
-  }
-}
+
+    // valedation
+
+
+
+    function leaveFunction() {
+
+        var ldate = document.getElementById('ldate').value || "";
+        var reason = document.getElementById('reason').value || "";
+        var ltype = document.getElementById('leavetype').value || "";
+        var isvalidate = true;
+
+        // validation
+        if (ldate == null || ldate == "") {
+            document.getElementById('leave-error').innerHTML = "Please fill date ";
+            isvalidate = false;
+        }
+        else {
+            document.getElementById('leave-error').innerHTML = "";
+        }
+
+        if (ltype == null || ltype == "") {
+            document.getElementById('ltype-error').innerHTML = "Please select type ";
+            isvalidate = false;
+        }
+        else {
+            document.getElementById('ltype-error').innerHTML = "";
+        }
+
+        if (reason == null || reason == "") {
+            document.getElementById('reason-error').innerHTML = "Please enter reason";
+            isvalidate = false;
+        }
+        else {
+            document.getElementById('reason-error').innerHTML = "";
+        }
+    }
 
 </script>
