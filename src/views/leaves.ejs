@@ -29,8 +29,8 @@
                                     <td class="t2">Days<img src="/images/sort1.png" class="sort"></td>
                                     <td class="t2">Status<img src="/images/sort1.png" class="sort"></td>
                                     <td class="t2">Edit<img src="/images/sort1.png" class="sort"></td>
-                                    <!-- <td class="t2">Approve Leave<img src="/images/sort1.png" class="sort"></td> -->
-
+                                    <td class="t2">Approve Leave<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Cancel Leave<img src="/images/sort1.png" class="sort"></td>
                                 </tr>
                             </thead>
                         </div>
@@ -53,8 +53,10 @@
                                     </td>
                                     <td class="td1" onclick="leave_edit(`<%= data[i].request_id%>`,`<%= i %>`)">Edit
                                     </td>
-                                    <!-- <td class="td1" onclick="leave_approve(`<%= data[i].request_id%>`)">Approve
-                                    </td> -->
+                                    <td class="td1" onclick="leave_approve(`<%= data[i].request_id%>`)">Approve Leave
+                                    </td>
+                                    <td class="td1" onclick="leave_cancel(`<%= data[i].request_id%>`)">Cancel Leave
+                                    </td>
 
                                 </tr>
 
@@ -204,7 +206,7 @@
                 var s = ""
                 s += `
 
-    <form class="modal-content animate"  method="post" action="/update_leaves" >
+    <form class="modal-content animate" id="close" method="post" action="/update_leaves" >
 
       
         <div class="main-modal">
@@ -259,7 +261,7 @@
                     <div class="col-8">
                         <div class="c1">
                             
-                            <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
+                            <input type="submit" class="apply" onclick="return leaveFunction() " value="Apply">
                         </div>
 
                     </div>
@@ -299,17 +301,36 @@
 
     function leave_approve(approve) {
 
-// console.log(leave,"approve");
-        fetch(`/leave_approve?request_id=${approve}`, {
+
+if (confirm(`You are sure Approve Leave`)) {
+    fetch(`/leave_approve?request_id=${approve}`, {
             method: "post",
             headers: {
                 "Content-type": "application/json",
             },
         })
+}
+       
     }
 
+// cancel leave
 
-    // valedation
+
+function leave_cancel(cancel) {
+
+
+if (confirm(`You Are Sure Cancel Leave`)) {
+    fetch(`/leave_cancel?request_id=${cancel}`, {
+            method: "post",
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+}
+       
+    }
+
+    // validation
 
 
 
