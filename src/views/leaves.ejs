@@ -29,6 +29,7 @@
                                     <td class="t2">Days<img src="/images/sort1.png" class="sort"></td>
                                     <td class="t2">Status<img src="/images/sort1.png" class="sort"></td>
                                     <td class="t2">Edit<img src="/images/sort1.png" class="sort"></td>
+                                    <td class="t2">Approve Leave<img src="/images/sort1.png" class="sort"></td>
 
                                 </tr>
                             </thead>
@@ -51,6 +52,8 @@
                                         <%= data[i].leave_status%>
                                     </td>
                                     <td class="td1" onclick="leave_edit(`<%= data[i].request_id%>`,`<%= i %>`)">Edit
+                                    </td>
+                                    <td class="td1" onclick="leave_approve(`<%= data[i].request_id%>`)">Approve
                                     </td>
 
                                 </tr>
@@ -156,6 +159,7 @@
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
+                
             </div>
 
             <div class="container-2">
@@ -217,13 +221,14 @@ console.log(leave,"qqq");
                 <div class="row">
                     <div class="col-6">
                         <label><b>Leave Date</b></label>
-                        <input type="date" placeholder="Leave Date" name="ldate" value=" ${result_edit[0].leave_date}" >
+                        <input type="date" placeholder="Leave Date" name="ldate" value= ${result_edit[0].leave_date} >
                         <span class="span1" id="leave-error"></span>
                     </div>
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
                         <select class="s1" name="leavetype">
-                            <option value="hide" >Select Leave Type</option>
+                           
+                            <option value="" selected>${result_edit[0].leave_category}</option>
                             <option value="SL">SL</option>
                             <option value="CL">CL</option>
                             <option value="PL">PL</option>
@@ -238,10 +243,14 @@ console.log(leave,"qqq");
                 <div class="row">
                     <div class="col-8">
                         <label for="reason">Reason</label>
-                        <textarea rows="4" name="reason"></textarea>
+                        <textarea rows="4" name="reason" value= ${result_edit[0].leave_reason} ></textarea>
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
+                <div>
+                    <input type="hidden" value=${result_edit[0].request_id} name="request_id" id="request_id">
+                </div>
+
             </div>
 
             <div class="container-2">
@@ -279,6 +288,25 @@ console.log(edit_leave+"ZZZZZ");
             modal.style.display = "none";
         }
     }
+
+
+    // leave approve
+
+    function leave_approve(approve) {
+
+// console.log(leave,"approve");
+        fetch(`/leave_approve?request_id=${approve}`, {
+            method: "post",
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+    }
+
+
+    // valedation
+
+
 
     function leaveFunction() {
 
