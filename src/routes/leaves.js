@@ -16,6 +16,8 @@ var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
 var {authentication}=require("../middleware/authMiddleware")
 app.get("/leaves",authentication, leaveGet);
+//app.get("/editleave",authentication, editleaveGet);
+//app.get("/updateleave",authentication, updateleaveGet);
 
 app.post("/leaves",authentication,leavePost);
 app.get("/leave_edit",authentication,leave_editGet);

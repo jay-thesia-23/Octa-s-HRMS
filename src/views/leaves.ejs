@@ -315,15 +315,17 @@
 
     function leaveFunction() {
 
-        var ldate = document.getElementById('ldate').value || "";
-        var reason = document.getElementById('reason').value || "";
-        var ltype = document.getElementById('leavetype').value || "";
+        var ldate = document.getElementById('ldate').value ;
+
+        
+        var reason = document.getElementById('reason').value ;
+        var ltype = document.getElementById('leavetype').value ;
         var isvalidate = true;
 
         // validation
         if (ldate == null || ldate == "") {
             document.getElementById('leave-error').innerHTML = "Please fill date ";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('leave-error').innerHTML = "";
@@ -331,7 +333,7 @@
 
         if (ltype == null || ltype == "") {
             document.getElementById('ltype-error').innerHTML = "Please select type ";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('ltype-error').innerHTML = "";
@@ -339,11 +341,13 @@
 
         if (reason == null || reason == "") {
             document.getElementById('reason-error').innerHTML = "Please enter reason";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('reason-error').innerHTML = "";
         }
+
+        return true
     }
 
 </script>
