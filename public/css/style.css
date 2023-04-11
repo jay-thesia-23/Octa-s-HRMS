@@ -337,7 +337,8 @@ body.dark .home .text {
 }
 
 .ag-format-container {
-  width: 1142px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
