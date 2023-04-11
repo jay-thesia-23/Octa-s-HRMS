@@ -105,6 +105,7 @@
                 <div id="edit_leave">
 
                 </div>
+                <!--  -->
             </div>
         </div>
     </div>
@@ -134,13 +135,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label><b>Leave Date</b></label>
-                        <input type="date" placeholder="Leave Date" name="ldate">
+                        <input type="date" placeholder="Leave Date" name="ldate" id="ldate">
                         <span class="span1" id="leave-error"></span>
                     </div>
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
-                        <select class="s1" name="leavetype">
-                            <option value="hide">Select Leave Type</option>
+                        <select class="s1" name="leavetype" id="leavetype">
+                            <option value="">Select Leave Type</option>
                             <option value="SL">SL</option>
                             <option value="CL">CL</option>
                             <option value="PL">PL</option>
@@ -155,7 +156,7 @@
                 <div class="row">
                     <div class="col-8">
                         <label for="reason">Reason</label>
-                        <textarea rows="4" name="reason"></textarea>
+                        <textarea rows="4" name="reason" id="reason"></textarea>
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
@@ -295,6 +296,7 @@
     }
 
 
+
     // leave approve
 
     function leave_approve(approve) {
@@ -325,7 +327,7 @@
         // validation
         if (ldate == null || ldate == "") {
             document.getElementById('leave-error').innerHTML = "Please fill date ";
-            return false
+            isvalidate=false
         }
         else {
             document.getElementById('leave-error').innerHTML = "";
@@ -333,7 +335,7 @@
 
         if (ltype == null || ltype == "") {
             document.getElementById('ltype-error').innerHTML = "Please select type ";
-            return false
+            isvalidate=false
         }
         else {
             document.getElementById('ltype-error').innerHTML = "";
@@ -341,13 +343,13 @@
 
         if (reason == null || reason == "") {
             document.getElementById('reason-error').innerHTML = "Please enter reason";
-            return false
+            isvalidate=false
         }
         else {
             document.getElementById('reason-error').innerHTML = "";
         }
 
-        return true
+        return isvalidate
     }
 
 </script>
