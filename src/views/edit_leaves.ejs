@@ -1,0 +1,126 @@
+        
+
+    <!-- model -->
+    <form class="modal-content animate"  method="post" action="/updateleave" >
+    <div id="id01" class="modal">
+        <% data.forEach(entry=>{ %>
+            <!-- <div class="imgcontainer">
+                </div> -->
+        <input  type="text" name="id"  id="id" value="<%= entry.reg_id %>" hidden/>
+                                      
+            <div class="main-modal">
+                <div class="row-1">
+                    <div class="col-1">
+                        <div class="modal-container">
+                            <span>Add Leave</span>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                            title="Close Modal">&times;</span>
+                    </div>
+                </div>
+
+                <div class="container-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <label><b>Leave Date</b></label>
+                            <input type="date" placeholder="Leave Date" id="ldate" onclick="this.showPicker()" name="ldate" value="<%= entry.leave_date %>" required/>
+                            <span class="span1" id="leave-error"></span>
+                        </div>
+                        <div class="col-6">
+                            <label><b>Leave Type</b></label>
+                            <select class="s1" name="leavetype" id="leavetype" value="<%= entry.leave_category %>" required>
+                                <option value="hide" >Select Leave Type</option>
+                                <option value="SL">SL</option>
+                                <option value="CL">CL</option>
+                                <option value="PL">PL</option>
+                                <option value="UPL">UPL</option>
+
+                            </select>
+                            <span class="span1" id="ltype-error"></span>
+                        </div>
+                        <!-- <div class="col-7">
+                            
+                            <label><b>Half Day</b></label>
+                            <div class="toggle">
+                                <label class="switch">  
+                                <input type="checkbox" name="halfday">
+                                <span class="slider round"></span>
+                            </label>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="reason">Reason</label>
+                            <textarea rows="4" name="reason" id="reason" value="<%= entry.reason %>" required></textarea>
+                            <span class="span1" id="reason-error"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-2">
+                    <div class="row">
+
+                        <div class="col-8">
+                            <div class="c1">
+                                <span class="cancel" onclick="document.getElementById('id01').style.display='none'">Cancel</span>
+                                <input type="submit" class="apply" onclick="return leaveFunction()" value="Apply">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <% }) %>
+    </div>
+</form>
+<script>
+    var modal = document.getElementById('id01');
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+function leaveFunction(){
+
+  var ldate = document.getElementById('ldate').value || "";
+  var reason = document.getElementById('reason').value || "";
+  var ltype = document.getElementById('leavetype').value || "";
+  var isvalidate = true;
+
+  // validation
+if(ldate == null || ldate == "")
+  {
+      document.getElementById('leave-error').innerHTML="Please fill date ";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('leave-error').innerHTML="";
+  }
+
+  if(ltype == 0 || ltype == null)
+  {
+      document.getElementById('ltype-error').innerHTML="Please select type ";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('ltype-error').innerHTML="";
+  }
+
+  if(reason == null || reason == "")
+  {
+      document.getElementById('reason-error').innerHTML="Please enter reason";
+      isvalidate = false;
+  }
+  else{
+      document.getElementById('reason-error').innerHTML="";
+  }
+  isvalidate = true;
+}
+
+</script>

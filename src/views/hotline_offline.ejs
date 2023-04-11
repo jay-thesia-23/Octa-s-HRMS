@@ -63,9 +63,9 @@
 
       <% for(let i=0; i<alldetails.length; i++) {%>
   
-       
+       <%console.log(alldetails[0],"reeee")%>
        <div class="ag-courses_item box_shadow_2">
-         <a href="#" class="ag-courses-item_link" id="card<%=i%>">
+         <a href="/showprofile?id=<%=alldetails[i][0]?.reg_id%>" class="ag-courses-item_link" id="card<%=i%>">
            <div class="ag-courses-item_bg"></div>
 
            <div>

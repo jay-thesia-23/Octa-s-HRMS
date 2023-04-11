@@ -164,6 +164,8 @@ async function search() {
 
 async function hotSearch() {
   const search = document.getElementById("search").value;
+  const on_static=document.getElementById("on_static")
+  on_static.innerHTML=""
 
   fetch(`/hotsearch?search=${search}`, {
     method: "GET",

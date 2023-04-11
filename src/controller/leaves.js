@@ -101,7 +101,62 @@ var leavePost = (req, res) => {
   res.redirect("/leaves");
 };
 
+var leave_editGet = (req, res) => {
+
+  console.log(req.query.request_id,"aaaaaaa");
+  var request_id = req.query.request_id;
+
+  var sql = `select * from request_leave_table where request_id = '${request_id}' `;
+
+    conn.query(sql, function (err, result_edit) {
+      if (err) throw err;
+      res.json(result_edit)
+      // res.render("leaves_edit", { result_edit });
+      // console.log(result); 
+    });
+
+};
 
 
-module.exports ={ leavePost, leaveGet}; 
+var update_leavePost = (req, res) => {
+
+  console.log(req.body);
+  var ldate = req.body.ldate;
+  var leavetype = req.body.leavetype;
+  var reason = req.body.reason;
+  var request_id = req.body.request_id;
+  // var request_id = req.query.request_id;
+
+  var sql = `update request_leave_table set leave_date = '${ldate}',leave_category = '${leavetype}',leave_reason = '${reason}' where request_id = '${request_id}' `;
+
+    conn.query(sql, function (err, data) {
+      if (err) throw err;
+      // res.json(result_edit)
+      // res.render("leaves_edit", { result_edit });
+      console.log("update........"); 
+    });
+
+};
+
+var leave_approvePost = (req, res) => {
+
+  console.log(req.body);
+  var ldate = req.body.ldate;
+  var leavetype = req.body.leavetype;
+  var reason = req.body.reason;
+  var request_id = req.body.request_id;
+  // var request_id = req.query.request_id;
+
+  var sql = `update request_leave_table set leave_date = '${ldate}',leave_category = '${leavetype}',leave_reason = '${reason}' where request_id = '${request_id}' `;
+
+    conn.query(sql, function (err, data) {
+      if (err) throw err;
+      // res.json(result_edit)
+      // res.render("leaves_edit", { result_edit });
+      console.log("update........"); 
+    });
+
+};
+
+module.exports ={ leavePost, leaveGet,leave_editGet,update_leavePost,leave_approvePost}; 
  

@@ -53,6 +53,84 @@
       
           </div>
 
+          <div class="ag-courses_box" id="on_static">
+            
+            <%console.log(alldetails,"alldetaisl")%>
+            <% for(let i=0; i<alldetails.length; i++) {%>
+             
+             <div class="ag-courses_item box_shadow_2">
+               <a href="/showprofile?id=<%=alldetails[i]?.reg_id%>" class="ag-courses-item_link" id="card<%=i%>">
+                 <div class="ag-courses-item_bg"></div>
+      
+                 <div>
+                   <div class="row pti_rel_2">
+                     <div class="col">
+                       <div class="jst_ctr">
+                 
+                         <%if(alldetailsProfile[i].profile_pic=="" || alldetailsProfile[i].profile_pic==null  ){%>
+                           <div class="img1"><img class="img" src="/hello.png"></div>
+                           <%}else{%>
+                           <div class="img1"><img class="img" src="/<%= alldetailsProfile[i].profile_pic%>"></div>
+                           <% } %>
+                       </div>
+                     </div>
+                     <div class="col">
+                       <div>
+                         <div class="mb_10">
+                           <div class="date_of_hire">
+                             <p>Date of hire</p>
+                           </div>
+                           <div class="clr_wht">
+                             <p> <%= alldetails[i].time_stamp.toJSON('yyyy-mm-dd').slice(0,10) %></p>
+                           </div>
+                         </div>
+                         <div>
+                           <div class="date_of_hire">
+                             <p>Department</p>
+                           </div>
+                           <div class="clr_wht">
+                             <p>Development</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+      
+                   <div>
+                     <div class="crd_emp_name">
+                       <p>   <%= alldetails[i].firstname %></p>
+                     </div>
+                   </div>
+      
+                   <div class="pti_rel_2">
+                     <div class="crd_designation">
+                       <p> <%= alldetails[i].designation %></p>
+                     </div>
+                   </div>
+      
+                   <div class="display_flex crd_mail_aln">
+                     <div class="mr_8 clr_tomato"><i class="fa fa-envelope"></i></div>
+                     <div class="clr_drk_grey">
+                       <p> <%= alldetails[i].email %></p>
+                     </div>
+                   </div>
+      
+                   <div class="display_flex crd_mail_aln">
+                     <div class="mr_8 clr_tomato"><i class="fa fa-mobile-phone" style="font-size:30px"></i>
+                     </div>
+                     <div class="clr_drk_grey"><%= alldetails[i].phone_number %></div>
+                   </div>
+                 </div>
+      
+               
+               </a>
+             </div>
+             
+              <% } %>
+      
+        
+           </div>
+
           <div class="ag-courses_box" id="searchCard">
           
          
