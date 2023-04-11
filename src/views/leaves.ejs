@@ -113,13 +113,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label><b>Leave Date</b></label>
-                        <input type="date" placeholder="Leave Date" id="ldate" name="ldate" required>
+                        <input type="date" placeholder="Leave Date" id="ldate" name="ldate" >
                         <span class="span1" id="leave-error"></span>
                     </div>
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
-                        <select class="s1" name="leavetype" id="leavetype" required>
-                            <option value="hide" >Select Leave Type</option>
+                        <select class="s1" name="leavetype" id="leavetype" >
+                            <option value="" disabled>Select Leave Type</option>
                             <option value="SL">SL</option>
                             <option value="CL">CL</option>
                             <option value="PL">PL</option>
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="col-8">
                         <label for="reason">Reason</label>
-                        <textarea rows="4" name="reason" id="reason" required></textarea>
+                        <textarea rows="4" name="reason" id="reason" ></textarea>
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
@@ -208,6 +208,8 @@ if(reason == null || reason == "")
 else{
   document.getElementById('reason-error').innerHTML="";
 }
+
+return isvalidate
 }
 
 </script>

@@ -3,6 +3,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts')
 app.use(expressLayouts)   //Added
 var path=require("path")
+const jwt = require("jsonwebtoken")
 app.set('layouts', path.resolve("src","view","layouts","main")) //added
 
 var conn=require("../config/dbConnect")
