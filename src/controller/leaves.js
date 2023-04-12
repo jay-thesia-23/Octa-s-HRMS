@@ -154,7 +154,8 @@ var leave_approvePost = (req, res) => {
       console.log("update........"); 
 
 
-    });      res.redirect("/leaves");
+    });     
+    //  res.redirect("/leaves");
 
 
 };
@@ -176,7 +177,7 @@ var leave_cancelPost = (req, res) => {
 
 
     });
-    res.redirect("/leaves");
+    // res.redirect("/leaves");
 
 };
 
