@@ -207,7 +207,7 @@ console.log(leave,"qqq");
                 var s = ""
                 s += `
 
-    <form class="modal-content animate" id="close" method="post" action="/update_leaves" >
+    <form class="modal-content animate" id="close_edit" method="post" action="/update_leaves" >
 
       
         <div class="main-modal">
@@ -216,6 +216,10 @@ console.log(leave,"qqq");
                     <div class="modal-container">
                         <span>Add Leave</span>
                     </div>
+                </div>
+                <div class="col-1">
+                    <span onclick="document.getElementById('close_edit').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
                 </div>
              
             </div>
@@ -272,7 +276,8 @@ console.log(leave,"qqq");
 
                     <div class="col-8">
                         <div class="c1">
-                            
+                            <span class="cancel"
+                                onclick="document.getElementById('close_edit').style.display='none'">Cancel</span>
                             <input type="submit" class="apply" onclick="return leaveFunction() " value="Apply">
                         </div>
 
