@@ -31,7 +31,7 @@ CREATE TABLE `breck_master` (
   PRIMARY KEY (`id`),
   KEY `fk_breck_master_1_idx` (`reg_id`),
   CONSTRAINT `fk_breck_master_1` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `breck_master` (
 
 LOCK TABLES `breck_master` WRITE;
 /*!40000 ALTER TABLE `breck_master` DISABLE KEYS */;
-INSERT INTO `breck_master` VALUES (1,19,'breck_in','2023-03-31 05:53:26','31/3/2023'),(2,19,'breck_out','2023-03-31 05:53:34','31/3/2023'),(3,19,'breck_in','2023-03-31 05:53:38','31/3/2023'),(4,19,'breck_out','2023-03-31 05:53:40','31/3/2023');
+INSERT INTO `breck_master` VALUES (1,19,'breck_in','2023-04-13 05:10:15','13/4/2023'),(2,19,'breck_out','2023-04-13 05:10:16','13/4/2023'),(3,19,'breck_in','2023-04-13 06:19:44','13/4/2023'),(4,19,'breck_out','2023-04-13 06:19:45','13/4/2023'),(5,19,'breck_in','2023-04-13 06:19:52','13/4/2023'),(6,19,'breck_out','2023-04-13 06:20:15','13/4/2023');
 /*!40000 ALTER TABLE `breck_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `check_master` (
   PRIMARY KEY (`id`),
   KEY `fk_check_master_1_idx` (`reg_id`),
   CONSTRAINT `fk_check_master_1` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `check_master` (
 
 LOCK TABLES `check_master` WRITE;
 /*!40000 ALTER TABLE `check_master` DISABLE KEYS */;
-INSERT INTO `check_master` VALUES (1,'check_in',19,'2023-03-31 05:53:15','31/3/2023','0','0'),(2,'check_out',19,'2023-03-31 05:53:42','31/3/2023','0','0');
+INSERT INTO `check_master` VALUES (1,'check_in',74,'2023-04-13 04:29:39','13/4/2023','0','0'),(2,'check_out',74,'2023-04-13 04:29:47','13/4/2023','0','0'),(3,'check_in',19,'2023-04-13 05:10:08','13/4/2023','0','0'),(4,'check_in',19,'2023-04-13 05:10:14','13/4/2023','0','0'),(5,'check_out',19,'2023-04-13 06:20:16','13/4/2023','0','0');
 /*!40000 ALTER TABLE `check_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `comment_table` (
   PRIMARY KEY (`id`),
   KEY `fk_comment_table_1_idx` (`reg_id`),
   CONSTRAINT `fk_comment_table_1` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +125,7 @@ CREATE TABLE `comment_table` (
 
 LOCK TABLES `comment_table` WRITE;
 /*!40000 ALTER TABLE `comment_table` DISABLE KEYS */;
+INSERT INTO `comment_table` VALUES (1,'wec wecdwec',19),(2,'<input />',74),(3,'<Button>dfkjsf</Button>',74),(4,' <input type=\"text\" id=\"fname\" name=\"fname\">',74),(5,'<script>alert(\"hello\")</script>',74),(6,'<button>dfjsdijf</button>',74),(7,'<script>alert(\"hello\")</script>',74),(8,'<script>alert(\"hello\")</script>',19),(9,' <input type=\"text\" id=\"fname\" name=\"fname\">',19),(10,' <input type=\"text\" id=\"fname\" name=\"fname\">',19),(11,' vbffvfvxc',19),(12,'v dfbdf',19),(13,'czdsv',19),(14,'<script>alert(\"hello\")</script>',19),(15,' <input type=\"text\" id=\"fname\" name=\"fname\">',19),(16,' <input type=\"text\" id=\"fname\" name=\"fname\">',74),(17,'dsfd',74),(18,'wef',19),(19,'my check in time',19),(20,'my check in time',19),(21,'sdfsd',19);
 /*!40000 ALTER TABLE `comment_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +174,7 @@ CREATE TABLE `document_master` (
   KEY `fk_document_master_2_idx` (`reg_id`),
   CONSTRAINT `fk_document_master_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_basic_infomation` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_document_master_2` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +183,7 @@ CREATE TABLE `document_master` (
 
 LOCK TABLES `document_master` WRITE;
 /*!40000 ALTER TABLE `document_master` DISABLE KEYS */;
-INSERT INTO `document_master` VALUES (22,43,45,'1679577835260-Oval.png','1679577835260-left3.png','1679577835264-twitter.png','1679577835265-heart.png','1679577835265-youtube.png'),(23,44,41,'1679579040260-Icon_CS.png','1679579040261-Icon_CS(1).png','1679579040261-Image.png','1679579040265-Image.png','1679579040267-Image (1).png'),(24,45,46,'1679580309772-heart.png','1679580309774-Icon_CS(1).png','1679580309775-Image (1).png','1679580309779-linkedin.png','1679580309779-esplmail.esparkbizmail.jpeg'),(27,48,19,'1680148655390-Avatar.png','1680148655391-Avatar(1).png','1680148655392-Avatar(2).png','1680148655392-Avatar(3).png','1680148655392-Avatar(4).png');
+INSERT INTO `document_master` VALUES (24,45,46,'1679580309772-heart.png','1679580309774-Icon_CS(1).png','1679580309775-Image (1).png','1679580309779-linkedin.png','1679580309779-esplmail.esparkbizmail.jpeg'),(66,91,74,'1681117597362-esplmail.esparkbizmail.jpeg','1681117597362-IMG20211025194249.jpg','1681117597383-IMG20211025194249_11zon.jpg','1681117597385-WhatsApp Image 2023-03-15 at 10.42.44 AM.jpeg','1681117597385-Screenshot from 2023-01-31 17-57-14.png'),(67,92,19,'1681291153913-Avatar(4).png','1681291153914-Avatar(2).png','1681291153914-Avatar(2).png','1681291153915-Avatar(4).png','1681291153915-Icon 8.png');
 /*!40000 ALTER TABLE `document_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +206,7 @@ CREATE TABLE `education_table` (
   KEY `fk_education_table_1_idx` (`employee_id`),
   KEY `fk_education_table_2_idx` (`reg_id`),
   CONSTRAINT `fk_education_table_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_basic_infomation` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=398 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +215,7 @@ CREATE TABLE `education_table` (
 
 LOCK TABLES `education_table` WRITE;
 /*!40000 ALTER TABLE `education_table` DISABLE KEYS */;
-INSERT INTO `education_table` VALUES (35,'HSC','56','dddedd','2064',34,41),(36,'HSC','56','dddedd','2064',35,41),(47,'HSC','56','gtu','2064',43,45),(48,'SSC','56','gtu','1323',44,41),(49,'SSC','56','sngv','2064',45,46),(53,'SSC','56','GTu','2342',48,19);
+INSERT INTO `education_table` VALUES (49,'SSC','56','sngv','2064',45,46),(78,'SSC','56','gtu','1323',73,19),(79,'SSC','56','gtu','1323',74,19),(394,'HSC','56','fwer','2019',91,74),(395,'SSC','56','gtu','1323',92,19),(396,'SSC','56','gtu','1323',92,19),(397,'SSC','56','gtu','1323',92,19);
 /*!40000 ALTER TABLE `education_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +246,7 @@ CREATE TABLE `employee_basic_infomation` (
   PRIMARY KEY (`employee_id`),
   KEY `fk_employee_basic_infomation_1_idx` (`reg_id`),
   CONSTRAINT `fk_employee_basic_infomation_1` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +255,7 @@ CREATE TABLE `employee_basic_infomation` (
 
 LOCK TABLES `employee_basic_infomation` WRITE;
 /*!40000 ALTER TABLE `employee_basic_infomation` DISABLE KEYS */;
-INSERT INTO `employee_basic_infomation` VALUES (34,41,'hari','hari','kano@gmail.com','342434234','Panji','Goa','male',NULL,'2023-02-27','SFAD','Single','sdfsfsdf','sdfssdf','2023-03-23 12:28:38'),(35,41,'hari','hari','kano@gmail.com','342434234','Ahmedabad','Gujarat','male',NULL,'2023-02-27','SFAD','Single','sdfsfsdf','sdfssdf','2023-03-23 12:33:10'),(43,45,'meet','vardiwala','satya1234@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2022-02-02','efrjhfoehw','Married','sde','dev','2023-03-23 13:23:55'),(44,41,'sanjay','patel','ramu@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2023-03-11','efrjhfoehw','Single','sde','dev','2023-03-23 13:44:00'),(45,46,'harsh','patel','malya@gmail.com','3424235235','Panji','Goa','male',NULL,'2321-03-23','SFAD','Single','sde','dev','2023-03-23 14:05:09'),(48,19,'jay','patel','jayengineer.jp2410@gmail.com','3213142324','Ahmedabad','Gujarat','male',NULL,'2023-03-18','dfggrg','Single','fdf','dsfdfds','2023-03-30 03:57:35');
+INSERT INTO `employee_basic_infomation` VALUES (45,46,'harsh','patel','malya@gmail.com','3424235235','Panji','Goa','male',NULL,'2023-04-11','SFAD','Single','sde','dev','2023-03-23 14:05:09'),(73,41,'sanjay','patel','ramu@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2023-03-11','efrjhfoehw','Single','sde','dev','2023-04-05 13:24:13'),(74,45,'sanjay','patel','ramu@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2023-03-11','efrjhfoehw','Single','sde','dev','2023-04-05 13:40:57'),(75,73,'sanjay','patel','ramu@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2023-03-11','efrjhfoehw','Single','sde','dev','2023-04-05 13:41:44'),(91,74,'shubh','patel','jayengineer.jp2410@gmail.com','9898257504','Panji','Goa','male',NULL,'2023-04-06','dfggrg','Single','fdf','DEV','2023-04-10 09:06:37'),(92,19,'qaz','patel','ramu@gmail.com','3424235235','Ahmedabad','Gujarat','male',NULL,'2023-03-11','efrjhfoehw','Single','sde','dev','2023-04-12 09:19:14');
 /*!40000 ALTER TABLE `employee_basic_infomation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,7 +302,7 @@ CREATE TABLE `holidays` (
   `holiday_month` varchar(45) NOT NULL,
   `holiday_day` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +311,7 @@ CREATE TABLE `holidays` (
 
 LOCK TABLES `holidays` WRITE;
 /*!40000 ALTER TABLE `holidays` DISABLE KEYS */;
-INSERT INTO `holidays` VALUES (1,'Makara Sankranti','14-01-23','1','Saturday'),(2,'Republic Day','26-01-23','January','Thursday'),(3,'Maha Shivaratri','18-02-23','February','Saturday'),(4,'Holi','08-03-23','3','Wednesday'),(5,'Independence Day','15-08-23','August','Tuesday'),(6,'Raksha Bandhan (Rakhi)','30-08-23','August','Wednesday'),(7,'Janmashtami (Vaishnav)','06-09-23','September','Wednesday'),(8,'Ganesh Chaturthi','19-09-23','September','Tuesday'),(9,'Gandhi Jayanti','02-10-23','October','Monday'),(10,'Dussehra','24-10-23','October','Tuesday'),(11,'Diwali','12-11-23','November','Sunday'),(12,'Govardhan Puja','13-11-23','November','Monday'),(13,'Bhai Dooj','14-11-23','November','Tuesday'),(14,'Christmas','25-12-23','December','Monday');
+INSERT INTO `holidays` VALUES (1,'Makara Sankranti','14-01-23','1','Saturday'),(2,'Republic Day','26-01-23','January','Thursday'),(3,'Maha Shivaratri','18-02-23','February','Saturday'),(4,'Holi','08-03-23','3','Wednesday'),(5,'Independence Day','15-08-23','August','Tuesday'),(6,'Raksha Bandhan (Rakhi)','30-08-23','August','Wednesday'),(7,'Janmashtami (Vaishnav)','06-09-23','September','Wednesday'),(8,'Ganesh Chaturthi','19-09-23','September','Tuesday'),(9,'Gandhi Jayanti','02-10-23','October','Monday'),(10,'Dussehra','24-10-23','October','Tuesday'),(11,'Diwali','12-11-23','November','Sunday'),(12,'Govardhan Puja','13-11-23','November','Monday'),(13,'Bhai Dooj','14-11-23','November','Tuesday'),(14,'Christmas','25-12-23','December','Monday'),(15,'Good Friday','06-04-23','4','Friday');
 /*!40000 ALTER TABLE `holidays` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +387,7 @@ CREATE TABLE `reference_master` (
   KEY `fk_reference_master_2_idx` (`reg_id`),
   CONSTRAINT `fk_reference_master_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_basic_infomation` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_reference_master_2` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -395,7 +396,7 @@ CREATE TABLE `reference_master` (
 
 LOCK TABLES `reference_master` WRITE;
 /*!40000 ALTER TABLE `reference_master` DISABLE KEYS */;
-INSERT INTO `reference_master` VALUES (66,34,'sanjay','823844982','relaii',41),(67,34,'ramu','2342344434','342344344',41),(68,35,'sanjay','823844982','relaii',41),(69,35,'ramu','3424234434','34324234',41),(84,43,'roger','1343409320','xyz',45),(85,43,'ramu','aweewrrwr','werwerrwer',45),(86,44,'roger','1343409320','relaii',41),(87,44,'ramu','3423342343','234234',41),(88,45,'roger','1343409320','xyz',46),(89,45,'om','23423432234234','23234234',46),(94,48,'roger','1343409320','xyz',19),(95,48,'ramu','33453566','azq',19);
+INSERT INTO `reference_master` VALUES (88,45,'roger','1343409320','xyz',46),(89,45,'om','23423432234234','23234234',46),(144,73,'roger','1343409320','relaii',19),(145,73,'ramu','3423342343','234234',19),(146,74,'roger','1343409320','relaii',19),(147,74,'ramu','3423342343','234234',19),(148,75,'roger','1343409320','relaii',19),(149,75,'ramu','3423342343','234234',19),(180,91,'','','',74),(181,91,'','','',74),(182,92,'roger','1343409320','relaii',19),(183,92,'ramu','3423342343','234234',19);
 /*!40000 ALTER TABLE `reference_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,7 +415,7 @@ CREATE TABLE `registration` (
   `isactive` varchar(45) NOT NULL,
   `u_login` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -423,7 +424,7 @@ CREATE TABLE `registration` (
 
 LOCK TABLES `registration` WRITE;
 /*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-INSERT INTO `registration` VALUES (19,'roy','roy@gmail.com','$2b$10$GyotdzI5D0x666zZx2KJWO1RfTDe6F7MsvB7IUGj4jjPyEITVJ8B6','0','0'),(41,'kano','kano@gmail.com','$2b$10$yjHV3vzOYIgTpdwVGX87qerAAJTj6sD35WqOq9NXr1XsxfTiJjvFe','0','1'),(45,'roman','roman@gmail.com','$2b$10$WPcBg.MRMhmT8Wx6Ia7ZLuedcw3W1d6Jb7SNaf9ndT3dX/Qw7izvK','0','0'),(46,'harsh','harsh@gmail.com','$2b$10$rkq2GwNDNFOEesiremSuXuROTbVnsNRiR.i84lxPAqEzGXeD3Gpj2','0','1'),(73,'sanjay','sanjayparmar1650@gmail.com','$2b$10$5QuWI/DYjb911qGKGJM2sOicVW3L9TbdVx1ulf7PD5Kbw/zQY1HGG','0','0');
+INSERT INTO `registration` VALUES (19,'roy','roy@gmail.com','$2b$10$GyotdzI5D0x666zZx2KJWO1RfTDe6F7MsvB7IUGj4jjPyEITVJ8B6','0','0'),(41,'kano','kano@gmail.com','$2b$10$yjHV3vzOYIgTpdwVGX87qerAAJTj6sD35WqOq9NXr1XsxfTiJjvFe','0','1'),(45,'roman','roman@gmail.com','$2b$10$WPcBg.MRMhmT8Wx6Ia7ZLuedcw3W1d6Jb7SNaf9ndT3dX/Qw7izvK','0','0'),(46,'harsh','harsh@gmail.com','$2b$10$rkq2GwNDNFOEesiremSuXuROTbVnsNRiR.i84lxPAqEzGXeD3Gpj2','0','1'),(73,'sanjay','sanjayparmar1650@gmail.com','$2b$10$5QuWI/DYjb911qGKGJM2sOicVW3L9TbdVx1ulf7PD5Kbw/zQY1HGG','0','0'),(74,'jay','jay.thesia.23@gmail.com','$2b$10$.wjJA0RoMYmwGSlARqEo9eTvU/SK.wKmhlAtCMdFjf.xOwyY6OkAe','0','0'),(75,'jay','joshi@gmail.com','$2b$10$dv7LU/7ExLFXYatOPjbGye.LiRGRHfPQDlc1ZAlePsFugE33g6yQC','1','1'),(76,'jay','joshi123@gmail.com','$2b$10$pPrtfwqrc3PcaRcxffRNIO3xKAiQBYiH.2Q5kZ3CLvbgzddsPfWlO','1','1'),(77,'jay','jay@mailinator.com','$2b$10$yrlAg4gUaQ226PkUl06J8.F/kgMAvYZ4kSbBLI3143K1muyrSIEDC','0','1'),(78,'jay','xy@mailinator.com','$2b$10$Ykanr0JlavGTOABuL2OSf.dfGbhutc5I0F4.SmVlMayiriZbgSC6S','0','1');
 /*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -442,11 +443,12 @@ CREATE TABLE `request_leave_table` (
   `leave_date` varchar(45) NOT NULL,
   `leave_reason` varchar(500) NOT NULL,
   `used_status` varchar(45) NOT NULL DEFAULT 'unused',
+  `iscancel` int DEFAULT '1',
   `reg_id` int DEFAULT NULL,
   PRIMARY KEY (`request_id`),
   KEY `fk_request_leave_table_2_idx` (`reg_id`),
-  CONSTRAINT `fk_request_leave_table_2` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_request_leave_table_2` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +457,7 @@ CREATE TABLE `request_leave_table` (
 
 LOCK TABLES `request_leave_table` WRITE;
 /*!40000 ALTER TABLE `request_leave_table` DISABLE KEYS */;
-INSERT INTO `request_leave_table` VALUES (1,'SL ','unapproved','2023-03-29 ','2023-01-01','qaz','unused',19),(2,'PL ','unapproved','2023-03-29 ','2023-03-03','qaz','unused',19),(3,'PL ','unapproved','2023-03-29 ','2023-03-16','sdfs','unused',19),(4,'CL ','unapproved','2023-03-29 ','2023-03-09','dsf','unused',19),(5,'CL ','unapproved','2023-03-29 ','2023-03-10','','unused',19),(6,'CL ','unapproved','2023-03-29 ','2023-03-04','qaz','unused',19),(7,'CL ','unapproved','2023-03-29 ','2023-01-01','dsfsf','unused',19),(8,'hide ','unapproved','2023-03-30 ','2023-02-28','qaz','unused',19),(9,'hide ','unapproved','2023-03-30 ','2022-12-02','qaz','unused',19);
+INSERT INTO `request_leave_table` VALUES (1,'SL ','Approved','2023-03-29 ','2023-01-01','qaz','unused',0,19),(2,'PL ','Approved','2023-03-29 ','2023-03-03','qaz','unused',0,19),(3,'UPL','Approved','2023-03-29 ','2023-03-25','go test','unused',0,19),(4,'CL ','unapproved','2023-03-29 ','2023-03-09','dsf','unused',0,19),(5,'CL ','unapproved','2023-03-29 ','2023-03-10','','unused',0,19),(6,'CL ','Approved','2023-03-29 ','2023-03-04','qaz','unused',0,19),(7,'CL ','unapproved','2023-03-29 ','2023-01-01','dsfsf','unused',0,19),(8,'SL','Approved','2023-04-10 ','2023-04-04','','unused',1,64),(9,'CL ','Approved','2023-04-10 ','2023-04-12','cvsdf','unused',0,64),(11,'CL','Approved','2023-04-10 ','2023-04-13','','unused',1,64),(12,'PL','unapproved','2023-04-11 ','2023-04-03','ppppp','unused',0,64),(13,'','unapproved','2023-04-11 ','2023-04-27','zzz','unused',0,64),(14,'CL','Approved','2023-04-11 ','2023-04-29','','unused',0,64),(15,'SL ','unapproved','2023-04-11 ','2023-04-28','demo','unused',1,64),(16,'hide ','Approved','2023-04-11 ','','','unused',0,19),(17,'hide ','Approved','2023-04-11 ','','','unused',0,19),(18,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(19,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(20,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(21,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(22,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(23,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(24,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(25,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(26,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(27,'SL ','unapproved','2023-04-11 ','2023-04-13','dwsdsdfgd','unused',0,19),(28,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(29,'CL ','Approved','2023-04-11 ','2023-04-13','qaz','unused',0,19),(30,'hide ','unapproved','2023-04-11 ','','','unused',0,19),(31,'PL ','unapproved','2023-04-13 ','2023-05-07','kjjj','unused',0,19),(32,'SL','Approved','2023-04-13 ','2023-03-23','sfsdsdf','unused',1,19),(33,'SL ','Approved','2023-04-13 ','2023-03-29','qaz','unused',0,19);
 /*!40000 ALTER TABLE `request_leave_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,4 +494,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-31 13:19:18
+-- Dump completed on 2023-04-13 12:16:12
