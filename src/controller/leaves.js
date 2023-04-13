@@ -33,17 +33,17 @@ let totalp;
     // console.log(decoded);
     id = decoded.id[0].id;
 
-    conn.query(`select count(*) as numrows  from request_leave_table where reg_id = "${id}"`, (error, result) => {
+    conn.query(`select count(*) as numrows  from request_leave_table where reg_id = "${id}" and iscancel = '1'`, (error, result) => {
       if (error) throw error;
       data[0] = result[0].numrows;
       count = Math.ceil(data[0] / limit);
       // totalp = Math.ceil(result[0].count / limit);
-      console.log(count);
+
   
     });
   
     conn.query(
-      `select *from request_leave_table  where reg_id = "${id}" LIMIT ${offset},${limit} `,
+      `select *from request_leave_table  where reg_id = "${id}" and iscancel = '1' LIMIT ${offset},${limit} `,
       (error, result) => {
         if (error) {
           throw error;
@@ -52,7 +52,7 @@ let totalp;
         
         res.render("leaves", { data,  
           pagearray: count,count: count , curr_page });
-         //console.log(pid,"pidddhusfuisd");
+         
       }
     );
   });
@@ -103,16 +103,16 @@ var leavePost = (req, res) => {
 
 var leave_editGet = (req, res) => {
 
-  console.log(req.query.request_id,"aaaaaaa");
+
   var request_id = req.query.request_id;
 
-  var sql = `select * from request_leave_table where request_id = '${request_id}' `;
+  var sql = `select * from request_leave_table where request_id = '${request_id}'  `;
 
     conn.query(sql, function (err, result_edit) {
       if (err) throw err;
       res.json(result_edit)
       // res.render("leaves_edit", { result_edit });
-      // console.log(result); 
+      
     });
 
 };
@@ -120,7 +120,7 @@ var leave_editGet = (req, res) => {
 
 var update_leavePost = (req, res) => {
 
-  console.log(req.body);
+ 
   var ldate = req.body.ldate;
   var leavetype = req.body.leavetype;
   var reason = req.body.reason;
@@ -133,30 +133,57 @@ var update_leavePost = (req, res) => {
       if (err) throw err;
       // res.json(result_edit)
       // res.render("leaves_edit", { result_edit });
-      console.log("update........"); 
+  
     });
+    res.redirect("/leaves");
 
 };
 
 var leave_approvePost = (req, res) => {
 
-  console.log(req.body);
-  var ldate = req.body.ldate;
-  var leavetype = req.body.leavetype;
-  var reason = req.body.reason;
-  var request_id = req.body.request_id;
-  // var request_id = req.query.request_id;
 
-  var sql = `update request_leave_table set leave_date = '${ldate}',leave_category = '${leavetype}',leave_reason = '${reason}' where request_id = '${request_id}' `;
+  var request_id = req.query.request_id;
+ 
+
+  var sql = `update request_leave_table set leave_status = 'Approved' where request_id = '${request_id}' `;
 
     conn.query(sql, function (err, data) {
       if (err) throw err;
       // res.json(result_edit)
       // res.render("leaves_edit", { result_edit });
-      console.log("update........"); 
-    });
+
+      res.json(true)
+
+    });     
+    //  res.redirect("/leaves");
+
 
 };
 
-module.exports ={ leavePost, leaveGet,leave_editGet,update_leavePost,leave_approvePost}; 
+
+var leave_cancelPost = (req, res) => {
+
+
+  var request_id = req.query.request_id;
+ 
+  
+  var sql = `update request_leave_table set iscancel = '0' where request_id = '${request_id}' `;
+
+    conn.query(sql, function (err, data) {
+      if (err) throw err;
+      // res.json(result_edit)
+      // res.render("leaves_edit", { result_edit });
+
+
+
+    });
+
+
+    res.json(true)
+    // res.redirect("/leaves");
+    // res.render('leaves')
+
+};
+
+module.exports ={ leavePost, leaveGet,leave_editGet,update_leavePost,leave_approvePost,leave_cancelPost}; 
  

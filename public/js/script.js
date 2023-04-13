@@ -32,7 +32,7 @@ nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister1 = registerPage1();
 
-    console.log(currRegister1);
+    
 
     if (currRegister1) {
       formStepsNum++;
@@ -45,7 +45,7 @@ nextBtns2.forEach((btn) => {
   btn.addEventListener("click", () => {
     var currRegister2 = registerPage2();
 
-    console.log(currRegister2);
+    
 
     if (currRegister2) {
       formStepsNum++;
@@ -93,10 +93,10 @@ async function select(state_id) {
   const ans = await fetch(
     `${complete_url}/test-api?state_id=${state_id.value}`
   );
-  console.log(ans);
+
 
   const data = await ans.json();
-  console.log(data);
+ 
   var city_1 = document.getElementById("city");
   city_1.innerHTML = "";
 
@@ -107,7 +107,7 @@ async function select(state_id) {
 }
 
 function registerPage1() {
-  console.log("call the register");
+  
   registerPage5();
 
   var fname = document.getElementById("fname").value || "";
@@ -219,7 +219,7 @@ function registerPage1() {
 }
 
 function registerPage2() {
-  console.log("call the register");
+
   var uni = document.getElementById("uni").value || "";
   var passyear = document.getElementById("passyear").value || "";
   var percent = document.getElementById("percent").value || "";
@@ -257,11 +257,11 @@ function registerPage5() {
   var file = document.getElementsByClassName("file");
   var docerror = document.getElementById("doc-error");
 
-  // console.log(file[0]+"fillllllllllllle");
+ 
   for (let i = 0; i < file.length; i++) {
     if (file[i].files.length == 0) {
       docerror.innerHTML = "please fill  all the file";
-      console.log("please fill  all the file");
+      
       return false;
     } else {
       docerror.innerHTML = "";

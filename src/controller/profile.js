@@ -17,9 +17,9 @@ var conn = require("../config/dbConnect");
 var profileGet = (req, res) => {
   let login_token = req.cookies.login_token;
   var id;
-  console.log(login_token, "token in profile");
+ 
   jwt.verify(login_token, "sanjay", (err, decoded) => {
-    console.log(decoded, "decoded");
+ 
 
     id = decoded.id[0].id;
   });
@@ -30,13 +30,12 @@ var profileGet = (req, res) => {
   let sqlReferenceInfo = `select * from reference_master where reg_id=${id};`;
   let sqlProfilePic = `select * from document_master where reg_id=${id}; `;
 
-  console.log(sqlProfilePic, "sql of pic");
   conn.query(sqlBasicInfo, (err, dataBasic) => {
     conn.query(sqlEduInfo, (err, dataEdu) => {
       conn.query(sqlExperienceInfo, (err, dataExp) => {
         conn.query(sqlReferenceInfo, (err, dataRef) => {
           conn.query(sqlProfilePic, (err, datapic) => {
-            console.log(datapic, "datapic");
+         
             res.render("profile", {
               basicdata: dataBasic,
               dataEdu,
@@ -53,11 +52,10 @@ var profileGet = (req, res) => {
 
 let profilePost = (req, res) => {
   const login_token = req.cookies.login_token;
-  
-  console.log(login_token);
+
 
   jwt.verify(login_token, "sanjay", (err, decoded) => {
-    console.log(decoded);
+    
   });
 };
 

@@ -35,7 +35,7 @@ var attendanceGet = async (req, res) => {
       `select id, status, time from check_master where reg_id = '${login_user__id}' order by id  LIMIT ${offset},${limit}`
     );
 
-    //console.log("reg is dataaaaaaaa", `select id, status, time from check_master where reg_id = '${ login_user__id}' order by id  LIMIT ${offset},${limit}`);
+  
 
     var cntresult = await alldataquery(
       `select count(*) as count from check_master where reg_id = '${login_user__id}'`
@@ -64,7 +64,7 @@ var attendanceGet = async (req, res) => {
           .utc()
           .utcOffset(tz)
           .format("hh:mm");
-        console.log(start_time_h + "fsdfcs");
+      
         starttime.push(star_time);
       } else {
         var end = checkdata[i].time.toJSON("HH:MM:SS").slice(11, 18);
@@ -92,12 +92,7 @@ var attendanceGet = async (req, res) => {
       }
     }
 
-    // console.log(progress);
-    //     console.log("start",starttime);
-    //     console.log("exit",exittime);
-    //     console.log("date",startdate);
-    // });
-
+   
     res.render("attendance", {
       starttime,
       exittime,
@@ -130,12 +125,11 @@ function diffrence_time(entry_time, exit_time) {
   var m = m2 - m1;
   var s = s2 - s1;
 
-  console.log(h1 + " " + h2 + "" + "h1ms");
+ 
   var totalsec = h * 60 * 60 + m * 60 + s;
 
   var working = Math.floor((totalsec * 100) / (9 * 60 * 60));
 
-  console.log(working, "working");
   return working;
 }
 

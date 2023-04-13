@@ -17,7 +17,7 @@ var conn = require("../config/dbConnect");
 
 var fetchcommentGet = (req, res) => {
     
-  console.log("in fetch comment");
+
   
   var login_token = req.cookies.login_token
 
@@ -33,14 +33,14 @@ var fetchcommentGet = (req, res) => {
           if(data.length == 0){
               console.log("wrong");
           }else{
-              console.log(data,"data");
+      
               var sql = data[0].comment
-              console.log(sql,"query .....");
+             
               
                   var sql1 = `select comment from comment_table where reg_id='${login_user__id}' ORDER BY id DESC limit 3 ;`
                   conn.query(sql1 , function(err,result){
                       if(err) throw err
-                      console.log(result,"result");
+                     
                           res.json(result)
                     
                   })

@@ -11,7 +11,7 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts); //Added
 app.set("layout", "./layouts/main"); //added
 var jwt = require("jsonwebtoken");
-var {leaveGet,leavePost,leave_editGet,update_leavePost}=require("../controller/leaves")
+var {leaveGet,leavePost,leave_editGet,update_leavePost,leave_approvePost,leave_cancelPost}=require("../controller/leaves")
 var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
 var {authentication}=require("../middleware/authMiddleware")
@@ -20,8 +20,10 @@ app.get("/leaves",authentication, leaveGet);
 //app.get("/updateleave",authentication, updateleaveGet);
 
 app.post("/leaves",authentication,leavePost);
-app.get("/leave_edit",authentication,leave_editGet);
+app.post("/leave_edit",authentication,leave_editGet);
 app.post("/update_leaves",authentication,update_leavePost);
+app.post("/leave_approve",authentication,leave_approvePost);
+app.post("/leave_cancel",authentication,leave_cancelPost);
 
 
 

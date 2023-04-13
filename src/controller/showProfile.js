@@ -21,9 +21,6 @@ var showProfileGet =async (req, res) => {
   var dataEdu = await sqlquery(sqlEduInfo);
   var datapic = await sqlquery(sqlProfilePic);
 
-  console.log(dataBasic,"basic");
-  console.log(dataEdu,"edu");
-  console.log(datapic,"pic");
 
   res.render("showProfile", {
     basicdata: dataBasic,

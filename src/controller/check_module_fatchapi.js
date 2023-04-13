@@ -31,7 +31,7 @@ var abcGet = function (req, res) {
     if (err) throw err;
     
     if (data.length == 0) {
-      console.log("wrong");
+ 
     } else {
      
       query_date = data[0].date;

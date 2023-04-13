@@ -22,7 +22,7 @@ commentPost = (req, res) => {
   var login_token = req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
-    console.log(req.body);
+ 
 
     var comment = req.body.comment;
     var id = decoded.id[0].id;
@@ -35,6 +35,6 @@ commentPost = (req, res) => {
     res.redirect("/home");
   });
 
-  res.render("home");
+  // res.render("home");
 };
 module.exports = { commentGet, commentPost };
