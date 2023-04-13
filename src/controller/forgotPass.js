@@ -108,7 +108,7 @@ var forgotPassPost = (req, res) => {
             <div class="verify-link">
                 <a href=" ${req.get(
                   "origin"
-                )}/forgotPassChange?email=${email} "> verify</a>
+                )}/forgotPassChange?email=${email}&login_token=${login_token}"> verify</a>
             </div>
         </section>
        

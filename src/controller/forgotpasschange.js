@@ -15,16 +15,31 @@ var bcrypt=require("bcrypt")
 var conn=require("../config/dbConnect")
 
 var forgotpasschangeget=(req,res)=>{
-    res.render("forgotPassChange",{layout:false})
+
+    var email=req.query.email
+
+    let login_token=jwt.sign({ email: email },"sanjay")
+    res.cookie("login_token",login_token)
+    res.render("forgotPassChange",{email,layout:false})
 }
 
 var forgotpasschangepost=async (req,res)=>{
 
+
     var newpass=req.body.newpass
     var confnewpass=req.body.conpass
-    var email=req.body.email
+   
+    let token=req.cookies.login_token
 
-  
+    let emailVerify;
+    jwt.verify(token,"sanjay",(err,decoded)=>{
+
+        emailVerify=decoded.email
+
+    })
+    if(newpass!=confnewpass){
+        res.send("password and confirm password is not same")
+    }
 
     let encrypt_password;
     encrypt_password = await bcrypt.hash(newpass, 10);
@@ -32,9 +47,9 @@ var forgotpasschangepost=async (req,res)=>{
 
     let sql=`update registration 
     set u_password="${encrypt_password}"
-    where u_email="${email}";`
+    where u_email="${emailVerify}";`
 
-   
+   console.log(sql,"sql");
     conn.query(sql,(err,data)=>{
         res.redirect("/login")
     })

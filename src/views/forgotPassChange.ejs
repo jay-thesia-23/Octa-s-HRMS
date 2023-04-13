@@ -18,13 +18,13 @@
           <div class="input-box-login">
             <p id="showerror" style="color: red;"></p>
             <span class="details">Email</span>
-            <input type="email" placeholder="Enter your email" name="email" required>
+            <input type="email" placeholder="Enter your email" name="email" value="<%=email%>" disabled >
           </div>
           
           <div class="input-box-login">
             <p id="showerror" style="color: red;"></p>
             <span class="details">New Password</span>
-            <input type="text" placeholder="Enter your password" name="newpass" required>
+            <input type="password" placeholder="Enter your password" name="newpass" required>
           </div>
          
           <div class="input-box-login">
@@ -43,7 +43,14 @@
   </div>
 
 
-  <!-- <script>
+   <script>
+
+    function passValidation(){
+      let newpass=document.getElementById("newpass");
+      let conpass=document.getElementById("conpass");
+
+
+    }
      function login_validation(){
             var showerror=document.getElementById("showerror");
             var email=document.getElementById("email").value;
@@ -74,7 +81,7 @@
                     }
                 });
          }
-  </script> -->
+  </script> 
 
 </body>
 </html>
