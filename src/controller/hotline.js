@@ -73,7 +73,14 @@ async function online_ofline_1() {
 const hotlineGet = async (req, res) => {
   var login_token = req.cookies.login_token;
   jwt.verify(login_token, "sanjay", function (err, decoded) {
-    login_user__id = decoded.id[0].id;
+    console.log(decoded.id,"decode,,,");
+
+    if(decoded.id==undefined){
+      res.redirect("/login")
+    }else{
+      login_user__id = decoded.id[0].id;
+    }
+   
   });
 
   var alldetails = await alldata(

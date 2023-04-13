@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views",path.join(__dirname,"src/views"))
 
 app.use(express.static(path.join(__dirname, "uploads")))
+app.use(express.static(path.join(__dirname, "compress")))
 
 var conn = require("./src/config/dbConnect");
 
