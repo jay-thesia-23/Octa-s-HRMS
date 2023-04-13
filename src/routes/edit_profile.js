@@ -21,8 +21,8 @@ var jwt = require("jsonwebtoken");
 app.use(cookieParser());
 var { editProfileGet, editProfilePost } = require("../controller/edit_profile");
 var multer = require("multer");
-var {authentication}=require("../middleware/authMiddleware")
-app.get("/edit_profile",authentication, editProfileGet);
+var { authentication } = require("../middleware/authMiddleware");
+app.get("/edit_profile", authentication, editProfileGet);
 
 var uniqueSuffix = "";
 const storage = multer.diskStorage({
@@ -40,25 +40,7 @@ const upload = multer({ storage });
 
 app.post(
   "/wizard_edit",
- [ upload.fields([
-    { name: "profilePic", maxCount: 1 },
-    {
-      name: "adhar",
-      maxCount: 1,
-    },
-    {
-      name: "resume",
-      maxCount: 1,
-    },
-    {
-      name: "cheque",
-      maxCount: 1,
-    },
-    {
-      name: "others",
-      maxCount: 1,
-    },
-  ]),authentication],
+  [upload.single( "profilePic"), authentication],
   editProfilePost
 );
 

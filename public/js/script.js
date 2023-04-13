@@ -30,7 +30,9 @@ for (let i = 0; i < ca.length; i++) {
 
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    var currRegister1 = registerPage1();
+    // var currRegister1 = registerPage1();
+
+    var currRegister1=true
 
     
 
@@ -43,7 +45,8 @@ nextBtns.forEach((btn) => {
 });
 nextBtns2.forEach((btn) => {
   btn.addEventListener("click", () => {
-    var currRegister2 = registerPage2();
+    // var currRegister2 = registerPage2();
+    var currRegister2=true
 
     
 
@@ -106,165 +109,165 @@ async function select(state_id) {
   }
 }
 
-function registerPage1() {
+// function registerPage1() {
   
-  registerPage5();
+//   registerPage5();
 
-  var fname = document.getElementById("fname").value || "";
-  var lname = document.getElementById("lname").value || "";
-  var dob = document.getElementById("dob_1").value || "";
-  var address = document.getElementById("address").value || "";
-  var contact = document.getElementById("contact").value || "";
-  var state = document.getElementById("state").value || "";
-  var validRegex =
-          /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
-
-
-  var email=document.getElementById("email").value || ""
-  var designation=document.getElementById("designation").value || ""
-  var department=document.getElementById("department").value || ""  
-
-  var relationship = document.getElementById("relationship").value || "";
-  //var gender = document.getElementById('gender').value || "";
-  var city = document.getElementById("city").value || "";
-  var isvalidate = true;
-
-  if (fname == null || fname == "" || !isNaN(fname)) {
-    document.getElementById("fname-error").innerHTML = "Please enter username";
-    isvalidate = false;
-  } else {
-    document.getElementById("fname-error").innerHTML = "";
-  }
-
-  if (designation == null || designation == "" || !isNaN(designation)) {
-    document.getElementById("designation-error").innerHTML = "Please enter Designation";
-    isvalidate = false;
-  } else {
-    document.getElementById("designation-error").innerHTML = "";
-  }
-
-  if (department == null || department == "" || !isNaN(department)) {
-    document.getElementById("department-error").innerHTML = "Please enter Department";
-    isvalidate = false;
-  } else {
-    document.getElementById("department-error").innerHTML = "";
-  }
-
-  if (lname == null || lname == ""  || !isNaN(lname)) {
-    document.getElementById("lname-error").innerHTML = "Please enter lname";
-    isvalidate = false;
-  } else {
-    document.getElementById("lname-error").innerHTML = "";
-  }
-
-  if (dob == null || dob == "") {
-    document.getElementById("dob-error").innerHTML =
-      "Please fill date of birth";
-    isvalidate = false;
-  } else {
-    document.getElementById("dob-error").innerHTML = "";
-  }
-
-  if (address == null || address == "") {
-    document.getElementById("address-error").innerHTML = "Please enter address";
-    isvalidate = false;
-  } else {
-    document.getElementById("address-error").innerHTML = "";
-  }
-
-  if (contact == null || contact == "") {
-    document.getElementById("contact-error").innerHTML =
-      "Please enter contact number";
-    isvalidate = false;
-  } else if (isNaN(contact)) {
-    document.getElementById("contact-error").innerHTML =
-      "Please enter valid contact number";
-    isvalidate = false;
-  } else {
-    document.getElementById("contact-error").innerHTML = "";
-  }
+//   var fname = document.getElementById("fname").value || "";
+//   var lname = document.getElementById("lname").value || "";
+//   var dob = document.getElementById("dob_1").value || "";
+//   var address = document.getElementById("address").value || "";
+//   var contact = document.getElementById("contact").value || "";
+//   var state = document.getElementById("state").value || "";
+//   var validRegex =
+//           /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
 
 
-  if (!email.match(validRegex)) {
-    document.getElementById("email-error").innerHTML = "Enter Correct email_id .....";
-    isvalidate= false;
-  }
+//   var email=document.getElementById("email").value || ""
+//   var designation=document.getElementById("designation").value || ""
+//   var department=document.getElementById("department").value || ""  
+
+//   var relationship = document.getElementById("relationship").value || "";
+//   //var gender = document.getElementById('gender').value || "";
+//   var city = document.getElementById("city").value || "";
+//   var isvalidate = true;
+
+//   if (fname == null || fname == "" || !isNaN(fname)) {
+//     document.getElementById("fname-error").innerHTML = "Please enter username";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("fname-error").innerHTML = "";
+//   }
+
+//   if (designation == null || designation == "" || !isNaN(designation)) {
+//     document.getElementById("designation-error").innerHTML = "Please enter Designation";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("designation-error").innerHTML = "";
+//   }
+
+//   if (department == null || department == "" || !isNaN(department)) {
+//     document.getElementById("department-error").innerHTML = "Please enter Department";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("department-error").innerHTML = "";
+//   }
+
+//   if (lname == null || lname == ""  || !isNaN(lname)) {
+//     document.getElementById("lname-error").innerHTML = "Please enter lname";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("lname-error").innerHTML = "";
+//   }
+
+//   if (dob == null || dob == "") {
+//     document.getElementById("dob-error").innerHTML =
+//       "Please fill date of birth";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("dob-error").innerHTML = "";
+//   }
+
+//   if (address == null || address == "") {
+//     document.getElementById("address-error").innerHTML = "Please enter address";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("address-error").innerHTML = "";
+//   }
+
+//   if (contact == null || contact == "") {
+//     document.getElementById("contact-error").innerHTML =
+//       "Please enter contact number";
+//     isvalidate = false;
+//   } else if (isNaN(contact)) {
+//     document.getElementById("contact-error").innerHTML =
+//       "Please enter valid contact number";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("contact-error").innerHTML = "";
+//   }
+
+
+//   if (!email.match(validRegex)) {
+//     document.getElementById("email-error").innerHTML = "Enter Correct email_id .....";
+//     isvalidate= false;
+//   }
 
   
-  if (state.length <= 0) {
-    document.getElementById("state-error").innerHTML = "Please select state";
-    isvalidate = false;
-  } else {
-    document.getElementById("state-error").innerHTML = "";
-  }
+//   if (state.length <= 0) {
+//     document.getElementById("state-error").innerHTML = "Please select state";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("state-error").innerHTML = "";
+//   }
 
 
-  if (city == null || city == "") {
-    document.getElementById("city-error").innerHTML = "Please select city";
-    isvalidate = false;
-  } else {
-    document.getElementById("city-error").innerHTML = "";
-  }
+//   if (city == null || city == "") {
+//     document.getElementById("city-error").innerHTML = "Please select city";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("city-error").innerHTML = "";
+//   }
 
-  if (relationship == 0) {
-    document.getElementById("relationship-error").innerHTML =
-      "Please select relationship status";
-    isvalidate = false;
-  } else {
-    document.getElementById("relationship-error").innerHTML = "";
-  }
+//   if (relationship == 0) {
+//     document.getElementById("relationship-error").innerHTML =
+//       "Please select relationship status";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("relationship-error").innerHTML = "";
+//   }
 
-  console.log(isvalidate);
-  return isvalidate;
-}
+//   console.log(isvalidate);
+//   return isvalidate;
+// }
 
-function registerPage2() {
+// function registerPage2() {
 
-  var uni = document.getElementById("uni").value || "";
-  var passyear = document.getElementById("passyear").value || "";
-  var percent = document.getElementById("percent").value || "";
+//   var uni = document.getElementById("uni").value || "";
+//   var passyear = document.getElementById("passyear").value || "";
+//   var percent = document.getElementById("percent").value || "";
 
-  var isvalidate = true;
+//   var isvalidate = true;
 
-  if (uni == null || uni == "") {
-    document.getElementById("uni-error").innerHTML =
-      "Please enter university/college";
-    isvalidate = false;
-  } else {
-    document.getElementById("uni-error").innerHTML = "";
-  }
+//   if (uni == null || uni == "") {
+//     document.getElementById("uni-error").innerHTML =
+//       "Please enter university/college";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("uni-error").innerHTML = "";
+//   }
 
-  if (passyear == null || passyear == "") {
-    document.getElementById("year-error").innerHTML =
-      "Please enter passing year";
-    isvalidate = false;
-  } else {
-    document.getElementById("year-error").innerHTML = "";
-  }
+//   if (passyear == null || passyear == "") {
+//     document.getElementById("year-error").innerHTML =
+//       "Please enter passing year";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("year-error").innerHTML = "";
+//   }
 
-  if (percent == null || percent == "") {
-    document.getElementById("percent-error").innerHTML =
-      "Please enter percentage";
-    isvalidate = false;
-  } else {
-    document.getElementById("percent-error").innerHTML = "";
-  }
+//   if (percent == null || percent == "") {
+//     document.getElementById("percent-error").innerHTML =
+//       "Please enter percentage";
+//     isvalidate = false;
+//   } else {
+//     document.getElementById("percent-error").innerHTML = "";
+//   }
 
-  return isvalidate;
-}
+//   return isvalidate;
+// }
 
 function registerPage5() {
   var file = document.getElementsByClassName("file");
   var docerror = document.getElementById("doc-error");
 
- 
+ console.log(file);
   for (let i = 0; i < file.length; i++) {
     if (file[i].files.length == 0) {
       docerror.innerHTML = "please fill  all the file";
-      
       return false;
     } else {
       docerror.innerHTML = "";
+      return true
     }
   }
 

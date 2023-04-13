@@ -24,7 +24,6 @@ var editProfileGet = function (req, res) {
   var login_user__id;
 
   jwt.verify(login, "sanjay", function (err, decoded) {
-    // console.log(decoded);
     login_user__id = decoded.id[0].id;
   });
 
@@ -48,7 +47,7 @@ var editProfileGet = function (req, res) {
                 `SELECT * FROM reference_master where reg_id = ${login_user__id};`,
                 function (error, result3) {
                   if (error) throw error;
-                 
+
                   conn.query(
                     `select * from document_master where reg_id=${login_user__id}`,
                     (err, resultDoc) => {
@@ -87,46 +86,29 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 var editProfilePost = async (req, res) => {
+  var data = req.file;
 
-  var data = req.files;
+  var fileNameFormat = data.filename.split(".");
 
+  if (fileNameFormat[1] == "png") {
+    await sharp(`uploads/${data.filename}`)
+      .resize({ width: 200 })
+      .png({ quality: 80 })
+      .toFile(path.resolve("compress", `compress+${data.filename}`));
+  }
 
+  if (fileNameFormat[1] == "jpeg") {
+    await sharp(`uploads/${data.filename}`)
+      .resize({ width: 200 })
+      .jpeg({ quality: 80 })
+      .toFile(path.resolve("compress", `compress+${data.filename}`));
+  }
 
-  for (let i = 0; i < 5; i++) {
-    var objKey = Object.keys(data)[i];
-
-    for (let j = 0; j < 1; j++) {
-    
-      var subItem = data[objKey][j];
- 
-
-      var fileNameFormat=subItem.filename.split(".")
-
-
-
-      if(fileNameFormat[1]=="png"){
-        await sharp(`uploads/${subItem.filename}`)
-        .resize({ width: 200 })
-        .png({ quality: 80 })
-        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
-      }
-
-      if(fileNameFormat[1]=="jpeg"){
-        await sharp(`uploads/${subItem.filename}`)
-        .resize({ width: 200 })
-        .jpeg({ quality: 80 })
-        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
-      }
-
-      if(fileNameFormat[1]=="jpg"){
-        await sharp(`uploads/${subItem.filename}`)
-        .resize({ width: 200 })
-        .jpeg({ quality: 80 })
-        .toFile(path.resolve("compress", `compress+${subItem.filename}`));
-      }
-
-  
-    }
+  if (fileNameFormat[1] == "jpg") {
+    await sharp(`uploads/${data.filename}`)
+      .resize({ width: 200 })
+      .jpeg({ quality: 80 })
+      .toFile(path.resolve("compress", `compress+${data.filename}`));
   }
 
   var id;
@@ -159,7 +141,6 @@ var editProfilePost = async (req, res) => {
   var login_token = req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
-    // console.log(decoded);
     login_user__id = decoded.id[0].id;
   });
 
@@ -172,10 +153,18 @@ var editProfilePost = async (req, res) => {
     }
   );
 
-  const deleteDoc = `delete from document_master where reg_id ='${login_user__id}'`;
+  conn.query(
+    `delete from education_table where reg_id ='${login_user__id}'`,
+    function (error, res) {
+      if (error) throw error;
+    }
+  );
 
-  console.log(deleteDoc);
-  conn.query(deleteDoc, (err, dataDoc) => {});
+  const updateProfileDoc = `update document_master SET profile_pic="${data.filename}" where reg_id ='${login_user__id}'`;
+
+  conn.query(updateProfileDoc, (err, dataDoc) => {
+    console.log("profile is updated");
+  });
 
   conn.query(
     `insert into employee_basic_infomation (reg_id,firstname,lastname,birth_date,address,gender,phone_number,relationship,state,city,email,designation,department) values('${login_user__id}','${firstname}','${lastname}','${birth_date}','${address}','${gender}','${phone_number}','${relationship}','${state}','${city}','${email}','${designation}','${department}') ;`,
@@ -190,8 +179,6 @@ var editProfilePost = async (req, res) => {
           `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name}','${percentage}','${board_university_name}','${passout_year}');`,
           function (error, data) {
             if (error) throw error;
-
-            // console.log(data)
           }
         );
       } else {
@@ -200,7 +187,6 @@ var editProfilePost = async (req, res) => {
             `insert into education_table (reg_id,employee_id,cource_name,percentage,board_university_name,passout_year) values('${login_user__id}','${id}','${course_name[j]}','${percentage[j]}','${board_university_name[j]}','${passout_year[j]}');`,
             function (error, data) {
               if (error) throw error;
-              // console.log(data)
             }
           );
         }
@@ -211,22 +197,7 @@ var editProfilePost = async (req, res) => {
 
       conn.query(sql, function (error, data) {
         if (error) throw error;
-
-        var sqlGetDocs = `select * from document_master where req_id=${login_user__id}`;
-        var sqlDocs = `INSERT INTO document_master(
-          employee_id,
-          reg_id,
-          adhar,
-          resume_doc,
-          cheque,
-          other,
-          profile_pic) VALUES ("${id}","${login_user__id}","${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
-
-        conn.query(sqlDocs, (err, docs) => {});
       });
-
-      //documents
-      // var sqlDoc=`insert into document_master()`
     }
   );
 
