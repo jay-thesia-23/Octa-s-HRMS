@@ -20,7 +20,7 @@ app.get("/leaves",authentication, leaveGet);
 //app.get("/updateleave",authentication, updateleaveGet);
 
 app.post("/leaves",authentication,leavePost);
-app.get("/leave_edit",authentication,leave_editGet);
+app.post("/leave_edit",authentication,leave_editGet);
 app.post("/update_leaves",authentication,update_leavePost);
 app.post("/leave_approve",authentication,leave_approvePost);
 app.post("/leave_cancel",authentication,leave_cancelPost);

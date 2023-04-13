@@ -133,7 +133,7 @@ var update_leavePost = (req, res) => {
       if (err) throw err;
       // res.json(result_edit)
       // res.render("leaves_edit", { result_edit });
-      console.log("update........"); 
+  
     });
     res.redirect("/leaves");
 
@@ -143,7 +143,7 @@ var leave_approvePost = (req, res) => {
 
 
   var request_id = req.query.request_id;
-  console.log(request_id,"ooooooo");
+ 
 
   var sql = `update request_leave_table set leave_status = 'Approved' where request_id = '${request_id}' `;
 
@@ -151,10 +151,11 @@ var leave_approvePost = (req, res) => {
       if (err) throw err;
       // res.json(result_edit)
       // res.render("leaves_edit", { result_edit });
-      console.log("update........"); 
 
 
-    });      res.redirect("/leaves");
+
+    });     
+    //  res.redirect("/leaves");
 
 
 };
@@ -176,7 +177,7 @@ var leave_cancelPost = (req, res) => {
 
 
     });
-    res.redirect("/leaves");
+    // res.redirect("/leaves");
 
 };
 

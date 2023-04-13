@@ -43,12 +43,12 @@ var editProfileGet = function (req, res) {
             `SELECT * FROM education_table where reg_id = ${login_user__id};`,
             function (error, result2) {
               if (error) throw error;
-              //  console.log(result2)
+
               conn.query(
                 `SELECT * FROM reference_master where reg_id = ${login_user__id};`,
                 function (error, result3) {
                   if (error) throw error;
-                  //  console.log(result3)
+                 
                   conn.query(
                     `select * from document_master where reg_id=${login_user__id}`,
                     (err, resultDoc) => {
@@ -79,8 +79,6 @@ const storage = multer.diskStorage({
   },
   filename: async function (req, files, cb) {
     uniqueSuffix = `${Date.now()}-${files.originalname}`;
-    console.log(uniqueSuffix, "from the storage");
-    console.log(uniqueSuffix, "unuidfssufficx");
 
     cb(null, uniqueSuffix);
   },
@@ -89,25 +87,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 var editProfilePost = async (req, res) => {
-  // console.log("helllo POASTETUEH");
-  // console.log(req.files, "file in uploads");
-  // console.log(req.body);
 
   var data = req.files;
 
-  console.log(Object.keys(data).length);
+
 
   for (let i = 0; i < 5; i++) {
     var objKey = Object.keys(data)[i];
 
     for (let j = 0; j < 1; j++) {
-      console.log(data[objKey], "objectkdfsjdf");
+    
       var subItem = data[objKey][j];
-      console.log(subItem.filename, "file namessssssss");
+ 
 
       var fileNameFormat=subItem.filename.split(".")
 
-      console.log(fileNameFormat,"format");
+
 
       if(fileNameFormat[1]=="png"){
         await sharp(`uploads/${subItem.filename}`)

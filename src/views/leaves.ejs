@@ -136,13 +136,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label><b>Leave Date</b></label>
-                        <input type="date" placeholder="Leave Date" name="ldate">
+                        <input type="date" placeholder="Leave Date" name="ldate" id="ldate">
                         <span class="span1" id="leave-error"></span>
                     </div>
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
-                        <select class="s1" name="leavetype">
-                            <option value="hide">Select Leave Type</option>
+                        <select class="s1" name="leavetype" id="leavetype">
+                            <option value="" disabled>Select Leave Type</option>
                             <option value="SL">SL</option>
                             <option value="CL">CL</option>
                             <option value="PL">PL</option>
@@ -157,7 +157,7 @@
                 <div class="row">
                     <div class="col-8">
                         <label for="reason">Reason</label>
-                        <textarea rows="4" name="reason"></textarea>
+                        <textarea rows="4" name="reason" id="reason"></textarea>
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
@@ -188,11 +188,12 @@
 <script>
 
 
+
     function leave_edit(leave, b) {
 
 
         fetch(`/leave_edit?request_id=${leave}`, {
-            method: "get",
+            method: "post",
             headers: {
                 "Content-type": "application/json",
             },
@@ -206,7 +207,7 @@
                 var s = ""
                 s += `
 
-    <form class="modal-content animate" id="close" method="post" action="/update_leaves" >
+    <form class="modal-content animate" id="close_edit" method="post" action="/update_leaves" >
 
       
         <div class="main-modal">
@@ -216,6 +217,10 @@
                         <span>Add Leave</span>
                     </div>
                 </div>
+                <div class="col-1">
+                    <span onclick="document.getElementById('close_edit').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
              
             </div>
 
@@ -223,20 +228,31 @@
                 <div class="row">
                     <div class="col-6">
                         <label><b>Leave Date</b></label>
-                        <input type="date" placeholder="Leave Date" name="ldate" value= ${result_edit[0].leave_date} >
+                        <input type="date" placeholder="Leave Date" name="ldate" id="ldate" value= ${result_edit[0].leave_date} >
                         <span class="span1" id="leave-error"></span>
                     </div>
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
-                        <select class="s1" name="leavetype">
-                           
-                            <option value="" selected>${result_edit[0].leave_category}</option>
-                            <option value="SL">SL</option>
-                            <option value="CL">CL</option>
-                            <option value="PL">PL</option>
-                            <option value="UPL">UPL</option>
+                        <select class="s1" name="leavetype" id="leavetype">`
 
-                        </select>
+                           var arr =['SL','CL','PL','UPL'] 
+                           
+                         
+
+                            for(var i=0;i<arr.length ;i++) {
+                                
+                            
+
+                                if(arr[i] == result_edit[0].leave_category ){
+                                    s+=` <option value=`+arr[i]+` selected >`+arr[i]+`</option>`
+                                     }else{
+                                      s+=`<option value=`+arr[i]+`>`+arr[i]+`</option>`
+                                     }
+                                 
+                                    }
+                        
+
+                    s+=   ` </select>
                         <span class="span1" id="ltype-error"></span>
                     </div>
                 
@@ -245,7 +261,7 @@
                 <div class="row">
                     <div class="col-8">
                         <label for="reason">Reason</label>
-                        <textarea rows="4" name="reason" value= ${result_edit[0].leave_reason} ></textarea>
+                        <textarea rows="4" name="reason" id="reason">${result_edit[0].leave_reason}</textarea>
                         <span class="span1" id="reason-error"></span>
                     </div>
                 </div>
@@ -260,7 +276,8 @@
 
                     <div class="col-8">
                         <div class="c1">
-                            
+                            <span class="cancel"
+                                onclick="document.getElementById('close_edit').style.display='none'">Cancel</span>
                             <input type="submit" class="apply" onclick="return leaveFunction() " value="Apply">
                         </div>
 
@@ -274,18 +291,13 @@
 
 
                  edit_leave.innerHTML = s
-                 console.log(s);
-                console.log(edit_leave+"ZZZZZ");
+                
 
                
             })
 
 
-        console.log(leave);
-        console.log(b);
-
-       
-
+   
     }
     var modal = document.getElementById('id01');
     window.onclick = function (event) {

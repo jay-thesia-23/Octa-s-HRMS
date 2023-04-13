@@ -70,9 +70,7 @@
                             <div class="record_atted_txt">Add Your Comment</div>
 
                             <div class="mt_30">
-                                <!-- <input  onkeyup="isComment(this)" id="commenter" type="text" class="commentInput coment" placeholder="Add Comment" />
-                            <button onclick="addComment()"   id="commentBtn" type="button" class="cmt_btn abutton">Add</button> -->
-
+                                
 
                                 <input id="comment" name="comment" type="text" class="commentInput"
                                     placeholder="comment">
@@ -289,14 +287,7 @@
 </section>
 <script>
 
-    // function myComment(){
-    //     var input = document.getElementById("comment").value;
-    //     var cmt = document.getElementById("commentBtn");
-
-    //     if(input.trim()== ''){
-    //         cmt.disable
-    //     }
-    // }
+ 
 
     let input = document.querySelector(".commentInput");
     let button = document.querySelector(".btn");
@@ -312,7 +303,7 @@
     }
 
     var mode_switch = document.getElementById('mode_btn')
-    console.log("in a script of home");
+
 
     var welcomecard = document.getElementById('welcomecard')
     var dashboardcrd1 = document.getElementById('dashboardcrd1')
