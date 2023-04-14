@@ -17,9 +17,30 @@ function autoUnable() {
 
 autoUnable();
 
+function checkin_confirm(){
+  if(confirm("Are you sure you want to Check_In ?")){
+    demo(),checkin()
+  }
+}
+function breakin_confirm(){
+  if(confirm("Are you sure you want to Break_In ?")){
+    breck(),breckin()
+  }
+}
+function breakout_confirm(){
+  if(confirm("Are you sure you want to Break_Out ?")){
+    brc_out() , breckout()
+  }
+}
+function checkout_confirm(){
+  if(confirm("Are you sure you want to Check_Out ?")){
+    chk_out() , checkout(),autoUnable()
+  }
+}
+
 function demo() {
 
-  if(confirm("Are you sure you want to check in ?")){
+  
     document.getElementById("attendanceRecord").hidden = false;
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = false;
@@ -46,11 +67,11 @@ function demo() {
   check.append(div);
   }
   
-}
+
 
 function chk_out() {
 
-  if(confirm("Are you sure you want to checkout ?")){
+ 
   document.getElementById("check_in").disabled = false;
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
@@ -83,10 +104,10 @@ function chk_out() {
   document.getElementById("breck_in").disabled = true;
   document.getElementById("breck_out").disabled = true;
 }
-}
+
 
 function breck() {
-  if(confirm("Are you sure you want to break in ?")){
+ 
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
@@ -112,7 +133,7 @@ function breck() {
 
   check.append(div);
 }
-}
+
 
 function brc_out() {
   document.getElementById("check_in").disabled = true;
