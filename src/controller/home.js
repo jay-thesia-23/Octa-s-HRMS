@@ -88,6 +88,11 @@ var employeeActivityGet = async (req, res) => {
   );
   var employee_activity = employee_check.concat(employee_breck);
 
+  employee_activity.sort(function(a,b){
+    return b.time-a.time
+    })
+
+
   res.json(employee_activity);
   
 };

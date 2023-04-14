@@ -8,7 +8,8 @@ const tz = moment().utcOffset();
 async function fatchcheckmodule() {
   document.cookie = `tz=${tz}`;
 
-  fetch("/abc", {
+  
+ await fetch("/abc", {
     method: "get",
     headers: {
       "Content-type": "application/json",
@@ -56,7 +57,7 @@ async function fatchbreckin() {
 
   const tz = moment().utcOffset();
 
-  fetch("/brc_in", {
+  await fetch("/brc_in", {
     method: "get",
     headers: {
       "Content-type": "application/json",
@@ -84,7 +85,9 @@ async function fatchbreckin() {
         var minutes = timecheckin.slice(3, 5);
 
         var div = document.createElement("div");
-        if (i % 2 == 0) {
+
+        console.log(data,"log date data of break out");
+        if (data[i].status=="breck_in") {
           div.setAttribute("class", "breckInColor");
 
           div.innerHTML =
@@ -95,7 +98,9 @@ async function fatchbreckin() {
           document.getElementById("check_out").disabled = true;
           document.getElementById("breck_in").disabled = true;
           document.getElementById("breck_out").disabled = false;
-        } else {
+        } 
+        
+        if(data[i].status=="breck_out"){
           div.setAttribute("class", "breakOutColor");
           div.innerHTML =
             "Break Out " +
@@ -116,7 +121,7 @@ async function fatchchkout() {
 
 
 
-  fetch("/chk_out", {
+  await fetch("/chk_out", {
     method: "get",
     headers: {
       "Content-type": "application/json",

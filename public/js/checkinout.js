@@ -18,7 +18,9 @@ function autoUnable() {
 autoUnable();
 
 function demo() {
-  document.getElementById("attendanceRecord").hidden = false;
+
+  if(confirm("Are you sure you want to check in ?")){
+    document.getElementById("attendanceRecord").hidden = false;
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = false;
   document.getElementById("breck_in").disabled = false;
@@ -42,9 +44,13 @@ function demo() {
   div.innerHTML = "Check In " + timeIn12HourFormat;
 
   check.append(div);
+  }
+  
 }
 
 function chk_out() {
+
+  if(confirm("Are you sure you want to checkout ?")){
   document.getElementById("check_in").disabled = false;
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
@@ -77,8 +83,10 @@ function chk_out() {
   document.getElementById("breck_in").disabled = true;
   document.getElementById("breck_out").disabled = true;
 }
+}
 
 function breck() {
+  if(confirm("Are you sure you want to break in ?")){
   document.getElementById("check_in").disabled = true;
   document.getElementById("check_out").disabled = true;
   document.getElementById("breck_in").disabled = true;
@@ -103,6 +111,7 @@ function breck() {
   div.innerHTML = "break In " + timeIn12HourFormat;
 
   check.append(div);
+}
 }
 
 function brc_out() {
@@ -162,7 +171,9 @@ async function breckin() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {});
+    .then((data) => {
+      console.log("break in entry"+data);
+    });
 }
 
 async function breckout() {
@@ -173,5 +184,7 @@ async function breckout() {
     },
   })
     .then((res) => res.json())
-    .then((data) => {});
+    .then((data) => {
+      console.log("break in out"+data);
+    });
 }

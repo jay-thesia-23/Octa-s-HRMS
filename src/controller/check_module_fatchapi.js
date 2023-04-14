@@ -72,7 +72,7 @@ var breakInGet = function (req, res) {
     } else {
       query_date = data[0].date;
       if (query_date == fulldate) {
-        var time = `select time from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
+        var time = `select time, status from breck_master where reg_id='${login_user__id}' and date='${fulldate}';`;
         conn.query(time, function (err, result) {
         if (err) throw err;
         

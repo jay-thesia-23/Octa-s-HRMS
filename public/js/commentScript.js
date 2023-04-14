@@ -2,7 +2,7 @@ async function fetchComment() {
 
 
 
-  fetch("/comment_fatch", {
+  await fetch("/comment_fatch", {
     method: "get",
     headers: {
       "Content-type": "application/json",

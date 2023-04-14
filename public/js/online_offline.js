@@ -7,7 +7,7 @@ async function offline() {
 }
 
 async function employee_activity() {
-  fetch("/employee_activity", {
+  await fetch("/employee_activity", {
     method: "get",
     headers: {
       "Content-type": "application/json",
@@ -82,7 +82,7 @@ async function employee_activity() {
 async function search() {
   const name = document.getElementById("search").value;
 
-  fetch(`/search?name=${name}`, {
+  await fetch(`/search?name=${name}`, {
     method: "get",
     headers: {
       "Content-type": "application/json",
@@ -167,7 +167,7 @@ async function hotSearch() {
   const on_static=document.getElementById("on_static")
   on_static.innerHTML=""
 
-  fetch(`/hotsearch?search=${search}`, {
+  await fetch(`/hotsearch?search=${search}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -261,7 +261,7 @@ async function hotSearch() {
 async function hotoffSearch() {
   const search = document.getElementById("search").value;
  
-  fetch(`/hotoffsearch?search=${search}`, {
+  await fetch(`/hotoffsearch?search=${search}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json",
