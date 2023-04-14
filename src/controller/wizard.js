@@ -180,9 +180,13 @@ const wizardPost = async (req, res) => {
 
   var login_token = await req.cookies.login_token;
 
+  var decodedEmail;
+
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     console.log(decoded);
     login_user__id = decoded.id[0].id;
+
+    decodedEmail=decoded.email
     console.log(login_user__id);
   });
   console.log(login_user__id);
@@ -196,21 +200,7 @@ const wizardPost = async (req, res) => {
       id = data.insertId;
       console.log(id, "last insserted id");
 
-      //document
-      var sqlDocs = `INSERT INTO document_master(
-        employee_id,
-        reg_id,
-        adhar,
-        resume_doc,
-        cheque,
-        other,
-        profile_pic) VALUES (${id},${login_user__id},"${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
-
-      console.log(sqlDocs);
-      conn.query(sqlDocs, (err, docs) => {
-        console.log("doc is inserted");
-      });
-
+   
       // education
 
       if (typeof course_name == "string") {
@@ -240,19 +230,39 @@ const wizardPost = async (req, res) => {
 
       conn.query(sql, function (error, data) {
         if (error) throw error;
+        
       });
+
+
+         //document
+         var sqlDocs = `INSERT INTO document_master(
+          employee_id,
+          reg_id,
+          adhar,
+          resume_doc,
+          cheque,
+          other,
+          profile_pic) VALUES (${id},${login_user__id},"${req.files.adhar[0].filename}","${req.files.resume[0].filename}","${req.files.cheque[0].filename}","${req.files.others[0].filename}","${req.files.profilePic[0].filename}");`;
+  
+        console.log(sqlDocs);
+        conn.query(sqlDocs, (err, docs) => {
+          conn.query(`update registration set u_login = '0' where u_email='${decodedEmail}';`,
+              (err, data) => {
+                if (err) throw err;
+                console.log("update it");
+                
+              });
+          console.log("doc is inserted");
+          res.redirect("/home");
+        });
+  
     }
   );
 
-  conn.query(`update registration set u_login = '0' where u_email='${email}';`,
-            (err, data) => {
-              if (err) throw err;
-              
-              
-            });
+  
 
   // res.end();
-  res.redirect("/home");
+
 };
 
 module.exports = {
