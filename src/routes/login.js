@@ -22,12 +22,11 @@ app.set("views",path.join(__dirname,"../views"))
 
 app.use(cookieParser());
 
-var { loginGet,Inemail,loginPost }=require("../controller/login")
+var { loginGet,Inemail,loginPost,setPost }=require("../controller/login")
 
 app.use("/public", express.static("public"));
 
 app.get("/login", loginGet);
-
-
 app.post("/login", loginPost);
+app.post("/set",setPost)
 module.exports = app ;

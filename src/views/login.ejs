@@ -35,7 +35,7 @@
       </div>
 
         <div class="button">
-          <input type="submit" value="Login">
+          <input type="submit" value="Login" onclick="setLocal()">
         </div>
         <div class="text">
             <p>
@@ -48,6 +48,29 @@
 
 
 
+<script>
 
+
+
+async function  setLocal(){
+  
+  await fetch("/login",{
+  method:"POST",
+  headers:{
+    "Content-type":"application/json"
+  }
+}).then((res)=>res.json())
+.then((res)=>{
+  console.log(res,"ressponse");
+
+  var setLS=localStorage.setItem("myToken",res)
+}).catch((e)=>{
+  console.log(e);
+})
+
+
+}
+
+</script>
 </body>
 </html>

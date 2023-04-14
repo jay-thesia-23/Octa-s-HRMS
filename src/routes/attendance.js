@@ -11,7 +11,8 @@ var path = require("path");
 
 app.set("views", path.join(__dirname, "../views"));
 var {authentication}=require("../middleware/authMiddleware")
+var {wizardFill}=require("../middleware/noWizard")
 
-app.get("/attendance",authentication, attendanceGet);
+app.get("/attendance",[authentication,wizardFill], attendanceGet);
 
 module.exports = app;

@@ -12,8 +12,8 @@ var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views",path.join(__dirname,"src/views"))
 
-app.use(express.static(path.join(__dirname, "uploads")))
-app.use(express.static(path.join(__dirname, "compress")))
+// app.use(express.static(path.join(__dirname, "uploads")))
+// app.use(express.static(path.join(__dirname, "compress")))
 
 var conn = require("./src/config/dbConnect");
 
@@ -29,12 +29,21 @@ var conn = require("./src/config/dbConnect");
 //   })
 // );
 
+
+
 app.use(express.static("uploads"));
+
+
+// var {wizardFill}=require("./src/middleware/noWizard")
+// app.all("/",wizardFill)
+
 const register = require("./src/routes/register");
 app.use(register);
 
 const login = require("./src/routes/login");
 app.use(login);
+
+
 
 const checkInOut = require("./src/routes/checkInOut");
 app.use(checkInOut);
@@ -79,6 +88,12 @@ app.use(forgotPasschange)
 
 var logout=require("./src/routes/logout")
 app.use(logout)
+
+
+
+app.use("/",(req,res)=>{
+  res.redirect("/login")
+})
 
 app.use((req, res, next) => {
   res.render("page404",{layout:false})

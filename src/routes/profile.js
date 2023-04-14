@@ -22,7 +22,8 @@ app.set("views", path.join(__dirname, "../views"));
 var { profileGet, profilePost } = require("../controller/profile");
 
 var {authentication}=require("../middleware/authMiddleware")
-app.get("/profile",authentication, profileGet);
+var {wizardFill}=require("../middleware/noWizard")
+app.get("/profile",[authentication,wizardFill], profileGet);
 
 app.post("/profile",authentication, profilePost);
 

@@ -172,7 +172,7 @@ async function breckin() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("break in entry"+data);
+    
     });
 }
 

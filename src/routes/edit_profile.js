@@ -20,9 +20,12 @@ var jwt = require("jsonwebtoken");
 
 app.use(cookieParser());
 var { editProfileGet, editProfilePost } = require("../controller/edit_profile");
+var {wizardFill}=require("../middleware/noWizard")
 var multer = require("multer");
 var { authentication } = require("../middleware/authMiddleware");
-app.get("/edit_profile", authentication, editProfileGet);
+
+
+app.get("/edit_profile", [authentication,wizardFill], editProfileGet);
 
 var uniqueSuffix = "";
 const storage = multer.diskStorage({

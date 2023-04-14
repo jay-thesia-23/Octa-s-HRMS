@@ -86,7 +86,7 @@ async function fatchbreckin() {
 
         var div = document.createElement("div");
 
-        console.log(data,"log date data of break out");
+   
         if (data[i].status=="breck_in") {
           div.setAttribute("class", "breckInColor");
 

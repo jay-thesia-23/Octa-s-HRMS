@@ -9,6 +9,7 @@ var conn = require("../config/dbConnect");
 var jwt = require("jsonwebtoken");
 var util = require("util");
 var moment=require("moment");
+const { decode } = require("punycode");
 
 
 var alldata = util.promisify(conn.query.bind(conn));
@@ -23,7 +24,9 @@ var z = d.getFullYear();
 var fulldate = y + "/" + x + "/" + z;
 
 
-var homeGet = (req, res) => {
+var homeGet = async (req, res) => {
+
+  
   
   var date = new Date();
   

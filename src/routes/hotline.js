@@ -24,9 +24,11 @@ var {
 var router = express.Router();
 var { authentication } = require("../middleware/authMiddleware");
 
-app.get("/hotline", authentication, hotlineGet);
-app.get("/hotline/online",authentication, hotlineOnlineGet);
-app.get("/hotline/offline",authentication, hotlineOfflineGet);
+var {wizardFill}=require("../middleware/noWizard")
+
+app.get("/hotline", [authentication,wizardFill], hotlineGet);
+app.get("/hotline/online",[authentication,wizardFill], hotlineOnlineGet);
+app.get("/hotline/offline",[authentication,wizardFill], hotlineOfflineGet);
 app.get("/hotsearch",authentication,hotlineSearchGet)
 app.get("/hotoffsearch",authentication,hotOfflineSearchGet)
 

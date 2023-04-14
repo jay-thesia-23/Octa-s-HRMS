@@ -15,11 +15,11 @@ var {leaveGet,leavePost,leave_editGet,update_leavePost,leave_approvePost,leave_c
 var path=require("path")
 app.set("views",path.join(__dirname,"../views"))
 var {authentication}=require("../middleware/authMiddleware")
-app.get("/leaves",authentication, leaveGet);
-//app.get("/editleave",authentication, editleaveGet);
-//app.get("/updateleave",authentication, updateleaveGet);
 
-app.post("/leaves",authentication,leavePost);
+var {wizardFill}=require("../middleware/noWizard")
+
+app.get("/leaves",[authentication,wizardFill], leaveGet);
+app.post("/leaves",[authentication,wizardFill],leavePost);
 app.post("/leave_edit",authentication,leave_editGet);
 app.post("/update_leaves",authentication,update_leavePost);
 app.post("/leave_approve",authentication,leave_approvePost);

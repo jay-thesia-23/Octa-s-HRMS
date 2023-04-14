@@ -181,7 +181,7 @@ const wizardPost = async (req, res) => {
   var login_token = await req.cookies.login_token;
 
   jwt.verify(login_token, "sanjay", function (err, decoded) {
-    // console.log(decoded);
+    console.log(decoded);
     login_user__id = decoded.id[0].id;
     console.log(login_user__id);
   });
@@ -243,6 +243,13 @@ const wizardPost = async (req, res) => {
       });
     }
   );
+
+  conn.query(`update registration set u_login = '0' where u_email='${email}';`,
+            (err, data) => {
+              if (err) throw err;
+              
+              
+            });
 
   // res.end();
   res.redirect("/home");

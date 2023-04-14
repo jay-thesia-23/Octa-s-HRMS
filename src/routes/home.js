@@ -11,7 +11,10 @@ var {homeGet,employeeActivityGet,searchGet,logoutPost}=require("../controller/ho
 
 var {authentication}=require("../middleware/authMiddleware")
 
-app.get('/home',authentication, homeGet)
+var {wizardFill}=require("../middleware/noWizard")
+
+
+app.get('/home',[authentication,wizardFill], homeGet)
 app.get('/search',authentication,searchGet );
 app.get('/employee_activity',authentication,employeeActivityGet)
 

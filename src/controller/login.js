@@ -26,6 +26,8 @@ var loginGet = (req, res) => {
   console.log(url,"..........................");
   res.cookie('om', url)
   var server_url = req.cookies.om
+
+
   res.render("login.ejs", {layout:false});
 };
 
@@ -94,15 +96,13 @@ var loginPost = async (req, res) => {
               function (error, data_2) {
                 if (error) throw error;
                 data2= data_2;
-          conn.query(`update registration set u_login = '0' where u_email='${email}';`,
-            (err, data) => {
-              if (err) throw err;
-              
-              res.render("wizard.ejs",{data3,data2});
-            });
+
+                res.render("wizard.ejs",{data3,data2});
+         
         })
       })
         } else {
+     
           res.redirect("/home");
         }
 
@@ -122,4 +122,13 @@ var loginPost = async (req, res) => {
    
   
 };
-module.exports = { loginGet, Inemail, loginPost };
+
+
+
+var setPost=async(req,res)=>{
+  var token=req.cookies.login_token
+
+  res.json(token)
+
+}
+module.exports = { loginGet, Inemail, loginPost,setPost };
