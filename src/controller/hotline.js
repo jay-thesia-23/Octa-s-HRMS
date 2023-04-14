@@ -39,8 +39,6 @@ async function online_ofline_1() {
   var alldetails_1 = await alldata(
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
-
-  // console.log(alldetails);
   for (var k = 0; k < alldetails_1.length; k++) {
     on.push(alldetails_1[k].reg_id);
   }
@@ -83,7 +81,7 @@ const hotlineGet = async (req, res) => {
   var alldetailsProfile = await alldata(
     `select  profile_pic,reg_id from document_master `
   );
-  console.log(alldetailsProfile, "profile");
+
 
   online_ofline();
 
@@ -127,12 +125,12 @@ const hotlineOfflineGet = async (req, res) => {
     where check_master.online_status='1' and check_master.date = '${fulldate}' ; `
   );
 
-  // console.log(alldetails);
+
   for (var k = 0; k < alldetails_1.length; k++) {
     on.push(alldetails_1[k].reg_id);
   }
 
-  console.log(on, "online chhe");
+
   var total_emp = await alldata(
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`
   );
@@ -141,14 +139,14 @@ const hotlineOfflineGet = async (req, res) => {
     total.push(total_emp[p].reg_id);
   }
 
-  console.log(total, "total");
+
   var alldetails = [];
 
   for (var s = 0; s < total.length; s++) {
     var reg = total_emp[s].reg_id;
 
     if (on.includes(reg)) {
-      console.log(reg, "reg");
+    
     } else {
       var empl = await alldata(
         `select reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation where reg_id = ${reg}  `
@@ -158,17 +156,14 @@ const hotlineOfflineGet = async (req, res) => {
     }
   }
 
-  console.log(alldetails, "else ma");
+
   total_offline = alldetails.length;
 
   var alldetailsProfile = await alldata(
     `select * from document_master RIGHT JOIN employee_basic_infomation ON document_master.reg_id=employee_basic_infomation.reg_id;`
   );
 
-  console.log(
-    JSON.stringify(alldetailsProfile[0].profile_pic),
-    "profilleeeeeeeee"
-  );
+
 
   online_ofline();
 
@@ -195,7 +190,6 @@ var hotOfflineSearchGet = async (req, res) => {
     on.push(alldetails_1[k].reg_id);
   }
 
-  console.log(on);
 
   var total_emp = await alldata(
     `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp from employee_basic_infomation`
@@ -205,14 +199,14 @@ var hotOfflineSearchGet = async (req, res) => {
     total.push(total_emp[p].reg_id);
   }
 
-  console.log(total, "totla");
+
   var alldetails = [];
 
   for (var s = 0; s < total.length; s++) {
     var reg = total_emp[s].reg_id;
 
     if (on.includes(reg)) {
-      console.log(reg, "reg");
+ 
     } 
     
     else {
@@ -223,21 +217,20 @@ var hotOfflineSearchGet = async (req, res) => {
         sqlempl
       );
 
-      console.log(sqlempl);
+
 
       if (empl.length == 0) {
-        console.log("blank");
+
       } else {
         alldetails.push(empl);
       }
     }
   }
 
-  console.log(alldetails, "all details");
+
   total_offline = alldetails.length;
 
-  console.log(alldetails);
-  console.log("sannnnnn");
+
 
   res.json(alldetails);
 
@@ -252,7 +245,6 @@ const hotlineSearchGet = async (req, res) => {
   jwt.verify(login_token, "sanjay", function (err, decoded) {
     login_user__id = decoded.id[0].id;
   });
-  console.log(search, "query in hotline controller");
 
   let searchsql = `select employee_basic_infomation.reg_id,firstname,email,phone_number,designation,department,time_stamp,profile_pic from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id
   INNER JOIN document_master ON  document_master.reg_id=check_master.reg_id
@@ -263,7 +255,8 @@ const hotlineSearchGet = async (req, res) => {
     `select  profile_pic,reg_id from document_master `
   );
 
-  console.log(resSearch, alldetailsProfile);
+
+
   res.json(resSearch);
 };
 

@@ -191,7 +191,7 @@
 
     function leave_edit(leave, b) {
 
-console.log(leave,"qqq");
+
         fetch(`/leave_edit?request_id=${leave}`, {
             method: "post",
             headers: {
@@ -297,6 +297,7 @@ console.log(typeof arr[0],"zzx")
                  edit_leave.innerHTML = s
                 
 
+               
             })
 
 
@@ -307,6 +308,8 @@ console.log(typeof arr[0],"zzx")
         if (event.target == modal) {
             modal.style.display = "none";
         }
+
+     
     }
 
 
@@ -355,16 +358,17 @@ if (confirm(`You Are Sure Cancel Leave`)) {
 
     function leaveFunction() {
 
-        var ldate = document.getElementById('ldate').value || "";
-        var reason = document.getElementById('reason').value || "";
-        var ltype = document.getElementById('leavetype').value || "";
-        console.log(ltype,reason,ldate,"asssssssssssaaaaaaa");
+        var ldate = document.getElementById('ldate').value ;
+
+        
+        var reason = document.getElementById('reason').value ;
+        var ltype = document.getElementById('leavetype').value ;
         var isvalidate = true;
 
         // validation
         if (ldate == null || ldate == "") {
             document.getElementById('leave-error').innerHTML = "Please fill date ";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('leave-error').innerHTML = "";
@@ -372,7 +376,7 @@ if (confirm(`You Are Sure Cancel Leave`)) {
 
         if (ltype == null || ltype == "") {
             document.getElementById('ltype-error').innerHTML = "Please select type ";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('ltype-error').innerHTML = "";
@@ -380,14 +384,13 @@ if (confirm(`You Are Sure Cancel Leave`)) {
 
         if (reason == null || reason == "") {
             document.getElementById('reason-error').innerHTML = "Please enter reason";
-            isvalidate = false;
+            return false
         }
         else {
             document.getElementById('reason-error').innerHTML = "";
         }
-        return isvalidate;
 
-      
+        return true
     }
 
 </script>

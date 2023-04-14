@@ -1,41 +1,9 @@
-// function autoUnable(){
 
-//   console.log("autoUnable");
-
-//     var time = new Date();
-//      var hour = time.getHours();
-
-//      console.log(hour);
-//      console.log("in function0");
-//     if(hour==0){
-
-//       document.getElementById("check_in").disabled = false;
-//       document.getElementById("check_out").disabled = true;
-//       document.getElementById("breck_in").disabled = true;
-//       document.getElementById("breck_out").disabled = true;
-//     }
-
-// }
 
 const tz = moment().utcOffset();
-console.log(tz,"tz in frronet end");
 
-// var tz
 
-// let arraycookie = tzcookie.split(';');
-// console.log(arraycookie);
 
-// for(let i=0;i<arraycookie.length;i++){
-// let currString=arraycookie[i].replace(/ /g, "").split("=")
-// console.log( typeof currString,"currstring");
-
-// if(currString[0]=="tz"){
-// // tz=currString[1]
-// // console.log(tz,"inside if");
-
-// }
-// }
-// tz=Number(tz)
 
 async function fatchcheckmodule() {
   document.cookie = `tz=${tz}`;
@@ -48,8 +16,8 @@ async function fatchcheckmodule() {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data[0].time.slice(11,18))
-console.log(data[0]);
+
+
       var timecheckin = data[0].time.slice(11, 18);
 
       var hours = timecheckin.slice(0, 2);
@@ -68,7 +36,7 @@ console.log(data[0]);
       var minutes = timecheckin.slice(3, 5);
 
       var check = document.getElementById("time_box");
-      // console.log("indivision!!!!");
+   
 
       var div = document.createElement("div");
 
@@ -87,7 +55,7 @@ console.log(data[0]);
 async function fatchbreckin() {
 
   const tz = moment().utcOffset();
-  console.log(tz);
+
   fetch("/brc_in", {
     method: "get",
     headers: {
@@ -99,7 +67,7 @@ async function fatchbreckin() {
       var check = document.getElementById("time_box");
 
       for (var i = 0; i < data.length; i++) {
-        // console.log(data[i].time.slice(11,18))
+     
         var timecheckin = data[i].time.slice(11, 18);
         var hours = timecheckin.slice(0, 2);
         hours = hours % 12;
@@ -145,7 +113,7 @@ async function fatchbreckin() {
 async function fatchchkout() {
 
   const tz = moment().utcOffset();
-  console.log(tz);
+
 
 
   fetch("/chk_out", {
@@ -201,8 +169,6 @@ async function fatchchkout() {
 
       var TodayDates = yearValue + "-" + monthValue + "-" + dateValue;
 
-      console.log(TodayDates,"made by us");
-      console.log(dateOfToday,"from db")
 
       if (dateOfToday == TodayDates) {
         document.getElementById("check_in").disabled = true;

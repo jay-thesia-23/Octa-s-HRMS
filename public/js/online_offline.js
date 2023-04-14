@@ -164,6 +164,8 @@ async function search() {
 
 async function hotSearch() {
   const search = document.getElementById("search").value;
+  const on_static=document.getElementById("on_static")
+  on_static.innerHTML=""
 
   fetch(`/hotsearch?search=${search}`, {
     method: "GET",
@@ -173,7 +175,7 @@ async function hotSearch() {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res, "response");
+     
 
       let s="";
       let searchCard = document.getElementById("searchCard");
@@ -251,7 +253,7 @@ async function hotSearch() {
           </a>
         </div>`;
       }
-      console.log(s, "current");
+  
       searchCard.innerHTML = s;
     });
 }
@@ -268,7 +270,7 @@ async function hotoffSearch() {
     .then((ans) => ans.json())
     
     .then((res) => {
-      console.log(res, "response");
+    
 
       let s="";
       let searchCard = document.getElementById("searchCard");
@@ -344,7 +346,7 @@ async function hotoffSearch() {
           </a>
         </div>`;
       }
-      // console.log(s, "current");
+  
       searchCard.innerHTML = s;
     });
 }

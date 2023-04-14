@@ -44,7 +44,7 @@ var homeGet = (req, res) => {
     `select firstname,lastname,birth_date from employee_basic_infomation where birth_date = '${x}'; `,
     function (error, result) {
       if (error) throw error;
-      //console.log(result);
+
       conn.query(
         `select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,
         function (error, holidaydata) {
@@ -115,11 +115,11 @@ var searchGet = async (req, res) => {
   var search_breck = await alldata(
     `select firstname,lastname,status,date,time from employee_basic_infomation inner join breck_master on employee_basic_infomation.reg_id=breck_master.reg_id where  breck_master.date = '${fulldate}'  AND (employee_basic_infomation.firstname like '%${f_name}%' or employee_basic_infomation.lastname like '%${l_name}%' or employee_basic_infomation.firstname like '%${l_name}%' or employee_basic_infomation.lastname like '%${f_name}%');`
   );
-  // console.log(search_breck);
+
   var search_result = search_check.concat(search_breck);
 
   res.json(search_result);
-  // console.log(search_result);
+
 };
 
 var logoutPost = async (req, res) => {
