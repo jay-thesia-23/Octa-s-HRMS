@@ -8,7 +8,7 @@ app.set("layouts", path.resolve("src", "view", "layouts", "main")); //added
 var conn = require("../config/dbConnect");
 var jwt = require("jsonwebtoken");
 var util = require("util");
-var moment=require("moment");
+var moment = require("moment");
 const { log } = require("console");
 
 var alldata = util.promisify(conn.query.bind(conn));
@@ -24,14 +24,14 @@ var fulldate = y + "/" + x + "/" + z;
 
 
 var homeGet = (req, res) => {
-  
+
   var date = new Date();
-  
+
   var currentmonth = date.getMonth();
   var cm = currentmonth + 1;
-  
+
   const year = date.getFullYear();
-  var month = date.getMonth()+1;
+  var month = date.getMonth() + 1;
   if (month < 10) {
     month = "0" + month;
   }
@@ -49,7 +49,7 @@ var homeGet = (req, res) => {
         `select holiday_name,holiday_date,holiday_month,holiday_day from holidays where holiday_month="${cm}"`,
         function (error, holidaydata) {
           jwt.verify(req.cookies.login_token, "sanjay", (err, decode) => {
-           
+
 
             var login_id = decode.id[0].id;
             conn.query(
@@ -59,7 +59,7 @@ var homeGet = (req, res) => {
 
                 var totalHours = attendaceCount * 9;
 
-              
+
                 res.render("home.ejs", {
                   result,
                   date,
@@ -88,8 +88,11 @@ var employeeActivityGet = async (req, res) => {
   );
   var employee_activity = employee_check.concat(employee_breck);
 
+  employee_activity.sort(function (a, b) {
+    return new Date(a.time) - new Date(b.time)
+  })
   res.json(employee_activity);
-  console.log(employee_activity +"employeeeeee");
+  // console.log(employee_activity +"employeeeeee");
 };
 
 var searchGet = async (req, res) => {
@@ -100,11 +103,10 @@ var searchGet = async (req, res) => {
   name_array = search.split(" ");
 
   f_name = name_array[0];
-console.log(f_name +"fname");
   f_name = f_name.substring(1);
 
   var l_name = name_array[1];
-  console.log(l_name +"lname");
+
 
   var search_check = await alldata(
     `select firstname,lastname,status,date,time from employee_basic_infomation inner join check_master on employee_basic_infomation.reg_id=check_master.reg_id where  check_master.date = '${fulldate}' AND (employee_basic_infomation.firstname like '%${f_name}%' or employee_basic_infomation.lastname like '%${l_name}%' or employee_basic_infomation.firstname like '%${l_name}%' or employee_basic_infomation.lastname like '%${f_name}%') ;`
@@ -121,7 +123,7 @@ console.log(f_name +"fname");
 };
 
 var logoutPost = async (req, res) => {
- 
+
   res.clearCookie("session_id");
   res.clearCookie("login_token");
   res.render("logout");
@@ -135,5 +137,5 @@ module.exports = {
   searchGet,
   employeeActivityGet,
   logoutPost,
-  
+
 };

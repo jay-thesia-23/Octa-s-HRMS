@@ -17,6 +17,8 @@ function autoUnable() {
 
 autoUnable();
 
+
+
 function demo() {
   document.getElementById("attendanceRecord").hidden = false;
   document.getElementById("check_in").disabled = true;
@@ -40,6 +42,7 @@ function demo() {
   var div = document.createElement("div");
   div.setAttribute("class", "green");
   div.innerHTML = "Check In " + timeIn12HourFormat;
+  
 
   check.append(div);
 }

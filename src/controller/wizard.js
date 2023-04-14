@@ -109,7 +109,7 @@ const wizardPost = async (req, res) => {
   console.log(Object.keys(data).length);
 
    for (let i = 0; i < 5; i++) {
-    var objKey = Object.keys(data)[i];
+    var objKey = Object.keys(data)[i];               
 
     for (let j = 0; j < 1; j++) {
       console.log(data[objKey], "objectkdfsjdf");

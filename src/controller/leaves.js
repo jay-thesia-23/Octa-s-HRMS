@@ -71,6 +71,7 @@ var leavePost = (req, res) => {
     let leavetype = req.body.leavetype;
     let reason = req.body.reason;
    
+    console.log("dddd"+leavetype+"qqqqqq");
 
     //date
     var today = new Date();
@@ -91,7 +92,7 @@ var leavePost = (req, res) => {
     var id = decoded.id[0].id;
   
 
-    var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id} ","${leavetype} ","${today} ","${ldate}","${reason}")`;
+    var sql = `INSERT INTO request_leave_table(reg_id,leave_category,request_date,leave_date,leave_reason) VALUES ("${id}","${leavetype}","${today}","${ldate}","${reason}")`;
 
     conn.query(sql, function (err, result) {
       if (err) throw err;
@@ -110,7 +111,7 @@ var leave_editGet = (req, res) => {
 
     conn.query(sql, function (err, result_edit) {
       if (err) throw err;
-      res.json(result_edit)
+      res.json(result_edit)       
       // res.render("leaves_edit", { result_edit });
       // console.log(result); 
     });
@@ -120,7 +121,7 @@ var leave_editGet = (req, res) => {
 
 var update_leavePost = (req, res) => {
 
-  console.log(req.body);
+  // console.log(req.body);
   var ldate = req.body.ldate;
   var leavetype = req.body.leavetype;
   var reason = req.body.reason;
@@ -149,7 +150,7 @@ var leave_approvePost = (req, res) => {
 
     conn.query(sql, function (err, data) {
       if (err) throw err;
-      // res.json(result_edit)
+      res.json(true);
       // res.render("leaves_edit", { result_edit });
       console.log("update........"); 
 
@@ -175,7 +176,7 @@ var leave_cancelPost = (req, res) => {
       // res.render("leaves_edit", { result_edit });
       console.log("cancel leave........"); 
 
-
+      res.json(true);
     });
     // res.redirect("/leaves");
 

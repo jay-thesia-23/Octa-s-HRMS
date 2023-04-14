@@ -142,7 +142,7 @@
                     <div class="col-6">
                         <label><b>Leave Type</b></label>
                         <select class="s1" name="leavetype" id="leavetype">
-                            <option value="" disabled>Select Leave Type</option>
+                      
                             <option value="SL">SL</option>
                             <option value="CL">CL</option>
                             <option value="PL">PL</option>
@@ -243,10 +243,14 @@ console.log(leave,"qqq");
                                 
                             
 
-                                if(arr[i] == result_edit[0].leave_category ){
+console.log(typeof arr[0],"zzx")
+                                console.log(arr[i] ===  result_edit[0].leave_category,"valuessss")
+                                if( arr[i] ==  result_edit[0].leave_category ){
+                                    console.log(typeof result_edit[0].leave_category,"aaaaaaaaaaaaa")
                                     s+=` <option value=`+arr[i]+` selected >`+arr[i]+`</option>`
                                      }else{
                                       s+=`<option value=`+arr[i]+`>`+arr[i]+`</option>`
+                                      console.log("s sringt ")
                                      }
                                  
                                     }
@@ -317,6 +321,9 @@ if (confirm(`You are sure Approve Leave`)) {
             headers: {
                 "Content-type": "application/json",
             },
+        }).then((res)=>{
+            res.json()
+            location.reload()
         })
 }
        
@@ -334,6 +341,9 @@ if (confirm(`You Are Sure Cancel Leave`)) {
             headers: {
                 "Content-type": "application/json",
             },
+        }).then((res)=>{
+            res.json()
+            location.reload()
         })
 }
        

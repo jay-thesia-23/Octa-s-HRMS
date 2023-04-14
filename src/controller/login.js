@@ -89,9 +89,7 @@ var loginPost = async (req, res) => {
           conn.query(`select * from state_master; `, function (error, data_3) {
             if (error) throw error;
             data3 = data_3;
-            conn.query(
-              `select * from cource_master; `,
-              function (error, data_2) {
+            conn.query(`select * from cource_master; `,function (error, data_2) {
                 if (error) throw error;
                 data2= data_2;
           conn.query(`update registration set u_login = '0' where u_email='${email}';`,
